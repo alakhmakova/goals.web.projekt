@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <!--link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous"-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="circular-progress.css">
+    <title>Goals application</title>
+</head>
+<body>
+
+    <div class="application">
+
+        <header class="header">
+            <a href="" class="sort-by-menu">Sort by: Progress</a>
+            <button class="hide" onclick="hideFolders(); makeFoldersShowVisible();" id="folders-hide">Folders: Hide</button>
+            <button class="show" onclick="showFolders(); makeFoldersHideVisible()" id="folders-show">Folders: Show</button>
+            <button class="hide" onclick="hideGoals(); makeGoalsShowVisible();" id="goals-hide">Goals: Hide</button>
+            <button class="show" onclick="showGoals(); makeGoalsHideVisible()" id="goals-show">Goals: Show</button>
+            <button class="hide" onclick="">Achieved: Hide</button>
+            <button class="new-folder">+ New Folder</button>
+        </header>
+
+        <main class="main">
+            <img src="images/logo/logo-spira.png" alt="Logo" style="display: block; width: 25%; height: auto; margin: 0 auto; padding: 0;">
+            <!--h1 style="font-size: 95px; color: #6EC25B; margin: 0; padding: 0;">spira</h1-->
+            <h1 style="font-size: 90px; color: #290661; margin: 0; padding: 0; text-align: center;">Your Goals to<br>GROW</h1>
+            <button class="new-goal">+ New Goal</button>
+            <p>Scroll down to see your goals and folders</p>
+            <h1><i class="bi bi-arrow-down" style="font-size: 3000; color: #140330;"></i></h1>
+        </main>
+
+        <aside class="menu">
+            <button class="main-menu">MENU</button>
+        </aside>
+
+        <div class="cards">
+            <div class="card folder" id="folder1">
+                <img src="images/folders/calendar-with-background.png" class="card-icon" alt="calendar" title="Create goals with a spesific due to date?">
+                <p class="card-text">5 goals</p>
+                <button class="card-title">Important dates<i class="bi bi-chevron-compact-right" style="font-size: 13px;"></i></button>
+            </div><!--card1-->
+            <div class="card folder" id="folder2">
+                <img src="images/folders/card-with-background.png" class="card-icon" alt="bank-card" title="Create goals measurableable in currency">
+                <p class="card-text">3 goals</p>
+                <button class="card-title">Finances<i class="bi bi-chevron-compact-right" style="font-size: 13px;"></i></button>
+            </div><!--card2-->
+            <div class="card folder" id="folder3">
+                <img src="images/folders/apple-with-background.png" class="card-icon" alt="apple" title="Count your steps, calories, litres of water, etc.">
+                <p class="card-text">1 goal</p>
+                <button class="card-title">Health<i class="bi bi-chevron-compact-right" style="font-size: 13px;"></i></button>
+            </div><!--card3-->
+            <div class="card folder" id="folder4">
+                <img src="images/folders/education-with-background.png" class="card-icon" alt="book" title="Did you know you can create goals that are measured in currency?">
+                <p class="card-text">7 goals</p>
+                <button class="card-title">Education<i class="bi bi-chevron-compact-right" style="font-size: 13px;"></i></button>
+            </div><!--card4-->
+            <div class="card folder" id="folder5">
+                <img src="images/folders/work-with-background.png" class="card-icon" alt="bag" title="">
+                <p class="card-text">10 goals</p>
+                <button class="card-title">Work<i class="bi bi-chevron-compact-right" style="font-size: 13px;"></i></button>
+            </div><!--card5-->
+            <div class="card folder" id="folder6">
+                <img src="images/folders/family-with-background.png" class="card-icon" alt="family" title="">
+                <p class="card-text">0 goals</p>
+                <button class="card-title">Family<i class="bi bi-chevron-compact-right" style="font-size: 13px;"></i></button>
+            </div><!--card6-->
+            <div class="card goal" id="goal1">
+                <div class="card-icon circular-progress-container" data-target="10">
+                    <svg width="8rem" height="8rem" viewBox="0 0 250 250" class="circular-progress">
+                        <circle class="bg"></circle>
+                        <circle class="fg"></circle>
+                    </svg>
+                    <div class="circular-progress-text">0%</div>
+                </div><!--card-icon circular-progress-container-->
+                <p class="card-text">Find LIA place</p>
+                <button class="card-title"><i class="bi bi-crosshair2"></i> 5 targets</button>
+            </div><!--card7-->
+            <div class="card goal" id="goal2">
+                <div class="card-icon circular-progress-container" data-target="100">
+                    <svg width="8rem" height="8rem" viewBox="0 0 250 250" class="circular-progress">
+                        <circle class="bg"></circle>
+                        <circle class="fg"></circle>
+                    </svg>
+                    <div class="circular-progress-text">0%</div>
+                </div><!--card-icon circular-progress-container-->
+                <p class="card-text">Pass my exam</p>
+                <button class="card-title"><i class="bi bi-crosshair2"></i> 10 targets</button>
+            </div><!--card8-->
+            <div class="card goal" id="goal3">
+                <div class="card-icon circular-progress-container" data-target="50">
+                    <svg width="8rem" height="8rem" viewBox="0 0 250 250" class="circular-progress">
+                        <circle class="bg"></circle>
+                        <circle class="fg"></circle>
+                    </svg>
+                    <div class="circular-progress-text">0%</div>
+                </div><!--card-icon circular-progress-container-->
+                <p class="card-text">Go 10000 sters every day</p>
+                <button class="card-title"><i class="bi bi-crosshair2"></i> 2 targets</button>
+            </div><!--card9-->
+        </div><!--cards-->
+    
+        <footer class="footer">
+        <div class="content">
+            <h2>Why's it important to set a goal?</h2>
+            <p>Goals drive behavior. Goals help you establish priorities. They get people to focus on the right things to the exclusion of others. A clear set of personal goals helps you make meaningful progress. These goals are stepping stones toward your own growth and success, while also contributing to broader outcomes. Following a thoughtful and intentional goal-setting process is one of the most powerful ways to guide your actions and create meaningful change in your life. The right goals help shape the habits, decisions, and behaviors that move you toward the future you want to build. Your personal goals can come from many different areas of life. You might set goals around your career and work performance, but you can—and should—also create goals for your health and fitness, your relationships, how you eat, your role as a parent, your education, your hobbies, your emotional well-being, and the kind of lifestyle you want to lead. These goals are yours. You set them based on your own values, priorities, and the vision you have for your future—not someone else’s agenda. The key is to have enough goals to give your life direction and momentum, but not so many that you feel overwhelmed or scattered. As you define your goals, think about what really matters to you and what kind of person you want to become—and then break that vision down into a set of focused, manageable goals that you can work on over time. </p>
+            <!--i class="bi bi-book-half" style="font-size: 150px;"></i-->
+            <!--i class="bi bi-book" style="font-size: 100px;"></i-->
+            
+            <button>Read our blog</button>
+        </div><!--content-->
+        <div class="content1">
+            <h3>Frameworks<br>and Models</h3>
+            <p>Learn different goal-setting approaches<br>to increase your chances of hitting your goal</p>
+            <img src="images/logo/logo-spira.png" alt="Logo" style="width: 20%; height: auto;">
+        </div><!--content1-->
+        <div class="box1">
+            <h3>GROW</h3>
+            <p>Goal</p>
+            <p>Reality</p>
+            <p>Options</p>
+            <p>Will/Way forward</p>
+        </div><!--box1-->
+        <div class="box2">
+            <h3>CLEAR</h3>
+            <p>Collaborative</p>
+            <p>Limited</p>
+            <p>Emotional</p>
+            <p>Appreciable</p>
+            <p>Refinable</p>
+        </div><!--box2-->
+        <div class="box3">
+            <h3>SPVEM</h3>
+            <p>Scary</p>
+            <p>Positive</p>
+            <p>Visual</p>
+            <p>Emotional/Exciting</p>
+            <p>Measurable</p>
+        </div><!--box3-->
+        <div class="copiright">
+            <p><i class="bi bi-c-circle"></i> 2025 by Spira. Made by Anastasiya Lakhmakova</p>
+        </div><!--copiright-->
+        </footer>
+      
+    </div><!--application-->
+
+    <!--Circular progress
+    <script>
+        const progressContainer = document.querySelector('.circular-progress');
+        const progressText = document.querySelector('.circular-progress-text');
+        let progress = 0;
+
+        function updateProgress() {
+            if (progress >= 50) {
+                progressText.textContent = `50%`; // Make sure the text shows 100%
+                return; // Stop function execution
+            }
+
+            progress += 1;
+
+            // Update CSS variable --progress
+            progressContainer.style.setProperty('--progress', progress);
+
+            // Updating the text in the centre
+            progressText.textContent = `${progress}%`;
+
+            //Run an update every 50 ms
+            setTimeout(updateProgress, 50);
+        }
+
+        //Starting the animation
+        updateProgress();
+    </script>-->
+    <script src="circular-progress.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

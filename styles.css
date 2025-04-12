@@ -1,0 +1,233 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  color: #140330;
+}
+.application {
+    max-width: none;
+    max-height: 180rem;
+    display: grid;
+    grid-template-areas: 
+    "header menu" 
+    "main menu" 
+    "cards ." 
+    "footer footer";
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 0.8fr repeat(3, 6fr);
+    background-color: #FFFFFF;
+    
+    
+}
+.header {
+    grid-area: header;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    z-index: 2;
+}
+.header .hide {
+    font-family: "Nunito", sans-serif;
+    font-size: 20px;
+    color: #140330;
+    border-style: none;
+    text-decoration: underline;
+    background: none;
+}
+
+.header .show {
+    font-family: "Nunito", sans-serif;
+    font-size: 20px;
+    color: #140330;
+    border-style: none;
+    text-decoration: underline;
+    background: none;
+    display: none;
+    
+}
+.new-folder, .new-goal{
+    border-style: solid;
+    border-color: #140330;
+    border-radius: 25px;
+    width: 140px;
+    height: 50px;
+    font-family: "Nunito", sans-serif;
+    font-size: 18px;
+    padding: 0;
+    background-color: transparent;
+}
+
+.main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.menu {
+    position: fixed; 
+    top: 0; 
+    right: 0;
+    width: 50%; /**When fixed, it is mandatory to specify size**/
+    height: 100%; 
+    grid-area: menu;
+    
+    background-image: url("images/backgrounds/goals-3people-background1.png");
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-position: center;
+    z-index: 1;
+}
+.main-menu {
+    position: relative;
+    left: 80%;
+    top: 3.1%;
+    border-style: solid;
+    border-color: #3D0A91;
+    border-radius: 25px;
+    width: 140px;
+    height: 50px;
+    font-family: "Nunito", sans-serif;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 0;
+    background-color: #140330;
+}
+
+.cards {
+    grid-area: cards;
+    display: grid;
+    grid-template-areas: 
+    "card card card"
+    "card card card"
+    "card card card"; 
+    gap: 2rem;
+    width: 50vw;
+    height: 100vh;
+    width: 55rem;
+    height: 50rem;
+    justify-self: center;
+    z-index: 1;
+}
+
+.card {
+    display: grid;
+    grid-template-areas:
+    "card-icon"
+    "card-text"    
+    "card-title";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 15rem;
+    height: 13rem;
+    justify-items: center;
+    align-items: center;
+}
+
+.card > img {
+    width: 8rem;
+    height: 8rem;
+    clip-path: circle(50%);
+    grid-area: card-icon;
+}
+
+.card-text {
+    font-size: 15px;
+    grid-area: card-text;
+}
+.card button {
+    grid-area: card-title;
+    border-style: solid;
+    border-color: #3D0A91;
+    border-radius: 25px;
+    width: 140px;
+    height: 50px;
+    font-family: "Nunito", sans-serif;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 0;
+    background-color: #3D0A91;
+}
+
+.footer {
+    grid-area: footer;
+    display: grid;
+    grid-template-areas:
+    "content content content content content"
+    " content1 content1 box1 box2 box3"
+    "copiright copiright . . .";
+    
+    grid-template-columns: 2fr repeat(4, 1fr);
+    grid-template-rows: 3fr 2fr 0.5fr;
+
+    z-index: 2;
+    background-color: #E9ECEF;/*#FFE5D0; /*#E9CFA6;*/
+
+    padding: 0 2rem 0 1rem;
+    margin-top: 1rem;
+
+}
+.content {
+    grid-area: content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.content > h2 {
+    font-size: 60px;
+    margin-top: 3rem;
+}
+.content > p {
+    font-size: 20px;
+    margin-bottom: 2rem;
+    padding: 0;
+    text-align: center;
+}
+
+.content > button {
+    border-style: solid;
+    border-color: #66AF4A; /*#140330;*/
+    border-radius: 25px;
+    width: 140px;
+    height: 50px;
+    font-family: "Nunito", sans-serif;
+    font-size: 18px;
+    color: #66AF4A;
+    padding: 0;
+    background-color: transparent;
+}
+
+.content1 {
+    grid-area: content1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.content1 > h3 {
+    font-size: 30px;
+    margin: 23.4px 0 0 0;
+    
+}
+.content1 > p {
+
+    margin: 0;
+}
+
+.box1, .box2, .box3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+}       
+
+.copiright {
+    grid-area: copiright;
+}
