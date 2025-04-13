@@ -19,10 +19,10 @@
 
         <header class="header">
             <a href="" class="sort-by-menu">Sort by: Progress</a>
-            <button class="hide" onclick="hideFolders(); makeFoldersShowVisible()" id="folders-hide">Folders: Hide</button>
+            <button class="hide" onclick="hideFolders(); makeFoldersShowVisible();" id="folders-hide">Folders: Hide</button>
             <button class="show" onclick="showFolders(); makeFoldersHideVisible()" id="folders-show">Folders: Show</button>
-            <button class="hide" onclick="hideGoals(); makeGoalsShowVisible()" id="goals-hide">Goals: Hide</button>
-            <button class="show" onclick="showGoals(); makeGoalsHideVisible()" id="goals-show">Goals: Show</button>
+            <button class="hide" onclick="hideGoals(); makeGoalsShowVisible(); hideAchievedGoals(); makeAchievedGoalsShowVisible()" id="goals-hide">Goals: Hide</button>
+            <button class="show" onclick="showGoals(); makeGoalsHideVisible(); showAchievedGoals(); makeAchievedGoalsHideVisible(); " id="goals-show">Goals: Show</button>
             <button class="hide" onclick="hideAchievedGoals(); makeAchievedGoalsShowVisible()" id="achieved-hide">Achieved: Hide</button>
             <button class="show" onclick="showAchievedGoals(); makeAchievedGoalsHideVisible()" id="achieved-show">Achieved: Show</button>
             <button class="new-folder">+ New Folder</button>
