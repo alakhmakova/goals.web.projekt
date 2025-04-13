@@ -1,0 +1,79 @@
+{
+  "cards": [
+    {
+      "type": "folder",
+      "id": "folder1",
+      "img": "images/folders/calendar-with-background.png",
+      "alt": "calendar",
+      "title": "Create goals with a spesific due to date?",
+      "text": "5 goals",
+      "button": "Important dates"
+    },
+    {
+      "type": "folder",
+      "id": "folder2",
+      "img": "images/folders/card-with-background.png",
+      "alt": "bank-card",
+      "title": "Create goals measurableable in currency",
+      "text": "3 goals",
+      "button": "Finances"
+    },
+    {
+      "type": "folder",
+      "id": "folder3",
+      "img": "images/folders/apple-with-background.png",
+      "alt": "apple",
+      "title": "Count your steps, calories, litres of water, etc.",
+      "text": "1 goal",
+      "button": "Health"
+    },
+    {
+      "type": "folder",
+      "id": "folder4",
+      "img": "images/folders/education-with-background.png",
+      "alt": "book",
+      "title": "Did you know you can create goals that are measured in currency?",
+      "text": "7 goals",
+      "button": "Education"
+    },
+    {
+      "type": "folder",
+      "id": "folder5",
+      "img": "images/folders/work-with-background.png",
+      "alt": "bag",
+      "title": "",
+      "text": "10 goals",
+      "button": "Work"
+    },
+    {
+      "type": "folder",
+      "id": "folder6",
+      "img": "images/folders/family-with-background.png",
+      "alt": "family",
+      "title": "",
+      "text": "0 goals",
+      "button": "Family"
+    },
+    {
+      "type": "goal",
+      "id": "goal1",
+      "progressTarget": 10,
+      "text": "Find LIA place",
+      "button": "5 targets"
+    },
+    {
+      "type": "goal",
+      "id": "goal2",
+      "progressTarget": 100,
+      "text": "Pass my exam",
+      "button": "10 targets"
+    },
+    {
+      "type": "goal",
+      "id": "goal3",
+      "progressTarget": 50,
+      "text": "Go 10000 sters every day",
+      "button": "2 targets"
+    }
+  ]
+}

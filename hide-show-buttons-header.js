@@ -58,3 +58,49 @@ function showGoals() {
         goal.style.display = 'block'; // loop to show all goals
     });
 }
+
+/*function hideAchievedGoals() {
+    const аchievedGoals = document.querySelectorAll('.goal');//find all goals as a collection
+
+    аchievedGoals.forEach(аchievedGoal => {
+        const circularProgressText = аchievedGoal.querySelectorAll('.circular-progress-text');//among all goals find all elements of a .circular-progress-text class
+
+
+        circularProgressText.forEach(text => {
+            if (text.textContent === '100%') {//among all elements of a .circular-progress-text class find elements with the text "100%"
+                const аchievedGoal = text.parentElement.parentElement; //find parent parent element of the text element with 100%
+                аchievedGoal.style.display = 'none'; // hide the achieved goal
+            }
+
+        });//circularProgressText.forEach - end
+
+    });//аchievedGoals.forEach - end
+}*/
+function hideAchievedGoals() {
+    document.querySelectorAll('.goal').forEach(goal => {
+        if (goal.querySelector('.circular-progress-text')?.textContent.trim() === '100%') {
+            goal.style.display = 'none';
+        }
+    });
+}
+
+function showAchievedGoals() {
+    document.querySelectorAll('.goal').forEach(goal => {
+        if (goal.querySelector('.circular-progress-text')?.textContent.trim() === '100%') {
+            goal.style.display = 'block';
+        }
+    });
+}
+
+function makeAchievedGoalsShowVisible() {
+    const hideButton = document.querySelector('#achieved-hide'); 
+    const showButton = document.querySelector('#achieved-show');
+    hideButton.style.display = 'none';// hide the hide button
+    showButton.style.display = 'block'; // make the show button visible
+}
+function makeAchievedGoalsHideVisible() {
+    const hideButton = document.querySelector('#achieved-hide'); 
+    const showButton = document.querySelector('#achieved-show');
+    hideButton.style.display = 'block';// hide the hide button
+    showButton.style.display = 'none'; // make the show button visible
+}

@@ -19,11 +19,12 @@
 
         <header class="header">
             <a href="" class="sort-by-menu">Sort by: Progress</a>
-            <button class="hide" onclick="hideFolders(); makeFoldersShowVisible();" id="folders-hide">Folders: Hide</button>
+            <button class="hide" onclick="hideFolders(); makeFoldersShowVisible()" id="folders-hide">Folders: Hide</button>
             <button class="show" onclick="showFolders(); makeFoldersHideVisible()" id="folders-show">Folders: Show</button>
-            <button class="hide" onclick="hideGoals(); makeGoalsShowVisible();" id="goals-hide">Goals: Hide</button>
+            <button class="hide" onclick="hideGoals(); makeGoalsShowVisible()" id="goals-hide">Goals: Hide</button>
             <button class="show" onclick="showGoals(); makeGoalsHideVisible()" id="goals-show">Goals: Show</button>
-            <button class="hide" onclick="">Achieved: Hide</button>
+            <button class="hide" onclick="hideAchievedGoals(); makeAchievedGoalsShowVisible()" id="achieved-hide">Achieved: Hide</button>
+            <button class="show" onclick="showAchievedGoals(); makeAchievedGoalsHideVisible()" id="achieved-show">Achieved: Show</button>
             <button class="new-folder">+ New Folder</button>
         </header>
 
@@ -40,71 +41,7 @@
             <button class="main-menu">MENU</button>
         </aside>
 
-        <div class="cards">
-            <div class="card folder" id="folder1">
-                <img src="images/folders/calendar-with-background.png" class="card-icon" alt="calendar" title="Create goals with a spesific due to date?">
-                <p class="card-text">5 goals</p>
-                <button class="card-title">Important dates<i class="bi bi-chevron-compact-right" style="font-size: 13px;"></i></button>
-            </div><!--card1-->
-            <div class="card folder" id="folder2">
-                <img src="images/folders/card-with-background.png" class="card-icon" alt="bank-card" title="Create goals measurableable in currency">
-                <p class="card-text">3 goals</p>
-                <button class="card-title">Finances<i class="bi bi-chevron-compact-right" style="font-size: 13px;"></i></button>
-            </div><!--card2-->
-            <div class="card folder" id="folder3">
-                <img src="images/folders/apple-with-background.png" class="card-icon" alt="apple" title="Count your steps, calories, litres of water, etc.">
-                <p class="card-text">1 goal</p>
-                <button class="card-title">Health<i class="bi bi-chevron-compact-right" style="font-size: 13px;"></i></button>
-            </div><!--card3-->
-            <div class="card folder" id="folder4">
-                <img src="images/folders/education-with-background.png" class="card-icon" alt="book" title="Did you know you can create goals that are measured in currency?">
-                <p class="card-text">7 goals</p>
-                <button class="card-title">Education<i class="bi bi-chevron-compact-right" style="font-size: 13px;"></i></button>
-            </div><!--card4-->
-            <div class="card folder" id="folder5">
-                <img src="images/folders/work-with-background.png" class="card-icon" alt="bag" title="">
-                <p class="card-text">10 goals</p>
-                <button class="card-title">Work<i class="bi bi-chevron-compact-right" style="font-size: 13px;"></i></button>
-            </div><!--card5-->
-            <div class="card folder" id="folder6">
-                <img src="images/folders/family-with-background.png" class="card-icon" alt="family" title="">
-                <p class="card-text">0 goals</p>
-                <button class="card-title">Family<i class="bi bi-chevron-compact-right" style="font-size: 13px;"></i></button>
-            </div><!--card6-->
-            <div class="card goal" id="goal1">
-                <div class="card-icon circular-progress-container" data-target="10">
-                    <svg width="8rem" height="8rem" viewBox="0 0 250 250" class="circular-progress">
-                        <circle class="bg"></circle>
-                        <circle class="fg"></circle>
-                    </svg>
-                    <div class="circular-progress-text">0%</div>
-                </div><!--card-icon circular-progress-container-->
-                <p class="card-text">Find LIA place</p>
-                <button class="card-title"><i class="bi bi-crosshair2"></i> 5 targets</button>
-            </div><!--card7-->
-            <div class="card goal" id="goal2">
-                <div class="card-icon circular-progress-container" data-target="100">
-                    <svg width="8rem" height="8rem" viewBox="0 0 250 250" class="circular-progress">
-                        <circle class="bg"></circle>
-                        <circle class="fg"></circle>
-                    </svg>
-                    <div class="circular-progress-text">0%</div>
-                </div><!--card-icon circular-progress-container-->
-                <p class="card-text">Pass my exam</p>
-                <button class="card-title"><i class="bi bi-crosshair2"></i> 10 targets</button>
-            </div><!--card8-->
-            <div class="card goal" id="goal3">
-                <div class="card-icon circular-progress-container" data-target="50">
-                    <svg width="8rem" height="8rem" viewBox="0 0 250 250" class="circular-progress">
-                        <circle class="bg"></circle>
-                        <circle class="fg"></circle>
-                    </svg>
-                    <div class="circular-progress-text">0%</div>
-                </div><!--card-icon circular-progress-container-->
-                <p class="card-text">Go 10000 sters every day</p>
-                <button class="card-title"><i class="bi bi-crosshair2"></i> 2 targets</button>
-            </div><!--card9-->
-        </div><!--cards-->
+        <div class="cards" id="cardsContainer"></div><!--cards upload from "cards.json" via script "upload-cards.js"-->
     
         <footer class="footer">
         <div class="content">
@@ -177,7 +114,9 @@
         //Starting the animation
         updateProgress();
     </script>-->
+    <script src="hide-show-buttons-header.js"></script>
     <script src="circular-progress.js"></script>
-    <script src="script.js"></script>
+    <script src="upload-cards.js"></script>
+    
 </body>
 </html>
