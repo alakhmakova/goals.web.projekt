@@ -72,8 +72,134 @@
       "type": "goal",
       "id": "goal3",
       "progressTarget": 50,
-      "text": "Go 10000 sters every day",
+      "text": "Go 10000 steps every day",
       "button": "2 targets"
+    },
+    {
+      "type": "goal",
+      "id": "goal4",
+      "progressTarget": 22,
+      "text": "Read 20 pages per day",
+      "button": "4 targets"
+    },
+    {
+      "type": "goal",
+      "id": "goal5",
+      "progressTarget": 56,
+      "text": "Save 500 SEK this month",
+      "button": "3 targets"
+    },
+    {
+      "type": "goal",
+      "id": "goal6",
+      "progressTarget": 36,
+      "text": "Drink 2L water daily",
+      "button": "7 targets"
+    },
+    {
+      "type": "goal",
+      "id": "goal7",
+      "progressTarget": 90,
+      "text": "Meditate 10 minutes",
+      "button": "1 target"
+    },
+    {
+      "type": "goal",
+      "id": "goal8",
+      "progressTarget": 100,
+      "text": "Practice Swedish vocabulary",
+      "button": "5 targets"
+    },
+    {
+      "type": "goal",
+      "id": "goal9",
+      "progressTarget": 82,
+      "text": "Complete Java assignment",
+      "button": "4 targets"
+    },
+    {
+      "type": "goal",
+      "id": "goal10",
+      "progressTarget": 48,
+      "text": "Update LinkedIn profile",
+      "button": "2 targets"
+    },
+    {
+      "type": "goal",
+      "id": "goal11",
+      "progressTarget": 71,
+      "text": "Fix bugs in project",
+      "button": "6 targets"
+    },
+    {
+      "type": "goal",
+      "id": "goal12",
+      "progressTarget": 12,
+      "text": "Write blog post about testing",
+      "button": "3 targets"
+    },
+    {
+      "type": "goal",
+      "id": "goal13",
+      "progressTarget": 3,
+      "text": "Try a new recipe",
+      "button": "1 target"
+    },
+    {
+      "type": "goal",
+      "id": "goal14",
+      "progressTarget": 99,
+      "text": "Do pole workout 3x/week",
+      "button": "3 targets"
+    },
+    {
+      "type": "goal",
+      "id": "goal15",
+      "progressTarget": 23,
+      "text": "Take 3 mock exams",
+      "button": "6 targets"
+    },
+    {
+      "type": "goal",
+      "id": "goal16",
+      "progressTarget": 68,
+      "text": "Refactor old code",
+      "button": "2 targets"
+    },
+    {
+      "type": "goal",
+      "id": "goal17",
+      "progressTarget": 15,
+      "text": "Read one tech article",
+      "button": "1 target"
+    },
+    {
+      "type": "goal",
+      "id": "goal18",
+      "progressTarget": 95,
+      "text": "Help a classmate",
+      "button": "2 targets"
+    },
+    {
+      "type": "goal",
+      "id": "goal19",
+      "progressTarget": 5,
+      "text": "Submit assignment on time",
+      "button": "3 targets"
+    },
+    {
+      "type": "goal",
+      "id": "goal20",
+      "progressTarget": 100,
+      "text": "Create GitHub repo",
+      "button": "2 targets"
+    },
+    {
+      "type": "goal",
+      "id": "goal21",
+      "progressTarget": 75,
+      "text": "Deploy project to Heroku",
+      "button": "4 targets"
     }
   ]
 }

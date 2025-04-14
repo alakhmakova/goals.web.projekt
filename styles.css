@@ -7,18 +7,16 @@ body {
 }
 .application {
     max-width: none;
-    max-height: 180rem;
     display: grid;
     grid-template-areas: 
     "header menu" 
     "main menu" 
-    "cards ." 
+    "cards menu" 
     "footer footer";
+    row-gap: 1rem;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 0.8fr repeat(3, 6fr);
+    grid-template-rows: 0.8fr 7fr auto auto;
     background-color: #FFFFFF;
-    
-    
 }
 .header {
     grid-area: header;
@@ -28,7 +26,9 @@ body {
     position: sticky;
     top: 0;
     background-color: #ffffff;
-    z-index: 2;
+    z-index: 1000;
+    width: 49vw;
+    height: 11vh;/*need it hove all buttons with menu button in one line*/
 }
 .header .hide {
     font-family: "Nunito", sans-serif;
@@ -67,13 +67,16 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    height: 86vh;
+    
 }
+
 .menu {
     position: fixed; 
     top: 0; 
     right: 0;
-    width: 50%; /**When fixed, it is mandatory to specify size**/
-    height: 100%; 
+    width: 50vw; /**When fixed, it is mandatory to specify size**/
+    height: 100vh; 
     grid-area: menu;
     
     background-image: url("images/backgrounds/goals-3people-background1.png");
@@ -105,13 +108,11 @@ body {
     "card card card"
     "card card card"
     "card card card"; 
-    gap: 2rem;
+    row-gap: 4rem;
+    column-gap: 2rem;
     width: 50vw;
-    height: 100vh;
-    width: 55rem;
-    height: 50rem;
-    justify-self: center;
     z-index: 1;
+    margin-bottom: 2rem;
 }
 
 .card {
@@ -155,79 +156,86 @@ body {
 
 .footer {
     grid-area: footer;
+    align-self: flex-end;
     display: grid;
-    grid-template-areas:
-    "content content content content content"
-    " content1 content1 box1 box2 box3"
-    "copiright copiright . . .";
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 0.5fr 1fr;
+    align-content: flex-end;/*flex-end pushes everything down/up*/
+    padding-bottom: 1rem;
     
-    grid-template-columns: 2fr repeat(4, 1fr);
-    grid-template-rows: 3fr 2fr 0.5fr;
 
     z-index: 2;
     background-color: #E9ECEF;/*#FFE5D0; /*#E9CFA6;*/
-
-    padding: 0 2rem 0 1rem;
-    margin-top: 1rem;
-
 }
 .content {
-    grid-area: content;
+    grid-row: 1;
+    grid-column: 1/-1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    align-items: center;/*neet it to have items in the middle, no to the side of the screen*/
+    justify-content: space-evenly;/*not center! it will be no space between the text and the button*/
+    
 }
 
 .content > h2 {
-    font-size: 60px;
-    margin-top: 3rem;
-}
-.content > p {
-    font-size: 20px;
-    margin-bottom: 2rem;
-    padding: 0;
-    text-align: center;
+    font-size: 40px;
+    margin: 0;
 }
 
 .content > button {
     border-style: solid;
-    border-color: #66AF4A; /*#140330;*/
+    border-color: #4d8138; /*#140330;*/
     border-radius: 25px;
     width: 140px;
     height: 50px;
     font-family: "Nunito", sans-serif;
     font-size: 18px;
-    color: #66AF4A;
+    color: #4d8138;
     padding: 0;
     background-color: transparent;
 }
 
-.content1 {
-    grid-area: content1;
+.box1 {
+    grid-row: 2;
+    grid-column: 1;
+    justify-self: center;/*each box moves to te center horizontally*/
+}
+.box2 {
+    grid-row: 2;
+    grid-column: 2;
+    justify-self: center;/*each box moves to te center horizontally*/
+}
+.box3 {
+    grid-row: 2;
+    grid-column: 3;
+    justify-self: center;/*each box moves to te center horizontally*/
+}
+.box4 {
+    grid-row: 2;
+    grid-column: 4;
+    justify-self: center;/*each box moves to te center horizontally*/
+}
+.box1, .box2, .box3, .box4 {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-}
+    align-items: flex-start; /*смещение текста к левому краю*/
+    align-self: flex-start;/*pushes everything down/up*/
+    /*align-content: ; не работает*/
 
-.content1 > h3 {
-    font-size: 30px;
-    margin: 23.4px 0 0 0;
-    
-}
-.content1 > p {
-
-    margin: 0;
-}
-
-.box1, .box2, .box3 {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
-}       
+    p {
+        margin: 0;
+        padding: 0;
+    }
+} 
 
 .copiright {
-    grid-area: copiright;
+    grid-row: 2;
+    grid-column: 2/4;
+    justify-self: center;/*each box moves to te center horizontally*/
+    align-self: flex-end;
+
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    
 }
