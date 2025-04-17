@@ -17,6 +17,8 @@
 
     <div class="application">
     <div id="overlay"></div>
+        
+
         <header class="header">
             <div class="dropdown">
                 <button class="dropbtn" id="sort-by">Sort by: </button>
@@ -49,7 +51,7 @@
             <h1><i class="bi bi-arrow-down" style="font-size: 3rem; color: #140330;"></i></h1>
         </main>
         <!--New Goal Form-start: change fields according to the GROW-->
-        <div id="newGoalSidepanel" class="sidepanel">
+        <section id="newGoalSidepanel" class="sidepanel">
             <a><i class="bi bi-x-lg" id="close-new-goal-sidepanel"></i></a>
             <form action="">
 
@@ -77,11 +79,11 @@
                 </div>
 
                 <div class="field">
-                <input type="submit" value="Submit">
+                    <input type="submit" value="Submit" data-button="submit" data-page="goal">
                 </div>
 
               </form>
-        </div><!--New Goal Form-end-->
+        </section><!--New Goal Form-end-->
 
         <aside class="menu">
             <button class="main-menu">MENU</button>
@@ -137,7 +139,20 @@
             <p><i class="bi bi-c-circle"></i> 2025 Spira. Made by Anastasiya Lakhmakova</p>
         </div><!--copiright-->
         </footer>
-      
+    
+        <!--Single Page Application-->
+        <section class="page" id="goal-page" data-page="goal">
+            <div class="goal-header">
+                <i class="bi bi-layout-sidebar"></i>
+                <i class="bi bi-rocket"></i>
+                <a href="">All Goals <i class="bi bi-chevron-right"></i></a>
+            </div>
+            <div class="goal-info"></div>
+            <div class="goal-content">
+            </div>
+            <div class="goal-background"></div>
+        </section>
+        <!--SPA-end-->    
     </div><!--application-->
 
     <script src="hide-show-buttons-header.js"></script>
@@ -145,6 +160,7 @@
     <script src="upload-cards.js"></script>
     <script src="sort-by-drop-down.js"></script>
     <script src="new-goal-form.js"></script>
+    <script src="spa.js"></script>
     
 </body>
 </html>

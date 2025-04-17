@@ -16,7 +16,7 @@ body {
     row-gap: 1rem;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 0.8fr 7fr auto auto;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 }
 
 #overlay {
@@ -262,7 +262,7 @@ body {
     
 
     z-index: 2;
-    background-color: #E9ECEF;/*#FFE5D0; /*#E9CFA6;*/
+    background-color: #e0cffc;/*#E9ECEF;/*#FFE5D0; /*#E9CFA6;*/
 }
 .content {
     grid-row: 1;
@@ -281,14 +281,12 @@ body {
 
 .content > button {
     border-style: solid;
-    border-color: #49852e; /*#140330;*/
+    border-color: #140330;
     border-radius: 25px;
     width: 140px;
     height: 50px;
     font-family: "Nunito", sans-serif;
     font-size: 18px;
-    color: #49852e;
-    font-weight: 600;
     padding: 0;
     background-color: transparent;
 }
@@ -352,7 +350,7 @@ body {
     grid-area: header / main-start / cards-start / menu-start;/*grid-area: row-start / column-start / row-end / column-end;*/
     max-width: 100%; /* Set the width of the sidepanel */
     height: 100vh; /* Set the height of the sidepanel */
-    background-color: #e9ecef;
+    background-color: #ffffff;
     overflow-y: auto; /* только вертикальный скролл */
     overflow-x: hidden;
     z-index: 10;
@@ -429,4 +427,69 @@ input[type="submit"]:hover {
     border-color: #7dc65a; 
     color: #ffffff;
     background-color: #7dc65a;
+}
+
+/*
+-----------------------------------------------------------------------GOAL-PAGE----------------------------------------------------------------------
+*/
+
+#goal-page {
+    grid-area: 1 / 1 / -1 / -1; /*Occupies the entire grid*/
+    height: 100vh;
+    grid-template-columns: 0.5fr repeat(2, 1fr) 0.5fr; 
+    grid-template-rows: 1fr repeat(3, 5fr) repeat(2, 2.5fr); 
+    display: none; /* скрыто по умолчанию */
+    z-index: 10;
+
+    .goal-header {
+        grid-column: 1/-1; /*Occupies the entire grid*/
+        background-color: #1e0548;
+        display: flex;
+        padding-right: 90%;
+        padding-left: 1%;
+        justify-content: space-between;
+
+        .bi-layout-sidebar, .bi-rocket, a {
+            font-size: 1rem;
+            color:  #ffffff;
+            align-self: center;
+            text-decoration: none;
+        }
+
+        .bi-layout-sidebar {
+            font-size: 1.5rem;
+        }
+
+        .bi-rocket {
+            background-color: rgb(224, 207, 252, 0.5);
+            border-radius: 8px;
+            padding: 0.1rem 0.3rem 0.1rem 0.3rem;
+        }
+    }
+
+    .goal-info {
+        grid-column: 1/-1; /*Occupies the entire grid*/
+        grid-row: 2/4;
+        background-color: #290660;
+    }
+
+    .goal-background {
+        grid-column: 1/-1; /*Occupies the entire grid*/
+        grid-row: 4/7;
+        background-color: #e0cffc;
+        order: 1;
+    }
+
+    .goal-content {
+        grid-column: 2/4; 
+        grid-row: 3/6;
+        background-color: #f3f0fa;
+        order: 2;
+        border-radius: 8px;
+    }
+}
+
+/*Show only active page*/
+#goal-page.active {
+    display: grid;
 }
