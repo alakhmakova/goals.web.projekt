@@ -29,8 +29,8 @@ fetch("cards.json")
             cardsContainer.innerHTML += `
                 <div class="card folder" id="${card.id}">
                     <img src="${card.img}" class="card-icon" alt="${card.alt}" title="${card.title}">
-                    <p class="card-text">${card.text}</p>
-                    <button class="card-button">${card.button}<i class="bi bi-chevron-compact-right" style="font-size: 13px;"></i></button>
+                    <p class="card-text number">${card.text}</p>
+                    <button class="card-button name">${card.button}<i class="bi bi-chevron-compact-right" style="font-size: 13px;"></i></button>
                 </div>
             `;
         } else if (card.type === "goal") {
@@ -44,8 +44,8 @@ fetch("cards.json")
                         </svg>
                         <div class="circular-progress-text">0%</div>
                     </div>
-                    <p class="card-text">${card.text}</p>
-                    <button class="card-button"><i class="bi bi-crosshair2"></i> ${card.button}</button>
+                    <p class="card-text name">${card.text}</p>
+                    <button class="card-button number"><i class="bi bi-crosshair2"></i> ${card.button}</button>
                 </div>
             `;
         }
