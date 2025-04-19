@@ -333,13 +333,17 @@ body {
 
 .copiright {
     grid-row: 2;
-    grid-column: 2/4;
-    justify-self: center;/*each box moves to te center horizontally*/
+    grid-column: 1/-1;
+    justify-self: flex-end;/*each box moves to te center horizontally*/
     align-self: flex-end;
-
-    margin: 0;
+    margin-right: 11em;
     padding: 0;
     font-size: 15px;
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
     
 }
 
