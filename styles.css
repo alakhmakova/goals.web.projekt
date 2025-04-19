@@ -199,7 +199,7 @@ body {
     "card card card"
     "card card card"; 
     row-gap: 4rem;
-    column-gap: 2rem;
+    justify-items: center;
     width: 50vw;
     z-index: 1;
     margin-bottom: 2rem;
@@ -213,7 +213,7 @@ body {
     "card-button";
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    width: 15rem;
+    width: 14rem;
     height: 13rem;
     justify-items: center;
     align-items: center;
