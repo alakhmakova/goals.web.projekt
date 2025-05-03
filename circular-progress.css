@@ -5,6 +5,8 @@
     --radius: calc((var(--size) - var(--stroke-width)) / 2);
     --circumference: calc(var(--radius) * pi * 2);
     --dash: calc((var(--progress) * var(--circumference)) / 100);
+    width: 8rem;
+    height: 8rem;
 }
 
 .circular-progress circle {

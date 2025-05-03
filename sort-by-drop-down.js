@@ -51,7 +51,7 @@ function sortByNameDesc() {
 
 function sortByNumberOfItemsAsc() {
     sortCards({
-        selector: "number",
+        selector: "items",
         keyExtractor: el => parseInt(el.textContent.trim(), 10),
         isFolderCheck: true,
         order: "asc"
@@ -59,7 +59,7 @@ function sortByNumberOfItemsAsc() {
 }
 function sortByNumberOfItemsDesc() {
     sortCards({
-        selector: "number",
+        selector: "items",
         keyExtractor: el => parseInt(el.textContent.trim(), 10),
         isFolderCheck: true,
         order: "desc"
@@ -86,16 +86,16 @@ function sortByProgressDesc() {
 }
 
 
-// Объект для отслеживания текущего состояния сортировки
+//Object for tracking the current status of the sorting
 const sortState = {
-    currentSortKey: null, // Текущий ключ сортировки (например, "name", "number", "progress")
-    currentOrder: "asc" // Текущий порядок сортировки ("asc" или "desc")
+    currentSortKey: null, // The current sorting key (e.g, "name", "items", "progress")
+    currentOrder: "asc" // Current sort order ("asc" or "desc")
 };
 
-// sortMap для вызова функций сортировки
+// sortMap to call sorting functions
 const sortMap = {
     name: { asc: sortByNameAsc, desc: sortByNameDesc },
-    number: { asc: sortByNumberOfItemsAsc, desc: sortByNumberOfItemsDesc },
+    items: { asc: sortByNumberOfItemsAsc, desc: sortByNumberOfItemsDesc },
     progress: { asc: sortByProgressAsc, desc: sortByProgressDesc }
 };
 
@@ -104,7 +104,7 @@ sortByLinks.forEach(link => {
     link.addEventListener("click", event => {
         changeSortByText(event); // Изменить текст кнопки
 
-        const sortKey = event.target.dataset.sort; // Получить ключ сортировки (например, "name", "number", "progress")
+        const sortKey = event.target.dataset.sort; // Получить ключ сортировки (например, "name", "items", "progress")
 
         if (sortMap[sortKey]) {
             // Установить текущий тип сортировки и порядок
@@ -122,22 +122,22 @@ sortByLinks.forEach(link => {
 
 sortByLinks.forEach(link => {
     link.addEventListener("click", event => {
-        const sortKey = event.target.dataset.sort; // Получить ключ сортировки (например, "name", "number", "progress")
+        const sortKey = event.target.dataset.sort; // Получить ключ сортировки (например, "name", "items", "progress")
 
         if (sortMap[sortKey]) {
             if (sortState.currentSortKey === sortKey) {
-                // Если пользователь выбрал уже активную сортировку — просто сменить направление
+                //If the user has selected an already active sorting - change direction
                 const nextOrder = sortState.currentOrder === "asc" ? "desc" : "asc";
                 sortState.currentOrder = nextOrder;
                 sortMap[sortKey][nextOrder]();
             } else {
-                // Новый тип сортировки
+                //New sorting type
                 sortState.currentSortKey = sortKey;
                 sortState.currentOrder = "asc";
                 sortMap[sortKey]["asc"]();
             }
 
-            // Обновить текст кнопки
+            //Update the text of the button
             updateSortByButton();
         }
     });
@@ -177,30 +177,45 @@ function updateSortByButton() {
     dropdown.innerHTML = `Sort by: ${sortState.currentSortKey} (${sortState.currentOrder})`;
 }*/
 
-// Функция для обновления текста кнопки "sort-by"
+//Function for updating the button text "sort-by"
 function updateSortByButton() {
     const dropdown = document.getElementById("sort-by");
 
-    // Преобразуем первую букву sortKey в верхний регистр
+    // Определяем, нужно ли отображать только иконки
+    const isSmallScreen = window.innerWidth < 1450;
+
+    //Convert the first letter of sortKey to upper case
     const capitalizedKey = sortState.currentSortKey.charAt(0).toUpperCase() + sortState.currentSortKey.slice(1);
 
-    // Выбираем иконку в зависимости от порядка сортировки
+    //Select an icon depending on the sorting order
     const orderIcon = sortState.currentOrder === "asc"
-        ? '<i class="bi bi-arrow-up"></i>'
-        : '<i class="bi bi-arrow-down"></i>';
+        ? '<i class="bi bi-sort-up"></i>'
+        : '<i class="bi bi-sort-down"></i>';
 
-    dropdown.innerHTML = `Sort by: ${capitalizedKey} ${orderIcon}`;
+        if (isSmallScreen) {
+            // Если экран меньше 1450px, отображаем только иконки
+            dropdown.innerHTML = orderIcon;
+        } else {
+            // Если экран больше или равен 1450px, отображаем текст и иконки
+            const capitalizedKey = sortState.currentSortKey.charAt(0).toUpperCase() + sortState.currentSortKey.slice(1);
+            dropdown.innerHTML = `Sort by: ${capitalizedKey} ${orderIcon}`;
+        }
+
+    //dropdown.innerHTML = `Sort by: ${capitalizedKey} ${orderIcon}`;
 }
 
 
-// При загрузке страницы сразу обновляем текст кнопки
+//When the page loads, we immediately update the button text
 window.addEventListener("DOMContentLoaded", () => {
     sortState.currentSortKey = "name";
     sortState.currentOrder = "asc";
     updateSortByButton(); // Обновляем текст кнопки сразу
 });
 
-// Применяем сортировку при первом скролле
+// Обновляем кнопку при изменении размера окна
+window.addEventListener("resize", updateSortByButton);
+
+//Apply sorting on the first scroll
 let hasSortedOnScroll = false;
 
 window.addEventListener("scroll", () => {

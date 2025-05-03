@@ -20,7 +20,7 @@ fetch("cards.json")
     cardsContainer.innerHTML = `<p class="error">⚠️ Failed to load your goals and folders</p>`;
   });
 
-  //Define myDisplay(y) function
+  //Define myDisplay(y) function. 
   function myDisplay(data) {
     data.cards.forEach(card => {
 
@@ -29,22 +29,22 @@ fetch("cards.json")
             cardsContainer.innerHTML += `
                 <div class="card folder" id="${card.id}">
                     <img src="${card.img}" class="card-icon" alt="${card.alt}" title="${card.title}">
-                    <p class="card-text number">${card.text}</p>
-                    <button class="card-button name">${card.button}<i class="bi bi-chevron-compact-right" style="font-size: 13px;"></i></button>
+                    <div class="card-text number">${card.text}</div>
+                    <button class="card-button name">${card.button}<i class="bi bi-chevron-right""></i></button>
                 </div>
             `;
-        } else if (card.type === "goal") {
+        } else if (card.type === "goal") {//svg initially was width="8rem" height="8rem" - I moved it to circular-progress.css .circular-progress
            //add this code to an empty container
             cardsContainer.innerHTML += `
                 <div class="card goal" id="${card.id}">
                     <div class="card-icon circular-progress-container" data-target="${card.progressTarget}">
-                        <svg width="8rem" height="8rem" viewBox="0 0 250 250" class="circular-progress">
+                        <svg viewBox="0 0 250 250" class="circular-progress">
                             <circle class="bg"></circle>
                             <circle class="fg"></circle>
                         </svg>
                         <div class="circular-progress-text">0%</div>
                     </div>
-                    <p class="card-text name">${card.text}</p>
+                    <div class="card-text name">${card.text}</div>
                     <button class="card-button number"><i class="bi bi-crosshair2"></i> ${card.button}</button>
                 </div>
             `;

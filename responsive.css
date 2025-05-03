@@ -1,0 +1,153 @@
+@media screen and (max-width: 499px) {
+  .header {
+    .hide,
+    .show {
+      font-size: 0.9rem;
+    }
+  }
+  .footer {
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    gap: 2rem;
+
+    .box2,
+    .box3,
+    .box4 {
+      width: 30%;
+      align-self: center;
+    }
+  }
+}
+
+@media screen and (max-width: 1049px) {
+  .application {
+    grid-template-areas:
+      "header"
+      "menu"
+      "main"
+      "cards"
+      "footer";
+    row-gap: 1rem;
+    grid-template-columns: 100vw;
+    grid-template-rows: 5.5rem auto 7fr auto auto;
+    background-color: #ffffff;
+  }
+  .header {
+    position: fixed;
+    grid-area: header;
+    width: 100vw;
+    background-color: #3d0a91;
+    .dropdown .dropbtn,
+    .hide,
+    .show,
+    .bi-folder-plus {
+      color: #ffffff;
+    }
+  }
+  #new-folder {
+    display: none;
+  }
+  .bi-list {
+    font-size: clamp(1.5rem, 2.5rem, 3.5rem);
+    color: #ffffff;
+  }
+  .bi-sort-up,
+  .bi-sort-down,
+  .bi-folder-plus {
+    font-size: clamp(1rem, 2rem, 3rem);
+  }
+  .menu {
+    grid-area: menu;
+    width: 100vw;
+    position: static;
+  }
+  .main-menu {
+    display: none;
+  }
+  .main,
+  .cards {
+    width: 100vw;
+    justify-self: flex-start;
+  }
+  .footer {
+    display: flex;
+    width: 100vw;
+    padding: 1rem;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 2rem;
+    > .content > h2 {
+      text-align: center;
+    }
+    > .content > button {
+      margin-top: 1rem;
+    }
+
+    .box1 {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      > h3 {
+        margin: 0 0 1rem 0;
+      }
+    }
+    .copiright {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+@media screen and (min-width: 1050px) {
+  .header {
+    width: 49vw;
+    grid-template-columns: repeat(5, auto);
+    height: 11vh;
+    .dropdown {
+      grid-column: 1/2;
+      grid-row: 1/2;
+      width: auto;
+      .bi-sort-down, .bi-sort-up {
+        font-size: 2rem;
+      }
+      
+    }
+    #folders-hide {
+      grid-column: 2/3;
+    }
+    #goals-hide {
+      grid-column: 3/4;
+    }
+    #achieved-hide {
+      grid-column: 4/5;
+    }
+    #new-folder {
+      grid-column: 5/6;
+    }
+  }
+  .menu {
+    height: 100vh;
+    
+  }
+  .bi-list {
+    display: none;
+  }
+  .bi-folder-plus {
+    display: none;
+  }
+}
+@media screen and (max-width: 1249px) {
+  .main-menu {
+    margin-left: -3rem;
+  }
+}
+@media screen and (min-width: 1050px) and (max-width: 1399px) {
+    .banner {
+        margin-top: 13vh;
+      }
+}
+@media screen and (min-width: 1250px) and (max-width: 1549px) {
+  .main-menu {
+    margin-left: -2rem;
+  }
+}

@@ -1,166 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--To create a responsive website-->
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--To create a responsive website-->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
     <!--link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous"-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="circular-progress.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <link rel="stylesheet" href="circular-progress.css" />
     <title>Goals application</title>
-</head>
-<body>
+  </head>
 
+  <body>
     <div class="application">
-    <div id="overlay"></div>
-        
+      <div id="overlay"></div>
 
-        <header class="header">
-            <div class="dropdown">
-                <button class="dropbtn" id="sort-by">Sort by: </button>
-                <div class="dropdown-content">
-                  <a data-sort="name">Name</a>
-                  <a data-sort="number" style="padding-right: 0.5rem;">Number of items</a>
-                  <!--a style="padding-right: 0.5rem;">Date of creation</a-->
-                  <hr>
-                  <p>Only for goals <i class="bi bi-rocket-takeoff-fill" style="vertical-align: middle; font-size: 25px; color: #7dc65a;"></i></p>
-                  <hr>
-                  <a data-sort="progress">Progress </a>
-                  <!--a>Due to date</a-->
-                </div>
-              </div>
-            <button class="hide" onclick="hideFolders(); makeFoldersShowVisible();" id="folders-hide">Folders: Hide</button>
-            <button class="show" onclick="showFolders(); makeFoldersHideVisible()" id="folders-show">Folders: Show</button>
-            <button class="hide" onclick="hideGoals(); makeGoalsShowVisible(); hideAchievedGoals(); makeAchievedGoalsShowVisible()" id="goals-hide">Goals: Hide</button>
-            <button class="show" onclick="showGoals(); makeGoalsHideVisible(); showAchievedGoals(); makeAchievedGoalsHideVisible(); " id="goals-show">Goals: Show</button>
-            <button class="hide" onclick="hideAchievedGoals(); makeAchievedGoalsShowVisible()" id="achieved-hide">Achieved: Hide</button>
-            <button class="show" onclick="showAchievedGoals(); makeAchievedGoalsHideVisible()" id="achieved-show">Achieved: Show</button>
-            <button id="new-folder">+ New Folder</button>
-        </header>
+      <header class="header" id="header">
+        <div class="dropdown">
+          <button class="dropbtn" id="sort-by">Sort by:</button>
+          <div class="dropdown-content">
+            <a data-sort="name">Name</a>
+            <a data-sort="items" style="padding-right: 0.5rem"
+              >Number of items</a
+            >
+            <!--a style="padding-right: 0.5rem;">Date of creation</a-->
+            <hr />
+            <p>
+              Only for goals
+              <i
+                class="bi bi-rocket-takeoff-fill"
+                style="vertical-align: middle; font-size: 25px; color: #7dc65a"
+              ></i>
+            </p>
+            <hr />
+            <a data-sort="progress">Progress </a>
+            <!--a>Due to date</a-->
+          </div>
+        </div>
+        <button
+          class="hide"
+          onclick="hideFolders(); makeFoldersShowVisible();"
+          id="folders-hide"
+        >
+          Folders: Hide
+        </button>
+        <button
+          class="show"
+          onclick="showFolders(); makeFoldersHideVisible()"
+          id="folders-show"
+        >
+          Folders: Show
+        </button>
+        <button
+          class="hide"
+          onclick="hideGoals(); makeGoalsShowVisible(); hideAchievedGoals(); makeAchievedGoalsShowVisible()"
+          id="goals-hide"
+        >
+          Goals: Hide
+        </button>
+        <button
+          class="show"
+          onclick="showGoals(); makeGoalsHideVisible(); showAchievedGoals(); makeAchievedGoalsHideVisible(); "
+          id="goals-show"
+        >
+          Goals: Show
+        </button>
+        <button
+          class="hide"
+          onclick="hideAchievedGoals(); makeAchievedGoalsShowVisible()"
+          id="achieved-hide"
+        >
+          Achieved: Hide
+        </button>
+        <button
+          class="show"
+          onclick="showAchievedGoals(); makeAchievedGoalsHideVisible()"
+          id="achieved-show"
+        >
+          Achieved: Show
+        </button>
+        <button id="new-folder">+ New Folder</button>
+        <i class="bi bi-folder-plus"></i>
+        <i class="bi bi-list"></i>
+      </header>
 
-        <main class="main">
-            <img src="images/logo/logo-spira.png" alt="Logo" style="display: block; width: 25%; height: auto; margin: 0 auto; padding: 0;">
-            <!--h1 style="font-size: 95px; color: #6EC25B; margin: 0; padding: 0;">spira</h1-->
-            <h1 style="font-size: 90px; color: #290661; margin: 0; padding: 0; text-align: center;">Your Goals to<br>GROW</h1>
-            <button id="new-goal">+ New Goal</button>
-            <p>Scroll down to see your goals and folders</p>
-            <h1><i class="bi bi-arrow-down" style="font-size: 3rem; color: #140330;"></i></h1>
-        </main>
-        <!--New Goal Form-start: change fields according to the GROW-->
-        <section id="newGoalSidepanel" class="sidepanel">
-            <a><i class="bi bi-x-lg" id="close-new-goal-sidepanel"></i></a>
-            <form action="">
+      <main class="main">
+        <img class="logo" src="images/logo/logo-spira.png" alt="Logo" />
+        <h1>Your Goals to<br />GROW</h1>
+        <button id="new-goal">+ New Goal</button>
+        <p>Scroll down to see your goals and folders</p>
+        <h1><i class="bi bi-arrow-down"></i></h1>
+      </main>
+      <!--New Goal Form-start: change fields according to the GROW-->
+      <section id="newGoalSidepanel" class="sidepanel">
+        <a><i class="bi bi-x-lg" id="close-new-goal-sidepanel"></i></a>
+        <form action="">
+          <div class="field">
+            <label for="goalname"
+              ><i
+                class="bi bi-rocket-takeoff"
+                style="vertical-align: middle"
+              ></i>
+              Goal name</label
+            >
+            <label class="hint"
+              >Required*<br />Try to come up with a short title. You can provide
+              details in the description.<br />Goals are high-level containers
+              that can be broken down into smaller Targets. Learn more</label
+            >
+            <input
+              type="text"
+              id="goalname"
+              name="goalname"
+              placeholder="Enter your goal"
+              required
+            />
+          </div>
 
-                <div class="field">
-                <label for="goalname"><i class="bi bi-rocket-takeoff" style="vertical-align: middle"></i> Goal name</label>
-                <label class="hint">Required*<br>Try to come up with a short title. You can provide details in the description.<br>Goals are high-level containers that can be broken down into smaller Targets. Learn more</label>
-                <input type="text" id="goalname" name="goalname" placeholder="Enter your goal" required>
-                </div>
-            
-                <div class="field">
-                <label for="email"><i class="bi bi-rocket-takeoff" style="vertical-align: middle"></i> Who has access to this Goal?</label>
-                <label class="hint">Do you want to share this goal with someone?</label>
-                <input type="email" id="shared-by-email" name="shared-by-email" placeholder="Enter email">
-                </div>
+          <div class="field">
+            <label for="email"
+              ><i
+                class="bi bi-rocket-takeoff"
+                style="vertical-align: middle"
+              ></i>
+              Who has access to this Goal?</label
+            >
+            <label class="hint"
+              >Do you want to share this goal with someone?</label
+            >
+            <input
+              type="email"
+              id="shared-by-email"
+              name="shared-by-email"
+              placeholder="Enter email"
+            />
+          </div>
 
-                <div class="field">
-                <label for="due-to-date"><i class="bi bi-rocket-takeoff" style="vertical-align: middle"></i> Is there a date this Goal should be completed by?</label>
-                <input type="date" id="due-to-date" name="due-to-date">
-                </div>
+          <div class="field">
+            <label for="due-to-date"
+              ><i
+                class="bi bi-rocket-takeoff"
+                style="vertical-align: middle"
+              ></i>
+              Is there a date this Goal should be completed by?</label
+            >
+            <input type="date" id="due-to-date" name="due-to-date" />
+          </div>
 
-                <div class="field">
-                <label for="description"><i class="bi bi-rocket-takeoff" style="vertical-align: middle"></i> Description</label>
-                <label class="hint">A short explanation why this Goal is set and how it should be achieved</label>
-                <textarea class="field" id="description" name="description" placeholder="Write something" style="height:200px"></textarea>
-                </div>
+          <div class="field">
+            <label for="description"
+              ><i
+                class="bi bi-rocket-takeoff"
+                style="vertical-align: middle"
+              ></i>
+              Description</label
+            >
+            <label class="hint"
+              >A short explanation why this Goal is set and how it should be
+              achieved</label
+            >
+            <textarea
+              class="field"
+              id="description"
+              name="description"
+              placeholder="Write something"
+              style="height: 200px"
+            ></textarea>
+          </div>
 
-                <div class="field">
-                    <input type="submit" value="Submit" data-button="submit" data-page="goal">
-                </div>
+          <div class="field">
+            <input
+              type="submit"
+              value="Submit"
+              data-button="submit"
+              data-page="goal"
+            />
+          </div>
+        </form>
+      </section>
+      <!--New Goal Form-end-->
 
-              </form>
-        </section><!--New Goal Form-end-->
+      <aside class="menu">
+        <button class="main-menu">MENU</button>
+        <img
+          class="banner"
+          src="images/backgrounds/goals-3people-background1.png"
+          alt="people are happy, because they achieve their goals"
+        />
+      </aside>
 
-        <aside class="menu">
-            <button class="main-menu">MENU</button>
-        </aside>
+      <div class="cards" id="cardsContainer"></div>
+      <!--cards upload from "cards.json" via script "upload-cards.js"-->
 
-        <div class="cards" id="cardsContainer"></div><!--cards upload from "cards.json" via script "upload-cards.js"-->
-    
-        <footer class="footer">
+      <footer class="footer">
         <div class="content">
-            <h2>Why's it important to set a goal?</h2>
-            <!--p>Goals drive behavior. Goals help you establish priorities. They get people to focus on the right things to the exclusion of others. A clear set of personal goals helps you make meaningful progress. These goals are stepping stones toward your own growth and success, while also contributing to broader outcomes. Following a thoughtful and intentional goal-setting process is one of the most powerful ways to guide your actions and create meaningful change in your life. The right goals help shape the habits, decisions, and behaviors that move you toward the future you want to build. Your personal goals can come from many different areas of life. You might set goals around your career and work performance, but you can also create goals for your health and fitness, your relationships, how you eat, your role as a parent, your education, your hobbies, your emotional well-being, and the kind of lifestyle you want to lead. These goals are yours. You set them based on your own values, priorities, and the vision you have for your future. The key is to have enough goals to give your life direction and momentum, but not so many that you feel overwhelmed or scattered. As you define your goals, think about what really matters to you and what kind of person you want to become. Break your vision down into a set of focused, manageable goals that you can work on over time. You can learn different goal-setting approaches below to increase your chances of hitting your goal. </p-->
-            <!--i class="bi bi-book-half" style="font-size: 150px;"></i-->
-            <!--i class="bi bi-book" style="font-size: 100px;"></i-->
-            
-            <button>Read blog</button>
-        </div><!--content-->
-        <div class="box1" style="font-size: 20px;">
-            <h3>FRAMEWORKS<br>AND MODELS</h3>
-            <h3>GROW</h3>
-            <p>Goal</p>
-            <p>Reality</p>
-            <p>Options</p>
-            <p>Way forward</p>
-            <!--p>*Learn different goal-setting approaches to increase your chances of hitting your goal</p-->
-            
-        </div><!--content1-->
-        
-        <div class="box2">
-            <h3>SMART</h3>
-            <p>Specific</p>
-            <p>Measurable</p>
-            <p>Assignable</p>
-            <p>Realistic</p>
-            <p>Time-bound</p>
-        </div><!--box2-->
-        <div class="box3">
-            <h3>CLEAR</h3>
-            <p>Collaborative</p>
-            <p>Limited</p>
-            <p>Emotional</p>
-            <p>Appreciable</p>
-            <p>Refinable</p>
-        </div><!--box3-->
-        <div class="box4">
-            <h3>SPVEM</h3>
-            <p>Scary</p>
-            <p>Positive</p>
-            <p>Visual</p>
-            <p>Exciting</p>
-            <p>Measurable</p>
-        </div><!--box4-->
-        <div class="copiright">
-            <p><i class="bi bi-c-circle"></i> 2025 Spira. Made by Anastasiya Lakhmakova</p>
-        </div><!--copiright-->
-        </footer>
-    
-        <!--Single Page Application-->
-        <section class="page" id="goal-page" data-page="goal">
-            <div class="goal-header">
-                <i class="bi bi-layout-sidebar"></i>
-                <i class="bi bi-rocket"></i>
-                <a href="">All Goals <i class="bi bi-chevron-right"></i></a>
-            </div>
-            <div class="goal-info"></div>
-            <div class="goal-content">
-            </div>
-            <div class="goal-background"></div>
-        </section>
-        <!--SPA-end-->    
-    </div><!--application-->
+          <h2>Why's it important to set a goal?</h2>
+          <!--p>Goals drive behavior. Goals help you establish priorities. They get people to focus on the right things to the exclusion of others. A clear set of personal goals helps you make meaningful progress. These goals are stepping stones toward your own growth and success, while also contributing to broader outcomes. Following a thoughtful and intentional goal-setting process is one of the most powerful ways to guide your actions and create meaningful change in your life. The right goals help shape the habits, decisions, and behaviors that move you toward the future you want to build. Your personal goals can come from many different areas of life. You might set goals around your career and work performance, but you can also create goals for your health and fitness, your relationships, how you eat, your role as a parent, your education, your hobbies, your emotional well-being, and the kind of lifestyle you want to lead. These goals are yours. You set them based on your own values, priorities, and the vision you have for your future. The key is to have enough goals to give your life direction and momentum, but not so many that you feel overwhelmed or scattered. As you define your goals, think about what really matters to you and what kind of person you want to become. Break your vision down into a set of focused, manageable goals that you can work on over time. You can learn different goal-setting approaches below to increase your chances of hitting your goal. </p-->
+          <!--i class="bi bi-book-half" style="font-size: 150px;"></i-->
+          <!--i class="bi bi-book" style="font-size: 100px;"></i-->
 
-    <script src="hide-show-buttons-header.js"></script>
-    <script src="circular-progress.js"></script>
-    <script src="upload-cards.js"></script>
-    <script src="sort-by-drop-down.js"></script>
-    <script src="new-goal-form.js"></script>
-    <script src="spa.js"></script>
-    
-</body>
+          <button>Read blog</button>
+        </div>
+        <!--content-->
+        <div class="box1" style="font-size: 20px">
+          <h3>FRAMEWORKS<br />AND MODELS</h3>
+          <h3>GROW</h3>
+          <p>Goal</p>
+          <p>Reality</p>
+          <p>Options</p>
+          <p>Way forward</p>
+          <!--p>*Learn different goal-setting approaches to increase your chances of hitting your goal</p-->
+        </div>
+        <!--content1-->
+
+        <div class="box2">
+          <h3>SMART</h3>
+          <p>Specific</p>
+          <p>Measurable</p>
+          <p>Assignable</p>
+          <p>Realistic</p>
+          <p>Time-bound</p>
+        </div>
+        <!--box2-->
+        <div class="box3">
+          <h3>CLEAR</h3>
+          <p>Collaborative</p>
+          <p>Limited</p>
+          <p>Emotional</p>
+          <p>Appreciable</p>
+          <p>Refinable</p>
+        </div>
+        <!--box3-->
+        <div class="box4">
+          <h3>SPVEM</h3>
+          <p>Scary</p>
+          <p>Positive</p>
+          <p>Visual</p>
+          <p>Exciting</p>
+          <p>Measurable</p>
+        </div>
+        <!--box4-->
+        <div class="copiright">
+          <p>
+            <i class="bi bi-c-circle"></i> 2025 Spira. Made by Anastasiya
+            Lakhmakova
+          </p>
+        </div>
+        <!--copiright-->
+      </footer>
+
+      <!--Single Page Application-->
+      <section class="page" id="goal-page" data-page="goal">
+        <div class="goal-header">
+          <i class="bi bi-layout-sidebar"></i>
+          <i class="bi bi-rocket"></i>
+          <a href="">All Goals <i class="bi bi-chevron-right"></i></a>
+        </div>
+        <div class="goal-info"></div>
+        <div class="goal-content"></div>
+        <div class="goal-background"></div>
+      </section>
+      <!--SPA-end-->
+    </div>
+    <!--application-->
+
+    <script src="hide-show-buttons-header.js" defer></script>
+    <script src="circular-progress.js" defer></script>
+    <script src="upload-cards.js" defer></script>
+    <script src="sort-by-drop-down.js" defer></script>
+    <script src="lift-banner.js" defer></script>
+    <script src="new-goal-form.js" defer></script>
+    <script src="spa.js" defer></script>
+  </body>
 </html>
