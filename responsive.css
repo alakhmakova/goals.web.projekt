@@ -53,6 +53,7 @@
   .bi-list {
     font-size: clamp(1rem, 2rem, 3rem);
     color: #ffffff;
+    align-self: flex-end;
   }
   .bi-sort-up,
   .bi-sort-down,
