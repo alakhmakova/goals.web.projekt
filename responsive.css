@@ -51,7 +51,7 @@
     display: none;
   }
   .bi-list {
-    font-size: clamp(1rem, 2rem, 3rem);
+    font-size: clamp(1.5rem, 2.5rem, 3.5rem);
     color: #ffffff;
     margin-bottom: -2px;
   }
