@@ -37,6 +37,7 @@
     position: fixed;
     grid-area: header;
     width: 100vw;
+    height: 13vh;
     background-color: #3d0a91;
     .dropdown .dropbtn,
     .hide,
