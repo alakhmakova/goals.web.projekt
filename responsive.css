@@ -38,6 +38,7 @@
     grid-area: header;
     width: 100vw;
     height: 13vh;
+    align-items: flex-end;
     background-color: #3d0a91;
     .dropdown .dropbtn,
     .hide,
