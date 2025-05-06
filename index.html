@@ -23,7 +23,7 @@
   </head>
 
   <body>
-    <div class="application">
+    <div class="application" id="main-content">
       <div id="overlay"></div>
 
       <header class="header" id="header">
@@ -259,7 +259,7 @@
         </div>
         <!--copiright-->
       </footer>
-
+      <!-----------------------------------------------------------------------------------------GOAL PAGE--------------------------------------------------------------------------------------->
       <!--Single Page Application-->
       <section class="page" id="goal-page" data-page="goal">
         <div class="goal-header">
@@ -271,16 +271,49 @@
         <div class="goal-content"></div>
         <div class="goal-background"></div>
       </section>
+
       <!--SPA-end-->
     </div>
     <!--application-->
-
+    <!-----------------------------------------------------------------------------------------FOLDER PAGE--------------------------------------------------------------------------------------->
+    <template id="folder-tmpl">
+      <section class="folder-page" id="folder-page-template" data-page="">
+        <div class="search">
+          <input type="text" placeholder="Search..." />
+        </div>
+        <div class="folder-header">
+          <a href=""> <i class="bi bi-rocket" style="margin-right: 1rem;"></i>All Goals <i class="bi bi-chevron-right"></i></a>
+          <p id="folder-name">Folder name</p>
+          <div class="dropdown">
+            <button class="dropbtn" id="sort-by">Sort by:</button>
+            <div class="dropdown-content">
+              <a data-sort="name">Name</a>
+              <a data-sort="items" style="padding-right: 0.5rem"
+                >Number of items</a
+              >
+              <a data-sort="progress">Progress </a>
+            </div>
+          </div>
+          <button
+            class="hide"
+            onclick="hideAchievedGoals(); makeAchievedGoalsShowVisible()"
+            id="achieved-hide"
+          >
+            Achieved: Hide
+          </button>
+          <button id="new-goal">+ New Goal</button>
+          <button id="delete-folder">Delete Folder</button>
+        </div>
+        <div class="cards" id="goalsContainer"></div>
+      </section>
+    </template>
     <script src="hide-show-buttons-header.js" defer></script>
     <script src="circular-progress.js" defer></script>
     <script src="upload-cards.js" defer></script>
     <script src="sort-by-drop-down.js" defer></script>
-    <script src="lift-banner.js" defer></script>
     <script src="new-goal-form.js" defer></script>
     <script src="spa.js" defer></script>
+    <script src="upload-folder-pages.js" defer></script>
+    <script src="drag-goal-to-folder.js" defer></script>
   </body>
 </html>

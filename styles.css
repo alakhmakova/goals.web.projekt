@@ -57,102 +57,11 @@ body {
   height: 13vh;
   /*need it hove all buttons with menu button in one line*/
 
-  .dropdown:hover .dropbtn,
-  .bi-folder-plus:hover {
-    font-weight: bold;
-    color: #7dc65a;
-  }
-
   .dropdown {
     grid-column: 1/2;
     grid-row: 2/3;
     width: 3rem;
     justify-self: center;
-  }
-
-  .dropdown .dropbtn {
-    font-family: "Nunito", sans-serif;
-    font-size: 20px;
-    color: #140330;
-    border-style: none;
-    text-decoration: underline;
-    background: none;
-  }
-
-  /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {
-    display: block;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-style: solid;
-    border-radius: 8px;
-    border-color: #ffffff;
-  }
-
-  .dropdown .dropdown-content {
-    display: none;
-    position: absolute;
-    min-width: 10rem;
-    z-index: 1;
-  }
-
-  .dropdown .dropdown-content > a {
-    color: #140330;
-    display: block;
-    /*to make links in vertical order*/
-    text-decoration: none;
-    margin-left: 0.4rem;
-  }
-
-  .dropdown-content hr {
-    border-top: 1px solid #7dc65a;
-  }
-
-  /* Change color of dropdown links on hover */
-  .dropdown .dropdown-content a:hover {
-    background-color: #7dc65a;
-    border-style: solid;
-    border-radius: 8px;
-    border-color: #7dc65a;
-    color: #ffffff;
-    margin-left: 1rem;
-    padding-left: 0.5rem;
-  }
-
-  .hide {
-    font-family: "Nunito", sans-serif;
-    font-size: 20px;
-    color: #140330;
-    border-style: none;
-    text-decoration: underline;
-    background: none;
-  }
-
-  .show {
-    font-family: "Nunito", sans-serif;
-    font-size: 20px;
-    color: #140330;
-    border-style: none;
-    text-decoration: underline;
-    background: none;
-    display: none;
-  }
-
-  .hide:hover,
-  .show:hover {
-    font-weight: bold;
-    color: #7dc65a;
-  }
-  #folders-hide {
-    grid-column: 1/2;
-    grid-row: 1/2;
-  }
-  #goals-hide {
-    grid-column: 2/3;
-    grid-row: 1/2;
-  }
-  #achieved-hide {
-    grid-column: 3/4;
-    grid-row: 1/2;
   }
   .bi-list {
     grid-column: 3/4;
@@ -168,6 +77,12 @@ body {
   }
 }
 
+.dropdown:hover .dropbtn,
+  .bi-folder-plus:hover {
+    font-weight: bold;
+    color: #7dc65a;
+  }
+
 #new-folder {
   border-style: solid;
   border-color: #140330;
@@ -180,11 +95,96 @@ body {
   background-color: transparent;
 }
 
-.header #new-folder:hover,
-.main #new-goal:hover {
+#new-folder:hover,
+#new-goal:hover {
   border-color: #7dc65a;
   color: #ffffff;
   background-color: #7dc65a;
+}
+
+.dropdown .dropbtn {
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  color: #140330;
+  border-style: none;
+  text-decoration: underline;
+  background: none;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-style: solid;
+  border-radius: 8px;
+  border-color: #ffffff;
+}
+
+.dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 10rem;
+  z-index: 1;
+}
+
+.dropdown .dropdown-content > a {
+  color: #140330;
+  display: block;
+  /*to make links in vertical order*/
+  text-decoration: none;
+  margin-left: 0.4rem;
+}
+
+.dropdown-content hr {
+  border-top: 1px solid #7dc65a;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown .dropdown-content a:hover {
+  background-color: #7dc65a;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: #7dc65a;
+  color: #ffffff;
+  margin-left: 1rem;
+  padding-left: 0.5rem;
+}
+
+.hide {
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  color: #140330;
+  border-style: none;
+  text-decoration: underline;
+  background: none;
+}
+
+.show {
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  color: #140330;
+  border-style: none;
+  text-decoration: underline;
+  background: none;
+  display: none;
+}
+
+.hide:hover,
+.show:hover {
+  font-weight: bold;
+  color: #7dc65a;
+}
+#folders-hide {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+#goals-hide {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+#achieved-hide {
+  grid-column: 3/4;
+  grid-row: 1/2;
 }
 
 /*-------------------------------------------------------------------------MAIN-----------------------------------------------------------------------------------------------------------*/
@@ -219,17 +219,17 @@ body {
     font-size: clamp(2rem, 3rem + 5vw, 4rem);
     color: #140330;
   }
-  #new-goal {
-    border-style: solid;
-    border-color: #140330;
-    border-radius: 25px;
-    width: 140px;
-    height: 50px;
-    font-family: "Nunito", sans-serif;
-    font-size: 18px;
-    padding: 0;
-    background-color: transparent;
-  }
+}
+#new-goal {
+  border-style: solid;
+  border-color: #140330;
+  border-radius: 25px;
+  width: 140px;
+  height: 50px;
+  font-family: "Nunito", sans-serif;
+  font-size: 18px;
+  padding: 0;
+  background-color: transparent;
 }
 
 /*-------------------------------------------------------------------------MENU-----------------------------------------------------------------------------------------------------------*/
@@ -286,7 +286,7 @@ body {
   justify-items: center;
   width: 45vw;
   z-index: 1;
-  
+
   justify-self: center;
 }
 
@@ -684,4 +684,107 @@ input[type="submit"]:hover {
 /*Show only active page*/
 #goal-page.active {
   display: grid;
+}
+/*
+-----------------------------------------------------------------------FOLDER-PAGE----------------------------------------------------------------------
+*/
+
+#folder-page-template {
+  grid-area: 1 / 1 / -1 / -1;
+  /*Occupies the entire grid*/
+  height: 100vh;
+  grid-template-columns: 100vw;
+  grid-template-rows: 5rem 11vh auto;
+  display: grid;
+  /* hidden by default */
+  z-index: 10;
+  background-color: #ffffff;
+  overflow-x: hidden;
+
+  .search {
+    grid-column: 1/-1;
+    grid-row: 1/2;
+    /*Occupies the entire grid*/
+    width: 100%;
+    height: 5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    input[type="text"] {
+      width: 20rem;
+      height: fit-content;
+      border-radius: 8px;
+      border-style: solid;
+      border-width: 1px;
+      border-color: #dddddd;
+      font-size: 1.5rem;
+      align-self: center;
+    }
+  }
+
+  .folder-header {
+    grid-column: 1/-1;
+    /*Occupies the entire grid*/
+    grid-row: 2/3;
+    width: 98vw;
+    height: 11vh;
+    justify-self: center;
+    position: fixed;
+    top: 5rem;
+    z-index: 10;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid #dddddd;
+    border-radius: 25px 25px 0 0;
+
+    >p {
+      padding-right: 30rem;
+    }
+
+    #delete-folder {
+      border-style: solid;
+      border-color: #140330;
+      border-radius: 25px;
+      width: 140px;
+      height: 50px;
+      font-family: "Nunito", sans-serif;
+      font-size: 18px;
+      padding: 0;
+      background-color: transparent;
+    }
+    #delete-folder:hover {
+      border-color: #7dc65a;
+      color: #ffffff;
+      background-color: #7dc65a;
+    }
+  }
+  .folder-header .bi-layout-sidebar {
+    align-self: center;
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #140330;
+  }
+  .bi-layout-sidebar:hover {
+    color: #7dc65a;
+  }
+
+  #goalsContainer {
+    grid-column: 1/-1;
+    /*Occupies the entire grid*/
+    grid-row: 3/4;
+    width: 98vw;
+    border: 1px solid #dddddd;
+    border-top: transparent;
+    border-radius: 0 0 25px 25px;
+    padding: 2rem;
+
+    .goal {
+      height: min-content;
+    }
+  }
 }
