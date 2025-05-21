@@ -526,32 +526,28 @@ body {
 -----------------------------------------------------------------------FORMS-----------------------------------------------------------------------
 */
 .sidepanel {
-
-  grid-area: 1 / 1 / -1 / menu-start;
-  max-width: 100%;
-  /* Set the width of the sidepanel */
-height: 900px;
-  /* Set the height of the sidepanel */
+  width: 50%;
+  height: 100vh;
   background-color: #ffffff;
   overflow-y: auto;
-  /* только вертикальный скролл */
+  /* only vertical scrolling */
   overflow-x: hidden;
   z-index: 10;
-  display: none;
-  /* скрыто по умолчанию */
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none; /* hidden by default */
+}
 
-  form {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem 4rem 4rem 4rem;
-    row-gap: 6rem;
-    height: 100%;
-  }
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 4rem 4rem 4rem;
+  row-gap: 6rem;
 }
 
 .bi-x-lg {
-  position: absolute;
-  top: 0;
+  position: fixed;
   left: 51%;
   font-size: 3rem;
   color: #e9ecef;
