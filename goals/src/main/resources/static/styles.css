@@ -526,11 +526,11 @@ body {
 -----------------------------------------------------------------------FORMS-----------------------------------------------------------------------
 */
 .sidepanel {
-  grid-area: header / main-start / cards-start / menu-start;
-  /*grid-area: row-start / column-start / row-end / column-end;*/
+
+  grid-area: 1 / 1 / -1 / menu-start;
   max-width: 100%;
   /* Set the width of the sidepanel */
-  height: 100vh;
+height: 900px;
   /* Set the height of the sidepanel */
   background-color: #ffffff;
   overflow-y: auto;
@@ -545,6 +545,7 @@ body {
     flex-direction: column;
     padding: 2rem 4rem 4rem 4rem;
     row-gap: 6rem;
+    height: 100%;
   }
 }
 

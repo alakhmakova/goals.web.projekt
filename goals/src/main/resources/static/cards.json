@@ -1,0 +1,160 @@
+{
+    "cards": [
+      {
+        "type": "folder",
+        "id": "folder1",
+        "img": "images/folders/calendar-with-background.png",
+        "alt": "calendar",
+        "title": "Create goals with a specific due to date?",
+        "text": "5 goals",
+        "button": "Important dates",
+        "goals": [
+          {
+            "id": "goal17",
+            "progressTarget": 15,
+            "text": "Read one tech article",
+            "button": "1 target"
+          },
+          {
+            "id": "goal18",
+            "progressTarget": 95,
+            "text": "Help a classmate",
+            "button": "2 targets"
+          },
+          {
+            "id": "goal19",
+            "progressTarget": 5,
+            "text": "Submit assignment on time",
+            "button": "3 targets"
+          },
+          {
+            "id": "goal20",
+            "progressTarget": 100,
+            "text": "Create GitHub repo",
+            "button": "2 targets"
+          },
+          {
+            "id": "goal21",
+            "progressTarget": 75,
+            "text": "Deploy project to Heroku",
+            "button": "4 targets"
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "id": "folder2",
+        "img": "images/folders/card-with-background.png",
+        "alt": "bank-card",
+        "title": "Create goals measurable in currency",
+        "text": "3 goals",
+        "button": "Finances",
+        "goals": [
+          {
+            "id": "goal14",
+            "progressTarget": 99,
+            "text": "Do pole workout 3x/week",
+            "button": "3 targets"
+          },
+          {
+            "id": "goal15",
+            "progressTarget": 23,
+            "text": "Take 3 mock exams",
+            "button": "6 targets"
+          },
+          {
+            "id": "goal16",
+            "progressTarget": 68,
+            "text": "Refactor old code",
+            "button": "2 targets"
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "id": "folder3",
+        "img": "images/folders/apple-with-background.png",
+        "alt": "apple",
+        "title": "Count your steps, calories, litres of water, etc.",
+        "text": "1 goal",
+        "button": "Health",
+        "goals": [
+          {
+            "id": "goal13",
+            "progressTarget": 3,
+            "text": "Try a new recipe",
+            "button": "1 target"
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "id": "folder4",
+        "img": "images/folders/education-with-background.png",
+        "alt": "book",
+        "title": "Did you know you can create goals that are measured in currency?",
+        "text": "3 goals",
+        "button": "Education",
+        "goals": [
+          {
+            "id": "goal10",
+            "progressTarget": 48,
+            "text": "Update LinkedIn profile",
+            "button": "2 targets"
+          },
+          {
+            "id": "goal11",
+            "progressTarget": 71,
+            "text": "Fix bugs in project",
+            "button": "6 targets"
+          },
+          {
+            "id": "goal12",
+            "progressTarget": 12,
+            "text": "Write blog post about testing",
+            "button": "3 targets"
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "id": "folder5",
+        "img": "images/folders/work-with-background.png",
+        "alt": "bag",
+        "title": "",
+        "text": "0 goals",
+        "button": "Work",
+        "goals": [
+          {
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "id": "folder6",
+        "img": "images/folders/family-with-background.png",
+        "alt": "family",
+        "title": "",
+        "text": "0 goals",
+        "button": "Family",
+        "goals": [
+          {
+          }
+        ]
+      },
+      {
+        "type": "goal",
+        "id": "goal1",
+        "progressTarget": 10,
+        "text": "Find LIA place",
+        "button": "5 targets"
+      },
+      {
+        "type": "goal",
+        "id": "goal2",
+        "progressTarget": 100,
+        "text": "Pass my exam",
+        "button": "10 targets"
+      }
+    ]
+  }

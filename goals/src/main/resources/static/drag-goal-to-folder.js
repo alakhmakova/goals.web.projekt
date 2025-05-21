@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     goalsContainer.appendChild(div);
                 });
 
-                //Add the copied target that wфы dragged 
+                //Add the copied target that was dragged 
                 if (goalElement) {
                     const goalClone = goalElement.cloneNode(true);
                     goalClone.classList.remove('dragging');

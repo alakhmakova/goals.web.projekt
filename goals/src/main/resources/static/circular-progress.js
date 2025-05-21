@@ -29,7 +29,7 @@ function initCircularProgress() {
     }
 
     progressContainers.forEach((container) => {
-        const targetValue = parseInt(container.getAttribute('data-target'), 10) || 100;
+        const targetValue = parseInt(container.getAttribute('data-target'), 10) || 0;
         updateProgress(container, targetValue);
     });
 }
