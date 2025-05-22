@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -105,87 +105,39 @@
       <!--New Goal Form-start: change fields according to the GROW-->
       <section id="newGoalSidepanel" class="sidepanel">
         <a><i class="bi bi-x-lg" id="close-new-goal-sidepanel"></i></a>
-        <form action="">
+        <form>
           <div class="field">
-            <label for="goalname"
-              ><i
-                class="bi bi-rocket-takeoff"
-                style="vertical-align: middle"
-              ></i>
-              Goal name</label
-            >
-            <label class="hint"
-              >Required*<br />Try to come up with a short title. You can provide
+            <label for="goalname"><i class="bi bi-rocket-takeoff" style="vertical-align: middle"></i>
+              Goal name</label>
+            <p class="hint">Required*<br />Try to come up with a short title. You can provide
               details in the description.<br />Goals are high-level containers
-              that can be broken down into smaller Targets. Learn more</label
-            >
-            <input
-              type="text"
-              id="goalname"
-              name="goalname"
-              placeholder="Enter your goal"
-              required
-            />
+              that can be broken down into smaller Targets. Learn more</p>
+            <input type="text" id="goalname" name="text" placeholder="Enter your goal" required />
           </div>
 
           <div class="field">
-            <label for="email"
-              ><i
-                class="bi bi-rocket-takeoff"
-                style="vertical-align: middle"
-              ></i>
-              Who has access to this Goal?</label
-            >
-            <label class="hint"
-              >Do you want to share this goal with someone?</label
-            >
-            <input
-              type="email"
-              id="shared-by-email"
-              name="shared-by-email"
-              placeholder="Enter email"
-            />
+            <label for="sharedWith"><i class="bi bi-rocket-takeoff" style="vertical-align: middle"></i>
+              Who has access to this Goal?</label>
+            <p class="hint">Do you want to share this goal with someone?</p>
+            <input type="email" id="sharedWith" name="sharedWith" placeholder="Enter email" />
           </div>
 
           <div class="field">
-            <label for="due-to-date"
-              ><i
-                class="bi bi-rocket-takeoff"
-                style="vertical-align: middle"
-              ></i>
-              Is there a date this Goal should be completed by?</label
-            >
-            <input type="date" id="due-to-date" name="due-to-date" />
+            <label for="date"><i class="bi bi-rocket-takeoff" style="vertical-align: middle"></i>
+              Is there a date this Goal should be completed by?</label>
+            <input type="date" id="date" name="date" />
           </div>
 
           <div class="field">
-            <label for="description"
-              ><i
-                class="bi bi-rocket-takeoff"
-                style="vertical-align: middle"
-              ></i>
-              Description</label
-            >
-            <label class="hint"
-              >A short explanation why this Goal is set and how it should be
-              achieved</label
-            >
-            <textarea
-              class="field"
-              id="description"
-              name="description"
-              placeholder="Write something"
-              style="height: 200px"
-            ></textarea>
+            <label for="description"><i class="bi bi-rocket-takeoff" style="vertical-align: middle"></i>
+              Description</label>
+            <p class="hint">A short explanation why this Goal is set and how it should be achieved</p>
+            <textarea class="field" id="description" name="description" placeholder="Write something"
+                      style="height: 200px"></textarea>
           </div>
 
           <div class="field">
-            <input
-              type="submit"
-              value="Submit"
-              data-button="submit"
-              data-page="goal"
-            />
+            <input type="submit" value="Submit" data-button="submit" data-page="goal" />
           </div>
         </form>
       </section>
@@ -297,10 +249,7 @@
           <button
             class="hide"
             onclick="hideAchievedGoals(); makeAchievedGoalsShowVisible()"
-            id="achieved-hide"
-          >
-            Achieved: Hide
-          </button>
+            id="achieved-hide">Achieved: Hide</button>
           <button id="new-goal">+ New Goal</button>
           <button id="delete-folder">Delete Folder</button>
         </div>
@@ -315,5 +264,6 @@
     <script src="spa.js" defer></script>
     <script src="upload-folder-pages.js" defer></script>
     <script src="drag-goal-to-folder.js" defer></script>
+    <script src="submit-new-goal-form.js" defer></script>
   </body>
 </html>
