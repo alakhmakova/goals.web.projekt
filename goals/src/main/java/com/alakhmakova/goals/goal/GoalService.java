@@ -21,4 +21,8 @@ public class GoalService {
     public List<Goal> getAllGoalsWithoutFolders() {
         return goalRepository.findByInFolder("");
     }
+
+    public Goal save(Goal goal) {
+        return goalRepository.save(goal);
+    }
 }

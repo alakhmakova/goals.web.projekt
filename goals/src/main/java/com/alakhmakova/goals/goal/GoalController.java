@@ -1,7 +1,9 @@
 package com.alakhmakova.goals.goal;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/goals")
@@ -16,6 +18,11 @@ public class GoalController {
     public List<Goal> showGoals() {
         List<Goal> goals = goalService.getAllGoalsWithoutFolders();
         return goals;
+    }
+
+    @PostMapping
+    public Goal createGoal(@RequestBody Goal goal) {
+        return goalService.save(goal);
     }
 
 }
