@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -98,14 +98,15 @@
       <main class="main">
         <img class="logo" src="images/logo/logo-spira.png" alt="Logo" />
         <h1>Your Goals to<br />GROW</h1>
-        <button id="new-goal">+ New Goal</button>
+        <!--onclick="window.location.href='/api/goals/new'"-->
+        <button class="new-goal">+ New Goal</button>
         <p>Scroll down to see your goals and folders</p>
         <h1><i class="bi bi-arrow-down"></i></h1>
       </main>
       <!--New Goal Form-start: change fields according to the GROW-->
       <section id="newGoalSidepanel" class="sidepanel">
         <a><i class="bi bi-x-lg" id="close-new-goal-sidepanel"></i></a>
-        <form>
+        <form action=/goal method="post">
           <div class="field">
             <label for="goalname"><i class="bi bi-rocket-takeoff" style="vertical-align: middle"></i>
               Goal name</label>
@@ -213,16 +214,6 @@
       </footer>
       <!-----------------------------------------------------------------------------------------GOAL PAGE--------------------------------------------------------------------------------------->
       <!--Single Page Application-->
-      <section class="page" id="goal-page" data-page="goal">
-        <div class="goal-header">
-          <i class="bi bi-layout-sidebar"></i>
-          <i class="bi bi-rocket"></i>
-          <a href="">All Goals <i class="bi bi-chevron-right"></i></a>
-        </div>
-        <div class="goal-info"></div>
-        <div class="goal-content"></div>
-        <div class="goal-background"></div>
-      </section>
 
       <!--SPA-end-->
     </div>
@@ -250,7 +241,7 @@
             class="hide"
             onclick="hideAchievedGoals(); makeAchievedGoalsShowVisible()"
             id="achieved-hide">Achieved: Hide</button>
-          <button id="new-goal">+ New Goal</button>
+          <button class="new-goal">+ New Goal</button>
           <button id="delete-folder">Delete Folder</button>
         </div>
         <div class="cards" id="goalsContainer"></div>
@@ -261,7 +252,7 @@
     <script src="upload-cards.js" defer></script>
     <script src="sort-by-drop-down.js" defer></script>
     <script src="new-goal-form.js" defer></script>
-    <script src="submit-new-goal-form.js" defer></script>
+    <!--<script src="submit-new-goal-form.js" defer></script>-->
     <script src="upload-folder-pages.js" defer></script>
     <script src="drag-goal-to-folder.js" defer></script>
 

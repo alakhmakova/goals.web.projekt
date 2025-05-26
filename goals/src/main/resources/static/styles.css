@@ -96,7 +96,7 @@ body {
 }
 
 #new-folder:hover,
-#new-goal:hover {
+.new-goal:hover {
   border-color: #7dc65a;
   color: #ffffff;
   background-color: #7dc65a;
@@ -220,7 +220,7 @@ body {
     color: #140330;
   }
 }
-#new-goal {
+.new-goal {
   border-style: solid;
   border-color: #140330;
   border-radius: 25px;
@@ -536,7 +536,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  display: none; /* hidden by default */
+  display: none; /* should be hidden by default if you do not use Thymeleaf templates */
 }
 
 form {
@@ -621,8 +621,8 @@ input[type="submit"]:hover {
   height: 100vh;
   grid-template-columns: 0.5fr repeat(2, 1fr) 0.5fr;
   grid-template-rows: 1fr repeat(3, 5fr) repeat(2, 2.5fr);
-  display: none;
-  /* скрыто по умолчанию */
+  display: grid;  /* hidden by default */
+
   z-index: 10;
 
   .goal-header {

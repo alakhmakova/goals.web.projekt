@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="/styles.css" />
+  <title>Goal</title>
+</head>
+<body>
+<section class="page" id="goal-page" data-page="goal">
+  <div class="goal-header">
+    <i class="bi bi-layout-sidebar"></i>
+    <i class="bi bi-rocket"></i>
+    <a th:href="@{/}">All Goals <i class="bi bi-chevron-right"></i></a>
+  </div>
+  <div class="goal-info">
+    <p th:text="${goal.text}"></p>
+    <p th:text="${goal.description}"></p>
+    <p th:text="${goal.date}"></p>
+    <p th:text="${goal.sharedWith}"></p>
+  </div>
+  <div class="goal-content"></div>
+  <div class="goal-background"></div>
+</section>
+</body>
+</html>

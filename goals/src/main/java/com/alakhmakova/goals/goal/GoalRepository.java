@@ -11,4 +11,6 @@ import java.util.List;
 public interface GoalRepository extends MongoRepository<Goal, String>{
 
     List<Goal> findByInFolder(String inFolder);
+
+    List<Goal> id(String id);
 }

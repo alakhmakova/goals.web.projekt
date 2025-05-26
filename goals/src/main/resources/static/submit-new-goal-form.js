@@ -32,6 +32,10 @@ document.querySelector("#newGoalSidepanel form").addEventListener("submit", func
                 alert("Error creating goal");
             }
         })
+        .then(createdGoal => {
+            console.log("Success:", createdGoal);
+            window.location.href = `/api/goals/${createdGoal.id}`;
+        })
         .catch((error) => {
             console.error("Fetch error:", error); // Debugging
         });

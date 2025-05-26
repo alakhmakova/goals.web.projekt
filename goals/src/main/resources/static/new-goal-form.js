@@ -14,7 +14,7 @@ function closeNewGoalForm() {
     document.querySelector("header").style.display = 'flex'; 
   }
 
-const newGoalButton = document.querySelector("#new-goal");
+const newGoalButton = document.querySelector(".new-goal");
 const closeButton = document.querySelector("#close-new-goal-sidepanel"); // find the close button
 newGoalButton.addEventListener("click", event => {
     openNewGoalForm();

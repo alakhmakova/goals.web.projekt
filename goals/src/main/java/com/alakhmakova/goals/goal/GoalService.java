@@ -2,7 +2,10 @@ package com.alakhmakova.goals.goal;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class GoalService {
@@ -25,4 +28,24 @@ public class GoalService {
     public Goal save(Goal goal) {
         return goalRepository.save(goal);
     }
+    public Goal saveGoal(String text, String description, String date, String sharedWithEmail) {
+        Goal goal = new Goal();
+        goal.setType("goal");
+        goal.setText(text);
+        goal.setDescription(description);
+        goal.setDate(date);
+        goal.setProgressTarget(0);
+        goal.setButton("0 targets");
+        goal.setInFolder("");
+        goal.setOwner("");
+        if (sharedWithEmail != null && !sharedWithEmail.isEmpty()) {
+            goal.setSharedWith(Collections.singletonList(sharedWithEmail));
+        }
+        return goalRepository.save(goal);
+    }
+
+    public Goal getGoalById(String id) {
+        return goalRepository.findById(id).orElse(null);
+    }
+
 }

@@ -31,6 +31,24 @@ public class Goal {
         this.sharedWith = sharedWith;
         this.targets = targets;
     }
+    //Default constructor to create a goal from
+    public Goal(String id, String text, String date, String description, List<String> sharedWith) {
+        this.id = id;
+        this.type = "goal";
+        this.text = text;
+        this.progressTarget = 0;
+        this.button = "0 targets";
+        this.date = date;
+        this.description = description;
+        this.inFolder = "";
+        this.owner = "";
+        this.sharedWith = sharedWith;
+        this.targets = new ArrayList<>();
+    }
+
+    public Goal() {
+
+    }
 
     public String getId() {
         return id;
