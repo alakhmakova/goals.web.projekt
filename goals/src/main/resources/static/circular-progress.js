@@ -33,3 +33,4 @@ function initCircularProgress() {
         updateProgress(container, targetValue);
     });
 }
+document.addEventListener("DOMContentLoaded", initCircularProgress);
