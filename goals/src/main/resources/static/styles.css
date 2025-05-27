@@ -618,12 +618,13 @@ input[type="submit"]:hover {
 #goal-page {
   grid-area: 1 / 1 / -1 / -1;
   /*Occupies the entire grid*/
-  height: 100vh;
-  grid-template-columns: 0.5fr repeat(2, 1fr) 0.5fr;
-  grid-template-rows: 1fr repeat(3, 5fr) repeat(2, 2.5fr);
-  display: grid;  /* hidden by default */
 
-  z-index: 10;
+  grid-template-columns: 0.5fr repeat(2, 1fr) 0.5fr;
+  grid-template-rows: 4rem repeat(3, 5fr)  repeat(2, 2.5fr);
+  display: grid;
+  min-height: 100vh;
+  height: fit-content;
+
 
   .goal-header {
     grid-column: 1/-1;
@@ -633,6 +634,11 @@ input[type="submit"]:hover {
     padding-right: 90%;
     padding-left: 1%;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
+    height: 4rem;
+    z-index: 10;
+
 
     .bi-layout-sidebar,
     .bi-rocket,
@@ -660,7 +666,8 @@ input[type="submit"]:hover {
     grid-row: 2/4;
     background-color: #290660;
     padding: 0 20rem;
-    display: flex;
+    min-height: 50vh;
+    height: fit-content;
   }
   .goal-info{
     align-self: flex-start;
@@ -678,6 +685,10 @@ input[type="submit"]:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    z-index: 9;
+    align-self: flex-start;
+    margin-top: 1.5rem;
+
   }
   .goal-name,
   .bi-three-dots {
@@ -696,7 +707,7 @@ input[type="submit"]:hover {
     grid-row: 1/2;
     display: flex;
     width: 30rem;
-    justify-content: flex-end;
+    justify-content: center;
     column-gap: 1rem;
   }
   .goal-desc {
@@ -704,9 +715,14 @@ input[type="submit"]:hover {
     grid-row: 2/3;
     border: solid 1px #ffffff;
     border-radius: 4px;
-    width: 25rem;
-    height: 3rem;
+    min-width: 25rem;
+    max-width: 50rem;
+    min-height: 3rem;
     padding: 1rem;
+    background: transparent;
+    overflow: hidden;
+    /*resize: vertical;*/
+
   }
   .goal-desc,
   .goal-data p {
