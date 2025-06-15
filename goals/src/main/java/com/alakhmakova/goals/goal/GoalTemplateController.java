@@ -1,17 +1,26 @@
 package com.alakhmakova.goals.goal;
+import com.alakhmakova.goals.target.Target;
+import com.alakhmakova.goals.target.TargetService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller //use with Thymeleaf
 public class GoalTemplateController {
-    private final GoalService goalService;
+    private static final Logger log = LogManager.getLogger(GoalTemplateController.class);
 
-    public GoalTemplateController(GoalService goalService) {
+    private final GoalService goalService;
+    public final TargetService targetService;
+
+    public GoalTemplateController(GoalService goalService, TargetService targetService) {
         this.goalService = goalService;
+        this.targetService = targetService;
     }
     @PostMapping("/goal")
     public String createGoal(
@@ -22,12 +31,50 @@ public class GoalTemplateController {
             Model model) {
         Goal savedGoal = goalService.saveGoal(text, description, date, sharedWith);
         model.addAttribute("goal", savedGoal);
-        return "redirect:/goal" + savedGoal.getId();
+        return "redirect:/goal/" + savedGoal.getId();
     }
-    @GetMapping("/goal{id}")
+
+    /*@PostMapping("/target")
+    public String createTarget(
+            @RequestParam("goalID") String goalID,
+            @RequestParam("name") String name,
+            @RequestParam("type") String type,
+            *//*@RequestParam("unit") String unit,
+            @RequestParam("start") String start,
+            @RequestParam("target") String target,
+            @RequestParam("tasks") ArrayList<String> tasks,*//*
+            Model model) {
+        Goal goal = goalService.getGoalById(goalID);
+        log.info("Current goal: " + goal.getText());
+        Target saveTarget = targetService.saveTarget(goal.getId(), name, type*//*, unit, start, target, tasks*//*);
+        log.info("Target to save: " + saveTarget);
+        model.addAttribute("target", saveTarget);
+        log.info("Target was succesfully saved: " + saveTarget);
+        return "redirect:/goal" + goal.getId();
+    }*/
+    @PostMapping("/target")
+    public String saveTarget(@RequestParam(value = "unit", required = false) String unit,
+                             @RequestParam(value = "start", required = false) String start,
+                             @RequestParam(value = "target", required = false) String targetNumber,
+                             @ModelAttribute Target target) {
+        target.setUnit(unit);
+        target.setStart(start);
+        target.setTarget(targetNumber);
+        targetService.saveTarget(target);
+        return "redirect:/goal/" + target.getGoalID();
+    }
+
+    @GetMapping("/goal/{id}")
     public String getGoalById(@PathVariable String id, Model model) {
         Goal goal = goalService.getGoalById(id);
-        model.addAttribute("goal", goal);
-        return "goal";
+        model.addAttribute("goal", goal);//Goal object is added to the model
+        List<Target> targets = targetService.getAllTargetsByGoalID(id);
+        log.info("Targets inside the goal: " + targets);
+        model.addAttribute("targets", targets);// List of Target objects is added to the model
+        //для формы target
+        Target newTarget = new Target();
+        newTarget.setGoalID(id); // важно, чтобы goalID был уже установлен
+        model.addAttribute("target", newTarget); // <--- это нужно для формы
+        return "goal";//goal.html
     }
 }

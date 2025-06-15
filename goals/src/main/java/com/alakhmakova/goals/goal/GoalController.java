@@ -1,4 +1,5 @@
 package com.alakhmakova.goals.goal;
+import com.alakhmakova.goals.target.Target;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 

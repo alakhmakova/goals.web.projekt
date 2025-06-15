@@ -1,5 +1,6 @@
 package com.alakhmakova.goals.goal;
 
+import com.alakhmakova.goals.target.Target;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.CrudRepository;
@@ -11,6 +12,4 @@ import java.util.List;
 public interface GoalRepository extends MongoRepository<Goal, String>{
 
     List<Goal> findByInFolder(String inFolder);
-
-    List<Goal> id(String id);
 }

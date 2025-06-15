@@ -1,347 +1,355 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Nunito", sans-serif;
-  font-size: 20px;
-  color: #140330;
+    margin: 0;
+    padding: 0;
+    font-family: "Nunito", sans-serif;
+    font-size: 20px;
+    color: #140330;
 }
 
 .application {
-  max-width: none;
-  display: grid;
-  grid-template-areas:
+    max-width: none;
+    display: grid;
+    grid-template-areas:
     "header menu"
     "main menu"
     "cards menu"
     "footer footer";
-  row-gap: 1rem;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 0.8fr 7fr auto auto;
-  background-color: #ffffff;
+    row-gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 0.8fr 7fr auto auto;
+    background-color: #ffffff;
 }
 
 #overlay {
-  position: fixed;
-  /* Sit on top of the page content */
-  display: none;
-  /* Hidden by default */
-  width: 100%;
-  /* Full width (cover the whole page) */
-  height: 100%;
-  /* Full height (cover the whole page) */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  /* Black background with opacity */
-  z-index: 9;
-  /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer;
-  /* Add a pointer on hover */
+    position: fixed;
+    /* Sit on top of the page content */
+    display: none;
+    /* Hidden by default */
+    width: 100%;
+    /* Full width (cover the whole page) */
+    height: 100%;
+    /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Black background with opacity */
+    z-index: 9;
+    /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer;
+    /* Add a pointer on hover */
 }
 
 /*----------------------------------------------------------------------------HEADER-----------------------------------------------------------------------------------------------------*/
 .header {
-  grid-area: header;
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  grid-template-rows: repeat(2, auto);
-  justify-content: space-evenly;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  background-color: #ffffff;
-  z-index: 1000;
-  width: 49vw;
-  height: 13vh;
-  /*need it hove all buttons with menu button in one line*/
+    grid-area: header;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(2, auto);
+    justify-content: space-evenly;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    background-color: #ffffff;
+    z-index: 1000;
+    width: 49vw;
+    height: 13vh;
+    /*need it hove all buttons with menu button in one line*/
 
-  .dropdown {
-    grid-column: 1/2;
-    grid-row: 2/3;
-    width: 3rem;
-    justify-self: center;
-  }
-  .bi-list {
-    grid-column: 3/4;
-    grid-row: 2/3;
-    width: 3rem;
-    justify-self: center;
-  }
-  .bi-folder-plus {
-    grid-column: 2/3;
-    grid-row: 2/3;
-    width: 3rem;
-    justify-self: center;
-  }
+    .dropdown {
+        grid-column: 1/2;
+        grid-row: 2/3;
+        width: 3rem;
+        justify-self: center;
+    }
+
+    .bi-list {
+        grid-column: 3/4;
+        grid-row: 2/3;
+        width: 3rem;
+        justify-self: center;
+    }
+
+    .bi-folder-plus {
+        grid-column: 2/3;
+        grid-row: 2/3;
+        width: 3rem;
+        justify-self: center;
+    }
 }
 
 .dropdown:hover .dropbtn,
-  .bi-folder-plus:hover {
+.bi-folder-plus:hover {
     font-weight: bold;
     color: #7dc65a;
-  }
+}
 
 #new-folder {
-  border-style: solid;
-  border-color: #140330;
-  border-radius: 25px;
-  width: 140px;
-  height: 50px;
-  font-family: "Nunito", sans-serif;
-  font-size: 18px;
-  padding: 0;
-  background-color: transparent;
+    border-style: solid;
+    border-color: #140330;
+    border-radius: 25px;
+    width: 140px;
+    height: 50px;
+    font-family: "Nunito", sans-serif;
+    font-size: 18px;
+    padding: 0;
+    background-color: transparent;
 }
 
 #new-folder:hover,
 .new-goal:hover {
-  border-color: #7dc65a;
-  color: #ffffff;
-  background-color: #7dc65a;
+    border-color: #7dc65a;
+    color: #ffffff;
+    background-color: #7dc65a;
 }
 
 .dropdown .dropbtn {
-  font-family: "Nunito", sans-serif;
-  font-size: 20px;
-  color: #140330;
-  border-style: none;
-  text-decoration: underline;
-  background: none;
+    font-family: "Nunito", sans-serif;
+    font-size: 20px;
+    color: #140330;
+    border-style: none;
+    text-decoration: underline;
+    background: none;
 }
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
-  display: block;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-style: solid;
-  border-radius: 8px;
-  border-color: #ffffff;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-style: solid;
+    border-radius: 8px;
+    border-color: #ffffff;
 }
 
 .dropdown .dropdown-content {
-  display: none;
-  position: absolute;
-  min-width: 10rem;
-  z-index: 1;
+    display: none;
+    position: absolute;
+    min-width: 10rem;
+    z-index: 1;
 }
 
 .dropdown .dropdown-content > a {
-  color: #140330;
-  display: block;
-  /*to make links in vertical order*/
-  text-decoration: none;
-  margin-left: 0.4rem;
+    color: #140330;
+    display: block;
+    /*to make links in vertical order*/
+    text-decoration: none;
+    margin-left: 0.4rem;
 }
 
 .dropdown-content hr {
-  border-top: 1px solid #7dc65a;
+    border-top: 1px solid #7dc65a;
 }
 
 /* Change color of dropdown links on hover */
 .dropdown .dropdown-content a:hover {
-  background-color: #7dc65a;
-  border-style: solid;
-  border-radius: 8px;
-  border-color: #7dc65a;
-  color: #ffffff;
-  margin-left: 1rem;
-  padding-left: 0.5rem;
+    background-color: #7dc65a;
+    border-style: solid;
+    border-radius: 8px;
+    border-color: #7dc65a;
+    color: #ffffff;
+    margin-left: 1rem;
+    padding-left: 0.5rem;
 }
 
 .hide {
-  font-family: "Nunito", sans-serif;
-  font-size: 20px;
-  color: #140330;
-  border-style: none;
-  text-decoration: underline;
-  background: none;
+    font-family: "Nunito", sans-serif;
+    font-size: 20px;
+    color: #140330;
+    border-style: none;
+    text-decoration: underline;
+    background: none;
 }
 
 .show {
-  font-family: "Nunito", sans-serif;
-  font-size: 20px;
-  color: #140330;
-  border-style: none;
-  text-decoration: underline;
-  background: none;
-  display: none;
+    font-family: "Nunito", sans-serif;
+    font-size: 20px;
+    color: #140330;
+    border-style: none;
+    text-decoration: underline;
+    background: none;
+    display: none;
 }
 
 .hide:hover,
 .show:hover {
-  font-weight: bold;
-  color: #7dc65a;
+    font-weight: bold;
+    color: #7dc65a;
 }
+
 #folders-hide {
-  grid-column: 1/2;
-  grid-row: 1/2;
+    grid-column: 1/2;
+    grid-row: 1/2;
 }
+
 #goals-hide {
-  grid-column: 2/3;
-  grid-row: 1/2;
+    grid-column: 2/3;
+    grid-row: 1/2;
 }
+
 #achieved-hide {
-  grid-column: 3/4;
-  grid-row: 1/2;
+    grid-column: 3/4;
+    grid-row: 1/2;
 }
 
 /*-------------------------------------------------------------------------MAIN-----------------------------------------------------------------------------------------------------------*/
 .main {
-  grid-area: main;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  row-gap: 1.6rem;
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    row-gap: 1.6rem;
 
-  > h1 {
-    font-size: clamp(2rem, 2rem + 5vw, 90px);
-    color: #290661;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-  }
-  .logo {
-    display: block;
-    max-width: 25%;
-    margin: 0 auto;
-    padding: 0;
-  }
+    > h1 {
+        font-size: clamp(2rem, 2rem + 5vw, 90px);
+        color: #290661;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
 
-  p {
-    font-size: clamp(0.9rem, 0.7rem + 1vw, 1.5rem);
-    margin: 0;
-  }
+    .logo {
+        display: block;
+        max-width: 25%;
+        margin: 0 auto;
+        padding: 0;
+    }
 
-  .bi-arrow-down {
-    font-size: clamp(2rem, 3rem + 5vw, 4rem);
-    color: #140330;
-  }
+    p {
+        font-size: clamp(0.9rem, 0.7rem + 1vw, 1.5rem);
+        margin: 0;
+    }
+
+    .bi-arrow-down {
+        font-size: clamp(2rem, 3rem + 5vw, 4rem);
+        color: #140330;
+    }
 }
+
 .new-goal {
-  border-style: solid;
-  border-color: #140330;
-  border-radius: 25px;
-  width: 140px;
-  height: 50px;
-  font-family: "Nunito", sans-serif;
-  font-size: 18px;
-  padding: 0;
-  background-color: transparent;
+    border-style: solid;
+    border-color: #140330;
+    border-radius: 25px;
+    width: 140px;
+    height: 50px;
+    font-family: "Nunito", sans-serif;
+    font-size: 18px;
+    padding: 0;
+    background-color: transparent;
 }
 
 /*-------------------------------------------------------------------------MENU-----------------------------------------------------------------------------------------------------------*/
 .menu {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 50vw;
-  /**When fixed, it is mandatory to specify size**/
-  grid-area: menu;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50vw;
+    /**When fixed, it is mandatory to specify size**/
+    grid-area: menu;
 
-  /*background-image: url("images/backgrounds/goals-3people-background1.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 1;*/
-  background-color: #3d0a91;
-  .banner {
-    max-width: 100%; /*Fluid images scale down when their containing column narrows but do not grow larger than their intrinsic size when the column grows*/
-    height: auto;
-  }
+    /*background-image: url("images/backgrounds/goals-3people-background1.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      z-index: 1;*/
+    background-color: #3d0a91;
+
+    .banner {
+        max-width: 100%; /*Fluid images scale down when their containing column narrows but do not grow larger than their intrinsic size when the column grows*/
+        height: auto;
+    }
 }
 
 .main-menu {
-  position: relative;
-  left: 80%;
-  top: 3.1%;
-  border-style: solid;
-  border-color: #140330;
-  border-radius: 25px;
-  width: 140px;
-  height: 50px;
-  font-family: "Nunito", sans-serif;
-  color: #ffffff;
-  font-size: 18px;
-  padding: 0;
-  background-color: #140330;
+    position: relative;
+    left: 80%;
+    top: 3.1%;
+    border-style: solid;
+    border-color: #140330;
+    border-radius: 25px;
+    width: 140px;
+    height: 50px;
+    font-family: "Nunito", sans-serif;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 0;
+    background-color: #140330;
 }
 
 .main-menu:hover {
-  border-color: #e9ecef;
-  font-weight: 600;
-  color: #140330;
-  background-color: #e9ecef;
+    border-color: #e9ecef;
+    font-weight: 600;
+    color: #140330;
+    background-color: #e9ecef;
 }
 
 /*------------------------------------------------------------------------CARDS-----------------------------------------------------------------------------------------------------------*/
 .cards {
-  grid-area: cards;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  /*1 card takes not less than 150px*/
-  row-gap: 4rem;
-  justify-items: center;
-  width: 45vw;
-  z-index: 1;
+    grid-area: cards;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    /*1 card takes not less than 150px*/
+    row-gap: 4rem;
+    justify-items: center;
+    width: 45vw;
+    z-index: 1;
 
-  justify-self: center;
+    justify-self: center;
 }
 
 .card {
-  display: grid;
-  grid-template-areas:
+    display: grid;
+    grid-template-areas:
     "card-icon"
     "card-text"
     "card-button";
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
-  justify-items: center;
-  align-items: center;
-  row-gap: 0.5rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    justify-items: center;
+    align-items: center;
+    row-gap: 0.5rem;
 }
 
 .folder {
-  order: 1;
-  /*I need this to sort items and chhose to show folders or goals first*/
+    order: 1;
+    /*I need this to sort items and chhose to show folders or goals first*/
 }
 
 .goal {
-  order: 2;
-  /*I need this to sort items and chhose to show folders or goals first*/
+    order: 2;
+    /*I need this to sort items and chhose to show folders or goals first*/
 }
 
 .card > img {
-  width: 8rem;
-  clip-path: circle(50%);
-  grid-area: card-icon;
+    width: 8rem;
+    clip-path: circle(50%);
+    grid-area: card-icon;
 }
 
 .card-text {
-  font-size: 1rem;
-  display: flex;
-  align-self: flex-start;
-  align-items: center;
-  justify-content: center;
-  overflow-wrap: break-word;
-  /*.card-text will always fit in the container, even if it is very long or contains words without spaces*/
-  hyphens: auto;
-  text-align: center;
+    font-size: 1rem;
+    display: flex;
+    align-self: flex-start;
+    align-items: center;
+    justify-content: center;
+    overflow-wrap: break-word;
+    /*.card-text will always fit in the container, even if it is very long or contains words without spaces*/
+    hyphens: auto;
+    text-align: center;
 }
 
 .card-button {
-  border-style: solid;
-  border-color: #3d0a91;
-  border-radius: 25px;
-  width: 100px;
-  height: 36px;
-  font-family: "Nunito", sans-serif;
-  color: #ffffff;
-  font-size: 0.9rem;
-  padding: 0;
-  background-color: #3d0a91;
+    border-style: solid;
+    border-color: #3d0a91;
+    border-radius: 25px;
+    width: 100px;
+    height: 36px;
+    font-family: "Nunito", sans-serif;
+    color: #ffffff;
+    font-size: 0.9rem;
+    padding: 0;
+    background-color: #3d0a91;
 }
 
 /*.cards {
@@ -410,205 +418,205 @@ body {
 
 /*------------------------------------------------------------------------FOOTER-----------------------------------------------------------------------------------------------------------*/
 .footer {
-  grid-area: footer;
-  align-self: flex-end;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 0.5fr 1fr;
-  align-content: flex-end;
-  /*flex-end pushes everything down/up*/
-  padding-bottom: 1rem;
+    grid-area: footer;
+    align-self: flex-end;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 0.5fr 1fr;
+    align-content: flex-end;
+    /*flex-end pushes everything down/up*/
+    padding-bottom: 1rem;
 
-  z-index: 2;
-  background-color: #e0cffc;
-  /*#E9ECEF;/*#FFE5D0; /*#E9CFA6;*/
+    z-index: 2;
+    background-color: #e0cffc;
+    /*#E9ECEF;/*#FFE5D0; /*#E9CFA6;*/
 }
 
 .content {
-  grid-row: 1;
-  grid-column: 1/-1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /*neet it to have items in the middle, no to the side of the screen*/
-  justify-content: space-evenly;
-  /*not center! it will be no space between the text and the button*/
+    grid-row: 1;
+    grid-column: 1/-1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*neet it to have items in the middle, no to the side of the screen*/
+    justify-content: space-evenly;
+    /*not center! it will be no space between the text and the button*/
 }
 
 .content > h2 {
-  font-size: 40px;
-  margin: 0;
+    font-size: 40px;
+    margin: 0;
 }
 
 .content > button {
-  border-style: solid;
-  border-color: #140330;
-  border-radius: 25px;
-  width: 140px;
-  height: 50px;
-  font-family: "Nunito", sans-serif;
-  font-size: 18px;
-  padding: 0;
-  background-color: transparent;
+    border-style: solid;
+    border-color: #140330;
+    border-radius: 25px;
+    width: 140px;
+    height: 50px;
+    font-family: "Nunito", sans-serif;
+    font-size: 18px;
+    padding: 0;
+    background-color: transparent;
 }
 
 .content > button:hover {
-  border-color: #140330;
-  font-weight: 600;
-  color: #ffffff;
-  background-color: #140330;
-  /*#e9ecef*/
+    border-color: #140330;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #140330;
+    /*#e9ecef*/
 }
 
 .box1 {
-  grid-row: 2;
-  grid-column: 1;
-  justify-self: center;
-  /*each box moves to te center horizontally*/
+    grid-row: 2;
+    grid-column: 1;
+    justify-self: center;
+    /*each box moves to te center horizontally*/
 }
 
 .box2 {
-  grid-row: 2;
-  grid-column: 2;
-  justify-self: center;
-  /*each box moves to te center horizontally*/
+    grid-row: 2;
+    grid-column: 2;
+    justify-self: center;
+    /*each box moves to te center horizontally*/
 }
 
 .box3 {
-  grid-row: 2;
-  grid-column: 3;
-  justify-self: center;
-  /*each box moves to te center horizontally*/
+    grid-row: 2;
+    grid-column: 3;
+    justify-self: center;
+    /*each box moves to te center horizontally*/
 }
 
 .box4 {
-  grid-row: 2;
-  grid-column: 4;
-  justify-self: center;
-  /*each box moves to te center horizontally*/
+    grid-row: 2;
+    grid-column: 4;
+    justify-self: center;
+    /*each box moves to te center horizontally*/
 }
 
 .box1,
 .box2,
 .box3,
 .box4 {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  /*смещение текста к левому краю*/
-  align-self: flex-start;
-  /*pushes everything down/up*/
-  /*align-content: ; не работает*/
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /*смещение текста к левому краю*/
+    align-self: flex-start;
+    /*pushes everything down/up*/
+    /*align-content: ; не работает*/
 
-  p {
-    margin: 0;
-    padding: 0;
-  }
+    p {
+        margin: 0;
+        padding: 0;
+    }
 }
 
 .copiright {
-  grid-row: 2;
-  grid-column: 1/-1;
-  justify-self: flex-end;
-  /*each box moves to te center horizontally*/
-  align-self: flex-end;
-  margin-right: 9vw;
-  padding: 0;
-  font-size: 15px;
-
-  p {
-    margin: 0;
+    grid-row: 2;
+    grid-column: 1/-1;
+    justify-self: flex-end;
+    /*each box moves to te center horizontally*/
+    align-self: flex-end;
+    margin-right: 9vw;
     padding: 0;
-  }
+    font-size: 15px;
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
 }
 
 /*
 -----------------------------------------------------------------------FORMS-----------------------------------------------------------------------
 */
 .sidepanel {
-  width: 50%;
-  height: 100vh;
-  background-color: #ffffff;
-  overflow-y: auto;
-  /* only vertical scrolling */
-  overflow-x: hidden;
-  z-index: 10;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: none; /* should be hidden by default if you do not use Thymeleaf templates */
+    width: 50%;
+    height: 100vh;
+    background-color: #ffffff;
+    overflow-y: auto;
+    /* only vertical scrolling */
+    overflow-x: hidden;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none; /* should be hidden by default if you do not use Thymeleaf templates */
 }
 
 form {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem 4rem 4rem 4rem;
-  row-gap: 6rem;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 4rem 4rem 4rem;
+    row-gap: 6rem;
 }
 
 .bi-x-lg {
-  position: fixed;
-  left: 51%;
-  font-size: 3rem;
-  color: #e9ecef;
-  cursor: pointer;
-  z-index: 1000;
+    position: fixed;
+    left: 51%;
+    font-size: 3rem;
+    color: #e9ecef;
+    cursor: pointer;
+    z-index: 1000;
 }
 
 .field {
-  display: flex;
-  flex-direction: column;
-  row-gap: 1rem;
-  font-size: 25px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    font-size: 25px;
 
-  i {
-    color: #7dc65a;
-  }
+    i {
+        color: #7dc65a;
+    }
 }
 
 .hint {
-  font-size: 16px;
-  color: #290661;
+    font-size: 16px;
+    color: #290661;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="date"] {
-  background-color: transparent;
-  border: none;
-  border-bottom: #7dc65a solid 3px;
-  outline: none;
-  font-family: "Nunito", sans-serif;
-  font-size: 33px;
-  color: #757575;
+    background-color: transparent;
+    border: none;
+    border-bottom: #7dc65a solid 3px;
+    outline: none;
+    font-family: "Nunito", sans-serif;
+    font-size: 33px;
+    color: #757575;
 }
 
 input[type="submit"] {
-  border-style: solid;
-  border-color: #140330;
-  border-radius: 25px;
-  width: 140px;
-  height: 50px;
-  font-family: "Nunito", sans-serif;
-  font-size: 18px;
-  padding: 0;
-  background-color: transparent;
-  align-self: center;
+    border-style: solid;
+    border-color: #140330;
+    border-radius: 25px;
+    width: 140px;
+    height: 50px;
+    font-family: "Nunito", sans-serif;
+    font-size: 18px;
+    padding: 0;
+    background-color: transparent;
+    align-self: center;
 }
 
 #description {
-  background-color: transparent;
-  border: #7dc65a solid 3px;
-  border-radius: 8px;
-  outline: none;
-  font-family: "Nunito", sans-serif;
-  font-size: 20px;
+    background-color: transparent;
+    border: #7dc65a solid 3px;
+    border-radius: 8px;
+    outline: none;
+    font-family: "Nunito", sans-serif;
+    font-size: 20px;
 }
 
 input[type="submit"]:hover {
-  border-color: #7dc65a;
-  color: #ffffff;
-  background-color: #7dc65a;
+    border-color: #7dc65a;
+    color: #ffffff;
+    background-color: #7dc65a;
 }
 
 /*
@@ -616,242 +624,254 @@ input[type="submit"]:hover {
 */
 
 #goal-page {
-  grid-area: 1 / 1 / -1 / -1;
-  /*Occupies the entire grid*/
-
-  grid-template-columns: 0.5fr repeat(2, 1fr) 0.5fr;
-  grid-template-rows: 4rem repeat(3, 5fr)  repeat(2, 2.5fr);
-  display: grid;
-  min-height: 100vh;
-  height: fit-content;
-
-
-  .goal-header {
-    grid-column: 1/-1;
+    grid-area: 1 / 1 / -1 / -1;
     /*Occupies the entire grid*/
-    background-color: #1e0548;
-    display: flex;
-    padding-right: 90%;
-    padding-left: 1%;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    height: 4rem;
-    z-index: 10;
 
-
-    .bi-layout-sidebar,
-    .bi-rocket,
-    a {
-      font-size: 1rem;
-      color: #ffffff;
-      align-self: center;
-      text-decoration: none;
-    }
-
-    .bi-layout-sidebar {
-      font-size: 1.5rem;
-    }
-
-    .bi-rocket {
-      background-color: rgb(224, 207, 252, 0.5);
-      border-radius: 8px;
-      padding: 0.1rem 0.3rem 0.1rem 0.3rem;
-    }
-  }
-
-  .goal-info-container {
-    grid-column: 1/-1;
-    /*Occupies the entire grid*/
-    grid-row: 2/4;
-    background-color: #290660;
-    padding: 0 20rem;
-    min-height: 50vh;
-    height: fit-content;
-  }
-  .goal-info{
-    align-self: flex-start;
-    height: 40%;
+    grid-template-columns: 0.5fr repeat(2, 1fr) 0.5fr;
+    grid-template-rows: 4rem repeat(3, 5fr)  repeat(2, 2.5fr);
     display: grid;
-    grid-template-rows: auto auto;
-    grid-template-columns: auto auto auto;
-    column-gap: 3rem;
-    row-gap: 0.5rem;
-  }
-  .circular-progress-container {
-    grid-column: 1/2;
-    grid-row: 1/3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 9;
-    align-self: flex-start;
-    margin-top: 1.5rem;
+    min-height: 100vh;
+    height: fit-content;
 
-  }
-  .goal-name,
-  .bi-three-dots {
-    font-size: 1.5rem;
-    color: #ffffff;
-  }
-  .goal-title {
-    grid-column: 2/3;
-    grid-row: 1/2;
-    display: flex;
-    column-gap: 1rem;
-    width: 30rem;
-  }
-  .goal-data {
-    grid-column: 3/4;
-    grid-row: 1/2;
-    display: flex;
-    width: 30rem;
-    justify-content: center;
-    column-gap: 1rem;
-  }
-  .goal-desc {
-    grid-column: 2/-1;
-    grid-row: 2/3;
-    border: solid 1px #ffffff;
-    border-radius: 4px;
-    min-width: 25rem;
-    max-width: 50rem;
-    min-height: 3rem;
-    padding: 1rem;
-    background: transparent;
-    overflow: hidden;
-    /*resize: vertical;*/
 
-  }
-  .goal-desc,
-  .goal-data p {
-    font-size: 0.7rem;
-    color: #ffffff;
-  }
+    .goal-header {
+        grid-column: 1/-1;
+        /*Occupies the entire grid*/
+        background-color: #1e0548;
+        display: flex;
+        padding-right: 90%;
+        padding-left: 1%;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        height: 4rem;
+        z-index: 10;
 
-  .goal-background {
-    grid-column: 1/-1;
-    /*Occupies the entire grid*/
-    grid-row: 4/7;
-    background-color: #e0cffc;
-    order: 1;
-  }
 
-  .goal-content {
-    grid-column: 2/4;
-    grid-row: 3/6;
-    background-color: #f3f0fa;
-    order: 2;
-    border-radius: 8px;
-  }
+        .bi-layout-sidebar,
+        .bi-rocket,
+        a {
+            font-size: 1rem;
+            color: #ffffff;
+            align-self: center;
+            text-decoration: none;
+        }
+
+        .bi-layout-sidebar {
+            font-size: 1.5rem;
+        }
+
+        .bi-rocket {
+            background-color: rgb(224, 207, 252, 0.5);
+            border-radius: 8px;
+            padding: 0.1rem 0.3rem 0.1rem 0.3rem;
+        }
+    }
+
+    .goal-info-container {
+        grid-column: 1/-1;
+        /*Occupies the entire grid*/
+        grid-row: 2/4;
+        background-color: #290660;
+        padding: 0 20rem;
+        min-height: 50vh;
+        height: fit-content;
+    }
+
+    .goal-info {
+        align-self: flex-start;
+        height: 40%;
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: auto auto auto;
+        column-gap: 3rem;
+        row-gap: 0.5rem;
+    }
+
+    .circular-progress-container {
+        grid-column: 1/2;
+        grid-row: 1/3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9;
+        align-self: flex-start;
+        margin-top: 1.5rem;
+
+    }
+
+    .goal-name,
+    .bi-three-dots {
+        font-size: 1.5rem;
+        color: #ffffff;
+    }
+
+    .goal-title {
+        grid-column: 2/3;
+        grid-row: 1/2;
+        display: flex;
+        column-gap: 1rem;
+        width: 30rem;
+    }
+
+    .goal-data {
+        grid-column: 3/4;
+        grid-row: 1/2;
+        display: flex;
+        width: 30rem;
+        justify-content: center;
+        column-gap: 1rem;
+    }
+
+    .goal-desc {
+        grid-column: 2/-1;
+        grid-row: 2/3;
+        border: solid 1px #ffffff;
+        border-radius: 4px;
+        min-width: 25rem;
+        max-width: 50rem;
+        min-height: 3rem;
+        padding: 1rem;
+        background: transparent;
+        overflow: hidden;
+        /*resize: vertical;*/
+
+    }
+
+    .goal-desc,
+    .goal-data p {
+        font-size: 0.7rem;
+        color: #ffffff;
+    }
+
+    .goal-background {
+        grid-column: 1/-1;
+        /*Occupies the entire grid*/
+        grid-row: 4/7;
+        background-color: #e0cffc;
+        order: 1;
+    }
+
+    .goal-content {
+        grid-column: 2/4;
+        grid-row: 3/6;
+        background-color: #f3f0fa;
+        order: 2;
+        border-radius: 8px;
+    }
 
 }
 
 /*Show only active page*/
 #goal-page.active {
-  display: grid;
+    display: grid;
 }
+
 /*
 -----------------------------------------------------------------------FOLDER-PAGE----------------------------------------------------------------------
 */
 
 #folder-page-template {
-  grid-area: 1 / 1 / -1 / -1;
-  /*Occupies the entire grid*/
-  height: 100vh;
-  grid-template-columns: 100vw;
-  grid-template-rows: 5rem 11vh auto;
-  display: grid;
-  /* hidden by default */
-  z-index: 10;
-  background-color: #ffffff;
-  overflow-x: hidden;
-
-  .search {
-    grid-column: 1/-1;
-    grid-row: 1/2;
+    grid-area: 1 / 1 / -1 / -1;
     /*Occupies the entire grid*/
-    width: 100%;
-    height: 5rem;
-    position: fixed;
-    top: 0;
-    left: 0;
+    height: 100vh;
+    grid-template-columns: 100vw;
+    grid-template-rows: 5rem 11vh auto;
+    display: grid;
+    /* hidden by default */
     z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    input[type="text"] {
-      width: 20rem;
-      height: fit-content;
-      border-radius: 8px;
-      border-style: solid;
-      border-width: 1px;
-      border-color: #dddddd;
-      font-size: 1.5rem;
-      align-self: center;
-    }
-  }
+    background-color: #ffffff;
+    overflow-x: hidden;
 
-  .folder-header {
-    grid-column: 1/-1;
-    /*Occupies the entire grid*/
-    grid-row: 2/3;
-    width: 98vw;
-    height: 11vh;
-    justify-self: center;
-    position: fixed;
-    top: 5rem;
-    z-index: 10;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border: 1px solid #dddddd;
-    border-radius: 25px 25px 0 0;
+    .search {
+        grid-column: 1/-1;
+        grid-row: 1/2;
+        /*Occupies the entire grid*/
+        width: 100%;
+        height: 5rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-content: center;
 
-    >p {
-      padding-right: 30rem;
+        input[type="text"] {
+            width: 20rem;
+            height: fit-content;
+            border-radius: 8px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #dddddd;
+            font-size: 1.5rem;
+            align-self: center;
+        }
     }
 
-    #delete-folder {
-      border-style: solid;
-      border-color: #140330;
-      border-radius: 25px;
-      width: 140px;
-      height: 50px;
-      font-family: "Nunito", sans-serif;
-      font-size: 18px;
-      padding: 0;
-      background-color: transparent;
-    }
-    #delete-folder:hover {
-      border-color: #7dc65a;
-      color: #ffffff;
-      background-color: #7dc65a;
-    }
-  }
-  .folder-header .bi-layout-sidebar {
-    align-self: center;
-    text-decoration: none;
-    font-size: 1.5rem;
-    color: #140330;
-  }
-  .bi-layout-sidebar:hover {
-    color: #7dc65a;
-  }
+    .folder-header {
+        grid-column: 1/-1;
+        /*Occupies the entire grid*/
+        grid-row: 2/3;
+        width: 98vw;
+        height: 11vh;
+        justify-self: center;
+        position: fixed;
+        top: 5rem;
+        z-index: 10;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border: 1px solid #dddddd;
+        border-radius: 25px 25px 0 0;
 
-  #goalsContainer {
-    grid-column: 1/-1;
-    /*Occupies the entire grid*/
-    grid-row: 3/4;
-    width: 98vw;
-    border: 1px solid #dddddd;
-    border-top: transparent;
-    border-radius: 0 0 25px 25px;
-    padding: 2rem;
+        > p {
+            padding-right: 30rem;
+        }
 
-    .goal {
-      height: min-content;
+        #delete-folder {
+            border-style: solid;
+            border-color: #140330;
+            border-radius: 25px;
+            width: 140px;
+            height: 50px;
+            font-family: "Nunito", sans-serif;
+            font-size: 18px;
+            padding: 0;
+            background-color: transparent;
+        }
+
+        #delete-folder:hover {
+            border-color: #7dc65a;
+            color: #ffffff;
+            background-color: #7dc65a;
+        }
     }
-  }
+
+    .folder-header .bi-layout-sidebar {
+        align-self: center;
+        text-decoration: none;
+        font-size: 1.5rem;
+        color: #140330;
+    }
+
+    .bi-layout-sidebar:hover {
+        color: #7dc65a;
+    }
+
+    #goalsContainer {
+        grid-column: 1/-1;
+        /*Occupies the entire grid*/
+        grid-row: 3/4;
+        width: 98vw;
+        border: 1px solid #dddddd;
+        border-top: transparent;
+        border-radius: 0 0 25px 25px;
+        padding: 2rem;
+
+        .goal {
+            height: min-content;
+        }
+    }
 }

@@ -46,7 +46,7 @@ function myDisplay(data) {
                         <div class="circular-progress-text">0%</div>
                     </div>
                     <div class="card-text name">${card.text}</div>
-                    <button onclick="window.location.href='/goal${card.id}'" class="card-button items"><i class="bi bi-crosshair2"></i> ${card.button}</button>
+                    <button onclick="window.location.href='/goal/${card.id}'" class="card-button items"><i class="bi bi-crosshair2"></i> ${card.button}</button>
                 </div>
             `;
         }
