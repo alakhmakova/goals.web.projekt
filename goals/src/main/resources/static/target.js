@@ -9,15 +9,15 @@ function renderTargetContent(type) {
       <div class="target-range">
         <div class="unit-container">
             <label class="choose">Unit</label>
-            <input type="text" class="input small" placeholder="e.g. steps, kg" th:field="*{unit}" name="unit"/>
+            <input type="text" class="input small" placeholder="e.g. steps, kg" name="unit"/>
         </div>
         <div>
           <label class="choose">Start</label>
-          <input type="number" class="input small" placeholder="0" value="" th:field="*{start}" name="start"/>
+          <input type="number" class="input small" placeholder="0" value="" name="start"/>
         </div>
         <div>
           <label class="choose">Target</label>
-          <input type="number" class="input small" placeholder="0" value="" th:field="*{target}" name="target"/>
+          <input type="number" class="input small" placeholder="0" value="" name="target"/>
         </div>
       </div>
       
@@ -27,15 +27,15 @@ function renderTargetContent(type) {
       <div class="target-range">
         <div class="unit-container">
             <label class="choose">Currency</label>
-            <input type="text" class="input small" placeholder="e.g. USD, EUR, SEK" th:field="*{unit}" name="unit"/>
+            <input type="text" class="input small" placeholder="e.g. USD, EUR, SEK" name="unit"/>
         </div>
         <div>
           <label class="choose">Start</label>
-          <input type="number" class="input small" placeholder="0" value="" th:field="*{start}" name="start"/>
+          <input type="number" class="input small" placeholder="0" value="" name="start"/>
         </div>
         <div>
           <label class="choose">Target</label>
-          <input type="number" class="input small" placeholder="0" value="" th:field="*{target}" name="target"/>
+          <input type="number" class="input small" placeholder="0" value="" name="target"/>
         </div>
       </div>
       

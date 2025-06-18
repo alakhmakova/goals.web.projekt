@@ -31,3 +31,20 @@ build/
 
 ### VS Code ###
 .vscode/
+# Environment variables
+.env
+.env.local
+.env.production
+.env.development
+
+# Docker environment files
+app.env
+docker.env
+
+# MongoDB credentials
+mongodb_uri.txt
+
+# Other sensitive files
+*.key
+*.pem
+secrets/
