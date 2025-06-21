@@ -1,8 +1,0 @@
-services:
-  app:
-    image: goals:0.0.1-SNAPSHOT
-    ports:
-      - "8080:8080"
-    environment:
-      - SPRING_DOCKER_COMPOSE_ENABLED=false
-      - SPRING_DATA_MONGODB_URI=mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_CLUSTER}/?retryWrites=true&w=majority&appName=goals-web-project

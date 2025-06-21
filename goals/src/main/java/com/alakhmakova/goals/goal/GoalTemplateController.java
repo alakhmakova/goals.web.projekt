@@ -34,36 +34,6 @@ public class GoalTemplateController {
         return "redirect:/goal/" + savedGoal.getId();
     }
 
-    /*@PostMapping("/target")
-    public String createTarget(
-            @RequestParam("goalID") String goalID,
-            @RequestParam("name") String name,
-            @RequestParam("type") String type,
-            *//*@RequestParam("unit") String unit,
-            @RequestParam("start") String start,
-            @RequestParam("target") String target,
-            @RequestParam("tasks") ArrayList<String> tasks,*//*
-            Model model) {
-        Goal goal = goalService.getGoalById(goalID);
-        log.info("Current goal: " + goal.getText());
-        Target saveTarget = targetService.saveTarget(goal.getId(), name, type*//*, unit, start, target, tasks*//*);
-        log.info("Target to save: " + saveTarget);
-        model.addAttribute("target", saveTarget);
-        log.info("Target was succesfully saved: " + saveTarget);
-        return "redirect:/goal" + goal.getId();
-    }*/
-    @PostMapping("/target")
-    public String saveTarget(@RequestParam(value = "unit", required = false) String unit,
-                             @RequestParam(value = "start", required = false) String start,
-                             @RequestParam(value = "target", required = false) String targetNumber,
-                             @ModelAttribute Target target) {
-        target.setUnit(unit);
-        target.setStart(start);
-        target.setTarget(targetNumber);
-        targetService.saveTarget(target);
-        return "redirect:/goal/" + target.getGoalID();
-    }
-
     @GetMapping("/goal/{id}")
     public String getGoalById(@PathVariable String id, Model model) {
         Goal goal = goalService.getGoalById(id);
@@ -71,10 +41,10 @@ public class GoalTemplateController {
         List<Target> targets = targetService.getAllTargetsByGoalID(id);
         log.info("Targets inside the goal: " + targets);
         model.addAttribute("targets", targets);// List of Target objects is added to the model
-        //для формы target
+        //for target form
         Target newTarget = new Target();
-        newTarget.setGoalID(id); // важно, чтобы goalID был уже установлен
-        model.addAttribute("target", newTarget); // <--- это нужно для формы
+        newTarget.setGoalID(id);
+        model.addAttribute("target", newTarget); // <--- form
         return "goal";//goal.html
     }
 }

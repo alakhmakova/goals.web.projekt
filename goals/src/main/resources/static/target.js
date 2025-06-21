@@ -57,4 +57,7 @@ radios.forEach(radio => {
     radio.addEventListener('change', (e) => {
         renderTargetContent(e.target.value);
     });
+
+
+
 });

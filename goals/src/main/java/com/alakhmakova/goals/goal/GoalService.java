@@ -1,12 +1,10 @@
 package com.alakhmakova.goals.goal;
 import com.alakhmakova.goals.target.Target;
 import com.alakhmakova.goals.target.TargetRepository;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
 @Service
 public class GoalService {
@@ -51,24 +49,23 @@ public class GoalService {
         return goalRepository.findById(id).orElse(null);
     }
 
-    public Goal addTarget(String goalId, Target target) {
-        Goal goal = goalRepository.findById(goalId).orElse(null);
-        if (goal == null) {
-            throw new IllegalArgumentException("Goal with ID " + goalId + " not found");
-        }
-        if (goal.getTargets() == null) {
-            goal.setTargets(new ArrayList<>());
-        }
-        goal.getTargets().add(target.getTargetID());
+    public Goal updateSome(String goalId,
+                             @NotBlank String text,
+                             Optional<String> date,
+                             Optional<String> description,
+                             Optional<String> inFolder,
+                             Optional<List<String>> sharedWith,
+                             Optional<List<String>> targets) throws NoSuchElementException {
+        Goal goal = verifyGoal(goalId);
+        date.ifPresent(goal::setDate);
+        description.ifPresent(goal::setDescription);
+        inFolder.ifPresent(goal::setInFolder);
+        sharedWith.ifPresent(goal::setSharedWith);
+        targets.ifPresent(goal::setTargets);
         return goalRepository.save(goal);
     }
-
-    public List<Target> getAllTargetsByGoalID() {
-        List<Goal> goals = goalRepository.findAll();
-        // Assuming you have a method to fetch Target by ID
-        return goals.stream()
-                .flatMap(goal -> goal.getTargets().stream())
-                .map(targetRepository::findByTargetID)
-                .collect(Collectors.toList());
+    private Goal verifyGoal(String goalId) throws NoSuchElementException {
+        return goalRepository.findById(goalId)
+                .orElseThrow(() -> new NoSuchElementException("Goal does not exist " + goalId));
     }
 }

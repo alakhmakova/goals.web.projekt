@@ -41,8 +41,7 @@
         <p><i class="bi bi-three-dots"></i></p>
       </div>
       <div class="goal-data">
-        <p th:text="'Due to date for this goal: ' + ${goal.date}"></p>
-        <p th:text="${goal.sharedWith}"></p>
+        <p th:text="${#strings.isEmpty(goal.date) ? '' : 'Due to date for this goal: ' + goal.date}"></p>
       </div>
       <label>
         <textarea placeholder="Write something" class="goal-desc" th:text="${goal.description}"></textarea>
@@ -66,12 +65,17 @@
             <p th:text="${target.name}"></p>
             <p><i class="bi bi-three-dots"></i></p>
           </div>
-          <label th:text="'Created: ' + ${target.created}"></label>
+            <span th:text="'Created: ' + ${target.created}"></span>
         </div>
       <div class="progress-container">
+        <div class="measure">
+          <span th:text="${target.unit}"></span>
+          <span th:text="${#strings.isEmpty(target.start) and #strings.isEmpty(target.target) ? '' : target.start + '/' + target.target}"></span>
+        </div>
         <div class="progress">
           <div class="progress-bar" th:style="'width: ' + ${target.tasksAmount} + '%'"></div>
         </div>
+        <span th:text="${#strings.isEmpty(target.deadlineDate) and #strings.isEmpty(target.deadlineTime) ? '' : 'Deadline: ' + target.deadlineDate + ' ' + target.deadlineTime}"></span>
       </div>
     </div>
     </div>
@@ -110,13 +114,13 @@
         Type of Target
         <span class="hint">How do you want to measure this result?</span>
       </label>
-      <p class="choose">Choose type</p>
+      <p class="choose">Choose type (required)</p>
       <!-- Radio Buttons -->
       <div class="target-types">
-      <div><label><input type="radio" th:field="*{type}" value="number" checked /> Number<span class="hint">Any number like 1 or 7</span></label></div>
-      <div><label><input type="radio" th:field="*{type}" value="success" /> Success/Failure<span class="hint">Done or not done</span></label></div>
-      <div><label><input type="radio" th:field="*{type}" value="currency" /> Currency<span class="hint">Count your money</span></label></div>
-      <div><label><input type="radio" th:field="*{type}" value="tasks" /> Tasks<span class="hint">Track tasks completion</span></label></div>
+      <div><label><input type="radio" th:field="*{type}" value="number" required/> Number<span class="hint">Any number like 1 or 7</span></label></div>
+      <div><label><input type="radio" th:field="*{type}" value="success" required/> Success/Failure<span class="hint">Done or not done</span></label></div>
+      <div><label><input type="radio" th:field="*{type}" value="currency" required/> Currency<span class="hint">Count your money</span></label></div>
+      <div><label><input type="radio" th:field="*{type}" value="tasks" required/> Tasks<span class="hint">Track tasks completion</span></label></div>
       </div>
       <div id="types-content"></div>
     </div><!-- Type of Target END-->
