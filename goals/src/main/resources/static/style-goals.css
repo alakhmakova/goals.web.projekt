@@ -96,19 +96,7 @@ body {
         margin-top: 1.5rem;
 
     }
-    .goal-name,
-    .goal-title i {
-        font-size: 1.5rem;
-        color: #ffffff;
-    }
-    .goal-title {
-        grid-column: 2/3;
-        grid-row: 1/2;
-        display: flex;
-        column-gap: 1rem;
-        width: 30rem;
-        align-items: center;
-    }
+
     .goal-data {
         grid-column: 3/4;
         grid-row: 1/2;
@@ -242,9 +230,6 @@ body {
         margin: 0;
         font-size: 1rem;
     }
-    span{
-        font-size: 0.7rem;
-    }
 }
 .progress-container {
     display: flex;
@@ -277,9 +262,14 @@ body {
     display: flex;
     column-gap: 1rem;
     align-items: center;
-    i {
-        color: #140330;
-    }
+}
+.target-dropdown-item,
+.dropdown-menu.target .bi-pencil,
+.dropdown-menu.target .bi-trash3 {
+    font-size: 0.9rem;
+}
+.target-created {
+    font-size: 0.7rem;
 }
 /*
 -----------------------------------------------------------------------FORMS-----------------------------------------------------------------------
@@ -441,3 +431,62 @@ input[type="submit"]:hover {
     background-color: #c08ae9;
 }
 
+/*-------------------------------------------------------------TARGET----DROP-----DOWN-------------------------------------------------------------------------------*/
+.goal-name,
+.goal-title .bi-three-dots {
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+.goal-title {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    display: flex;
+    width: 30rem;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 1.5rem;
+}
+
+.dropdown-wrapper {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    left: 0;
+    top: 70%;
+    background: rgb(255, 255, 255);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: none;
+    flex-direction: column;
+    row-gap: 0.2rem;
+    width: max-content;
+    z-index: 1000;
+    padding: 0.5rem;
+}
+
+.dropdown-item {
+    cursor: pointer;
+    font-size: 1rem;
+    color: #140330;
+    display: flex;
+    column-gap: 1rem;
+    padding: 0.4rem 0.4rem;
+}
+.bi-folder-symlink,
+.bi-pencil {
+    font-size: 1.2rem;
+}
+
+.dropdown-item:hover {
+    background-color: #e9ecef;/*#e9ecef*/
+    border-radius: 8px;
+}
+
+.dropdown-item.delete,
+.dropdown-item.delete.target{
+    color: #e63946;
+}

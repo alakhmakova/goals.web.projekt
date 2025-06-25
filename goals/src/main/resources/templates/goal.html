@@ -17,6 +17,7 @@
   <script src="/open-close-sidepanel.js" defer></script>
   <link rel="stylesheet" href="/circular-progress.css" />
   <script src="/target.js" defer></script>
+  <script src="/target-dropdown.js" defer></script>
   <title>Goal</title>
 </head>
 <body>
@@ -38,8 +39,16 @@
       </div>
       <div class="goal-title">
         <p class="goal-name" th:text="${goal.text}"></p>
-        <p><i class="bi bi-three-dots"></i></p>
+        <div class="dropdown-wrapper">
+          <p class="dropdown-toggle"><i class="bi bi-three-dots"></i></p>
+          <div class="dropdown-menu">
+            <div class="dropdown-item"><i class="bi bi-pencil"></i><span>Rename</span></div>
+            <div class="dropdown-item"><i class="bi bi-folder-symlink"></i><span>Move to folder</span></div>
+            <div class="dropdown-item delete"><i class="bi bi-trash3"></i><span>Delete</span></div>
+          </div>
+        </div>
       </div>
+
       <div class="goal-data">
         <p th:text="${#strings.isEmpty(goal.date) ? '' : 'Due to date for this goal: ' + goal.date}"></p>
       </div>
@@ -63,9 +72,15 @@
         <div class="text">
           <div class="target-name">
             <p th:text="${target.name}"></p>
-            <p><i class="bi bi-three-dots"></i></p>
+            <div class="dropdown-wrapper">
+              <p class="dropdown-toggle target"><i class="bi bi-three-dots"></i></p>
+              <div class="dropdown-menu target">
+                <div class="dropdown-item"><i class="bi bi-pencil"></i><span class="target-dropdown-item">Rename</span></div>
+                <div class="dropdown-item delete"><i class="bi bi-trash3"></i><span class="target-dropdown-item">Delete</span></div>
+              </div>
+            </div>
           </div>
-            <span th:text="'Created: ' + ${target.created}"></span>
+            <span th:text="'Created: ' + ${target.created}" class="target-created"></span>
         </div>
       <div class="progress-container">
         <div class="measure">
