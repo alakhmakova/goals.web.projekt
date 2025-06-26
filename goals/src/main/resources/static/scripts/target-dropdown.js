@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Closing dropdown when clicked outside the
+    // Closing dropdown when clicked outside
     document.addEventListener('click', () => {
         document.querySelectorAll('.dropdown-menu').forEach(menu => {
             menu.style.display = 'none';

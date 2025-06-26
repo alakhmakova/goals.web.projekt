@@ -22,7 +22,7 @@ public class Target {
     private String unit;
     private String start;
     private String target;
-    private int tasksAmount;
+    private double progress;
     private List<String> tasks = new ArrayList<>();
 
     public Target() {

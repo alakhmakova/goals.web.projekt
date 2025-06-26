@@ -12,12 +12,15 @@
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
 
   <link rel="stylesheet" href="/style-goals.css" />
-  <script src="/circular-progress.js" defer></script>
-  <script src="/description-resizing.js" defer></script>
-  <script src="/open-close-sidepanel.js" defer></script>
+  <script src="/scripts/circular-progress.js" defer></script>
+  <script src="/scripts/description-resizing.js" defer></script>
+  <script src="/scripts/open-close-sidepanel.js" defer></script>
   <link rel="stylesheet" href="/circular-progress.css" />
-  <script src="/target.js" defer></script>
-  <script src="/target-dropdown.js" defer></script>
+  <script src="/scripts/target.js" defer></script>
+  <script src="/scripts/target-dropdown.js" defer></script>
+  <script src="/scripts/target-delete.js" defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   <title>Goal</title>
 </head>
 <body>
@@ -68,7 +71,7 @@
     </div>
     <!---->
     <div th:each="target: ${targets}" class="targets-list">
-    <div class="goal-targets">
+    <div class="goal-targets" th:data-target-id="${target.id}">
         <div class="text">
           <div class="target-name">
             <p th:text="${target.name}"></p>
@@ -76,11 +79,11 @@
               <p class="dropdown-toggle target"><i class="bi bi-three-dots"></i></p>
               <div class="dropdown-menu target">
                 <div class="dropdown-item"><i class="bi bi-pencil"></i><span class="target-dropdown-item">Rename</span></div>
-                <div class="dropdown-item delete"><i class="bi bi-trash3"></i><span class="target-dropdown-item">Delete</span></div>
+                <div class="dropdown-item delete target"><i class="bi bi-trash3"></i><span class="target-dropdown-item">Delete</span></div>
               </div>
             </div>
           </div>
-            <span th:text="'Created: ' + ${target.created}" class="target-created"></span>
+            <span th:text="'Created: ' + ${target.created}" class="target-date"></span>
         </div>
       <div class="progress-container">
         <div class="measure">
@@ -90,7 +93,7 @@
         <div class="progress">
           <div class="progress-bar" th:style="'width: ' + ${target.tasksAmount} + '%'"></div>
         </div>
-        <span th:text="${#strings.isEmpty(target.deadlineDate) and #strings.isEmpty(target.deadlineTime) ? '' : 'Deadline: ' + target.deadlineDate + ' ' + target.deadlineTime}"></span>
+        <span class="target-date" th:text="${#strings.isEmpty(target.deadlineDate) and #strings.isEmpty(target.deadlineTime) ? '' : 'Deadline: ' + target.deadlineDate + ' ' + target.deadlineTime}"></span>
       </div>
     </div>
     </div>
