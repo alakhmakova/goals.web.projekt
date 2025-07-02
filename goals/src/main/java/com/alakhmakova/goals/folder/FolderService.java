@@ -1,8 +1,12 @@
 package com.alakhmakova.goals.folder;
 
+import com.alakhmakova.goals.exception.FolderNotFoundException;
+import com.alakhmakova.goals.exception.GoalNotFoundException;
+import com.alakhmakova.goals.goal.Goal;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class FolderService {
@@ -16,6 +20,10 @@ public class FolderService {
 
     public List<Folder> getAllFolders() {
         return folderRepository.findAll();
+    }
+    private Folder verifyFolderById(String id) throws NoSuchElementException {
+        return folderRepository.findById(id)
+                .orElseThrow(() -> new FolderNotFoundException("Folder not found, id: " + id));
     }
 
 }

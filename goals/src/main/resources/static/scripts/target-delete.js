@@ -2,12 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.dropdown-item.delete.target').forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
-            const targetId = e.target.closest('.goal-targets').dataset.targetId; // Get target ID, need to ensure this is set in your HTML
+            const targetId = e.target.closest('.goal-targets').dataset.targetId; // Get target ID, need to ensure this is set in the HTML
 
             if (Swal.fire({
                 title: "Are you sure you want to delete this target?",
                 text: "You won't be able to revert this!",
-                color: '#3D0A91',/*#a6a6a6*/
+                color: '#3D0A91',
                 icon: "warning",
                 iconColor: "#ff0066",
                 showCancelButton: true,

@@ -11,19 +11,21 @@
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
 
-  <link rel="stylesheet" href="/style-goals.css" />
+  <link rel="stylesheet" href="/styles/style-goals.css" />
   <script src="/scripts/circular-progress.js" defer></script>
   <script src="/scripts/description-resizing.js" defer></script>
   <script src="/scripts/open-close-sidepanel.js" defer></script>
-  <link rel="stylesheet" href="/circular-progress.css" />
+  <link rel="stylesheet" href="/styles/circular-progress.css" />
   <script src="/scripts/target.js" defer></script>
-  <script src="/scripts/target-dropdown.js" defer></script>
+  <script src="/scripts/target-dropdown-open-close.js" defer></script>
   <script src="/scripts/target-delete.js" defer></script>
+  <script src="/scripts/open-close-target-progress-modal.js" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+  <!--<script type="text/javascript" th:src="@{/webjars/htmx.org/2.0.4/dist/htmx.min.js}"></script>-->
   <title>Goal</title>
 </head>
-<body>
+<body><!--hx-boost="true"-->
 <div id="overlay"></div>
 <section class="page" id="goal-page" data-page="goal">
   <div class="goal-header">
@@ -42,6 +44,7 @@
       </div>
       <div class="goal-title">
         <p class="goal-name" th:text="${goal.text}"></p>
+        <!-----------------------DROPDOWN---TO---DELETE---AND---RENAME---GOAL---START------------------------------------------------------------------->
         <div class="dropdown-wrapper">
           <p class="dropdown-toggle"><i class="bi bi-three-dots"></i></p>
           <div class="dropdown-menu">
@@ -50,6 +53,7 @@
             <div class="dropdown-item delete"><i class="bi bi-trash3"></i><span>Delete</span></div>
           </div>
         </div>
+        <!-----------------------DROPDOWN---TO---DELETE---AND---RENAME---GOAL---END------------------------------------------------------------------->
       </div>
 
       <div class="goal-data">
@@ -69,12 +73,13 @@
     </div>
       <button class="open-sidepanel">+ Add</button>
     </div>
-    <!---->
+    <!----------------------------------------------------LOOP---TO---SHOW---ALL---TARGETS--------------------------------------------------------------------->
     <div th:each="target: ${targets}" class="targets-list">
     <div class="goal-targets" th:data-target-id="${target.id}">
         <div class="text">
           <div class="target-name">
             <p th:text="${target.name}"></p>
+            <!---------------------------------------DROPDOWN---TO---DELETE---AND---RENAME---TARGET---START--------------------------------------------------->
             <div class="dropdown-wrapper">
               <p class="dropdown-toggle target"><i class="bi bi-three-dots"></i></p>
               <div class="dropdown-menu target">
@@ -83,27 +88,95 @@
               </div>
             </div>
           </div>
+          <!-----------------------DROPDOWN---TO---DELETE---AND---RENAME---TARGET---END------------------------------------------------------------------->
             <span th:text="'Created: ' + ${target.created}" class="target-date"></span>
         </div>
       <div class="progress-container">
         <div class="measure">
           <span th:text="${target.unit}"></span>
-          <span th:text="${#strings.isEmpty(target.start) and #strings.isEmpty(target.target) ? '' : target.start + '/' + target.target}"></span>
+          <span th:text="${#strings.isEmpty(target.start) and #strings.isEmpty(target.current) and #strings.isEmpty(target.target) ? '' :
+	                      (#strings.isEmpty(target.current) ? target.start + '/' + target.target :
+					                                          target.current + '/' + target.target)}"></span>
         </div>
         <div class="progress">
-          <div class="progress-bar" th:style="'width: ' + ${target.tasksAmount} + '%'"></div>
+          <div class="progress-bar"
+               th:style="'width: ' + ${target.progress} + '%'"
+               th:classappend="${target.progress == 100} ? 'progress-bar-success' : ''">
+          </div>
         </div>
         <span class="target-date" th:text="${#strings.isEmpty(target.deadlineDate) and #strings.isEmpty(target.deadlineTime) ? '' : 'Deadline: ' + target.deadlineDate + ' ' + target.deadlineTime}"></span>
       </div>
-    </div>
-    </div>
+      <!--------------------------------------------------------TARGET---PROGRESS---MODAL---WINDOW---START------------------------------------------------------->
+      <section class="targetProgressModal" >
+        <div class="form-container">
+          <form th:action="@{/goal/{goalId}(goalId=${goal.id}, targetId=${target.id})}" th:object="${target}" method="post">
+            <!--<input type="hidden" name="targetId" th:value="${target.id}" />-->
+
+            <div class="form-top">
+              <div class="form-header">
+                <!--<h2 th:text="${target.name}"></h2>-->
+                <h2 th:text="${#strings.length(target.name) > 35 ? #strings.substring(target.name, 0, 35) + '...' : target.name}"></h2>
+                <!--<button class="close-button">&times;</button>-->
+                <a><i class="bi bi-x-lg close-button"></i></a>
+              </div>
+              <div class="progress-section">
+                <!--<div th:text="${target.progress} + '%'" class="progress-percentage"></div>-->
+                <div th:text="${#numbers.formatDecimal(target.progress, 0, 0)} + '%'" class="progress-percentage"></div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar-target"
+                       th:style="'width: ' + ${target.progress} + '%'">
+                  <!--th:classappend="${target.progress >= 100} ? 'progress-bar-success' : ''">-->
+                </div>
+                </div>
+              </div>
+
+              <div class="duration-info">
+                <div class="duration-item">
+                  <span class="label-progress">Start:</span>
+                  <span th:text="${target.start}" class="value start"></span>
+                </div>
+                <div class="duration-item">
+                  <span class="label-progress">Target:</span>
+                  <span th:text="${target.target}" class="value target"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="current">
+              <i class="bi bi-dash-circle-dotted buttons-section"></i>
+              <div class="duration-item-current">
+              <span class="label-progress-current">Current:</span>
+                <div class="value-and-unit">
+                  <span th:text="${target.current}" class="value"></span>
+                  <span th:text="${target.unit}" class="unit"></span>
+                </div>
+              </div>
+              <i class="bi bi-plus-circle-dotted buttons-section"></i>
+            </div>
+
+            <div class="save-button-section">
+              <button class="save-button">Save update</button>
+            </div>
+
+            <!--<div class="note-section">
+              <label for="note-textarea" class="note-label">Note <span class="optional">(optional)</span></label>
+              <textarea id="note-textarea" placeholder="Write something" rows="4"></textarea>
+              <div class="char-limit">Max 2000 characters</div>
+            </div>-->
+          </form>
+        </div>
+      </section>
+    </div><!---------------------------------------------------TARGET---PROGRESS---MODAL---WINDOW---END----------------------------------------------------->
+    </div><!----------------------------------------------------LOOP---TO---SHOW---ALL---TARGETS---END----------------------------------------------------------->
+
   </div>
   <div class="goal-background"></div>
 </section>
-<!------------------------------------------------------------------TARGET---FORM------------------------------------------------------------------------------------------------------->
+<!---------------------------------------------------------------GOAL---PAGE---END------------------------------------------------------------------------------->
+<!-------------------------------------------------------------TARGET---FORM---START------------------------------------------------------------------------------->
 <section id="newGoalSidepanel" class="sidepanel">
-  <a><i class="bi bi-x-lg" id="close-sidepanel"></i></a>
-  <form th:action="@{/target}" th:object="${target}" method="post">
+  <a><i class="bi bi-x-lg close-sidepanel"></i></a>
+  <form class="targetForm" th:action="@{/target}" th:object="${target}" method="post">
     <input type="hidden" th:field="*{goalID}" />
     <!-- Target Name START-->
     <div class="field">
@@ -111,7 +184,7 @@
       Target name
         <span class="hint">Required*<br />Break your Goal down into pieces. Targets are measurable results, that, when completed, will also complete the Goal. <a href="">Learn more</a></span>
       </label>
-      <input type="text" id="targetName" th:field="*{name}" placeholder="Enter your target" required />
+      <input type="text" id="targetName" th:field="*{name}" placeholder="Enter your target" />
       <p class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Target name error</p>
     </div><!-- Target Name END-->
 
@@ -151,8 +224,8 @@
       <button class="scroll-top-btn" onclick=""><i class="bi bi-chevron-up"></i></button>
     </div>
   </form>
-
 </section>
 </body>
+
 </html>
 

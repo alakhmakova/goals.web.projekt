@@ -13,11 +13,11 @@ function renderTargetContent(type) {
         </div>
         <div>
           <label class="choose">Start</label>
-          <input type="number" class="input small" placeholder="0" value="" name="start"/>
+          <input type="number" step="any" class="input small" placeholder="0" value="" name="start"/>
         </div>
         <div>
           <label class="choose">Target</label>
-          <input type="number" class="input small" placeholder="0" value="" name="target"/>
+          <input type="number" step="any" class="input small" placeholder="0" value="" name="target"/>
         </div>
       </div>
       
@@ -31,11 +31,11 @@ function renderTargetContent(type) {
         </div>
         <div>
           <label class="choose">Start</label>
-          <input type="number" class="input small" placeholder="0" value="" name="start"/>
+          <input type="number" step="any" class="input small" placeholder="0" value="" name="start"/>
         </div>
         <div>
           <label class="choose">Target</label>
-          <input type="number" class="input small" placeholder="0" value="" name="target"/>
+          <input type="number" step="any" class="input small" placeholder="0" value="" name="target"/>
         </div>
       </div>
       

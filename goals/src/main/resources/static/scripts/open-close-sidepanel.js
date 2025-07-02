@@ -14,9 +14,8 @@ function close() {
     document.querySelector("header").style.display = 'flex';
 }
 
-const newGoalButton = document.querySelector(".new-goal");
 const openButton = document.querySelector(".open-sidepanel"); // find the open button
-const closeButton = document.querySelector("#close-sidepanel"); // find the close button
+const closeButton = document.querySelector(".close-sidepanel"); // find the close button
 openButton.addEventListener("click", event => {
     open();
     console.log("The form is opened")

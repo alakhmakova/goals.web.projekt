@@ -202,6 +202,7 @@ body {
     font-size: 18px;
     padding: 0;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .open-sidepanel:hover, .add-task-btn:hover {
@@ -254,7 +255,7 @@ body {
 
 .progress-bar {
     height: 0.35rem;
-    background-color: #3D0A91;
+    background-color: #9c27b0;
     border-radius: 25px;
 }
 
@@ -293,7 +294,7 @@ body {
     display: none; /* should be hidden by default if you do not use Thymeleaf templates */
 }
 
-form {
+.targetForm {
     display: flex;
     flex-direction: column;
     padding: 2rem 4rem 4rem 4rem;
@@ -553,4 +554,244 @@ input[type="submit"]:hover {
 .delete-target-confirm-title {
     color: #ff0066;
 }
+/*-------------------------------------------------------------------Target---Progress---Modal---------------------------------------------------------------------------------*/
+.progress-container {
+    cursor: pointer;
+}
+.targetProgressModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.form-top {
+    padding: 1.6rem 2.2rem;
+    background-color: #7dc65a;
+    border-radius: 8px 8px 0 0;
+}
+.form-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 34.5rem;
+    box-sizing: border-box;
+    position: relative;
+}
 
+.form-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+
+.form-header h2 {
+    font-size: 1.4rem;
+    color: #ffffff;
+    font-weight: 600;
+    margin: 0;
+    text-align: justify-all;
+}
+
+/*.close-button {
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: #999999;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+}*/
+.close-button {
+    position: absolute;
+    left: 93%;
+    top: 2%;
+    font-size: 1rem;
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.progress-section {
+    text-align: center;
+}
+
+.progress-bar-container {
+    background-color: #dddddd;
+    border-radius: 0.625rem;
+    height: 0.625rem;
+    overflow: hidden;
+    /*margin-bottom: 10px;*/
+}
+
+.progress-bar-target {
+    background-color: #49852e;
+    height: 100%;
+    border-radius: 10px;
+}
+.progress-bar-success {
+    background-color: #7dc65a;
+}
+
+.progress-percentage {
+    font-size: 1rem;
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.duration-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.duration-item {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    column-gap: 0.3rem;
+}
+
+.current {
+    padding: 1.6rem 2.2rem;
+    display: flex;
+    column-gap: 3rem;
+    justify-self: center;
+    justify-items: center;
+    align-items: center;
+    margin-bottom: 1rem;
+
+}
+
+.label-progress {
+    display: block;
+    font-size: 0.8rem;
+    color: #ffffff;
+}
+
+.duration-item .value {
+    font-weight: 600;
+    color: #ffffff;
+    border-style: dotted;
+    border-width: 3px;
+    border-color: transparent transparent #ffffff transparent;
+    cursor: pointer;
+}
+.duration-item:hover .value {
+    color: #140330;
+    border-color: transparent transparent #140330 transparent;
+}
+.duration-item-current {
+    display: flex;
+    column-gap: 1rem;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+.label-progress-current {
+    display: block;
+    font-size: 0.8rem;
+    color: #49852e;
+}
+
+.value-and-unit {
+    color: #140330;
+    font-weight: 700;
+    cursor: pointer;
+    border-style: dotted;
+    border-width: 3px;
+    border-color: transparent transparent #140330 transparent;
+}
+
+.buttons-section {
+    font-size: 2.5rem;
+    color: #140330;
+    cursor: pointer;
+}
+.buttons-section:hover{
+    color: #7dc65a;
+}
+.value-and-unit:hover {
+    color: #7dc65a;
+    border-color: transparent transparent #7dc65a transparent;
+}
+
+.save-button-section {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.save-button {
+    border-style: solid;
+    border-color: #140330;
+    border-radius: 25px;
+    width: 140px;
+    height: 50px;
+    font-family: "Nunito", sans-serif;
+    font-size: 18px;
+    padding: 0;
+    cursor: pointer;
+    background-color: transparent;
+}
+.save-button:hover {
+    border-color: #7dc65a;
+    color: #ffffff;
+    background-color: #7dc65a;
+}
+
+.note-section {
+    margin-bottom: 10px;
+    padding: 1rem 2.2rem 1.6rem 2.2rem;
+}
+
+.note-label {
+    font-size: 1rem;
+    color: #140330;
+    display: block;
+    margin-bottom: 0.625rem;
+}
+
+.note-label .optional {
+    font-size: 0.875rem;
+    color: #140330;
+    font-weight: 400;
+}
+
+#note-textarea {
+    width: 100%;
+    padding: 0.625rem 1rem;
+    border: 1px solid #dcdcdc;
+    border-radius: 0.3125rem;
+    font-family: "Nunito", sans-serif;
+    font-size: 1rem;
+    color: #333333;
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 5rem; /* Minimum height for the textarea */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    outline: none;
+}
+
+#note-textarea::placeholder {
+    color: #e0cffc;
+}
+
+#note-textarea:focus {
+    border-color: #7dc65a; /* Highlight on focus */
+}
+
+.char-limit {
+    font-family: "Nunito", sans-serif;
+    font-size: 0.8125rem;
+    color: #140330;
+    text-align: right;
+    margin-top: 0.3125rem;
+}

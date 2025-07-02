@@ -1,5 +1,5 @@
 package com.alakhmakova.goals.goal;
-import com.alakhmakova.goals.target.Target;
+import com.alakhmakova.goals.exception.GoalNotFoundException;
 import com.alakhmakova.goals.target.TargetRepository;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Service;
@@ -26,8 +26,8 @@ public class GoalService {
         return goalRepository.findByInFolder("");
     }
 
-    public Goal save(Goal goal) {
-        return goalRepository.save(goal);
+    public void save(Goal goal) {
+        goalRepository.save(goal);
     }
     public Goal saveGoal(String text, String description, String date, String sharedWithEmail) {
         Goal goal = new Goal();
@@ -55,8 +55,8 @@ public class GoalService {
                              Optional<String> description,
                              Optional<String> inFolder,
                              Optional<List<String>> sharedWith,
-                             Optional<List<String>> targets) throws NoSuchElementException {
-        Goal goal = verifyGoal(goalId);
+                             Optional<List<String>> targets) throws GoalNotFoundException {
+        Goal goal = verifyGoalById(goalId);
         date.ifPresent(goal::setDate);
         description.ifPresent(goal::setDescription);
         inFolder.ifPresent(goal::setInFolder);
@@ -64,8 +64,9 @@ public class GoalService {
         targets.ifPresent(goal::setTargets);
         return goalRepository.save(goal);
     }
-    private Goal verifyGoal(String goalId) throws NoSuchElementException {
-        return goalRepository.findById(goalId)
-                .orElseThrow(() -> new NoSuchElementException("Goal does not exist " + goalId));
+
+    public Goal verifyGoalById(String id) throws NoSuchElementException {
+        return goalRepository.findById(id)
+                .orElseThrow(() -> new GoalNotFoundException("Goal not found, id: " + id));
     }
 }

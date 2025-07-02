@@ -1,5 +1,6 @@
 package com.alakhmakova.goals.goal;
 
+import jdk.jfr.Description;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -7,10 +8,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@Description("Converts a Goal entity to a GoalDTO")
 public class GoalMapper {
-    /**
-     * Converts a Goal entity to a GoalDTO
-     */
+
     public GoalDTO toDTO(Goal goal) {
         if (goal == null) {
             return null;
@@ -25,9 +25,8 @@ public class GoalMapper {
 
         return dto;
     }
-    /**
-     * Converts a list of Goal entities to a list of GoalDTO objects
-     */
+
+    @Description("Converts a list of Goal entities to a list of GoalDTO objects")
     public List<GoalDTO> toDTOList(List<Goal> goals) {
         return goals.stream()
                 .map(this::toDTO)

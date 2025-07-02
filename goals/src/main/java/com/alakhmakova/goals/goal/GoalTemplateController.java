@@ -1,4 +1,5 @@
 package com.alakhmakova.goals.goal;
+import com.alakhmakova.goals.target.TargetDTO;
 import com.alakhmakova.goals.target.Target;
 import com.alakhmakova.goals.target.TargetService;
 import org.apache.logging.log4j.LogManager;
@@ -7,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller //use with Thymeleaf
