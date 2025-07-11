@@ -20,6 +20,7 @@
   <script src="/scripts/target-dropdown-open-close.js" defer></script>
   <script src="/scripts/target-delete.js" defer></script>
   <script src="/scripts/open-close-target-progress-modal.js" defer></script>
+  <script src="/scripts/update-progress.js" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   <!--<script type="text/javascript" th:src="@{/webjars/htmx.org/2.0.4/dist/htmx.min.js}"></script>-->
@@ -94,9 +95,12 @@
       <div class="progress-container">
         <div class="measure">
           <span th:text="${target.unit}"></span>
-          <span th:text="${#strings.isEmpty(target.start) and #strings.isEmpty(target.current) and #strings.isEmpty(target.target) ? '' :
+          <!--<span th:text="${#strings.isEmpty(target.start) and #strings.isEmpty(target.current) and #strings.isEmpty(target.target) ? '' :
 	                      (#strings.isEmpty(target.current) ? target.start + '/' + target.target :
-					                                          target.current + '/' + target.target)}"></span>
+					                                          target.current + '/' + target.target)}"></span>-->
+          <span th:text="${target.start == '0' and target.current == '0' and target.target == '0' ? '' :
+                          (target.current == '0' ? target.start + '/' + target.target :
+                           target.current + '/' + target.target)}"></span>
         </div>
         <div class="progress">
           <div class="progress-bar"
@@ -110,13 +114,10 @@
       <section class="targetProgressModal" >
         <div class="form-container">
           <form th:action="@{/goal/{goalId}(goalId=${goal.id}, targetId=${target.id})}" th:object="${target}" method="post">
-            <!--<input type="hidden" name="targetId" th:value="${target.id}" />-->
 
             <div class="form-top">
               <div class="form-header">
-                <!--<h2 th:text="${target.name}"></h2>-->
                 <h2 th:text="${#strings.length(target.name) > 35 ? #strings.substring(target.name, 0, 35) + '...' : target.name}"></h2>
-                <!--<button class="close-button">&times;</button>-->
                 <a><i class="bi bi-x-lg close-button"></i></a>
               </div>
               <div class="progress-section">
@@ -133,25 +134,23 @@
               <div class="duration-info">
                 <div class="duration-item">
                   <span class="label-progress">Start:</span>
-                  <span th:text="${target.start}" class="value start"></span>
+                  <span th:text="${target.start}" class="value start-value"></span>
                 </div>
                 <div class="duration-item">
                   <span class="label-progress">Target:</span>
-                  <span th:text="${target.target}" class="value target"></span>
+                  <span th:text="${target.target}" class="value target-value"></span>
                 </div>
               </div>
             </div>
 
             <div class="current">
-              <i class="bi bi-dash-circle-dotted buttons-section"></i>
               <div class="duration-item-current">
-              <span class="label-progress-current">Current:</span>
+                <span class="label-progress-current">Current:</span>
                 <div class="value-and-unit">
-                  <span th:text="${target.current}" class="value"></span>
+                  <span th:attr="id='current-value-' + ${target.id}" th:text="${target.current}" class="value current-value" ></span>
                   <span th:text="${target.unit}" class="unit"></span>
                 </div>
               </div>
-              <i class="bi bi-plus-circle-dotted buttons-section"></i>
             </div>
 
             <div class="save-button-section">

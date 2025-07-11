@@ -33,15 +33,20 @@ public class TargetService {
         Goal goal = goalService.verifyGoalById(saveTarget.getGoalID());
 
         if (saveTarget.getStart() == null) {
-            saveTarget.setStart("");
+            saveTarget.setStart("0");
         }
         if (saveTarget.getTarget() == null) {
-            saveTarget.setTarget("");
+            saveTarget.setTarget("0");
         }
-        if (Objects.equals(saveTarget.getTarget(), null) && Objects.equals(saveTarget.getStart(), null) && Objects.equals(saveTarget.getCurrent(), null)) {
+        if (saveTarget.getCurrent() == null) {
+            saveTarget.setCurrent("0");
+        }
+        if (saveTarget.getTarget().isEmpty() && saveTarget.getStart().isEmpty() && saveTarget.getCurrent().isEmpty() ) {
             saveTarget.setProgress(0);
+            log.info("Target '{}' has progress value 0", saveTarget.getName());
         } else {
             saveTarget.setProgress(countTargetProgress(saveTarget));
+            log.info("Target has progress value {}", saveTarget.getProgress());
         }
         saveTarget.setCreated(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
         saveTarget.setDeadline(saveTarget.getDeadlineDate() + " " + saveTarget.getDeadlineTime());
@@ -94,37 +99,76 @@ public class TargetService {
     }
 
     @Description("Utility methods")
-    public Number countTargetProgress(Target target) {
+    /*public Number countTargetProgress(Target target) {
         Number progress = 0;
-        if(target.getStart() == null) {
-            target.setStart("");
+        if(target.getStart() == null || target.getStart().isEmpty()) {
+            target.setStart("0");
         }
-        if(target.getTarget() == null) {
-            target.setTarget("");
+        if(target.getTarget() == null || target.getTarget().isEmpty()) {
+            target.setTarget("0");
         }
-        if(target.getCurrent() == null) {
-            target.setCurrent("");
+        if(target.getCurrent() == null || target.getCurrent().isEmpty()) {
+            target.setCurrent("0");
         }
         if (target.getType() == Type.number || target.getType()== Type.currency) {
             try {
                 progress =
-                        ((Integer.parseInt(target.getCurrent()) - Integer.parseInt(target.getStart())))
-                                / (Math.abs(Integer.parseInt(target.getTarget()) - Integer.parseInt(target.getStart())))
-                                * 100;
+                        (Math.abs((Integer.parseInt(target.getCurrent()) - Integer.parseInt(target.getStart()) * 100.0f)))
+                                / (Math.abs(Integer.parseInt(target.getTarget()) - Integer.parseInt(target.getStart())))*100;
             } catch (NumberFormatException e) {
+                progress = 0;
                 progress = (
-                        (Float.parseFloat(target.getCurrent()) - Float.parseFloat(target.getStart()))
+                        (Math.abs(Float.parseFloat(target.getCurrent()) - Float.parseFloat(target.getStart())))
                                 / (Math.abs(Float.parseFloat(target.getTarget())) - Float.parseFloat(target.getStart()))
                 ) * 100.0f;
 
 
             }
-        } /*else if (target.getType() == Type.success) {
+        } *//*else if (target.getType() == Type.success) {
 
         }
         else if (target.getType() == Type.tasks) {
 
-        }*/
+        }*//*
+        log.info("Target {} has progress {}", target, progress);
+        return progress;
+    }*/
+    public Number countTargetProgress(Target target) {
+        Number progress = 0;
+        if (target.getStart() == null || target.getStart().isEmpty()) {
+            target.setStart("0");
+        }
+        if (target.getTarget() == null || target.getTarget().isEmpty()) {
+            target.setTarget("0");
+        }
+        if (target.getCurrent() == null || target.getCurrent().isEmpty()) {
+            target.setCurrent("0");
+        }
+        if (target.getType() == Type.number || target.getType() == Type.currency) {
+            try {
+                int start = Integer.parseInt(target.getStart());
+                int targetValue = Integer.parseInt(target.getTarget());
+                int current = Integer.parseInt(target.getCurrent());
+                if (targetValue == start) {
+                    progress = 0;
+                } else {
+                    progress = Math.abs((current - start) * 100.0f / (targetValue - start));
+                }
+            } catch (NumberFormatException e) {
+                try {
+                    float start = Float.parseFloat(target.getStart());
+                    float targetValue = Float.parseFloat(target.getTarget());
+                    float current = Float.parseFloat(target.getCurrent());
+                    if (targetValue == start) {
+                        progress = 0;
+                    } else {
+                        progress = Math.abs((current - start) * 100.0f / (targetValue - start));
+                    }
+                } catch (NumberFormatException ex) {
+                    progress = 0;
+                }
+            }
+        }
         log.info("Target {} has progress {}", target, progress);
         return progress;
     }
