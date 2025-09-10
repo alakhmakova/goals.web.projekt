@@ -105,7 +105,6 @@
                 </div>
               </div>
               <div class="right">
-                <span class="label">applications</span>
                 <div class="progress"><div class="bar" style="width:0%"></div></div>
                 <span class="value">0/1</span>
               </div>
@@ -128,7 +127,6 @@
                 </div>
               </div>
               <div class="right">
-                <span class="label">ansökningar</span>
                 <div class="progress"><div class="bar violet" style="width:68%"></div></div>
                 <span class="value" id="apply-value">136/200</span>
               </div>
@@ -225,19 +223,15 @@
           </div>
           <form class="modal-form" id="apply-form">
             <div class="counters">
-              <div class="counter">
-                <span class="label">Start</span>
-                <input type="number" id="apply-start" min="0" value="0" />
-              </div>
-              <div class="counter">
-                <span class="label">Target</span>
-                <input type="number" id="apply-target" min="1" value="200" />
-              </div>
-              <div class="counter current">
+              <div class="counter" data-editable="number" data-field="start"><span class="label">Start</span><span class="value-view" id="view-start">0</span><input class="value-input" type="number" id="apply-start" min="0" value="0" /></div>
+              <div class="counter" data-editable="number" data-field="target"><span class="label">Target</span><span class="value-view" id="view-target">200</span><input class="value-input" type="number" id="apply-target" min="1" value="200" /></div>
+              <div class="counter current" data-field="current">
                 <span class="label">Current</span>
                 <div class="input-row">
-                  <input type="number" id="apply-current" min="0" value="136" />
-                  <input type="text" id="apply-unit" placeholder="unit" title="unit" />
+                  <span class="value-view" id="view-current">136</span>
+                  <span class="value-view unit" id="view-unit" title="unit">ansökningar</span>
+                  <input class="value-input" type="number" id="apply-current" min="0" value="136" />
+                  <input class="value-input" type="text" id="apply-unit" placeholder="unit" title="unit" value="ansökningar" />
                 </div>
               </div>
             </div>

@@ -55,8 +55,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .row-menu .dropdown{position:absolute;right:0;top:26px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.08);display:none;min-width:170px}
 .row-menu .dropdown button{display:block;width:100%;text-align:left;padding:8px 10px;background:#fff;border:0;cursor:pointer}
 .row-menu .dropdown .danger{color:#ef4444}
-.label{color:var(--muted);font-size:12px;margin-right:8px}
-.progress{height:10px;background:#eef2f7;border-radius:999px;position:relative;overflow:hidden;flex:1;min-width:120px}
+.label{display:none}
+.progress{height:10px;background:#eef2f7;border-radius:999px;position:relative;overflow:hidden;flex:1;min-width:240px}
 .bar{position:absolute;left:0;top:0;bottom:0;background:#9ca3af}
 .bar.violet{background:var(--violet)}
 .bar.green{background:var(--green)}
@@ -91,10 +91,12 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .percent{display:none}
 .modal-form .counters{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .modal-form .counters .current{grid-column:1/-1}
-.modal-form .counters .input-row{display:flex;gap:10px}
+.modal-form .counters .input-row{display:flex;align-items:center;gap:10px}
 .modal-form .counters .input-row input[type="text"]{min-width:120px}
 .counter{background:#fafafa;border:1px solid var(--line);border-radius:12px;padding:12px}
 .counter .label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}
+.counter .value-view{font-weight:700}
+.counter .value-input{display:none;width:100%;border:1px solid var(--line);border-radius:8px;padding:8px}
 .stepper{display:none}
 .step{display:none}
 .note textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;resize:vertical}

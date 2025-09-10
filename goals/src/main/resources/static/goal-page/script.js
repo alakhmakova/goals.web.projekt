@@ -54,6 +54,57 @@
 
   [currentInput,startInput,targetInput,unitInput].forEach(i=> i && i.addEventListener('input', recalc));
 
+  // Inline edit behavior: view mode by default, click to edit, blur to save/hide
+  function setupInlineEdit(wrapper){
+    const valueView = wrapper.querySelector('.value-view');
+    const input = wrapper.querySelector('.value-input');
+    if(!valueView || !input) return;
+    function toInput(){
+      valueView.style.display = 'none';
+      input.style.display = 'block';
+      input.focus();
+      input.select && input.select();
+    }
+    function toView(){
+      valueView.textContent = input.type === 'number' ? String(Number(input.value||0)) : (input.value||'');
+      input.style.display = 'none';
+      valueView.style.display = '';
+      recalc();
+    }
+    valueView.addEventListener('click', toInput);
+    input.addEventListener('blur', toView);
+    input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); input.blur(); } });
+  }
+  // Start and Target simple fields
+  document.querySelectorAll('.counter[data-editable="number"]').forEach(setupInlineEdit);
+  // Current has number and unit
+  (function(){
+    const wrap = document.querySelector('.counter.current .input-row');
+    if(!wrap) return;
+    const viewCurrent = wrap.querySelector('#view-current');
+    const viewUnit = wrap.querySelector('#view-unit');
+    const inputCurrent = document.getElementById('apply-current');
+    const inputUnit = document.getElementById('apply-unit');
+    function bind(viewEl, inputEl){
+      viewEl.addEventListener('click', ()=>{
+        viewEl.style.display='none';
+        inputEl.style.display='block';
+        inputEl.focus();
+        inputEl.select && inputEl.select();
+      });
+      inputEl.addEventListener('blur', ()=>{
+        if(inputEl === inputCurrent){ viewCurrent.textContent = String(Number(inputEl.value||0)); }
+        else { viewUnit.textContent = inputEl.value || ''; }
+        inputEl.style.display='none';
+        viewEl.style.display='';
+        recalc();
+      });
+      inputEl.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); inputEl.blur(); } });
+    }
+    bind(viewCurrent, inputCurrent);
+    bind(viewUnit, inputUnit);
+  })();
+
   // open modal when clicking any progress bar or its value in targets
   function bindProgressOpen(scope){
     (scope||document).querySelectorAll('.target-row .right .progress, .target-row .right .value').forEach(el=>{
