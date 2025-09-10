@@ -40,25 +40,19 @@
   const percentEl = document.getElementById('apply-percent');
   const valueEl = document.getElementById('apply-value');
   const titleEl = document.getElementById('apply-title');
+  const unitInput = document.getElementById('apply-unit');
 
   function recalc(){
     const s = Number(startInput.value)||0;
     const c = Number(currentInput.value)||0;
     const t = Math.max(Number(targetInput.value)||1, 1);
     const pct = Math.max(0, Math.min(100, Math.round((c - s) / (t - s) * 100)));
-    bar.style.width = pct + '%';
+    if(window.updateProgressBar) window.updateProgressBar(bar, pct);
     percentEl.textContent = pct + '%';
     if(valueEl) valueEl.textContent = `${c}/${t}`;
   }
 
-  document.querySelectorAll('.step').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const step = Number(btn.dataset.step);
-      currentInput.value = Math.max(0, Number(currentInput.value||0) + step);
-      recalc();
-    });
-  });
-  [currentInput,startInput,targetInput].forEach(i=> i && i.addEventListener('input', recalc));
+  [currentInput,startInput,targetInput,unitInput].forEach(i=> i && i.addEventListener('input', recalc));
 
   // open modal when clicking any progress bar or its value in targets
   function bindProgressOpen(scope){

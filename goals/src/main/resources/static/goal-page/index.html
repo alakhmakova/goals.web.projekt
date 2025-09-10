@@ -235,10 +235,9 @@
               </div>
               <div class="counter current">
                 <span class="label">Current</span>
-                <div class="stepper">
-                  <button type="button" class="step" data-step="-1">Decrease</button>
+                <div class="input-row">
                   <input type="number" id="apply-current" min="0" value="136" />
-                  <button type="button" class="step" data-step="1">Increase</button>
+                  <input type="text" id="apply-unit" placeholder="unit" title="unit" />
                 </div>
               </div>
             </div>
@@ -299,6 +298,7 @@
       </div>
     </div>
 
+    <script src="./progress-utils.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>

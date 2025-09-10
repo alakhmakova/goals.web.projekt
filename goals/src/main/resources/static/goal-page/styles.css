@@ -90,10 +90,12 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .percent{display:none}
 .modal-form .counters{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .modal-form .counters .current{grid-column:1/-1}
+.modal-form .counters .input-row{display:flex;gap:10px}
+.modal-form .counters .input-row input[type="text"]{min-width:120px}
 .counter{background:#fafafa;border:1px solid var(--line);border-radius:12px;padding:12px}
 .counter .label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}
-.stepper{display:flex;align-items:center;gap:6px}
-.step{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
+.stepper{display:none}
+.step{display:none}
 .note textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;resize:vertical}
 .muted{color:var(--muted)}
 .small{font-size:12px}
