@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Goal • Hitta LIA plats</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <button class="sidebar-toggle" aria-label="Toggle sidebar"><i class="bi bi-layout-sidebar"></i></button>
+        <nav class="side-icons">
+          <i class="bi bi-house"></i>
+          <i class="bi bi-inbox"></i>
+          <i class="bi bi-chat"></i>
+          <i class="bi bi-journal-text"></i>
+          <i class="bi bi-speedometer2"></i>
+          <i class="bi bi-clipboard2-check"></i>
+          <i class="bi bi-archive"></i>
+          <i class="bi bi-trophy-fill active"></i>
+        </nav>
+      </aside>
+
+      <header class="topbar">
+        <div class="crumbs">
+          <i class="bi bi-rocket"></i>
+          <a href="#" class="back">All Goals <i class="bi bi-chevron-right"></i></a>
+        </div>
+        <div class="top-actions">
+          <span class="date">27 Apr</span>
+          <button class="btn subtle"><i class="bi bi-share"></i> Sharing & Permissions</button>
+          <div class="avatar" title="User"></div>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="goal-summary card">
+          <div class="ring" data-percent="54">
+            <span>54%</span>
+          </div>
+          <div class="goal-head">
+            <h1>Hitta LIA plats</h1>
+            <div class="goal-menu">
+              <button class="kebab" aria-haspopup="true" aria-expanded="false"><i class="bi bi-three-dots"></i></button>
+              <div class="dropdown">
+                <button data-action="rename"><i class="bi bi-pencil"></i> Rename</button>
+                <button data-action="color"><i class="bi bi-palette2"></i> Change color</button>
+                <button data-action="move"><i class="bi bi-folder-symlink"></i> Move to Folder</button>
+                <button data-action="archive"><i class="bi bi-archive"></i> Archive</button>
+                <button class="danger" data-action="delete"><i class="bi bi-trash3"></i> Delete</button>
+              </div>
+            </div>
+          </div>
+
+          <article class="description" data-collapsed="true">
+            <p>
+              Хочу, чтобы место для практики мне досталось без усилий. Например, школа мне его предоставит или кто-то мне положительно ответит из тех мест, куда я писала или еще напишу. Надоело нервничать и напрягаться. Пусть в этот раз мне все достанется спокойно и легко, просто потому что я молодец, я способная и заслуживаю, чтобы меня взяли.
+            </p>
+            <h2>Выводы на поводу неудачи:</h2>
+            <ol>
+              <li>Не договорилась с Фредериком заранее...</li>
+              <li>Перекладывание ответственности на других...</li>
+              <li>Слишком долго ждала перед тем как позвонить...</li>
+              <li>Нужно отправлять больше и чаще</li>
+              <li>Нельзя класть все яйца в одну корзину...</li>
+              <li>Не могу делать все и сразу - нужно это признать</li>
+            </ol>
+            <div class="options">
+              <h3>Options</h3>
+              <ul>
+                <li>Перенести на следующий год...</li>
+                <li>Купить платный LinkedIn</li>
+              </ul>
+            </div>
+            <button class="see-toggle" data-less="See less" data-more="See more">See more</button>
+          </article>
+        </section>
+
+        <section class="targets card">
+          <div class="targets-head">
+            <h2>Targets</h2>
+            <button class="btn primary add-target">+ Add</button>
+          </div>
+
+          <ul class="target-list">
+            <li class="target-row">
+              <div class="left">
+                <div class="dot"></div>
+                <div class="text">
+                  <div class="name">Få positiv svar om LIA plats till mig</div>
+                  <div class="date">Jun 2 at 16:11</div>
+                </div>
+                <div class="row-menu">
+                  <button class="kebab"><i class="bi bi-three-dots"></i></button>
+                  <div class="dropdown">
+                    <button><i class="bi bi-plus"></i> Add task</button>
+                    <button><i class="bi bi-pencil"></i> Rename</button>
+                    <button class="danger"><i class="bi bi-trash3"></i> Delete</button>
+                  </div>
+                </div>
+              </div>
+              <div class="right">
+                <span class="label">applications</span>
+                <div class="progress"><div class="bar" style="width:0%"></div></div>
+                <span class="value">0/1</span>
+              </div>
+            </li>
+
+            <li class="target-row clickable" id="apply-row">
+              <div class="left">
+                <div class="dot"></div>
+                <div class="text">
+                  <div class="name">Skicka ansökningar</div>
+                  <div class="date">Aug 9 at 0:46</div>
+                </div>
+                <div class="row-menu">
+                  <button class="kebab"><i class="bi bi-three-dots"></i></button>
+                  <div class="dropdown">
+                    <button><i class="bi bi-plus"></i> Add task</button>
+                    <button><i class="bi bi-pencil"></i> Rename</button>
+                    <button class="danger"><i class="bi bi-trash3"></i> Delete</button>
+                  </div>
+                </div>
+              </div>
+              <div class="right">
+                <span class="label">ansökningar</span>
+                <div class="progress"><div class="bar violet" style="width:68%"></div></div>
+                <span class="value" id="apply-value">136/200</span>
+              </div>
+            </li>
+
+            <li class="target-row">
+              <div class="left">
+                <div class="dot"></div>
+                <div class="text">
+                  <div class="name">Formuläret</div>
+                  <div class="date">Aug 9 at 0:47</div>
+                </div>
+              </div>
+              <div class="right">
+                <div class="progress"><div class="bar green" style="width:100%"></div></div>
+                <span class="value">1/1</span>
+              </div>
+            </li>
+
+            <li class="target-row">
+              <div class="left">
+                <div class="dot"></div>
+                <div class="text">
+                  <div class="name">Написать Роберту</div>
+                  <div class="date">Aug 12 at 15:19</div>
+                </div>
+              </div>
+              <div class="right">
+                <div class="progress"><div class="bar green" style="width:100%"></div></div>
+                <span class="value">1/1</span>
+              </div>
+            </li>
+
+            <li class="target-row disabled">
+              <div class="left">
+                <div class="dot"></div>
+                <div class="text">
+                  <div class="name">AI Agent to send messages</div>
+                  <div class="date">Aug 12 at 15:21</div>
+                </div>
+              </div>
+              <div class="right">
+                <div class="progress"><div class="bar" style="width:0%"></div></div>
+                <span class="value">0/1</span>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="timeline card">
+          <h2>Timeline</h2>
+          <ul>
+            <li><span class="tag">tasks type target</span> Created by Anastasiya</li>
+            <li><span class="tag green">Formuläret</span> Created by Anastasiya</li>
+            <li><span class="tag purple">Skicka ansökningar</span> Created by Anastasiya</li>
+            <li><span class="tag">AI agent to send messages</span> Created by Anastasiya</li>
+          </ul>
+        </section>
+      </main>
+
+      <div class="progress-modal" id="apply-modal" aria-hidden="true">
+        <div class="modal-card">
+          <div class="modal-head">
+            <h3>Skicka ansökningar</h3>
+            <button class="close" data-close><i class="bi bi-x-lg"></i></button>
+          </div>
+          <div class="bar-summary">
+            <div class="bar-track"><div class="bar-fill violet" id="apply-bar" style="width:68%"></div></div>
+            <div class="percent" id="apply-percent">68%</div>
+          </div>
+          <form class="modal-form" id="apply-form">
+            <div class="counters">
+              <div class="counter">
+                <span class="label">Start</span>
+                <input type="number" id="apply-start" min="0" value="0" />
+              </div>
+              <div class="counter">
+                <span class="label">Current</span>
+                <div class="stepper">
+                  <button type="button" class="step" data-step="-1">Decrease</button>
+                  <input type="number" id="apply-current" min="0" value="136" />
+                  <button type="button" class="step" data-step="1">Increase</button>
+                </div>
+              </div>
+              <div class="counter">
+                <span class="label">Target</span>
+                <input type="number" id="apply-target" min="1" value="200" />
+              </div>
+            </div>
+            <div class="note">
+              <label for="apply-note">Note <span class="muted">(optional)</span></label>
+              <textarea id="apply-note" rows="3" placeholder="#"></textarea>
+              <div class="muted small">Max 2000 characters</div>
+            </div>
+            <div class="actions">
+              <button type="submit" class="btn primary">Save update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
+
