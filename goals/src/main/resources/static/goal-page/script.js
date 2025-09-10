@@ -187,5 +187,49 @@
   });
   closeBtns.forEach(b=>b.addEventListener('click', ()=> modal.setAttribute('aria-hidden','true')));
   modal && modal.addEventListener('click', (e)=>{ if(e.target === modal) modal.setAttribute('aria-hidden','true'); });
+
+  // Add subtle visual hint for clickable values
+  document.querySelectorAll('.inline-edit .value-view, .counter[data-editable] .value-view').forEach(v=>{
+    v.classList.add('clickable');
+  });
+
+  // Comments inline edit and add new
+  document.querySelectorAll('[data-comment]').forEach(item=>{
+    const view = item.querySelector('.comment-view');
+    const input = item.querySelector('.comment-input');
+    view.addEventListener('click', ()=>{
+      view.style.display='none';
+      input.style.display='block';
+      input.value = view.textContent || '';
+      input.focus();
+    });
+    input.addEventListener('blur', ()=>{
+      view.textContent = input.value || '';
+      input.style.display='none';
+      view.style.display='';
+    });
+    input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); input.blur(); } });
+  });
+  const addCommentBtn = document.getElementById('add-comment');
+  const newCommentText = document.getElementById('new-comment-text');
+  if(addCommentBtn && newCommentText){
+    addCommentBtn.addEventListener('click', ()=>{
+      const text = (newCommentText.value||'').trim();
+      if(!text) return;
+      const li = document.createElement('li');
+      li.className = 'comment-item';
+      li.setAttribute('data-comment','');
+      li.innerHTML = `<div class="comment-view"></div><textarea class="comment-input" rows="2"></textarea>`;
+      li.querySelector('.comment-view').textContent = text;
+      document.querySelector('.comments').appendChild(li);
+      newCommentText.value='';
+      // bind inline edit
+      const view = li.querySelector('.comment-view');
+      const input = li.querySelector('.comment-input');
+      view.addEventListener('click', ()=>{ view.style.display='none'; input.style.display='block'; input.value=view.textContent||''; input.focus(); });
+      input.addEventListener('blur', ()=>{ view.textContent=input.value||''; input.style.display='none'; view.style.display=''; });
+      input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); input.blur(); } });
+    });
+  }
 })();
 

@@ -201,13 +201,29 @@
         </section>
 
         <section class="timeline card">
-          <h2>Timeline</h2>
-          <ul>
-            <li><span class="tag">tasks type target</span> Created by Anastasiya</li>
-            <li><span class="tag green">Formuläret</span> Created by Anastasiya</li>
-            <li><span class="tag purple">Skicka ansökningar</span> Created by Anastasiya</li>
-            <li><span class="tag">AI agent to send messages</span> Created by Anastasiya</li>
+          <h2>Comments</h2>
+          <ul class="comments">
+            <li class="comment-item" data-comment>
+              <div class="comment-view">Created by Anastasiya: tasks type target</div>
+              <textarea class="comment-input" rows="2"></textarea>
+            </li>
+            <li class="comment-item" data-comment>
+              <div class="comment-view">Created by Anastasiya: Formuläret</div>
+              <textarea class="comment-input" rows="2"></textarea>
+            </li>
+            <li class="comment-item" data-comment>
+              <div class="comment-view">Created by Anastasiya: Skicka ansökningar</div>
+              <textarea class="comment-input" rows="2"></textarea>
+            </li>
+            <li class="comment-item" data-comment>
+              <div class="comment-view">Created by Anastasiya: AI agent to send messages</div>
+              <textarea class="comment-input" rows="2"></textarea>
+            </li>
           </ul>
+          <div class="new-comment">
+            <textarea id="new-comment-text" rows="2" placeholder="Add a comment..."></textarea>
+            <div class="actions"><button id="add-comment" class="btn primary">Add</button></div>
+          </div>
         </section>
       </main>
 
@@ -223,15 +239,31 @@
           </div>
           <form class="modal-form" id="apply-form">
             <div class="counters">
-              <div class="counter" data-editable="number" data-field="start"><span class="label">Start</span><span class="value-view" id="view-start">0</span><input class="value-input" type="number" id="apply-start" min="0" value="0" /></div>
-              <div class="counter" data-editable="number" data-field="target"><span class="label">Target</span><span class="value-view" id="view-target">200</span><input class="value-input" type="number" id="apply-target" min="1" value="200" /></div>
+              <div class="counter meta" data-field="start">
+                <span class="label">Start</span>
+                <div class="inline-edit">
+                  <span class="value-view" id="view-start">0</span>
+                  <input class="value-input" type="number" id="apply-start" min="0" value="0" />
+                </div>
+              </div>
+              <div class="counter meta" data-field="target">
+                <span class="label">Target</span>
+                <div class="inline-edit">
+                  <span class="value-view" id="view-target">200</span>
+                  <input class="value-input" type="number" id="apply-target" min="1" value="200" />
+                </div>
+              </div>
               <div class="counter current" data-field="current">
                 <span class="label">Current</span>
                 <div class="input-row">
-                  <span class="value-view" id="view-current">136</span>
-                  <span class="value-view unit" id="view-unit" title="unit">ansökningar</span>
-                  <input class="value-input" type="number" id="apply-current" min="0" value="136" />
-                  <input class="value-input" type="text" id="apply-unit" placeholder="unit" title="unit" value="ansökningar" />
+                  <span class="inline-edit">
+                    <span class="value-view" id="view-current">136</span>
+                    <input class="value-input" type="number" id="apply-current" min="0" value="136" />
+                  </span>
+                  <span class="inline-edit">
+                    <span class="value-view unit" id="view-unit" title="unit">ansökningar</span>
+                    <input class="value-input" type="text" id="apply-unit" placeholder="unit" title="unit" value="ansökningar" />
+                  </span>
                 </div>
               </div>
             </div>
