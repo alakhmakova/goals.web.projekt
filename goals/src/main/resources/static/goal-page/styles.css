@@ -39,6 +39,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .options h3{margin:12px 0 6px}
 
 /* Targets */
+.targets{grid-column:1/span 2}
 .targets .targets-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .btn{border:0;border-radius:10px;padding:8px 12px;cursor:pointer}
 .btn.primary{background:var(--primary);color:#fff}
@@ -88,7 +89,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .bar-track{display:none}
 .bar-fill{display:none}
 .percent{display:none}
-.modal-form .counters{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.modal-form .counters{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .modal-form .counters .current{grid-column:1/-1}
 .modal-form .counters .input-row{display:flex;gap:10px}
 .modal-form .counters .input-row input[type="text"]{min-width:120px}
@@ -97,6 +98,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .stepper{display:none}
 .step{display:none}
 .note textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;resize:vertical}
+.note{margin-top:16px}
 .muted{color:var(--muted)}
 .small{font-size:12px}
 .actions{display:flex;justify-content:flex-end;margin-top:12px}
