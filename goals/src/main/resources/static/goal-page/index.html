@@ -141,6 +141,14 @@
                   <div class="name">Formuläret</div>
                   <div class="date">Aug 9 at 0:47</div>
                 </div>
+                <div class="row-menu">
+                  <button class="kebab"><i class="bi bi-three-dots"></i></button>
+                  <div class="dropdown">
+                    <button><i class="bi bi-plus"></i> Add task</button>
+                    <button><i class="bi bi-pencil"></i> Rename</button>
+                    <button class="danger"><i class="bi bi-trash3"></i> Delete</button>
+                  </div>
+                </div>
               </div>
               <div class="right">
                 <div class="progress"><div class="bar green" style="width:100%"></div></div>
@@ -155,6 +163,14 @@
                   <div class="name">Написать Роберту</div>
                   <div class="date">Aug 12 at 15:19</div>
                 </div>
+                <div class="row-menu">
+                  <button class="kebab"><i class="bi bi-three-dots"></i></button>
+                  <div class="dropdown">
+                    <button><i class="bi bi-plus"></i> Add task</button>
+                    <button><i class="bi bi-pencil"></i> Rename</button>
+                    <button class="danger"><i class="bi bi-trash3"></i> Delete</button>
+                  </div>
+                </div>
               </div>
               <div class="right">
                 <div class="progress"><div class="bar green" style="width:100%"></div></div>
@@ -168,6 +184,14 @@
                 <div class="text">
                   <div class="name">AI Agent to send messages</div>
                   <div class="date">Aug 12 at 15:21</div>
+                </div>
+                <div class="row-menu">
+                  <button class="kebab"><i class="bi bi-three-dots"></i></button>
+                  <div class="dropdown">
+                    <button><i class="bi bi-plus"></i> Add task</button>
+                    <button><i class="bi bi-pencil"></i> Rename</button>
+                    <button class="danger"><i class="bi bi-trash3"></i> Delete</button>
+                  </div>
                 </div>
               </div>
               <div class="right">
@@ -206,16 +230,16 @@
                 <input type="number" id="apply-start" min="0" value="0" />
               </div>
               <div class="counter">
+                <span class="label">Target</span>
+                <input type="number" id="apply-target" min="1" value="200" />
+              </div>
+              <div class="counter current">
                 <span class="label">Current</span>
                 <div class="stepper">
                   <button type="button" class="step" data-step="-1">Decrease</button>
                   <input type="number" id="apply-current" min="0" value="136" />
                   <button type="button" class="step" data-step="1">Increase</button>
                 </div>
-              </div>
-              <div class="counter">
-                <span class="label">Target</span>
-                <input type="number" id="apply-target" min="1" value="200" />
               </div>
             </div>
             <div class="note">
@@ -225,6 +249,50 @@
             </div>
             <div class="actions">
               <button type="submit" class="btn primary">Save update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Create Target Modal -->
+      <div class="progress-modal" id="target-modal" aria-hidden="true">
+        <div class="modal-card">
+          <div class="modal-head">
+            <h3>Create Target</h3>
+            <button class="close" data-close-target><i class="bi bi-x-lg"></i></button>
+          </div>
+          <form class="create-form" id="target-form">
+            <div class="field">
+              <label>Target name</label>
+              <input type="text" id="t-name" placeholder="e.g. Skicka ansökningar" required />
+            </div>
+            <div class="field inline">
+              <label>Owner <span class="muted small">(optional)</span></label>
+              <input type="text" id="t-owner" placeholder="Choose owner(s)" />
+            </div>
+            <div class="field">
+              <label>Type of Target</label>
+              <div class="type-grid">
+                <label class="type-card"><input type="radio" name="t-type" value="number" checked><span>Number</span></label>
+                <label class="type-card"><input type="radio" name="t-type" value="boolean"><span>True/False</span></label>
+                <label class="type-card"><input type="radio" name="t-type" value="currency"><span>Currency</span></label>
+                <label class="type-card"><input type="radio" name="t-type" value="tasks"><span>Tasks</span></label>
+              </div>
+              <div class="type-config" id="type-number">
+                <div class="num-grid">
+                  <div>
+                    <div class="label small">Start</div>
+                    <input type="number" id="t-start" min="0" value="0" />
+                  </div>
+                  <div>
+                    <div class="label small">Target</div>
+                    <input type="number" id="t-target" min="1" value="1" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="actions">
+              <button type="submit" class="btn primary">OK</button>
             </div>
           </form>
         </div>
