@@ -75,8 +75,8 @@
     input.addEventListener('blur', toView);
     input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); input.blur(); } });
   }
-  // Start and Target simple fields
-  document.querySelectorAll('.counter[data-editable="number"]').forEach(setupInlineEdit);
+  // Start and Target simple fields (meta blocks)
+  document.querySelectorAll('.counter.meta .inline-edit').forEach(setupInlineEdit);
   // Current has number and unit
   (function(){
     const wrap = document.querySelector('.counter.current .input-row');
@@ -189,7 +189,7 @@
   modal && modal.addEventListener('click', (e)=>{ if(e.target === modal) modal.setAttribute('aria-hidden','true'); });
 
   // Add subtle visual hint for clickable values
-  document.querySelectorAll('.inline-edit .value-view, .counter[data-editable] .value-view').forEach(v=>{
+  document.querySelectorAll('.inline-edit .value-view, .counter.meta .value-view').forEach(v=>{
     v.classList.add('clickable');
   });
 
