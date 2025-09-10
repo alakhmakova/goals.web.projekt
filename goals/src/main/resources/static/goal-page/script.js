@@ -28,7 +28,7 @@
     });
   }
 
-  // Modal for "Skicka ansökningar"
+  // Modal handling for any target progress
   const applyRow = document.getElementById('apply-row');
   const modal = document.getElementById('apply-modal');
   const closeBtns = modal ? modal.querySelectorAll('[data-close]') : [];
@@ -39,6 +39,7 @@
   const bar = document.getElementById('apply-bar');
   const percentEl = document.getElementById('apply-percent');
   const valueEl = document.getElementById('apply-value');
+  const titleEl = document.getElementById('apply-title');
 
   function recalc(){
     const s = Number(startInput.value)||0;
@@ -59,12 +60,25 @@
   });
   [currentInput,startInput,targetInput].forEach(i=> i && i.addEventListener('input', recalc));
 
-  if(applyRow && modal){
-    applyRow.addEventListener('click', ()=>{
+  // open modal when clicking any progress bar or its value in targets
+  document.querySelectorAll('.target-row .right .progress, .target-row .right .value').forEach(el=>{
+    el.addEventListener('click', (e)=>{
+      const row = e.currentTarget.closest('.target-row');
+      const name = row ? row.querySelector('.text .name') : null;
+      if(titleEl && name) titleEl.textContent = name.textContent || 'Update progress';
+      // try to parse current/target from UI when available
+      const value = row ? row.querySelector('.right .value') : null;
+      if(value){
+        const parts = (value.textContent||'').split('/');
+        if(parts.length===2){
+          currentInput.value = Number(parts[0].trim())||0;
+          targetInput.value = Math.max(Number(parts[1].trim())||1,1);
+        }
+      }
       modal.setAttribute('aria-hidden', 'false');
       recalc();
     });
-  }
+  });
   closeBtns.forEach(b=>b.addEventListener('click', ()=> modal.setAttribute('aria-hidden','true')));
   modal && modal.addEventListener('click', (e)=>{ if(e.target === modal) modal.setAttribute('aria-hidden','true'); });
 })();
