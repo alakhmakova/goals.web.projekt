@@ -33,7 +33,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .side-icons i{opacity:.7}
 .side-icons i.active{color:#f472b6;opacity:1}
 
-.topbar{grid-column:1;background:#1b1340;display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#fff;border-bottom:0;transition:transform .25s ease}
+.topbar{grid-column:1;background:#1b1340;display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#fff;border-bottom:0;transition:margin-left .25s ease, width .25s ease}
 .crumbs{display:flex;align-items:center;gap:8px}
 .crumbs .back{color:#d1d5db;text-decoration:none}
 .top-actions{display:flex;align-items:center;gap:12px}
@@ -52,7 +52,11 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .cal-grid button.selected{background:#7c3aed;color:#fff;border-color:#7c3aed}
 .cal-grid button.today{border-color:#6d4aff}
 
-.content{grid-column:1;display:grid;gap:20px;grid-template-columns:1.3fr .7fr;transition:transform .25s ease, width .25s ease}
+.content{grid-column:1;display:grid;gap:20px;grid-template-columns:1.3fr .7fr;transition:margin-left .25s ease, width .25s ease}
+
+/* When drawer is open, shift and shrink header + content without clipping */
+.app.drawer-open .topbar{margin-left:280px;width:calc(100% - 280px)}
+.app.drawer-open .content{margin-left:280px;width:calc(100% - 280px)}
 .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin: 0 24px}
 
 /* Summary */

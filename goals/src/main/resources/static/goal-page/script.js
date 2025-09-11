@@ -17,23 +17,10 @@
     const menuBtn = document.querySelector('.menu-btn');
     const drawer = document.getElementById('left-drawer');
     const overlay = document.getElementById('drawer-overlay');
-    const content = document.querySelector('.content');
-    const header = document.querySelector('.topbar');
+    const app = document.querySelector('.app');
     const closeBtn = document.getElementById('drawer-close');
-    function open(){
-      drawer.classList.add('open');
-      overlay.hidden=true; // no blur overlay effect
-      header.style.transform='translateX(280px)';
-      content.style.transform='translateX(280px)';
-      content.style.width='min(1200px, calc(100% - 280px))';
-    }
-    function close(){
-      drawer.classList.remove('open');
-      overlay.hidden=true;
-      header.style.transform='';
-      content.style.transform='';
-      content.style.width='';
-    }
+    function open(){ drawer.classList.add('open'); overlay.hidden=true; app.classList.add('drawer-open'); }
+    function close(){ drawer.classList.remove('open'); overlay.hidden=true; app.classList.remove('drawer-open'); }
     menuBtn && menuBtn.addEventListener('click', (e)=>{ open(); e.stopPropagation(); });
     closeBtn && closeBtn.addEventListener('click', close);
     overlay && overlay.addEventListener('click', close);
