@@ -32,9 +32,17 @@
           <a href="#" class="back">All Goals <i class="bi bi-chevron-right"></i></a>
         </div>
         <div class="top-actions">
-          <span class="date">27 Apr</span>
+          <button class="due-btn" id="due-toggle" type="button"><span class="muted">Due to</span> <span id="due-text">27 Apr</span> <i class="bi bi-calendar-event"></i></button>
           <button class="btn subtle"><i class="bi bi-share"></i> Sharing & Permissions</button>
-          <div class="avatar" title="User"></div>
+          <button class="icon-btn account-btn" title="Account"><i class="bi bi-person-circle"></i></button>
+          <div class="calendar-popover" id="due-popover" hidden>
+            <div class="cal-head">
+              <button class="cal-nav" data-dir="-1" aria-label="Previous month"><i class="bi bi-chevron-left"></i></button>
+              <div class="cal-title" id="cal-title">April 2025</div>
+              <button class="cal-nav" data-dir="1" aria-label="Next month"><i class="bi bi-chevron-right"></i></button>
+            </div>
+            <div class="cal-grid" id="cal-grid"></div>
+          </div>
         </div>
       </header>
 

@@ -12,6 +12,62 @@
   });
   document.addEventListener('click',()=>document.querySelectorAll('.dropdown').forEach(d=>d.style.display='none'));
 
+  // Due date calendar
+  (function(){
+    const toggle = document.getElementById('due-toggle');
+    const pop = document.getElementById('due-popover');
+    const grid = document.getElementById('cal-grid');
+    const title = document.getElementById('cal-title');
+    const dueText = document.getElementById('due-text');
+    if(!toggle || !pop || !grid || !title || !dueText) return;
+
+    let current = new Date(localStorage.getItem('goal_due') || Date.now());
+    let view = new Date(current.getFullYear(), current.getMonth(), 1);
+
+    function fmt(d){
+      return d.toLocaleDateString(undefined,{month:'short', day:'numeric'});
+    }
+    function render(){
+      title.textContent = view.toLocaleDateString(undefined,{month:'long', year:'numeric'});
+      grid.innerHTML='';
+      const startDay = new Date(view.getFullYear(), view.getMonth(), 1).getDay();
+      const firstWeekday = (startDay + 6) % 7; // make Monday=0
+      for(let i=0;i<firstWeekday;i++) grid.appendChild(document.createElement('span'));
+      const days = new Date(view.getFullYear(), view.getMonth()+1, 0).getDate();
+      for(let d=1; d<=days; d++){
+        const btn = document.createElement('button');
+        btn.textContent = String(d);
+        const dt = new Date(view.getFullYear(), view.getMonth(), d);
+        const isToday = new Date().toDateString()===dt.toDateString();
+        const isSelected = current.toDateString()===dt.toDateString();
+        if(isToday) btn.classList.add('today');
+        if(isSelected) btn.classList.add('selected');
+        btn.addEventListener('click', ()=>{
+          current = dt;
+          localStorage.setItem('goal_due', current.toISOString());
+          dueText.textContent = fmt(current);
+          pop.hidden = true;
+        });
+        grid.appendChild(btn);
+      }
+    }
+    render();
+    dueText.textContent = fmt(current);
+
+    toggle.addEventListener('click', (e)=>{ pop.hidden = !pop.hidden; e.stopPropagation(); });
+    document.querySelectorAll('.cal-nav').forEach(n=>{
+      n.addEventListener('click', (e)=>{
+        const dir = Number(n.dataset.dir)||0;
+        view = new Date(view.getFullYear(), view.getMonth()+dir, 1);
+        render();
+        e.stopPropagation();
+      });
+    });
+    document.addEventListener('click', (e)=>{
+      if(!pop.hidden && !pop.contains(e.target) && e.target!==toggle){ pop.hidden = true; }
+    });
+  })();
+
   // See more/less
   const seeToggle = document.querySelector('.see-toggle');
   const desc = document.querySelector('.description');

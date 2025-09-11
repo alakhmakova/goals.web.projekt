@@ -15,7 +15,18 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .crumbs .back{color:var(--muted);text-decoration:none}
 .top-actions{display:flex;align-items:center;gap:12px}
 .top-actions .btn.subtle{background:#eef2ff;border:0;padding:6px 10px;border-radius:8px;color:#4338ca}
-.avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#f59e0b,#ef4444)}
+.icon-btn{background:transparent;border:0;font-size:20px;cursor:pointer;color:var(--ink)}
+.due-btn{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 10px;cursor:pointer}
+
+/* Calendar popover */
+.calendar-popover{position:absolute;right:16px;top:56px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.15);padding:12px;z-index:10;width:280px}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.cal-title{font-weight:700}
+.cal-nav{background:transparent;border:0;cursor:pointer;font-size:18px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-grid button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px;cursor:pointer}
+.cal-grid button.selected{background:#7c3aed;color:#fff;border-color:#7c3aed}
+.cal-grid button.today{border-color:#6d4aff}
 
 .content{grid-column:2;padding:24px;display:grid;gap:20px;grid-template-columns:1.3fr .7fr}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
