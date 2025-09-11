@@ -279,6 +279,14 @@
   const addCommentBtn = document.getElementById('send-comment');
   const newCommentText = document.getElementById('new-comment-text');
   if(addCommentBtn && newCommentText){
+    // update send button active state
+    function updateSendState(){
+      const has = (newCommentText.value||'').trim().length>0;
+      addCommentBtn.disabled = !has;
+      addCommentBtn.classList.toggle('active', has);
+    }
+    newCommentText.addEventListener('input', updateSendState);
+    updateSendState();
     // prevent Enter from submitting
     newCommentText.addEventListener('keydown', (e)=>{ if(e.key==='Enter' && !e.shiftKey){ e.stopPropagation(); } });
     addCommentBtn.addEventListener('click', ()=>{
@@ -318,6 +326,7 @@
       li.querySelector('.comment-view').textContent = text;
       document.querySelector('.comments').appendChild(li);
       newCommentText.value='';
+      updateSendState();
       bindCommentItem(li);
     });
   }
