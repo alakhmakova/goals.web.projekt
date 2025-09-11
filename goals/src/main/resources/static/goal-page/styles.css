@@ -38,16 +38,16 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .goal-summary{position:relative}
 .summary-right{grid-column:2}
 .grow-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.grow-item{display:flex;align-items:center;justify-content:space-between;border:1px solid #e5e7eb;border-radius:12px;padding:16px;width:100%;text-align:left;background-color:transparent;box-shadow:0 0 0 0 rgba(59,130,246,.5);transition:border-color .2s ease, box-shadow .2s ease, background-color .2s ease}
-.grow-item:hover,.grow-item:focus-within{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(59,130,246,.5);background-color:#ffffff}
+.grow-item{display:flex;flex-direction:column;border:1px solid #f7f5ff;border-radius:12px;width:100%;text-align:left;background-color:#fff;transition:border-color .2s ease, box-shadow .2s ease}
+.grow-item .row{padding:16px}
+.grow-item:hover{border-color:#6d4aff;box-shadow:0 0 0 3px rgba(59,130,246,.5)}
+.grow-item[data-open="true"]{border-color:rgb(55 37 128)}
 .grow-item .title{font-weight:700}
-.grow-item.reality{border-left:6px solid #0ea5e9}
-.grow-item.options{border-left:6px solid #7c3aed}
-.grow-item.will{border-left:6px solid #22c55e}
-.grow-item.resources{border-left:6px solid #f59e0b}
+.grow-item.reality,.grow-item.options,.grow-item.will,.grow-item.resources{border-left:none}
 .circle{width:24px;height:24px;border-radius:50%;border:0;display:inline-grid;place-items:center;background:#f3f4f6;color:#7c3aed;cursor:pointer}
 .grow-item:hover .circle{background:#7c3aed;color:#fff}
-.rich-editor{border:1px dashed var(--line);border-radius:12px;padding:10px;background:#fff;margin-top:-6px}
+.grow-item .row{display:flex;align-items:center;justify-content:space-between;width:100%}
+.rich-editor{border-top:1px solid #e5e7eb;border-radius:0 0 12px 12px;padding:10px;background:#fff}
 .toolbar{display:flex;gap:6px;margin-bottom:6px}
 .toolbar button{background:#f3f4f6;border:1px solid var(--line);border-radius:8px;padding:6px;cursor:pointer}
 .editor{min-height:80px;border:1px solid var(--line);border-radius:10px;padding:10px}

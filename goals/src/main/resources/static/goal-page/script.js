@@ -110,14 +110,15 @@
   })();
 
   // Rich text editors for GROW items
-  document.querySelectorAll('.add-rich').forEach(btn=>{
+  document.querySelectorAll('.grow-item .add-rich').forEach(btn=>{
     btn.addEventListener('click', ()=>{
-      const target = btn.dataset.target;
-      const panel = document.querySelector(`.rich-editor[data-for="${target}"]`);
+      const item = btn.closest('.grow-item');
       const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const panel = item.querySelector('.rich-editor');
       if(panel){
         panel.hidden = expanded;
         btn.setAttribute('aria-expanded', (!expanded).toString());
+        item.setAttribute('data-open', (!expanded).toString());
       }
     });
   });

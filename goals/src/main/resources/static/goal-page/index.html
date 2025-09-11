@@ -60,69 +60,65 @@
           <div class="summary-right">
             <div class="faq-head"><h3>Description</h3></div>
             <ul class="grow-list">
-              <li class="grow-item reality">
-                <span class="title">Reality</span>
-                <button class="circle add-rich" data-target="reality" aria-expanded="false"><i class="bi bi-plus"></i></button>
-              </li>
-              <div class="rich-editor" data-for="reality" hidden>
-                <div class="toolbar">
-                  <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
-                  <button type="button" data-cmd="italic" title="Italic"><i class="bi bi-type-italic"></i></button>
-                  <button type="button" data-cmd="underline" title="Underline"><i class="bi bi-type-underline"></i></button>
-                  <button type="button" data-cmd="insertUnorderedList" title="Bulleted list"><i class="bi bi-list-ul"></i></button>
-                  <button type="button" data-cmd="insertOrderedList" title="Numbered list"><i class="bi bi-list-ol"></i></button>
+              <li class="grow-item reality" data-key="reality" data-open="false">
+                <div class="row"><span class="title">Reality</span><button class="circle add-rich" aria-expanded="false"><i class="bi bi-plus"></i></button></div>
+                <div class="rich-editor" hidden>
+                  <div class="toolbar">
+                    <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
+                    <button type="button" data-cmd="italic" title="Italic"><i class="bi bi-type-italic"></i></button>
+                    <button type="button" data-cmd="underline" title="Underline"><i class="bi bi-type-underline"></i></button>
+                    <button type="button" data-cmd="insertUnorderedList" title="Bulleted list"><i class="bi bi-list-ul"></i></button>
+                    <button type="button" data-cmd="insertOrderedList" title="Numbered list"><i class="bi bi-list-ol"></i></button>
+                  </div>
+                  <div class="editor" contenteditable="true" data-placeholder="Write here..."></div>
+                  <div class="actions"><button class="btn primary save-rich">Save</button></div>
                 </div>
-                <div class="editor" contenteditable="true" data-placeholder="Write here..."></div>
-                <div class="actions"><button class="btn primary save-rich">Save</button></div>
-              </div>
+              </li>
 
-              <li class="grow-item options">
-                <span class="title">Options</span>
-                <button class="circle add-rich" data-target="options" aria-expanded="false"><i class="bi bi-plus"></i></button>
-              </li>
-              <div class="rich-editor" data-for="options" hidden>
-                <div class="toolbar">
-                  <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
-                  <button type="button" data-cmd="italic" title="Italic"><i class="bi bi-type-italic"></i></button>
-                  <button type="button" data-cmd="underline" title="Underline"><i class="bi bi-type-underline"></i></button>
-                  <button type="button" data-cmd="insertUnorderedList" title="Bulleted list"><i class="bi bi-list-ul"></i></button>
-                  <button type="button" data-cmd="insertOrderedList" title="Numbered list"><i class="bi bi-list-ol"></i></button>
+              <li class="grow-item options" data-key="options" data-open="false">
+                <div class="row"><span class="title">Options</span><button class="circle add-rich" aria-expanded="false"><i class="bi bi-plus"></i></button></div>
+                <div class="rich-editor" hidden>
+                  <div class="toolbar">
+                    <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
+                    <button type="button" data-cmd="italic" title="Italic"><i class="bi bi-type-italic"></i></button>
+                    <button type="button" data-cmd="underline" title="Underline"><i class="bi bi-type-underline"></i></button>
+                    <button type="button" data-cmd="insertUnorderedList" title="Bulleted list"><i class="bi bi-list-ul"></i></button>
+                    <button type="button" data-cmd="insertOrderedList" title="Numbered list"><i class="bi bi-list-ol"></i></button>
+                  </div>
+                  <div class="editor" contenteditable="true" data-placeholder="Write here..."></div>
+                  <div class="actions"><button class="btn primary save-rich">Save</button></div>
                 </div>
-                <div class="editor" contenteditable="true" data-placeholder="Write here..."></div>
-                <div class="actions"><button class="btn primary save-rich">Save</button></div>
-              </div>
+              </li>
 
-              <li class="grow-item will">
-                <span class="title">Will</span>
-                <button class="circle add-rich" data-target="will" aria-expanded="false"><i class="bi bi-plus"></i></button>
-              </li>
-              <div class="rich-editor" data-for="will" hidden>
-                <div class="toolbar">
-                  <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
-                  <button type="button" data-cmd="italic" title="Italic"><i class="bi bi-type-italic"></i></button>
-                  <button type="button" data-cmd="underline" title="Underline"><i class="bi bi-type-underline"></i></button>
-                  <button type="button" data-cmd="insertUnorderedList" title="Bulleted list"><i class="bi bi-list-ul"></i></button>
-                  <button type="button" data-cmd="insertOrderedList" title="Numbered list"><i class="bi bi-list-ol"></i></button>
+              <li class="grow-item will" data-key="will" data-open="false">
+                <div class="row"><span class="title">Will</span><button class="circle add-rich" aria-expanded="false"><i class="bi bi-plus"></i></button></div>
+                <div class="rich-editor" hidden>
+                  <div class="toolbar">
+                    <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
+                    <button type="button" data-cmd="italic" title="Italic"><i class="bi bi-type-italic"></i></button>
+                    <button type="button" data-cmd="underline" title="Underline"><i class="bi bi-type-underline"></i></button>
+                    <button type="button" data-cmd="insertUnorderedList" title="Bulleted list"><i class="bi bi-list-ul"></i></button>
+                    <button type="button" data-cmd="insertOrderedList" title="Numbered list"><i class="bi bi-list-ol"></i></button>
+                  </div>
+                  <div class="editor" contenteditable="true" data-placeholder="Write here..."></div>
+                  <div class="actions"><button class="btn primary save-rich">Save</button></div>
                 </div>
-                <div class="editor" contenteditable="true" data-placeholder="Write here..."></div>
-                <div class="actions"><button class="btn primary save-rich">Save</button></div>
-              </div>
+              </li>
 
-              <li class="grow-item resources">
-                <span class="title">Resources</span>
-                <button class="circle add-rich" data-target="resources" aria-expanded="false"><i class="bi bi-plus"></i></button>
-              </li>
-              <div class="rich-editor" data-for="resources" hidden>
-                <div class="toolbar">
-                  <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
-                  <button type="button" data-cmd="italic" title="Italic"><i class="bi bi-type-italic"></i></button>
-                  <button type="button" data-cmd="underline" title="Underline"><i class="bi bi-type-underline"></i></button>
-                  <button type="button" data-cmd="insertUnorderedList" title="Bulleted list"><i class="bi bi-list-ul"></i></button>
-                  <button type="button" data-cmd="insertOrderedList" title="Numbered list"><i class="bi bi-list-ol"></i></button>
+              <li class="grow-item resources" data-key="resources" data-open="false">
+                <div class="row"><span class="title">Resources</span><button class="circle add-rich" aria-expanded="false"><i class="bi bi-plus"></i></button></div>
+                <div class="rich-editor" hidden>
+                  <div class="toolbar">
+                    <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
+                    <button type="button" data-cmd="italic" title="Italic"><i class="bi bi-type-italic"></i></button>
+                    <button type="button" data-cmd="underline" title="Underline"><i class="bi bi-type-underline"></i></button>
+                    <button type="button" data-cmd="insertUnorderedList" title="Bulleted list"><i class="bi bi-list-ul"></i></button>
+                    <button type="button" data-cmd="insertOrderedList" title="Numbered list"><i class="bi bi-list-ol"></i></button>
+                  </div>
+                  <div class="editor" contenteditable="true" data-placeholder="Write here..."></div>
+                  <div class="actions"><button class="btn primary save-rich">Save</button></div>
                 </div>
-                <div class="editor" contenteditable="true" data-placeholder="Write here..."></div>
-                <div class="actions"><button class="btn primary save-rich">Save</button></div>
-              </div>
+              </li>
             </ul>
           </div>
         </section>
