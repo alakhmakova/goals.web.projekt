@@ -1,7 +1,7 @@
 :root{--bg:#f5f4f8;--panel:#ffffff;--ink:#1f2330;--muted:#6b7280;--line:#e5e7eb;--primary:#7c3aed;--green:#22c55e;--violet:#9b8cff}
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", sans-serif;}
 
 .app{display:grid;grid-template-columns:1fr;grid-template-rows:56px 1fr;min-height:100%}
 .sidebar{display:none}
@@ -10,7 +10,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .side-icons i{opacity:.7}
 .side-icons i.active{color:#f472b6;opacity:1}
 
-.topbar{grid-column:1;background:#1f2240;display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#fff;border-bottom:0}
+.topbar{grid-column:1;background:#1b1340;display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#fff;border-bottom:0}
 .crumbs{display:flex;align-items:center;gap:8px}
 .crumbs .back{color:#d1d5db;text-decoration:none}
 .top-actions{display:flex;align-items:center;gap:12px}
@@ -29,11 +29,11 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .cal-grid button.selected{background:#7c3aed;color:#fff;border-color:#7c3aed}
 .cal-grid button.today{border-color:#6d4aff}
 
-.content{grid-column:1;padding:0 24px 24px;display:grid;gap:20px;grid-template-columns:1.3fr .7fr}
-.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
+.content{grid-column:1;display:grid;gap:20px;grid-template-columns:1.3fr .7fr}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin: 0 24px}
 
 /* Summary */
-.goal-summary{grid-column:1/span 2;display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:start;background:#1f2240;color:#fff;border:0;border-bottom-left-radius:25%;border-bottom-right-radius:25%}
+.goal-summary{grid-column:1/span 2;display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:start;background:#1b1340;color:#fff;border:0;border-bottom-left-radius:0%;border-bottom-right-radius:100%; padding:20px 20px 150px 20px}
 .ring{width:120px;height:120px;border-radius:50%;background:conic-gradient(#a7f3d0 0 54%,#e5e7eb 0);display:grid;place-items:center}
 .ring span{background:#1f2240;border-radius:50%;width:86px;height:86px;display:grid;place-items:center;font-weight:800;color:#fff}
 .goal-head{display:flex;align-items:center;gap:8px}
@@ -50,7 +50,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .goal-summary{position:relative}
 .summary-right{grid-column:2}
 .grow-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.grow-item{display:flex;flex-direction:column;border:3px solid #e2dbff;border-radius:12px;box-shadow: 5px 5px 5px #e2dbff;width:100%;text-align:left;background-color:#fff;transition:border-color .2s ease, box-shadow .2s ease}
+.grow-item{display:flex;flex-direction:column;border:3px solid #e2dbff;border-radius:12px;box-shadow: 5px 5px 5px #e2dbff;width:50%;text-align:left;background-color:#fff;transition:border-color .2s ease, box-shadow .2s ease}
 .grow-item .row{padding:16px}
 .grow-item:hover{border-color:#6d4aff;}
 .grow-item[data-open="true"]{border-color:#372580}
