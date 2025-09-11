@@ -77,33 +77,8 @@
   }
   // Start and Target simple fields (meta blocks)
   document.querySelectorAll('.counter.meta .inline-edit').forEach(setupInlineEdit);
-  // Current has number and unit
-  (function(){
-    const wrap = document.querySelector('.counter.current .input-row');
-    if(!wrap) return;
-    const viewCurrent = wrap.querySelector('#view-current');
-    const viewUnit = wrap.querySelector('#view-unit');
-    const inputCurrent = document.getElementById('apply-current');
-    const inputUnit = document.getElementById('apply-unit');
-    function bind(viewEl, inputEl){
-      viewEl.addEventListener('click', ()=>{
-        viewEl.style.display='none';
-        inputEl.style.display='block';
-        inputEl.focus();
-        inputEl.select && inputEl.select();
-      });
-      inputEl.addEventListener('blur', ()=>{
-        if(inputEl === inputCurrent){ viewCurrent.textContent = String(Number(inputEl.value||0)); }
-        else { viewUnit.textContent = inputEl.value || ''; }
-        inputEl.style.display='none';
-        viewEl.style.display='';
-        recalc();
-      });
-      inputEl.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); inputEl.blur(); } });
-    }
-    bind(viewCurrent, inputCurrent);
-    bind(viewUnit, inputUnit);
-  })();
+  // Current has number and unit: reuse generic inline edit for each inline-edit wrapper
+  document.querySelectorAll('.counter.current .inline-edit').forEach(setupInlineEdit);
 
   // open modal when clicking any progress bar or its value in targets
   function bindProgressOpen(scope){
