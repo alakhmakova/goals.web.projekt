@@ -77,8 +77,37 @@
   }
   // Start and Target simple fields (meta blocks)
   document.querySelectorAll('.counter.meta .inline-edit').forEach(setupInlineEdit);
-  // Current has number and unit: reuse generic inline edit for each inline-edit wrapper
-  document.querySelectorAll('.counter.current .inline-edit').forEach(setupInlineEdit);
+  // Current has number and unit: bind explicitly to avoid cross-target conflicts
+  (function(){
+    const viewCurrent = document.getElementById('view-current');
+    const inputCurrent = document.getElementById('apply-current');
+    const viewUnit = document.getElementById('view-unit');
+    const inputUnit = document.getElementById('apply-unit');
+    function bindExplicit(viewEl, inputEl, isNumber){
+      if(!viewEl || !inputEl) return;
+      viewEl.classList.add('clickable');
+      viewEl.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        // show only its own input
+        [inputCurrent,inputUnit].forEach(i=>{ if(i) i.style.display='none'; });
+        [viewCurrent,viewUnit].forEach(v=>{ if(v) v.style.display=''; });
+        viewEl.style.display='none';
+        inputEl.style.display='block';
+        inputEl.focus();
+        inputEl.select && inputEl.select();
+      });
+      inputEl.addEventListener('blur', ()=>{
+        if(isNumber){ viewCurrent.textContent = String(Number(inputCurrent.value||0)); }
+        else { viewUnit.textContent = inputUnit.value || ''; }
+        inputEl.style.display='none';
+        viewEl.style.display='';
+        recalc();
+      });
+      inputEl.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); inputEl.blur(); } });
+    }
+    bindExplicit(viewCurrent, inputCurrent, true);
+    bindExplicit(viewUnit, inputUnit, false);
+  })();
 
   // open modal when clicking any progress bar or its value in targets
   function bindProgressOpen(scope){
@@ -168,23 +197,58 @@
     v.classList.add('clickable');
   });
 
-  // Comments inline edit and add new
-  document.querySelectorAll('[data-comment]').forEach(item=>{
+  // Comments: menus, inline edit, like/reply, add new
+  function bindCommentItem(item){
+    const menuBtn = item.querySelector('.c-menu .kebab');
+    const dd = item.querySelector('.c-menu .dropdown');
+    if(menuBtn && dd){
+      menuBtn.addEventListener('click', (e)=>{
+        document.querySelectorAll('.c-menu .dropdown').forEach(d=> d.style.display='none');
+        dd.style.display = 'block';
+        e.stopPropagation();
+      });
+    }
     const view = item.querySelector('.comment-view');
     const input = item.querySelector('.comment-input');
-    view.addEventListener('click', ()=>{
-      view.style.display='none';
-      input.style.display='block';
-      input.value = view.textContent || '';
-      input.focus();
-    });
-    input.addEventListener('blur', ()=>{
-      view.textContent = input.value || '';
-      input.style.display='none';
-      view.style.display='';
-    });
-    input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); input.blur(); } });
-  });
+    const editBtn = item.querySelector('[data-edit]');
+    const delBtn = item.querySelector('[data-delete]');
+    const likeBtn = item.querySelector('.c-like');
+    const replyBtn = item.querySelector('.c-reply');
+    const replyBox = item.querySelector('.c-reply-box');
+    const saveReply = item.querySelector('.save-reply');
+    if(view && input){
+      view.addEventListener('click', ()=>{
+        view.style.display='none';
+        input.style.display='block';
+        input.value = view.textContent || '';
+        input.focus();
+      });
+      input.addEventListener('blur', ()=>{
+        view.textContent = input.value || '';
+        input.style.display='none';
+        view.style.display='';
+      });
+      input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); input.blur(); } });
+    }
+    editBtn && editBtn.addEventListener('click', ()=>{ view && view.click(); dd && (dd.style.display='none'); });
+    delBtn && delBtn.addEventListener('click', ()=>{ item.remove(); });
+    likeBtn && likeBtn.addEventListener('click', ()=>{ likeBtn.classList.toggle('liked'); });
+    if(replyBtn && replyBox && saveReply){
+      replyBtn.addEventListener('click', ()=>{ replyBox.style.display = replyBox.style.display==='block' ? 'none' : 'block'; });
+      saveReply.addEventListener('click', ()=>{
+        const text = replyBox.querySelector('.reply-input').value.trim();
+        if(!text) return;
+        const child = document.createElement('div');
+        child.className = 'reply-bubble';
+        child.textContent = text;
+        item.querySelector('.c-content').appendChild(child);
+        replyBox.querySelector('.reply-input').value='';
+        replyBox.style.display='none';
+      });
+    }
+  }
+  document.querySelectorAll('.comment-item').forEach(bindCommentItem);
+
   const addCommentBtn = document.getElementById('add-comment');
   const newCommentText = document.getElementById('new-comment-text');
   if(addCommentBtn && newCommentText){
@@ -193,17 +257,39 @@
       if(!text) return;
       const li = document.createElement('li');
       li.className = 'comment-item';
-      li.setAttribute('data-comment','');
-      li.innerHTML = `<div class="comment-view"></div><textarea class="comment-input" rows="2"></textarea>`;
+      li.innerHTML = `
+        <div class="comment">
+          <div class="c-avatar"></div>
+          <div class="c-content">
+            <div class="c-head">
+              <div class="c-author">You</div>
+              <div class="c-time">Just now</div>
+              <div class="c-menu">
+                <button class="kebab"><i class="bi bi-three-dots"></i></button>
+                <div class="dropdown">
+                  <button data-edit><i class="bi bi-pencil"></i> Edit</button>
+                  <button class="danger" data-delete><i class="bi bi-trash3"></i> Delete</button>
+                </div>
+              </div>
+            </div>
+            <div class="c-body">
+              <div class="comment-view"></div>
+              <textarea class="comment-input" rows="2"></textarea>
+            </div>
+            <div class="c-actions">
+              <button class="c-like"><i class="bi bi-hand-thumbs-up"></i> Like</button>
+              <button class="c-reply"><i class="bi bi-reply"></i> Reply</button>
+            </div>
+            <div class="c-reply-box">
+              <textarea class="reply-input" rows="2" placeholder="Write a reply..."></textarea>
+              <div class="actions"><button class="btn primary save-reply">Send</button></div>
+            </div>
+          </div>
+        </div>`;
       li.querySelector('.comment-view').textContent = text;
       document.querySelector('.comments').appendChild(li);
       newCommentText.value='';
-      // bind inline edit
-      const view = li.querySelector('.comment-view');
-      const input = li.querySelector('.comment-input');
-      view.addEventListener('click', ()=>{ view.style.display='none'; input.style.display='block'; input.value=view.textContent||''; input.focus(); });
-      input.addEventListener('blur', ()=>{ view.textContent=input.value||''; input.style.display='none'; view.style.display=''; });
-      input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); input.blur(); } });
+      bindCommentItem(li);
     });
   }
 })();
