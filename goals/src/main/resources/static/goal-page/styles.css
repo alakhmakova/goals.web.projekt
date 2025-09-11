@@ -29,7 +29,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .cal-grid button.selected{background:#7c3aed;color:#fff;border-color:#7c3aed}
 .cal-grid button.today{border-color:#6d4aff}
 
-.content{grid-column:1;display:grid;gap:20px;grid-template-columns:1.3fr .7fr}
+.content{grid-column:1;display:grid;gap:20px;grid-template-columns:1.3fr .7fr;transition:transform .25s ease}
 .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin: 0 24px}
 
 /* Summary */

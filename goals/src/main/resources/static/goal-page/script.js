@@ -12,6 +12,20 @@
   });
   document.addEventListener('click',()=>document.querySelectorAll('.dropdown').forEach(d=>d.style.display='none'));
 
+  // Drawer toggle and push content
+  (function(){
+    const menuBtn = document.querySelector('.menu-btn');
+    const drawer = document.getElementById('left-drawer');
+    const overlay = document.getElementById('drawer-overlay');
+    const content = document.querySelector('.content');
+    const closeBtn = document.getElementById('drawer-close');
+    function open(){ drawer.classList.add('open'); overlay.hidden=false; content.style.transform='translateX(320px)'; }
+    function close(){ drawer.classList.remove('open'); overlay.hidden=true; content.style.transform=''; }
+    menuBtn && menuBtn.addEventListener('click', (e)=>{ open(); e.stopPropagation(); });
+    closeBtn && closeBtn.addEventListener('click', close);
+    overlay && overlay.addEventListener('click', close);
+  })();
+
   // Due date calendar
   (function(){
     const toggle = document.getElementById('due-toggle');
