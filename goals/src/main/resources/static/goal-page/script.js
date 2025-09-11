@@ -249,9 +249,11 @@
   }
   document.querySelectorAll('.comment-item').forEach(bindCommentItem);
 
-  const addCommentBtn = document.getElementById('add-comment');
+  const addCommentBtn = document.getElementById('send-comment');
   const newCommentText = document.getElementById('new-comment-text');
   if(addCommentBtn && newCommentText){
+    // prevent Enter from submitting
+    newCommentText.addEventListener('keydown', (e)=>{ if(e.key==='Enter' && !e.shiftKey){ e.stopPropagation(); } });
     addCommentBtn.addEventListener('click', ()=>{
       const text = (newCommentText.value||'').trim();
       if(!text) return;
