@@ -47,7 +47,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .circle{width:24px;height:24px;border-radius:50%;border:0;display:inline-grid;place-items:center;background:#f3f4f6;color:#7c3aed;cursor:pointer}
 .grow-item:hover .circle{background:#7c3aed;color:#fff}
 .grow-item .row{display:flex;align-items:center;justify-content:space-between;width:100%}
-.rich-editor{border-top:1px solid #e5e7eb;border-radius:0 0 12px 12px;padding:10px;background:#fff}
+.rich-editor{border-top:1px solid #f7f5ff;border-radius:0 0 12px 12px;padding:10px;background:#fff}
 .toolbar{display:flex;gap:6px;margin-bottom:6px}
 .toolbar button{background:#f3f4f6;border:1px solid var(--line);border-radius:8px;padding:6px;cursor:pointer}
 .editor{min-height:80px;border:1px solid var(--line);border-radius:10px;padding:10px}
