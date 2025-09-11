@@ -3,21 +3,21 @@
 html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
 
-.app{display:grid;grid-template-columns:64px 1fr;grid-template-rows:56px 1fr;min-height:100%}
-.sidebar{grid-row:1/span 2;background:#2f3140;color:#cbd5e1;display:flex;flex-direction:column;align-items:center;gap:16px;padding:12px 8px}
+.app{display:grid;grid-template-columns:1fr;grid-template-rows:56px 1fr;min-height:100%}
+.sidebar{display:none}
 .sidebar-toggle{background:transparent;border:0;color:#cbd5e1;font-size:22px;cursor:pointer}
 .side-icons{display:flex;flex-direction:column;gap:18px}
 .side-icons i{opacity:.7}
 .side-icons i.active{color:#f472b6;opacity:1}
 
-.topbar{grid-column:2;background:var(--panel);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:0 16px}
+.topbar{grid-column:1;background:#1f2240;display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#fff;border-bottom:0}
 .crumbs{display:flex;align-items:center;gap:8px}
-.crumbs .back{color:var(--muted);text-decoration:none}
+.crumbs .back{color:#d1d5db;text-decoration:none}
 .top-actions{display:flex;align-items:center;gap:12px}
-.top-actions .btn.subtle{background:#eef2ff;border:0;padding:6px 10px;border-radius:8px;color:#4338ca}
-.icon-btn{background:transparent;border:0;font-size:20px;cursor:pointer;color:var(--ink);display:flex;align-items:center}
+.top-actions .btn.subtle{background:#4338ca;border:0;padding:6px 10px;border-radius:8px;color:#fff}
+.icon-btn{background:transparent;border:0;font-size:24px;cursor:pointer;color:#fff;display:flex;align-items:center}
 .icon-btn .material-symbols-outlined{font-size:22px;color:#F2F0DB;font-variation-settings:"FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24}
-.due-btn{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 10px;cursor:pointer}
+.due-btn{display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;border-radius:999px;padding:6px 10px;cursor:pointer}
 
 /* Calendar popover */
 .calendar-popover{position:absolute;right:16px;top:56px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.15);padding:12px;z-index:10;width:280px}
@@ -29,15 +29,15 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .cal-grid button.selected{background:#7c3aed;color:#fff;border-color:#7c3aed}
 .cal-grid button.today{border-color:#6d4aff}
 
-.content{grid-column:2;padding:24px;display:grid;gap:20px;grid-template-columns:1.3fr .7fr}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+.content{grid-column:1;padding:0 24px 24px;display:grid;gap:20px;grid-template-columns:1.3fr .7fr}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
 
 /* Summary */
-.goal-summary{grid-column:1/span 2;display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:start}
+.goal-summary{grid-column:1/span 2;display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:start;background:#1f2240;color:#fff;border:0;border-bottom-left-radius:25%;border-bottom-right-radius:25%}
 .ring{width:120px;height:120px;border-radius:50%;background:conic-gradient(#a7f3d0 0 54%,#e5e7eb 0);display:grid;place-items:center}
-.ring span{background:#fff;border-radius:50%;width:86px;height:86px;display:grid;place-items:center;font-weight:800}
+.ring span{background:#1f2240;border-radius:50%;width:86px;height:86px;display:grid;place-items:center;font-weight:800;color:#fff}
 .goal-head{display:flex;align-items:center;gap:8px}
-.goal-head h1{margin:0;font-size:28px;display:flex;align-items:flex-start}
+.goal-head h1{margin:0;font-size:28px;display:flex;align-items:flex-start;color:#fff}
 .goal-menu{position:relative;align-self:flex-start}
 .kebab{border:0;background:transparent;font-size:22px;cursor:pointer}
 .goal-menu .dropdown{position:absolute;right:0;top:36px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.08);display:none;min-width:200px}
@@ -45,7 +45,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .goal-menu .dropdown button:hover{background:#f8fafc}
 .goal-menu .dropdown .danger{color:#ef4444}
 
-.summary-right{align-self:stretch;margin-top:4px}
+.summary-right{align-self:stretch;margin-top:4px;color:#fff}
 .faq-head h3{margin:0 0 8px}
 .goal-summary{position:relative}
 .summary-right{grid-column:2}
