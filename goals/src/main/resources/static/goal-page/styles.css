@@ -1,4 +1,4 @@
-:root{--bg:#f5f4f8;--panel:#ffffff;--ink:#1f2330;--muted:#6b7280;--line:#e5e7eb;--primary:#7c3aed;--green:#22c55e;--violet:#9b8cff}
+:root{--bg:#f5f4f8;--panel:#ffffff;--ink:#1f2330;--muted:#6b7280;--line:#e5e7eb;--primary:#7c3aed;--green:#22c55e;--violet:#9b8cff;--drawer-w:360px}
 *{box-sizing:border-box}
 html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", sans-serif;}
@@ -6,7 +6,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .app{display:grid;grid-template-columns:1fr;grid-template-rows:56px 1fr;min-height:100%}
 .sidebar{display:none}
 .drawer-overlay{position:fixed;inset:0;z-index:40}
-.left-drawer{position:fixed;left:0;top:0;bottom:0;width:min(360px,90%);background:#0f1425;color:#fff;z-index:50;transform:translateX(-100%);transition:transform .25s ease;padding:14px;display:flex;flex-direction:column;gap:14px}
+.left-drawer{position:fixed;left:0;top:0;bottom:0;width:var(--drawer-w);background:#0f1425;color:#fff;z-index:50;transform:translateX(-100%);transition:transform .25s ease;padding:14px;display:flex;flex-direction:column;gap:14px}
 .left-drawer.open{transform:translateX(0)}
 .drawer-head{display:flex;align-items:center;justify-content:space-between}
 .brand{display:flex;align-items:center;gap:8px}
@@ -55,8 +55,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .content{grid-column:1;display:grid;gap:20px;grid-template-columns:1.3fr .7fr;transition:margin-left .25s ease, width .25s ease}
 
 /* When drawer is open, shift and shrink header + content without clipping */
-.app.drawer-open .topbar{margin-left:280px;width:calc(100% - 280px)}
-.app.drawer-open .content{margin-left:280px;width:calc(100% - 280px)}
+.app.drawer-open .topbar{margin-left:var(--drawer-w);width:calc(100% - var(--drawer-w))}
+.app.drawer-open .content{margin-left:var(--drawer-w);width:calc(100% - var(--drawer-w))}
 .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin: 0 24px}
 
 /* Summary */
