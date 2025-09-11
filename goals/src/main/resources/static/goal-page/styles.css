@@ -33,10 +33,21 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .goal-menu .dropdown button:hover{background:#f8fafc}
 .goal-menu .dropdown .danger{color:#ef4444}
 
-.description{max-height:260px;overflow:hidden;position:relative}
-.description[data-collapsed="false"]{max-height:none}
-.see-toggle{margin-top:8px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;cursor:pointer}
-.options h3{margin:12px 0 6px}
+.summary-right{align-self:stretch}
+.faq-head h3{margin:0 0 8px}
+.grow-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.grow-item{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff}
+.grow-item .title{font-weight:700}
+.grow-item.reality{border-left:6px solid #0ea5e9}
+.grow-item.options{border-left:6px solid #7c3aed}
+.grow-item.will{border-left:6px solid #22c55e}
+.grow-item.resources{border-left:6px solid #f59e0b}
+.circle{width:28px;height:28px;border-radius:50%;border:0;display:inline-grid;place-items:center;background:#f3f4f6;cursor:pointer}
+.rich-editor{border:1px dashed var(--line);border-radius:12px;padding:10px;background:#fff;margin-top:-6px}
+.toolbar{display:flex;gap:6px;margin-bottom:6px}
+.toolbar button{background:#f3f4f6;border:1px solid var(--line);border-radius:8px;padding:6px;cursor:pointer}
+.editor{min-height:80px;border:1px solid var(--line);border-radius:10px;padding:10px}
+.editor:empty:before{content:attr(data-placeholder);color:var(--muted)}
 
 /* Targets */
 .targets{grid-column:1/span 2}

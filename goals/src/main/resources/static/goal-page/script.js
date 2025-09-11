@@ -109,6 +109,33 @@
     bindExplicit(viewUnit, inputUnit, false);
   })();
 
+  // Rich text editors for GROW items
+  document.querySelectorAll('.add-rich').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const target = btn.dataset.target;
+      const panel = document.querySelector(`.rich-editor[data-for="${target}"]`);
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      if(panel){
+        panel.hidden = expanded;
+        btn.setAttribute('aria-expanded', (!expanded).toString());
+      }
+    });
+  });
+  document.querySelectorAll('.rich-editor .toolbar button').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const cmd = b.dataset.cmd;
+      document.execCommand(cmd, false, null);
+    });
+  });
+  document.querySelectorAll('.rich-editor .save-rich').forEach(b=>{
+    b.addEventListener('click', (e)=>{
+      const panel = e.currentTarget.closest('.rich-editor');
+      panel && (panel.hidden = true);
+      const toggle = document.querySelector(`.add-rich[data-target="${panel.getAttribute('data-for')}"]`);
+      toggle && toggle.setAttribute('aria-expanded','false');
+    });
+  });
+
   // open modal when clicking any progress bar or its value in targets
   function bindProgressOpen(scope){
     (scope||document).querySelectorAll('.target-row .right .progress, .target-row .right .value').forEach(el=>{

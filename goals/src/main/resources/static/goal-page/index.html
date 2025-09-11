@@ -57,28 +57,74 @@
             </div>
           </div>
 
-          <article class="description" data-collapsed="true">
-            <p>
-              Хочу, чтобы место для практики мне досталось без усилий. Например, школа мне его предоставит или кто-то мне положительно ответит из тех мест, куда я писала или еще напишу. Надоело нервничать и напрягаться. Пусть в этот раз мне все достанется спокойно и легко, просто потому что я молодец, я способная и заслуживаю, чтобы меня взяли.
-            </p>
-            <h2>Выводы на поводу неудачи:</h2>
-            <ol>
-              <li>Не договорилась с Фредериком заранее...</li>
-              <li>Перекладывание ответственности на других...</li>
-              <li>Слишком долго ждала перед тем как позвонить...</li>
-              <li>Нужно отправлять больше и чаще</li>
-              <li>Нельзя класть все яйца в одну корзину...</li>
-              <li>Не могу делать все и сразу - нужно это признать</li>
-            </ol>
-            <div class="options">
-              <h3>Options</h3>
-              <ul>
-                <li>Перенести на следующий год...</li>
-                <li>Купить платный LinkedIn</li>
-              </ul>
-            </div>
-            <button class="see-toggle" data-less="See less" data-more="See more">See more</button>
-          </article>
+          <div class="summary-right">
+            <div class="faq-head"><h3>Description</h3></div>
+            <ul class="grow-list">
+              <li class="grow-item reality">
+                <span class="title">Reality</span>
+                <button class="circle add-rich" data-target="reality" aria-expanded="false"><i class="bi bi-plus"></i></button>
+              </li>
+              <div class="rich-editor" data-for="reality" hidden>
+                <div class="toolbar">
+                  <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
+                  <button type="button" data-cmd="italic" title="Italic"><i class="bi bi-type-italic"></i></button>
+                  <button type="button" data-cmd="underline" title="Underline"><i class="bi bi-type-underline"></i></button>
+                  <button type="button" data-cmd="insertUnorderedList" title="Bulleted list"><i class="bi bi-list-ul"></i></button>
+                  <button type="button" data-cmd="insertOrderedList" title="Numbered list"><i class="bi bi-list-ol"></i></button>
+                </div>
+                <div class="editor" contenteditable="true" data-placeholder="Write here..."></div>
+                <div class="actions"><button class="btn primary save-rich">Save</button></div>
+              </div>
+
+              <li class="grow-item options">
+                <span class="title">Options</span>
+                <button class="circle add-rich" data-target="options" aria-expanded="false"><i class="bi bi-plus"></i></button>
+              </li>
+              <div class="rich-editor" data-for="options" hidden>
+                <div class="toolbar">
+                  <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
+                  <button type="button" data-cmd="italic" title="Italic"><i class="bi bi-type-italic"></i></button>
+                  <button type="button" data-cmd="underline" title="Underline"><i class="bi bi-type-underline"></i></button>
+                  <button type="button" data-cmd="insertUnorderedList" title="Bulleted list"><i class="bi bi-list-ul"></i></button>
+                  <button type="button" data-cmd="insertOrderedList" title="Numbered list"><i class="bi bi-list-ol"></i></button>
+                </div>
+                <div class="editor" contenteditable="true" data-placeholder="Write here..."></div>
+                <div class="actions"><button class="btn primary save-rich">Save</button></div>
+              </div>
+
+              <li class="grow-item will">
+                <span class="title">Will</span>
+                <button class="circle add-rich" data-target="will" aria-expanded="false"><i class="bi bi-plus"></i></button>
+              </li>
+              <div class="rich-editor" data-for="will" hidden>
+                <div class="toolbar">
+                  <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
+                  <button type="button" data-cmd="italic" title="Italic"><i class="bi bi-type-italic"></i></button>
+                  <button type="button" data-cmd="underline" title="Underline"><i class="bi bi-type-underline"></i></button>
+                  <button type="button" data-cmd="insertUnorderedList" title="Bulleted list"><i class="bi bi-list-ul"></i></button>
+                  <button type="button" data-cmd="insertOrderedList" title="Numbered list"><i class="bi bi-list-ol"></i></button>
+                </div>
+                <div class="editor" contenteditable="true" data-placeholder="Write here..."></div>
+                <div class="actions"><button class="btn primary save-rich">Save</button></div>
+              </div>
+
+              <li class="grow-item resources">
+                <span class="title">Resources</span>
+                <button class="circle add-rich" data-target="resources" aria-expanded="false"><i class="bi bi-plus"></i></button>
+              </li>
+              <div class="rich-editor" data-for="resources" hidden>
+                <div class="toolbar">
+                  <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
+                  <button type="button" data-cmd="italic" title="Italic"><i class="bi bi-type-italic"></i></button>
+                  <button type="button" data-cmd="underline" title="Underline"><i class="bi bi-type-underline"></i></button>
+                  <button type="button" data-cmd="insertUnorderedList" title="Bulleted list"><i class="bi bi-list-ul"></i></button>
+                  <button type="button" data-cmd="insertOrderedList" title="Numbered list"><i class="bi bi-list-ol"></i></button>
+                </div>
+                <div class="editor" contenteditable="true" data-placeholder="Write here..."></div>
+                <div class="actions"><button class="btn primary save-rich">Save</button></div>
+              </div>
+            </ul>
+          </div>
         </section>
 
         <section class="targets card">
