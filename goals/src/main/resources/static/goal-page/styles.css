@@ -15,7 +15,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .crumbs .back{color:var(--muted);text-decoration:none}
 .top-actions{display:flex;align-items:center;gap:12px}
 .top-actions .btn.subtle{background:#eef2ff;border:0;padding:6px 10px;border-radius:8px;color:#4338ca}
-.icon-btn{background:transparent;border:0;font-size:20px;cursor:pointer;color:var(--ink)}
+.icon-btn{background:transparent;border:0;font-size:20px;cursor:pointer;color:var(--ink);display:flex;align-items:center}
+.icon-btn .material-symbols-outlined{font-size:22px;color:#F2F0DB}
 .due-btn{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 10px;cursor:pointer}
 
 /* Calendar popover */
