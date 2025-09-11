@@ -103,7 +103,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .c-reply-box{display:none;margin-top:8px}
 .c-reply-box .reply-input{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px}
 .new-comment{margin-top:10px;position:relative}
-.new-comment textarea{width:100%;border:1px solid var(--line);border-radius:999px;padding:12px 44px 12px 14px;resize:vertical}
+.new-comment textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 44px 12px 14px;resize:vertical}
 .send-btn{position:absolute;right:8px;bottom:8px;width:32px;height:32px;border-radius:50%;border:0;display:inline-grid;place-items:center;cursor:pointer;background:#e5e7eb;color:#9ca3af}
 .send-btn.active{background:var(--primary);color:#fff}
 
