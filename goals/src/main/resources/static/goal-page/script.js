@@ -20,8 +20,20 @@
     const content = document.querySelector('.content');
     const header = document.querySelector('.topbar');
     const closeBtn = document.getElementById('drawer-close');
-    function open(){ drawer.classList.add('open'); overlay.hidden=false; content.style.transform='translateX(320px)'; header.style.transform='translateX(320px)'; }
-    function close(){ drawer.classList.remove('open'); overlay.hidden=true; content.style.transform=''; header.style.transform=''; }
+    function open(){
+      drawer.classList.add('open');
+      overlay.hidden=true; // no blur overlay effect
+      header.style.transform='translateX(280px)';
+      content.style.transform='translateX(280px)';
+      content.style.width='calc(100% - 280px)';
+    }
+    function close(){
+      drawer.classList.remove('open');
+      overlay.hidden=true;
+      header.style.transform='';
+      content.style.transform='';
+      content.style.width='';
+    }
     menuBtn && menuBtn.addEventListener('click', (e)=>{ open(); e.stopPropagation(); });
     closeBtn && closeBtn.addEventListener('click', close);
     overlay && overlay.addEventListener('click', close);
