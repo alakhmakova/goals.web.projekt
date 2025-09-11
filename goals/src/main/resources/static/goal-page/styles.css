@@ -38,7 +38,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,syst
 .goal-summary{position:relative}
 .summary-right{grid-column:2}
 .grow-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.grow-item{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff;width:100%}
+.grow-item{display:flex;align-items:center;justify-content:space-between;border:1px solid #e5e7eb;border-radius:12px;padding:16px;width:100%;text-align:left;background-color:transparent;box-shadow:0 0 0 0 rgba(59,130,246,.5);transition:border-color .2s ease, box-shadow .2s ease, background-color .2s ease}
+.grow-item:hover,.grow-item:focus-within{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(59,130,246,.5);background-color:#ffffff}
 .grow-item .title{font-weight:700}
 .grow-item.reality{border-left:6px solid #0ea5e9}
 .grow-item.options{border-left:6px solid #7c3aed}
