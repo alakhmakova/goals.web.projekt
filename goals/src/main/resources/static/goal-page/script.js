@@ -25,7 +25,7 @@
       overlay.hidden=true; // no blur overlay effect
       header.style.transform='translateX(280px)';
       content.style.transform='translateX(280px)';
-      content.style.width='calc(100% - 280px)';
+      content.style.width='min(1200px, calc(100% - 280px))';
     }
     function close(){
       drawer.classList.remove('open');

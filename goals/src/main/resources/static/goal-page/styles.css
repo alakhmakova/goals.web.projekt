@@ -12,20 +12,22 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .brand{display:flex;align-items:center;gap:8px}
 .brand-img{width:22px;height:22px;object-fit:contain}
 .brand-name{font-weight:800;letter-spacing:.5px}
+.brand-ms{font-size:22px}
+.brand-green{color:#22c55e}
 .drawer-section{border-top:1px solid rgba(255,255,255,.08);padding-top:10px}
 .drawer-section .row{display:flex;align-items:center;justify-content:space-between;margin:6px 0}
 .mini-date{background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff;padding:4px 8px;cursor:pointer}
 .calendar.shell{border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:10px}
 .counter-input{width:100%;border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:8px;background:transparent;color:#fff}
 .drawer-menu{display:grid;gap:8px}
-.drawer-menu a{color:#e5e7eb;text-decoration:none;padding:8px;border-radius:8px}
+.drawer-menu a{color:#e5e7eb;text-decoration:none;padding:8px;border-radius:8px;display:flex;align-items:center;gap:10px}
 .drawer-menu a:hover{background:rgba(255,255,255,.06)}
 .slider-sec .slider-row{display:flex;align-items:center;gap:10px}
 .slider-sec input[type="range"]{width:100%}
 .drawer-footer{margin-top:auto;display:grid;gap:10px}
 .wallet{color:#a3a3a3;text-transform:lowercase}
 .btn.w-full{width:100%}
-.btn.outline{background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff}
+.btn.outline{background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px}
 .sidebar-toggle{background:transparent;border:0;color:#cbd5e1;font-size:22px;cursor:pointer}
 .side-icons{display:flex;flex-direction:column;gap:18px}
 .side-icons i{opacity:.7}
