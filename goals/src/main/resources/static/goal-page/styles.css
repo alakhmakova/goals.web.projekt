@@ -49,9 +49,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .created-btn{display:flex;align-items:center;gap:8px;border:0;background:transparent;color:#ffffff;border-radius:999px;padding:6px 10px;cursor:pointer}
 
 /* Calendar popover */
-.calendar-popover{position:absolute;right:16px;top:56px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.15);padding:12px;z-index:10;width:320px}
+.calendar-popover{position:absolute;right:16px;top:56px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.15);padding:12px;z-index:10;width:fit-content}
 .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.cal-title{font-weight:700}
+.cal-title{font-weight:700; color:#0c0c14;}
 .cal-nav{background:transparent;border:0;cursor:pointer;font-size:18px}
 .cal-weekdays{display:grid;grid-template-columns:40px repeat(7,1fr);gap:6px;margin:6px 0 4px 0}
 .cal-weekdays span{font-size:12px;color:#6b7280;text-align:center}
