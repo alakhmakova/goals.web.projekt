@@ -55,8 +55,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .cal-nav{background:transparent;border:0;cursor:pointer;font-size:18px}
 .cal-weekdays{display:grid;grid-template-columns:40px repeat(7,1fr);gap:6px;margin:6px 0 4px 0}
 .cal-weekdays span{font-size:12px;color:#6b7280;text-align:center}
+.cal-weekdays span:first-child{border-right:1px solid var(--line)}
 .cal-grid{display:grid;grid-template-columns:40px repeat(7,1fr);gap:6px}
-.cal-grid .weeknum{display:flex;align-items:center;justify-content:center;font-size:12px;color:#6b7280;border:1px solid var(--line);border-radius:8px}
+.cal-grid .weeknum{display:flex;align-items:center;justify-content:center;font-size:12px;color:#6b7280;border:0;border-right:1px solid var(--line)}
 .cal-grid button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px;cursor:pointer}
 .cal-grid button.selected{background:#7c3aed;color:#fff;border-color:#7c3aed}
 .cal-grid button.today{border-color:#6d4aff}

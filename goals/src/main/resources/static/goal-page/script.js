@@ -71,6 +71,7 @@
           btn.textContent = String(dt.getDate());
           const isToday = new Date().toDateString()===dt.toDateString();
           const isSelected = current.toDateString()===dt.toDateString();
+          if(sameWeek) btn.classList.add('week-current');
           if(isToday) btn.classList.add('today');
           if(isSelected) btn.classList.add('selected');
           btn.addEventListener('click', ()=>{
