@@ -10,7 +10,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .left-drawer.open{transform:translateX(0)}
 .drawer-head{display:flex;align-items:center;justify-content:space-between}
 .brand{display:flex;align-items:center;gap:8px}
-.brand-img{width:22px;height:22px;object-fit:contain}
+.brand-img{width:24px;height:24px;object-fit:contain}
 .brand-name{font-weight:800;letter-spacing:.5px}
 .brand-ms{font-size:22px}
 .brand-green{color:#22c55e}
