@@ -87,95 +87,70 @@
             <button class="btn primary add-target">+ Add</button>
           </div>
 
-          <ul class="target-list">
-            <li class="target-row">
-              <div class="left">
-                <div class="dot"></div>
-                <div class="text">
-                  <div class="name">Få positiv svar om LIA plats till mig</div>
-                  <div class="date">Jun 2 at 16:11</div>
-                </div>
-                <div class="row-menu">
-                  <button class="kebab"><i class="bi bi-three-dots"></i></button>
-                  <div class="dropdown">
-                    <button><i class="bi bi-plus"></i> Add task</button>
-                    <button><i class="bi bi-pencil"></i> Rename</button>
-                    <button class="danger"><i class="bi bi-trash3"></i> Delete</button>
-                  </div>
-                </div>
-              </div>
-              <div class="right">
-                <span class="label">applications</span>
-                <div class="progress"><div class="bar" style="width:0%"></div></div>
-                <span class="value">0/1</span>
-              </div>
-            </li>
+          <div class="targets-table-wrap">
+            <table class="targets-table">
+              <thead>
+                <tr>
+                  <th>Target</th>
+                  <th>Created</th>
+                  <th>Deadline</th>
+                  <th>Note</th>
+                  <th>Progress</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Number type -->
+                <tr class="t-row" data-type="number" data-start="0" data-current="136" data-target="200" data-unit="ansökningar">
+                  <td>
+                    <div class="t-name">Skicka ansökningar</div>
+                  </td>
+                  <td>Aug 9 at 0:46</td>
+                  <td>—</td>
+                  <td><button class="btn subtle note-btn">Note</button></td>
+                  <td>
+                    <div class="progress-cell">
+                      <div class="meta-top"><span class="left unit">ansökningar</span></div>
+                      <div class="progress-track clickable"><div class="bar violet" style="width:68%"></div></div>
+                      <div class="meta-bottom"><span class="right value">0(136)/200</span></div>
+                    </div>
+                  </td>
+                </tr>
 
-            <li class="target-row clickable" id="apply-row">
-              <div class="left">
-                <div class="dot"></div>
-                <div class="text">
-                  <div class="name">Skicka ansökningar</div>
-                  <div class="date">Aug 9 at 0:46</div>
-                </div>
-                <div class="row-menu">
-                  <button class="kebab"><i class="bi bi-three-dots"></i></button>
-                  <div class="dropdown">
-                    <button><i class="bi bi-plus"></i> Add task</button>
-                    <button><i class="bi bi-pencil"></i> Rename</button>
-                    <button class="danger"><i class="bi bi-trash3"></i> Delete</button>
-                  </div>
-                </div>
-              </div>
-              <div class="right">
-                <span class="label">ansökningar</span>
-                <div class="progress"><div class="bar violet" style="width:68%"></div></div>
-                <span class="value" id="apply-value">136/200</span>
-              </div>
-            </li>
+                <!-- Success type -->
+                <tr class="t-row" data-type="success">
+                  <td>
+                    <div class="t-name">Formuläret</div>
+                  </td>
+                  <td>Aug 9 at 0:47</td>
+                  <td>—</td>
+                  <td><button class="btn subtle note-btn">Note</button></td>
+                  <td>
+                    <div class="toggle-cell" aria-disabled="true">
+                      <span class="toggle disabled" data-state="done"><span class="knob"></span></span>
+                      <span class="toggle-text">done / not done</span>
+                    </div>
+                  </td>
+                </tr>
 
-            <li class="target-row">
-              <div class="left">
-                <div class="dot"></div>
-                <div class="text">
-                  <div class="name">Formuläret</div>
-                  <div class="date">Aug 9 at 0:47</div>
-                </div>
-              </div>
-              <div class="right">
-                <div class="progress"><div class="bar green" style="width:100%"></div></div>
-                <span class="value">1/1</span>
-              </div>
-            </li>
-
-            <li class="target-row">
-              <div class="left">
-                <div class="dot"></div>
-                <div class="text">
-                  <div class="name">Написать Роберту</div>
-                  <div class="date">Aug 12 at 15:19</div>
-                </div>
-              </div>
-              <div class="right">
-                <div class="progress"><div class="bar green" style="width:100%"></div></div>
-                <span class="value">1/1</span>
-              </div>
-            </li>
-
-            <li class="target-row disabled">
-              <div class="left">
-                <div class="dot"></div>
-                <div class="text">
-                  <div class="name">AI Agent to send messages</div>
-                  <div class="date">Aug 12 at 15:21</div>
-                </div>
-              </div>
-              <div class="right">
-                <div class="progress"><div class="bar" style="width:0%"></div></div>
-                <span class="value">0/1</span>
-              </div>
-            </li>
-          </ul>
+                <!-- Tasks type -->
+                <tr class="t-row" data-type="tasks" data-start="0" data-current="1" data-target="3">
+                  <td>
+                    <div class="t-name">AI Agent to send messages</div>
+                  </td>
+                  <td>Aug 12 at 15:21</td>
+                  <td>—</td>
+                  <td><button class="btn subtle note-btn">Note</button></td>
+                  <td>
+                    <div class="progress-cell">
+                      <div class="meta-top"><span class="left">tasks</span></div>
+                      <div class="progress-track"><div class="bar" style="width:33%"></div></div>
+                      <div class="meta-bottom"><span class="right value">0(1)/3</span></div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section class="timeline card">
@@ -192,7 +167,7 @@
       <div class="progress-modal" id="apply-modal" aria-hidden="true">
         <div class="modal-card">
           <div class="modal-head">
-            <h3>Skicka ansökningar</h3>
+            <h3 id="apply-title">Skicka ansökningar</h3>
             <button class="close" data-close><i class="bi bi-x-lg"></i></button>
           </div>
           <div class="bar-summary">
@@ -207,15 +182,15 @@
               </div>
               <div class="counter">
                 <span class="label">Current</span>
-                <div class="stepper">
-                  <button type="button" class="step" data-step="-1">Decrease</button>
-                  <input type="number" id="apply-current" min="0" value="136" />
-                  <button type="button" class="step" data-step="1">Increase</button>
-                </div>
+                <input type="number" id="apply-current" min="0" value="136" />
               </div>
               <div class="counter">
                 <span class="label">Target</span>
                 <input type="number" id="apply-target" min="1" value="200" />
+              </div>
+              <div class="counter">
+                <span class="label">Unit</span>
+                <input type="text" id="apply-unit" value="ansökningar" />
               </div>
             </div>
             <div class="note">

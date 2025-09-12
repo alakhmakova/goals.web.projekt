@@ -28,17 +28,19 @@
     });
   }
 
-  // Modal for "Skicka ansökningar"
-  const applyRow = document.getElementById('apply-row');
+  // Modal for Number-type row in table
+  const applyRow = document.querySelector('.targets-table .t-row[data-type="number"]');
   const modal = document.getElementById('apply-modal');
   const closeBtns = modal ? modal.querySelectorAll('[data-close]') : [];
   const form = document.getElementById('apply-form');
   const currentInput = document.getElementById('apply-current');
   const startInput = document.getElementById('apply-start');
   const targetInput = document.getElementById('apply-target');
+  const unitInput = document.getElementById('apply-unit');
   const bar = document.getElementById('apply-bar');
   const percentEl = document.getElementById('apply-percent');
   const valueEl = document.getElementById('apply-value');
+  const titleEl = document.getElementById('apply-title');
 
   function recalc(){
     const s = Number(startInput.value)||0;
@@ -50,20 +52,32 @@
     if(valueEl) valueEl.textContent = `${c}/${t}`;
   }
 
-  document.querySelectorAll('.step').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const step = Number(btn.dataset.step);
-      currentInput.value = Math.max(0, Number(currentInput.value||0) + step);
-      recalc();
-    });
-  });
-  [currentInput,startInput,targetInput].forEach(i=> i && i.addEventListener('input', recalc));
+  [currentInput,startInput,targetInput,unitInput].forEach(i=> i && i.addEventListener('input', recalc));
+
+  function openNumberModalFromRow(row){
+    if(!row || !modal) return;
+    const name = row.querySelector('.t-name')?.textContent?.trim()||'Target';
+    const s = Number(row.getAttribute('data-start')||0);
+    const c = Number(row.getAttribute('data-current')||0);
+    const t = Number(row.getAttribute('data-target')||1)||1;
+    const u = row.getAttribute('data-unit')||'';
+    startInput.value = s;
+    currentInput.value = c;
+    targetInput.value = t;
+    if(unitInput) unitInput.value = u;
+    if(titleEl) titleEl.textContent = name;
+    modal.setAttribute('aria-hidden','false');
+    recalc();
+  }
 
   if(applyRow && modal){
-    applyRow.addEventListener('click', ()=>{
-      modal.setAttribute('aria-hidden', 'false');
-      recalc();
-    });
+    const clickable = applyRow.querySelector('.progress-track.clickable');
+    if(clickable){
+      clickable.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        openNumberModalFromRow(applyRow);
+      });
+    }
   }
   closeBtns.forEach(b=>b.addEventListener('click', ()=> modal.setAttribute('aria-hidden','true')));
   modal && modal.addEventListener('click', (e)=>{ if(e.target === modal) modal.setAttribute('aria-hidden','true'); });
