@@ -70,6 +70,23 @@
     });
   })();
 
+  // Slider bubble follow
+  (function(){
+    const slider = document.getElementById('menu-slider');
+    const bubble = document.getElementById('menu-slider-bubble');
+    if(!slider || !bubble) return;
+    function setBubble(){
+      const min = Number(slider.min)||0, max = Number(slider.max)||100, val = Number(slider.value)||0;
+      bubble.textContent = String(val);
+      const pct = (val - min) / (max - min);
+      const track = slider.getBoundingClientRect();
+      bubble.style.left = (pct * track.width) + 'px';
+    }
+    slider.addEventListener('input', setBubble);
+    window.addEventListener('resize', setBubble);
+    setBubble();
+  })();
+
   // See more/less
   const seeToggle = document.querySelector('.see-toggle');
   const desc = document.querySelector('.description');
