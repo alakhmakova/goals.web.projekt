@@ -1,4 +1,4 @@
-:root{--bg:#f5f4f8;--panel:#ffffff;  --focus-outline: #6d4aff; --primary-minor-2: #f0edff; --interaction-default-hover: rgb(194 193 192 / 0.2); --interaction-norm: #6d4aff; --text-hint: #8067e4; --text-norm: #0c0c14; --ink:#1f2330;--muted:#c2bfbc;--primary-major-2:#a18bff;--line:#e5e7eb;--primary:#7c3aed;--green:#22c55e;--violet:#9b8cff;--drawer-w:360px}
+:root{--bg:#f5f4f8;--panel:#ffffff;--background-norm: #1b1340;--focus-outline: #6d4aff; --primary-minor-2: #f0edff; --interaction-default-hover: rgb(194 193 192 / 0.2); --interaction-norm: #6d4aff; --text-hint: #8067e4; --text-norm: #0c0c14; --ink:#1f2330;--muted:#c2bfbc;--blue:rgb(103 232 249);--line:#e5e7eb;--primary:#7c3aed;--green:#22c55e;--violet:#9b8cff;--drawer-w:360px}
 *{box-sizing:border-box}
 html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", sans-serif;}
@@ -39,7 +39,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .side-icons i{opacity:.7}
 .side-icons i.active{color:#f472b6;opacity:1}
 
-.topbar{grid-column:1;background:#1b1340;display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#fff;border-bottom:0;transition:margin-left .25s ease, width .25s ease}
+.topbar{grid-column:1;background:var(--background-norm);display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#fff;border-bottom:0;transition:margin-left .25s ease, width .25s ease}
 .crumbs{display:flex;align-items:center;gap:8px}
 .crumbs .back{color:#d1d5db;text-decoration:none}
 .top-actions{display:flex;align-items:center;gap:12px}
@@ -75,7 +75,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin: 0 24px}
 
 /* Summary */
-.goal-summary{grid-column:1/span 2;display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:start;background:#1b1340;color:#fff;border:0;border-bottom-left-radius:0%;border-bottom-right-radius:100%; padding:20px 20px 150px 20px}
+.goal-summary{grid-column:1/span 2;display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:start;background:var(--background-norm);color:#fff;border:0;border-bottom-left-radius:0%;border-bottom-right-radius:100%; padding:20px 20px 150px 20px}
 .ring{width:120px;height:120px;border-radius:50%;background:conic-gradient(rgb(109 74 255) 0 54%,#e5e7eb 0);display:grid;place-items:center}
 .ring span{background:#1f2240;border-radius:50%;width:86px;height:86px;display:grid;place-items:center;font-weight:800;color:#fff}
 .goal-head{display:flex;align-items:center;gap:8px}
@@ -193,7 +193,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .step{display:none}
 .note textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;resize:vertical}
 .note{margin-top:16px}
-.muted{color:var(--primary-major-2);font-family:Nunito,sans-serif}
+.due-btn{background:var(--blue);border:0;border-radius:9999px;color:var(--background-norm);cursor:pointer;padding:.25rem .75rem;font-size:14px;font-family: "Nunito", sans-serif;font-weight:700}
+.muted{color:var(--blue);font-family:Nunito,sans-serif;font-weight: 600}
+.due-to{color:var(--panel);font-family:Nunito,sans-serif;font-weight: 600}
 .small{font-size:12px}
 .actions{display:flex;justify-content:flex-end;margin-top:12px}
 

@@ -42,7 +42,7 @@
       grid.innerHTML='';
       if(weekdays){
         weekdays.innerHTML = '';
-        const heads = ['W','M','T','W','T','F','S','S'];
+        const heads = [' ','M','T','W','T','F','S','S'];
         heads.forEach((h,i)=>{
           const el = document.createElement('span');
           el.textContent = h;
