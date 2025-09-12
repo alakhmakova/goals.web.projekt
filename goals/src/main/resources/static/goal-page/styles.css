@@ -43,7 +43,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .top-actions .btn.subtle{background:#4338ca;border:0;padding:6px 10px;border-radius:8px;color:#fff}
 .icon-btn{background:transparent;border:0;font-size:24px;cursor:pointer;color:#fff;display:flex;align-items:center}
 .icon-btn .material-symbols-outlined{font-size:22px;color:#F2F0DB;font-variation-settings:"FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24}
-.due-btn{display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;border-radius:999px;padding:6px 10px;cursor:pointer}
+.due-btn{display:flex;align-items:center;gap:8px;border:0;background:transparent;color:#fff;border-radius:999px;padding:6px 10px;cursor:pointer}
 
 /* Calendar popover */
 .calendar-popover{position:absolute;right:16px;top:56px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.15);padding:12px;z-index:10;width:280px}
