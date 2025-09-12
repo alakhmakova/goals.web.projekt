@@ -1,4 +1,4 @@
-:root{--bg:#f5f4f8;--panel:#ffffff;--ink:#1f2330;--muted:#6b7280;--line:#e5e7eb;--primary:#7c3aed;--green:#22c55e;--violet:#9b8cff;--drawer-w:360px}
+:root{--bg:#f5f4f8;--panel:#ffffff;--ink:#1f2330;--muted:#c2bfbc;--primary-major-2: #a18bff;--line:#e5e7eb;--primary:#7c3aed;--green:#22c55e;--violet:#9b8cff;--drawer-w:360px}
 *{box-sizing:border-box}
 html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", sans-serif;}
@@ -6,7 +6,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .app{display:grid;grid-template-columns:1fr;grid-template-rows:56px 1fr;min-height:100%}
 .sidebar{display:none}
 .drawer-overlay{position:fixed;inset:0;z-index:40}
-.left-drawer{position:fixed;left:0;top:0;bottom:0;width:var(--drawer-w);background:#0f1425;color:#fff;z-index:50;transform:translateX(-100%);transition:transform .25s ease;padding:14px;display:flex;flex-direction:column;gap:14px}
+.left-drawer{position:fixed;left:0;top:0;bottom:0;width:var(--drawer-w);background:#271c57;color:#fff;z-index:50;transform:translateX(-100%);transition:transform .25s ease;padding:14px;display:flex;flex-direction:column;gap:14px}
 .left-drawer.open{transform:translateX(0)}
 .drawer-head{display:flex;align-items:center;justify-content:space-between}
 .brand{display:flex;align-items:center;flex-direction:column }
@@ -46,7 +46,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .top-actions .btn.subtle{background:#4338ca;border:0;padding:6px 10px;border-radius:8px;color:#fff}
 .icon-btn{background:transparent;border:0;font-size:24px;cursor:pointer;color:#fff;display:flex;align-self:flex-start}
 .icon-btn .material-symbols-outlined{font-size:25px;color:#F2F0DB;font-variation-settings:"FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24}
-.due-btn{display:flex;align-items:center;gap:8px;border:0;background:transparent;color:#fff;border-radius:999px;padding:6px 10px;cursor:pointer}
+.created-btn{display:flex;align-items:center;gap:8px;border:0;background:transparent;color:#ffffff;border-radius:999px;padding:6px 10px;cursor:pointer}
 
 /* Calendar popover */
 .calendar-popover{position:absolute;right:16px;top:56px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.15);padding:12px;z-index:10;width:280px}
@@ -72,7 +72,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .goal-head{display:flex;align-items:center;gap:8px}
 .goal-head h1{margin:0;font-size:28px;display:flex;align-items:flex-start;color:#fff}
 .goal-menu{position:relative;align-self:flex-start}
-.kebab{border:0;background:transparent;font-size:22px;cursor:pointer}
+.kebab{border:0;background:transparent;font-size:22px;cursor:pointer;color:#fff}
 .goal-menu .dropdown{position:absolute;right:0;top:36px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.08);display:none;min-width:200px}
 .goal-menu .dropdown button{width:100%;text-align:left;padding:10px 12px;background:#fff;border:0;cursor:pointer}
 .goal-menu .dropdown button:hover{background:#f8fafc}
@@ -83,7 +83,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .goal-summary{position:relative}
 .summary-right{grid-column:2}
 .grow-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.grow-item{display:flex;flex-direction:column;border:3px solid #e2dbff;border-radius:12px;box-shadow: 5px 5px 5px #e2dbff;width:50%;text-align:left;background-color:#fff;transition:border-color .2s ease, box-shadow .2s ease}
+.grow-item{display:flex;flex-direction:column;border:3px solid #e2dbff;border-radius:12px;box-shadow: 5px 5px 5px #e2dbff;width:83%;text-align:left;background-color:#fff;transition:border-color .2s ease, box-shadow .2s ease}
 .grow-item .row{padding:16px}
 .grow-item:hover{border-color:#6d4aff;}
 .grow-item[data-open="true"]{border-color:#372580}
@@ -184,7 +184,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .step{display:none}
 .note textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;resize:vertical}
 .note{margin-top:16px}
-.muted{color:var(--muted)}
+.muted{color:var(--primary-major-2);font-family:Nunito,sans-serif}
 .small{font-size:12px}
 .actions{display:flex;justify-content:flex-end;margin-top:12px}
 
