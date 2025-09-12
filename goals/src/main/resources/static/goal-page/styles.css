@@ -18,6 +18,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .drawer-section .row{display:flex;align-items:center;justify-content:space-between;margin:6px 0}
 .mini-date{background:transparent;border:0;border-radius:999px;color:#fff;padding:4px 0;cursor:pointer}
 .calendar.shell{border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:10px}
+.date-control{margin:8px 0}
+.date-control input[type="date"]{appearance:none;-webkit-appearance:none;width:100%;border:1px solid rgba(255,255,255,.2);border-radius:10px;background:#0b1020;color:#fff;padding:8px 10px}
+.date-control input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(1)}
 .counter-input{width:100%;border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:8px;background:transparent;color:#fff}
 .drawer-menu{display:grid;gap:8px}
 .drawer-menu a{color:#e5e7eb;text-decoration:none;padding:8px;border-radius:8px;display:flex;align-items:center;gap:10px}

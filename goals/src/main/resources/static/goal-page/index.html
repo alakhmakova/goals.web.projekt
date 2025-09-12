@@ -31,6 +31,7 @@
         <div class="drawer-section dates">
           <div class="row"><span class="muted">Created</span><button class="mini-date" id="side-created-toggle"><span id="side-created-text">Today</span></button></div>
           <div class="row"><span class="muted">Due to</span><button class="mini-date" id="side-due-toggle"><span id="side-due-text">27 Apr</span></button></div>
+          <div class="date-control"><input type="date" id="side-date-input" /></div>
           <div class="calendar shell" id="side-calendar">
             <div class="cal-head">
               <button class="cal-nav" data-side-dir="-1"><i class="bi bi-chevron-left"></i></button>
@@ -51,19 +52,17 @@
           <a href="#"><span class="material-symbols-outlined">help</span> Powerful questions</a>
           <a href="#"><span class="material-symbols-outlined">contact_page</span> Contacts</a>
           <a href="#"><span class="material-symbols-outlined">manage_accounts</span> Account and password</a>
+          <a href="#" class="signout-link"><span class="material-symbols-outlined">logout</span> Sign out</a>
         </nav>
 
         <div class="drawer-section slider-sec">
-          <label class="muted">Choose from 1 to 10</label>
-          <div class="slider-row">
+          <div class="slider-wrap">
             <input id="menu-slider" type="range" min="1" max="10" value="5" />
-            <span id="menu-slider-value">5</span>
+            <span id="menu-slider-bubble" class="slider-bubble">5</span>
           </div>
         </div>
 
-        <div class="drawer-footer">
-          <button class="btn outline w-full"><span class="material-symbols-outlined">logout</span> Sign out</button>
-        </div>
+        <div class="drawer-footer"></div>
       </aside>
       <aside class="sidebar" aria-hidden="true"></aside>
 
