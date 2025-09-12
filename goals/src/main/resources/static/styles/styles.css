@@ -1,9 +1,107 @@
+/* Design tokens and mapping */
+:root, .ui-standard {
+    --primary-minor-2: #f0edff;
+    --primary-minor-1: #e2dbff;
+    --primary: #6d4aff;
+    --primary-major-1: #6243e6;
+    --primary-major-2: #573bcc;
+    --primary-major-3: #4c34b3;
+    --primary-contrast: #ffffff;
+    --signal-danger-minor-2: #fcebee;
+    --signal-danger-minor-1: #f8d6dc;
+    --signal-danger: #dc3251;
+    --signal-danger-major-1: #c62d49;
+    --signal-danger-major-2: #b02841;
+    --signal-danger-major-3: #9a2339;
+    --signal-danger-contrast: #ffffff;
+    --signal-warning-minor-2: #fff5e6;
+    --signal-warning-minor-1: #ffebcc;
+    --signal-warning: #ff9900;
+    --signal-warning-major-1: #f27d00;
+    --signal-warning-major-2: #e66300;
+    --signal-warning-major-3: #d94c00;
+    --signal-warning-contrast: #000000;
+    --signal-success-minor-2: #e9f6f3;
+    --signal-success-minor-1: #d2eee7;
+    --signal-success: #1ea885;
+    --signal-success-major-1: #1b9778;
+    --signal-success-major-2: #18866a;
+    --signal-success-major-3: #15765d;
+    --signal-success-contrast: #ffffff;
+    --signal-info-minor-2: #e9f5fa;
+    --signal-info-minor-1: #d3ecf5;
+    --signal-info: #239ece;
+    --signal-info-major-1: #208eb9;
+    --signal-info-major-2: #1c7ea5;
+    --signal-info-major-3: #196f90;
+    --signal-info-contrast: #ffffff;
+    --interaction-norm-minor-2: #f0edff;
+    --interaction-norm-minor-1: #e2dbff;
+    --interaction-norm: #6d4aff;
+    --interaction-norm-major-1: #6243e6;
+    --interaction-norm-major-2: #573bcc;
+    --interaction-norm-major-3: #4c34b3;
+    --interaction-norm-contrast: #ffffff;
+    --interaction-weak-minor-2: #f9f8f7;
+    --interaction-weak-minor-1: #f5f3f2;
+    --interaction-weak: #eae7e4;
+    --interaction-weak-major-1: #dedbd9;
+    --interaction-weak-major-2: #d3d0cd;
+    --interaction-weak-major-3: #c7c4c2;
+    --interaction-weak-contrast: #000000;
+    --text-norm: #0c0c14;
+    --text-weak: #5c5958;
+    --text-hint: #8f8d8a;
+    --text-disabled: #c2bfbc;
+    --text-invert: white;
+    --field-norm: #adaba8;
+    --field-hover: #8f8d8a;
+    --field-disabled: #d1cfcd;
+    --focus-outline: #6d4aff;
+    --focus-ring: rgb(109 74 255 / 0.2);
+    --border-norm: #d1cfcd;
+    --border-weak: #eae7e4;
+    --background-norm: white;
+    --background-weak: #f5f4f2;
+    --background-strong: #e5e4e1;
+    --background-invert: #0c0c14;
+    --interaction-default: transparent;
+    --interaction-default-hover: rgb(194 193 192 / 0.2);
+    --interaction-default-active: rgb(194 192 190 / 0.35);
+    --shadow-primary-color: 109 74 255;
+    --shadow-norm-opacity: 0.1;
+    --shadow-raised-opacity: 0.1;
+    --shadow-lifted-opacity: 0.16;
+    --backdrop-norm: rgb(38 42 51 / 0.48);
+    --optional-scrollbar-thumb-color: #d1cfcd;
+    --optional-main-border-width: 0;
+    --optional-background-lowered: #f8f8f6;
+    --optional-background-elevated: white;
+    --optional-email-item-read-text-color: #3d3c3c;
+    --optional-email-item-selected-background-color: var(--interaction-norm-major-1);
+    --optional-email-item-selected-icon-background-color: var(--interaction-norm-major-3);
+    --optional-link-norm: initial;
+    --optional-link-hover: initial;
+    --optional-link-active: initial;
+    --optional-mini-calendar-today-color: initial;
+    --optional-logo-text-proton-color: initial;
+    --optional-logo-text-product-color: initial;
+    --optional-promotion-text-color: #15006f;
+    --optional-promotion-text-weak: #50409b;
+    --optional-promotion-interaction-hover: rgb(109 74 255 / 0.08);
+    --optional-promotion-background-start: rgb(109 74 255 / 0.15);
+    --optional-promotion-background-end: rgb(70 26 255 / 0.04);
+    --optional-promotion-secondary-color: #d783ff;
+    --optional-bg-promotion-bw-button: var(--background-invert);
+    --optional-text-promotion-bw-button: var(--text-invert);
+}
+
 body {
     margin: 0;
     padding: 0;
     font-family: "Nunito", sans-serif;
     font-size: 20px;
-    color: #140330;
+    color: var(--text-norm);
 }
 
 .application {
@@ -17,7 +115,7 @@ body {
     row-gap: 1rem;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 0.8fr 7fr auto auto;
-    background-color: #ffffff;
+    background-color: var(--background-norm);
 }
 
 #overlay {
@@ -33,7 +131,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--backdrop-norm);
     /* Black background with opacity */
     z-index: 9;
     /* Specify a stack order in case you're using a different order for other elements */
@@ -51,7 +149,7 @@ body {
     align-items: center;
     position: fixed;
     top: 0;
-    background-color: #ffffff;
+    background-color: var(--background-norm);
     z-index: 1000;
     width: 49vw;
     height: 13vh;
@@ -82,12 +180,12 @@ body {
 .dropdown:hover .dropbtn,
 .bi-folder-plus:hover {
     font-weight: bold;
-    color: #7dc65a;
+    color: var(--signal-success);
 }
 
 #new-folder {
     border-style: solid;
-    border-color: #140330;
+    border-color: var(--border-norm);
     border-radius: 25px;
     width: 140px;
     height: 50px;
@@ -99,15 +197,15 @@ body {
 
 #new-folder:hover,
 .new-goal:hover {
-    border-color: #7dc65a;
-    color: #ffffff;
-    background-color: #7dc65a;
+    border-color: var(--signal-success);
+    color: var(--signal-success-contrast);
+    background-color: var(--signal-success);
 }
 
 .dropdown .dropbtn {
     font-family: "Nunito", sans-serif;
     font-size: 20px;
-    color: #140330;
+    color: var(--text-norm);
     border-style: none;
     text-decoration: underline;
     background: none;
@@ -130,7 +228,7 @@ body {
 }
 
 .dropdown .dropdown-content > a {
-    color: #140330;
+    color: var(--text-norm);
     display: block;
     /*to make links in vertical order*/
     text-decoration: none;
@@ -138,16 +236,16 @@ body {
 }
 
 .dropdown-content hr {
-    border-top: 1px solid #7dc65a;
+    border-top: 1px solid var(--signal-success);
 }
 
 /* Change color of dropdown links on hover */
 .dropdown .dropdown-content a:hover {
-    background-color: #7dc65a;
+    background-color: var(--signal-success);
     border-style: solid;
     border-radius: 8px;
-    border-color: #7dc65a;
-    color: #ffffff;
+    border-color: var(--signal-success);
+    color: var(--signal-success-contrast);
     margin-left: 1rem;
     padding-left: 0.5rem;
 }
@@ -155,7 +253,7 @@ body {
 .hide {
     font-family: "Nunito", sans-serif;
     font-size: 20px;
-    color: #140330;
+    color: var(--text-norm);
     border-style: none;
     text-decoration: underline;
     background: none;
@@ -164,7 +262,7 @@ body {
 .show {
     font-family: "Nunito", sans-serif;
     font-size: 20px;
-    color: #140330;
+    color: var(--text-norm);
     border-style: none;
     text-decoration: underline;
     background: none;
@@ -174,7 +272,7 @@ body {
 .hide:hover,
 .show:hover {
     font-weight: bold;
-    color: #7dc65a;
+    color: var(--signal-success);
 }
 
 #folders-hide {
@@ -203,7 +301,7 @@ body {
 
     > h1 {
         font-size: clamp(2rem, 2rem + 5vw, 90px);
-        color: #290661;
+        color: var(--interaction-norm-major-2);
         margin: 0;
         padding: 0;
         text-align: center;
@@ -223,13 +321,13 @@ body {
 
     .bi-arrow-down {
         font-size: clamp(2rem, 3rem + 5vw, 4rem);
-        color: #140330;
+        color: var(--text-norm);
     }
 }
 
 .new-goal {
     border-style: solid;
-    border-color: #140330;
+    border-color: var(--border-norm);
     border-radius: 25px;
     width: 140px;
     height: 50px;
@@ -253,7 +351,7 @@ body {
       background-repeat: no-repeat;
       background-position: center;
       z-index: 1;*/
-    background-color: #3d0a91;
+    background-color: var(--interaction-norm-major-2);
 
     .banner {
         max-width: 100%; /*Fluid images scale down when their containing column narrows but do not grow larger than their intrinsic size when the column grows*/
@@ -266,22 +364,22 @@ body {
     left: 80%;
     top: 3.1%;
     border-style: solid;
-    border-color: #140330;
+    border-color: var(--border-norm);
     border-radius: 25px;
     width: 140px;
     height: 50px;
     font-family: "Nunito", sans-serif;
-    color: #ffffff;
+    color: var(--interaction-norm-contrast);
     font-size: 18px;
     padding: 0;
-    background-color: #140330;
+    background-color: var(--interaction-norm);
 }
 
 .main-menu:hover {
-    border-color: #e9ecef;
+    border-color: var(--interaction-weak-minor-1);
     font-weight: 600;
-    color: #140330;
-    background-color: #e9ecef;
+    color: var(--text-norm);
+    background-color: var(--interaction-weak-minor-1);
 }
 
 /*------------------------------------------------------------------------CARDS-----------------------------------------------------------------------------------------------------------*/
@@ -341,15 +439,15 @@ body {
 
 .card-button {
     border-style: solid;
-    border-color: #3d0a91;
+    border-color: var(--interaction-norm-major-2);
     border-radius: 25px;
     width: 100px;
     height: 36px;
     font-family: "Nunito", sans-serif;
-    color: #ffffff;
+    color: var(--interaction-norm-contrast);
     font-size: 0.9rem;
     padding: 0;
-    background-color: #3d0a91;
+    background-color: var(--interaction-norm-major-2);
 }
 
 /*.cards {
@@ -428,7 +526,7 @@ body {
     padding-bottom: 1rem;
 
     z-index: 2;
-    background-color: #e0cffc;
+    background-color: var(--primary-minor-1);
     /*#E9ECEF;/*#FFE5D0; /*#E9CFA6;*/
 }
 
@@ -450,7 +548,7 @@ body {
 
 .content > button {
     border-style: solid;
-    border-color: #140330;
+    border-color: var(--border-norm);
     border-radius: 25px;
     width: 140px;
     height: 50px;
@@ -461,10 +559,10 @@ body {
 }
 
 .content > button:hover {
-    border-color: #140330;
+    border-color: var(--interaction-norm);
     font-weight: 600;
-    color: #ffffff;
-    background-color: #140330;
+    color: var(--interaction-norm-contrast);
+    background-color: var(--interaction-norm);
     /*#e9ecef*/
 }
 
@@ -536,7 +634,7 @@ body {
 .sidepanel {
     width: 50%;
     height: 100vh;
-    background-color: #ffffff;
+    background-color: var(--background-norm);
     overflow-y: auto;
     /* only vertical scrolling */
     overflow-x: hidden;
@@ -558,7 +656,7 @@ form {
     position: fixed;
     left: 51%;
     font-size: 3rem;
-    color: #e9ecef;
+    color: var(--interaction-weak-minor-1);
     cursor: pointer;
     z-index: 1000;
 }
@@ -570,13 +668,13 @@ form {
     font-size: 25px;
 
     i {
-        color: #7dc65a;
+        color: var(--signal-success);
     }
 }
 
 .hint {
     font-size: 16px;
-    color: #290661;
+    color: var(--interaction-norm-major-2);
 }
 
 input[type="text"],
@@ -584,16 +682,16 @@ input[type="email"],
 input[type="date"] {
     background-color: transparent;
     border: none;
-    border-bottom: #7dc65a solid 3px;
+    border-bottom: var(--signal-success) solid 3px;
     outline: none;
     font-family: "Nunito", sans-serif;
     font-size: 33px;
-    color: #757575;
+    color: var(--text-hint);
 }
 
 input[type="submit"] {
     border-style: solid;
-    border-color: #140330;
+    border-color: var(--border-norm);
     border-radius: 25px;
     width: 140px;
     height: 50px;
@@ -606,7 +704,7 @@ input[type="submit"] {
 
 #description {
     background-color: transparent;
-    border: #7dc65a solid 3px;
+    border: var(--signal-success) solid 3px;
     border-radius: 8px;
     outline: none;
     font-family: "Nunito", sans-serif;
@@ -614,9 +712,9 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    border-color: #7dc65a;
-    color: #ffffff;
-    background-color: #7dc65a;
+    border-color: var(--signal-success);
+    color: var(--signal-success-contrast);
+    background-color: var(--signal-success);
 }
 
 /*
@@ -637,7 +735,7 @@ input[type="submit"]:hover {
     .goal-header {
         grid-column: 1/-1;
         /*Occupies the entire grid*/
-        background-color: #1e0548;
+        background-color: var(--interaction-norm-major-3);
         display: flex;
         padding-right: 90%;
         padding-left: 1%;
@@ -652,7 +750,7 @@ input[type="submit"]:hover {
         .bi-rocket,
         a {
             font-size: 1rem;
-            color: #ffffff;
+            color: var(--text-invert);
             align-self: center;
             text-decoration: none;
         }
@@ -662,7 +760,7 @@ input[type="submit"]:hover {
         }
 
         .bi-rocket {
-            background-color: rgb(224, 207, 252, 0.5);
+            background-color: color-mix(in srgb, var(--primary-minor-1) 50%, transparent);
             border-radius: 8px;
             padding: 0.1rem 0.3rem 0.1rem 0.3rem;
         }
@@ -672,7 +770,7 @@ input[type="submit"]:hover {
         grid-column: 1/-1;
         /*Occupies the entire grid*/
         grid-row: 2/4;
-        background-color: #290660;
+        background-color: var(--primary-major-3);
         padding: 0 20rem;
         min-height: 50vh;
         height: fit-content;
@@ -727,7 +825,7 @@ input[type="submit"]:hover {
     .goal-desc {
         grid-column: 2/-1;
         grid-row: 2/3;
-        border: solid 1px #ffffff;
+        border: solid 1px var(--border-weak);
         border-radius: 4px;
         min-width: 25rem;
         max-width: 50rem;
@@ -742,21 +840,21 @@ input[type="submit"]:hover {
     .goal-desc,
     .goal-data p {
         font-size: 0.7rem;
-        color: #ffffff;
+        color: var(--text-invert);
     }
 
     .goal-background {
         grid-column: 1/-1;
         /*Occupies the entire grid*/
         grid-row: 4/7;
-        background-color: #e0cffc;
+        background-color: var(--primary-minor-1);
         order: 1;
     }
 
     .goal-content {
         grid-column: 2/4;
         grid-row: 3/6;
-        background-color: #f3f0fa;
+        background-color: var(--background-weak);
         order: 2;
         border-radius: 8px;
     }
@@ -781,7 +879,7 @@ input[type="submit"]:hover {
     display: grid;
     /* hidden by default */
     z-index: 10;
-    background-color: #ffffff;
+    background-color: var(--background-norm);
     overflow-x: hidden;
 
     .search {
@@ -804,7 +902,7 @@ input[type="submit"]:hover {
             border-radius: 8px;
             border-style: solid;
             border-width: 1px;
-            border-color: #dddddd;
+            border-color: var(--border-norm);
             font-size: 1.5rem;
             align-self: center;
         }
@@ -823,7 +921,7 @@ input[type="submit"]:hover {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        border: 1px solid #dddddd;
+        border: 1px solid var(--border-norm);
         border-radius: 25px 25px 0 0;
 
         > p {
@@ -832,7 +930,7 @@ input[type="submit"]:hover {
 
         #delete-folder {
             border-style: solid;
-            border-color: #140330;
+            border-color: var(--border-norm);
             border-radius: 25px;
             width: 140px;
             height: 50px;
@@ -843,9 +941,9 @@ input[type="submit"]:hover {
         }
 
         #delete-folder:hover {
-            border-color: #7dc65a;
-            color: #ffffff;
-            background-color: #7dc65a;
+            border-color: var(--signal-success);
+            color: var(--signal-success-contrast);
+            background-color: var(--signal-success);
         }
     }
 
@@ -853,11 +951,11 @@ input[type="submit"]:hover {
         align-self: center;
         text-decoration: none;
         font-size: 1.5rem;
-        color: #140330;
+        color: var(--text-norm);
     }
 
     .bi-layout-sidebar:hover {
-        color: #7dc65a;
+        color: var(--signal-success);
     }
 
     #goalsContainer {
@@ -865,7 +963,7 @@ input[type="submit"]:hover {
         /*Occupies the entire grid*/
         grid-row: 3/4;
         width: 98vw;
-        border: 1px solid #dddddd;
+        border: 1px solid var(--border-norm);
         border-top: transparent;
         border-radius: 0 0 25px 25px;
         padding: 2rem;
