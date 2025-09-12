@@ -1,4 +1,4 @@
-:root{--bg:#f5f4f8;--panel:#ffffff;--ink:#1f2330;--muted:#c2bfbc;--primary-major-2: #a18bff;--line:#e5e7eb;--primary:#7c3aed;--green:#22c55e;--violet:#9b8cff;--drawer-w:360px}
+:root{--bg:#f5f4f8;--panel:#ffffff;--ink:#1f2330;--muted:#c2bfbc;--primary-major-2:#a18bff;--line:#e5e7eb;--primary:#7c3aed;--green:#22c55e;--violet:#9b8cff;--drawer-w:360px}
 *{box-sizing:border-box}
 html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", sans-serif;}
