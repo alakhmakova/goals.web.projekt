@@ -118,6 +118,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .targets-table thead th{font-weight:700;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
 .targets-table tbody td{padding:12px;border-bottom:1px solid var(--line);vertical-align:middle}
 .t-actions{text-align:right;width:40px}
+.t-actions .del-btn{color:#dc3251}
 .t-name{min-width:220px}
 .t-name .name-input{display:none;width:100%;border:1px solid var(--line);border-radius:8px;padding:6px 8px}
 .t-name.editing .name-view{display:none}
@@ -134,17 +135,14 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .t-progress .bar{height:100%;background:#9ca3af}
 .t-progress .bar.violet{background:var(--violet)}
 
-/* Toggle (Success) */
-.toggle{display:inline-flex;align-items:center}
-.toggle .track{position:relative;width:64px;height:28px;background:#e5e7eb;border-radius:999px;display:inline-flex;align-items:center;justify-content:space-between;padding:0 8px;color:#6b7280;font-size:12px}
-.toggle input{display:none}
-.toggle .knob{position:absolute;left:2px;top:2px;width:24px;height:24px;border-radius:50%;background:#fff;transition:left .2s}
-.toggle input:checked + .track{background:#22c55e;color:#0c0c14}
-.toggle input:checked + .track .knob{left:38px}
-.toggle .off{opacity:1}
-.toggle input:checked + .track .off{opacity:.4}
-.toggle .on{opacity:.4}
-.toggle input:checked + .track .on{opacity:1}
+/* Segmented toggle (Success) */
+.seg-toggle{position:relative;display:inline-grid;grid-template-columns:1fr 1fr;align-items:center;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:12px;color:var(--text-norm)}
+.seg-input{display:none}
+.seg-toggle .seg{padding:6px 10px;text-align:center;z-index:1}
+.seg-toggle .seg-bg{position:absolute;inset:0 50% 0 0;background:#e5e7eb;transition:inset .2s;border-radius:10px}
+.seg-input:checked ~ .seg-bg{inset:0 0 0 50%;background:#22c55e}
+.seg-toggle .left{color:#0c0c14}
+.seg-toggle .right{color:#0c0c14}
 
 /* Comments */
 .timeline{grid-column:1/span 2}

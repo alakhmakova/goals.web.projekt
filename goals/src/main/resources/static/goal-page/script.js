@@ -305,10 +305,8 @@
     cell.style.cursor = 'pointer';
     cell.addEventListener('click', (e)=>{
       const pop = document.getElementById('due-popover');
-      const toggle = document.getElementById('due-toggle');
-      if(!pop || !toggle) return;
-      // open popover near toggle for simplicity
-      pop.hidden = false;
+      if(!pop) return;
+      pop.hidden = false; // использует кастомный календарь из хедера
       e.stopPropagation();
       // when a date is chosen (global listener updates dueText); intercept grid clicks to set this cell
       const grid = document.getElementById('cal-grid');
