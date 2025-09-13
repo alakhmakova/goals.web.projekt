@@ -32,8 +32,8 @@
           <a href="#" class="back">All Goals <i class="bi bi-chevron-right"></i></a>
         </div>
         <div class="top-actions">
-          <span class="date">27 Apr</span>
-          <button class="btn subtle"><i class="bi bi-share"></i> Sharing & Permissions</button>
+          <span class="date">Created: 27 Apr</span>
+          <button class="due-btn" type="button" aria-haspopup="dialog" aria-expanded="false">Due: 9/27/25</button>
           <div class="avatar" title="User"></div>
         </div>
       </header>
@@ -108,6 +108,7 @@
                 <span class="label">applications</span>
                 <div class="progress"><div class="bar" style="width:0%"></div></div>
                 <span class="value">0/1</span>
+                <button class="deadline-btn" type="button" aria-haspopup="dialog" aria-expanded="false">Deadline: 9/27/25</button>
               </div>
             </li>
 
@@ -131,6 +132,7 @@
                 <span class="label">ansökningar</span>
                 <div class="progress"><div class="bar violet" style="width:68%"></div></div>
                 <span class="value" id="apply-value">136/200</span>
+                <button class="deadline-btn" type="button" aria-haspopup="dialog" aria-expanded="false">Deadline: 9/27/25</button>
               </div>
             </li>
 
@@ -145,6 +147,7 @@
               <div class="right">
                 <div class="progress"><div class="bar green" style="width:100%"></div></div>
                 <span class="value">1/1</span>
+                <button class="deadline-btn" type="button" aria-haspopup="dialog" aria-expanded="false">Deadline: 9/27/25</button>
               </div>
             </li>
 
@@ -159,6 +162,7 @@
               <div class="right">
                 <div class="progress"><div class="bar green" style="width:100%"></div></div>
                 <span class="value">1/1</span>
+                <button class="deadline-btn" type="button" aria-haspopup="dialog" aria-expanded="false">Deadline: 9/27/25</button>
               </div>
             </li>
 
@@ -173,6 +177,7 @@
               <div class="right">
                 <div class="progress"><div class="bar" style="width:0%"></div></div>
                 <span class="value">0/1</span>
+                <button class="deadline-btn" type="button" aria-haspopup="dialog" aria-expanded="false">Deadline: 9/27/25</button>
               </div>
             </li>
           </ul>
@@ -228,6 +233,27 @@
             </div>
           </form>
         </div>
+      </div>
+
+      <!-- Calendar popovers (two instances share the same markup/style) -->
+      <div class="cal-popover" id="due-cal" role="dialog" aria-modal="true" data-open="false">
+        <div class="cal-head">
+          <button class="prev" aria-label="Previous month">◀</button>
+          <div class="title">Month YYYY</div>
+          <button class="next" aria-label="Next month">▶</button>
+        </div>
+        <div class="cal-weekdays"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+        <div class="cal-grid"></div>
+      </div>
+
+      <div class="cal-popover" id="deadline-cal" role="dialog" aria-modal="true" data-open="false">
+        <div class="cal-head">
+          <button class="prev" aria-label="Previous month">◀</button>
+          <div class="title">Month YYYY</div>
+          <button class="next" aria-label="Next month">▶</button>
+        </div>
+        <div class="cal-weekdays"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+        <div class="cal-grid"></div>
       </div>
     </div>
 
