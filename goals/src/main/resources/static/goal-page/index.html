@@ -166,13 +166,14 @@
                 <th>Deadline</th>
                 <th>Note</th>
                 <th>Progress</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               <tr data-type="number" class="t-row">
-                <td class="t-name">Skicka ansökningar</td>
+                <td class="t-name"><span class="name-view">Skicka ansökningar</span><input class="name-input" type="text" value="Skicka ansökningar" /></td>
                 <td>Aug 9</td>
-                <td>Oct 1</td>
+                <td class="deadline-cell" data-date="2025-10-01">Oct 1</td>
                 <td><button class="note-btn">Note</button></td>
                 <td class="t-progress">
                   <div class="progress-cell clickable" data-type="number" data-unit="ansökningar" data-start="0" data-current="136" data-target="200">
@@ -181,26 +182,31 @@
                     <div class="meta bottom-right"><span class="value">0(136)/200</span></div>
                   </div>
                 </td>
+                <td class="t-actions"><button class="icon-btn del-btn" title="Delete"><i class="bi bi-trash"></i></button></td>
               </tr>
 
               <tr data-type="success" class="t-row">
-                <td class="t-name">Formuläret</td>
+                <td class="t-name"><span class="name-view">Formuläret</span><input class="name-input" type="text" value="Formuläret" /></td>
                 <td>Aug 9</td>
-                <td>Aug 10</td>
+                <td class="deadline-cell" data-date="2025-08-10">Aug 10</td>
                 <td><button class="note-btn">Note</button></td>
                 <td class="t-progress">
                   <label class="toggle">
-                    <input type="checkbox" checked disabled />
-                    <span class="track"></span>
-                    <span class="label">done</span>
+                    <input type="checkbox" checked />
+                    <span class="track">
+                      <span class="off">not done</span>
+                      <span class="on">done</span>
+                      <span class="knob"></span>
+                    </span>
                   </label>
                 </td>
+                <td class="t-actions"><button class="icon-btn del-btn" title="Delete"><i class="bi bi-trash"></i></button></td>
               </tr>
 
               <tr data-type="tasks" class="t-row">
-                <td class="t-name">AI Agent to send messages</td>
+                <td class="t-name"><span class="name-view">AI Agent to send messages</span><input class="name-input" type="text" value="AI Agent to send messages" /></td>
                 <td>Aug 12</td>
-                <td>Sep 30</td>
+                <td class="deadline-cell" data-date="2025-09-30">Sep 30</td>
                 <td><button class="note-btn">Note</button></td>
                 <td class="t-progress">
                   <div class="progress-cell" data-type="tasks">
@@ -216,6 +222,7 @@
                     </ul>
                   </div>
                 </td>
+                <td class="t-actions"><button class="icon-btn del-btn" title="Delete"><i class="bi bi-trash"></i></button></td>
               </tr>
             </tbody>
           </table>
@@ -373,6 +380,21 @@
               <button type="submit" class="btn primary">Save update</button>
             </div>
           </form>
+        </div>
+      </div>
+
+      <!-- Delete Target Modal -->
+      <div class="progress-modal" id="delete-modal" aria-hidden="true">
+        <div class="modal-card">
+          <div class="modal-head">
+            <h3>Delete target</h3>
+            <button class="close" data-close-del><i class="bi bi-x-lg"></i></button>
+          </div>
+          <p>This target will be permanently deleted and cannot be recovered.</p>
+          <div class="actions">
+            <button class="btn" data-close-del>Cancel</button>
+            <button class="btn primary" id="confirm-delete">Delete</button>
+          </div>
         </div>
       </div>
 

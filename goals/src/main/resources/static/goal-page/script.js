@@ -289,6 +289,80 @@
     });
   });
 
+  // Inline edit target name
+  document.querySelectorAll('.t-name').forEach(cell=>{
+    const view = cell.querySelector('.name-view');
+    const input = cell.querySelector('.name-input');
+    if(!view || !input) return;
+    view.addEventListener('click', ()=>{ cell.classList.add('editing'); input.focus(); input.select && input.select(); });
+    const finish = ()=>{ view.textContent = input.value.trim() || view.textContent; cell.classList.remove('editing'); };
+    input.addEventListener('blur', finish);
+    input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); input.blur(); } });
+  });
+
+  // Deadline calendar popup (reuse top calendar styling)
+  document.querySelectorAll('.deadline-cell').forEach(cell=>{
+    cell.style.cursor = 'pointer';
+    cell.addEventListener('click', (e)=>{
+      const pop = document.getElementById('due-popover');
+      const toggle = document.getElementById('due-toggle');
+      if(!pop || !toggle) return;
+      // open popover near toggle for simplicity
+      pop.hidden = false;
+      e.stopPropagation();
+      // when a date is chosen (global listener updates dueText); intercept grid clicks to set this cell
+      const grid = document.getElementById('cal-grid');
+      const handler = (ev)=>{
+        const btn = ev.target.closest('button');
+        if(!btn) return;
+        // parse the title text to know month/year
+        const title = document.getElementById('cal-title').textContent;
+        const [monthName, yearStr] = title.split(' ');
+        const dt = new Date(`${monthName} ${btn.textContent}, ${yearStr}`);
+        cell.dataset.date = dt.toISOString().slice(0,10);
+        cell.textContent = dt.toLocaleDateString(undefined,{month:'short', day:'numeric'});
+        pop.hidden = true;
+        grid.removeEventListener('click', handler, true);
+      };
+      grid.addEventListener('click', handler, true);
+    });
+  });
+
+  // Note button -> focus new comment composer with target name
+  document.querySelectorAll('.note-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const tr = btn.closest('tr');
+      const name = tr ? tr.querySelector('.t-name .name-view')?.textContent?.trim() : '';
+      const input = document.getElementById('new-comment-text');
+      if(input){
+        input.value = name ? `${name}: ` : '';
+        input.focus();
+        const send = document.getElementById('send-comment');
+        send && send.classList.add('active');
+        send && (send.disabled=false);
+      }
+    });
+  });
+
+  // Delete target modal
+  (function(){
+    const delModal = document.getElementById('delete-modal');
+    const confirmBtn = document.getElementById('confirm-delete');
+    const closeBtns = delModal ? delModal.querySelectorAll('[data-close-del]') : [];
+    let toDelete = null;
+    document.querySelectorAll('.del-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        toDelete = btn.closest('tr');
+        delModal && delModal.setAttribute('aria-hidden','false');
+      });
+    });
+    closeBtns.forEach(b=> b.addEventListener('click', ()=> delModal.setAttribute('aria-hidden','true')));
+    confirmBtn && confirmBtn.addEventListener('click', ()=>{
+      if(toDelete) toDelete.remove();
+      delModal.setAttribute('aria-hidden','true');
+      toDelete = null;
+    });
+  })();
   // Add Target modal
   const addBtn = document.querySelector('.add-target');
   const targetModal = document.getElementById('target-modal');
