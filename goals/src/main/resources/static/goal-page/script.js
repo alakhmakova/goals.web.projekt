@@ -88,7 +88,13 @@
     render();
     dueText.textContent = fmt(current);
 
-    toggle.addEventListener('click', (e)=>{ pop.hidden = !pop.hidden; e.stopPropagation(); });
+    toggle.addEventListener('click', (e)=>{
+      pop.hidden = false;
+      const r = toggle.getBoundingClientRect();
+      pop.style.left = Math.round(r.left) + 'px';
+      pop.style.top = Math.round(r.bottom + 6) + 'px';
+      e.stopPropagation();
+    });
     document.querySelectorAll('.cal-nav').forEach(n=>{
       n.addEventListener('click', (e)=>{
         const dir = Number(n.dataset.dir)||0;
@@ -306,7 +312,10 @@
     cell.addEventListener('click', (e)=>{
       const pop = document.getElementById('due-popover');
       if(!pop) return;
-      pop.hidden = false; // использует кастомный календарь из хедера
+      const rect = cell.getBoundingClientRect();
+      pop.hidden = false;
+      pop.style.left = Math.round(rect.left) + 'px';
+      pop.style.top = Math.round(rect.bottom + 6) + 'px';
       e.stopPropagation();
       // when a date is chosen (global listener updates dueText); intercept grid clicks to set this cell
       const grid = document.getElementById('cal-grid');
