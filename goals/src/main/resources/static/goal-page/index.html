@@ -158,117 +158,67 @@
             <button class="btn primary add-target">+ Add</button>
           </div>
 
-          <ul class="target-list">
-            <li class="target-row">
-              <div class="left">
-                <div class="dot"></div>
-                <div class="text">
-                  <div class="name">Få positiv svar om LIA plats till mig</div>
-                  <div class="date">Jun 2 at 16:11</div>
-                </div>
-                <div class="row-menu">
-                  <button class="kebab"><i class="bi bi-three-dots"></i></button>
-                  <div class="dropdown">
-                    <button><i class="bi bi-plus"></i> Add task</button>
-                    <button><i class="bi bi-pencil"></i> Rename</button>
-                    <button class="danger"><i class="bi bi-trash3"></i> Delete</button>
+          <table class="targets-table">
+            <thead>
+              <tr>
+                <th>Target</th>
+                <th>Created</th>
+                <th>Deadline</th>
+                <th>Note</th>
+                <th>Progress</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-type="number" class="t-row">
+                <td class="t-name">Skicka ansökningar</td>
+                <td>Aug 9</td>
+                <td>Oct 1</td>
+                <td><button class="note-btn">Note</button></td>
+                <td class="t-progress">
+                  <div class="progress-cell clickable" data-type="number" data-unit="ansökningar" data-start="0" data-current="136" data-target="200">
+                    <div class="meta top-left">ansökningar</div>
+                    <div class="progress"><div class="bar violet" style="width:68%"></div></div>
+                    <div class="meta bottom-right"><span class="value">0(136)/200</span></div>
                   </div>
-                </div>
-              </div>
-              <div class="right">
-                <div class="progress"><div class="bar" style="width:0%"></div></div>
-                <span class="value">0/1</span>
-              </div>
-            </li>
+                </td>
+              </tr>
 
-            <li class="target-row clickable" id="apply-row">
-              <div class="left">
-                <div class="dot"></div>
-                <div class="text">
-                  <div class="name">Skicka ansökningar</div>
-                  <div class="date">Aug 9 at 0:46</div>
-                </div>
-                <div class="row-menu">
-                  <button class="kebab"><i class="bi bi-three-dots"></i></button>
-                  <div class="dropdown">
-                    <button><i class="bi bi-plus"></i> Add task</button>
-                    <button><i class="bi bi-pencil"></i> Rename</button>
-                    <button class="danger"><i class="bi bi-trash3"></i> Delete</button>
-                  </div>
-                </div>
-              </div>
-              <div class="right">
-                <div class="progress"><div class="bar violet" style="width:68%"></div></div>
-                <span class="value" id="apply-value">136/200</span>
-              </div>
-            </li>
+              <tr data-type="success" class="t-row">
+                <td class="t-name">Formuläret</td>
+                <td>Aug 9</td>
+                <td>Aug 10</td>
+                <td><button class="note-btn">Note</button></td>
+                <td class="t-progress">
+                  <label class="toggle">
+                    <input type="checkbox" checked disabled />
+                    <span class="track"></span>
+                    <span class="label">done</span>
+                  </label>
+                </td>
+              </tr>
 
-            <li class="target-row">
-              <div class="left">
-                <div class="dot"></div>
-                <div class="text">
-                  <div class="name">Formuläret</div>
-                  <div class="date">Aug 9 at 0:47</div>
-                </div>
-                <div class="row-menu">
-                  <button class="kebab"><i class="bi bi-three-dots"></i></button>
-                  <div class="dropdown">
-                    <button><i class="bi bi-plus"></i> Add task</button>
-                    <button><i class="bi bi-pencil"></i> Rename</button>
-                    <button class="danger"><i class="bi bi-trash3"></i> Delete</button>
+              <tr data-type="tasks" class="t-row">
+                <td class="t-name">AI Agent to send messages</td>
+                <td>Aug 12</td>
+                <td>Sep 30</td>
+                <td><button class="note-btn">Note</button></td>
+                <td class="t-progress">
+                  <div class="progress-cell" data-type="tasks">
+                    <div class="meta top-left">tasks</div>
+                    <div class="progress"><div class="bar" style="width:0%"></div></div>
+                    <div class="meta bottom-right"><span class="value">0/5</span></div>
+                    <ul class="task-list" hidden>
+                      <li class="done">Task 1</li>
+                      <li class="done">Task 2</li>
+                      <li>Task 3</li>
+                      <li>Task 4</li>
+                      <li>Task 5</li>
+                    </ul>
                   </div>
-                </div>
-              </div>
-              <div class="right">
-                <div class="progress"><div class="bar green" style="width:100%"></div></div>
-                <span class="value">1/1</span>
-              </div>
-            </li>
-
-            <li class="target-row">
-              <div class="left">
-                <div class="dot"></div>
-                <div class="text">
-                  <div class="name">Написать Роберту</div>
-                  <div class="date">Aug 12 at 15:19</div>
-                </div>
-                <div class="row-menu">
-                  <button class="kebab"><i class="bi bi-three-dots"></i></button>
-                  <div class="dropdown">
-                    <button><i class="bi bi-plus"></i> Add task</button>
-                    <button><i class="bi bi-pencil"></i> Rename</button>
-                    <button class="danger"><i class="bi bi-trash3"></i> Delete</button>
-                  </div>
-                </div>
-              </div>
-              <div class="right">
-                <div class="progress"><div class="bar green" style="width:100%"></div></div>
-                <span class="value">1/1</span>
-              </div>
-            </li>
-
-            <li class="target-row disabled">
-              <div class="left">
-                <div class="dot"></div>
-                <div class="text">
-                  <div class="name">AI Agent to send messages</div>
-                  <div class="date">Aug 12 at 15:21</div>
-                </div>
-                <div class="row-menu">
-                  <button class="kebab"><i class="bi bi-three-dots"></i></button>
-                  <div class="dropdown">
-                    <button><i class="bi bi-plus"></i> Add task</button>
-                    <button><i class="bi bi-pencil"></i> Rename</button>
-                    <button class="danger"><i class="bi bi-trash3"></i> Delete</button>
-                  </div>
-                </div>
-              </div>
-              <div class="right">
-                <div class="progress"><div class="bar" style="width:0%"></div></div>
-                <span class="value">0/1</span>
-              </div>
-            </li>
-          </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </section>
 
         <section class="timeline card">

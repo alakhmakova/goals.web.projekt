@@ -112,26 +112,31 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .targets .targets-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .btn{border:0;border-radius:10px;padding:8px 12px;cursor:pointer}
 .btn.primary{background:var(--primary);color:#fff}
-.target-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
-.target-row{display:grid;grid-template-columns:1fr 320px;align-items:center;gap:16px;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff}
-.target-row.disabled{opacity:.6}
-.target-row .left{display:flex;align-items:center;gap:12px}
-.target-row .text .name{font-weight:600}
-.target-row .text .date{color:var(--muted);font-size:12px}
-.dot{width:18px;height:18px;border-radius:50%;border:3px solid #d1d5db}
-.row-menu{position:relative;align-self:flex-start}
-.row-menu .kebab{background:transparent;border:0;font-size:18px;cursor:pointer}
-.row-menu .dropdown{position:absolute;right:0;top:26px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.08);display:none;min-width:170px}
-.row-menu .dropdown button{display:block;width:100%;text-align:left;padding:8px 10px;background:#fff;border:0;cursor:pointer}
-.row-menu .dropdown .danger{color:#ef4444}
-.label{display:none}
-.progress{height:10px;background:#eef2f7;border-radius:999px;position:relative;overflow:hidden;flex:1;min-width:240px}
-.bar{position:absolute;left:0;top:0;bottom:0;background:#9ca3af}
-.bar.violet{background:var(--violet)}
-.bar.green{background:var(--green)}
-.right{display:flex;align-items:center;gap:10px}
-.targets .progress{cursor:pointer}
-.value{font-weight:600}
+
+/* Table */
+.targets-table{width:100%;border-collapse:collapse}
+.targets-table thead th{font-weight:700;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+.targets-table tbody td{padding:12px;border-bottom:1px solid var(--line);vertical-align:middle}
+
+.t-name{font-weight:600}
+.note-btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
+
+.t-progress .progress-cell{position:relative;min-width:260px}
+.t-progress .meta{position:absolute;font-size:12px;color:var(--muted)}
+.t-progress .meta.top-left{left:0;top:-16px}
+.t-progress .meta.bottom-right{right:0;bottom:-16px}
+.t-progress .progress{height:10px;background:#eef2f7;border-radius:999px;overflow:hidden}
+.t-progress .bar{height:100%;background:#9ca3af}
+.t-progress .bar.violet{background:var(--violet)}
+
+/* Toggle (Success) */
+.toggle{display:inline-flex;align-items:center;gap:8px}
+.toggle .track{position:relative;width:44px;height:24px;background:#e5e7eb;border-radius:999px;display:inline-block}
+.toggle input{display:none}
+.toggle .track:before{content:"";position:absolute;left:2px;top:2px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left .2s}
+.toggle input:checked + .track{background:#22c55e}
+.toggle input:checked + .track:before{left:22px}
+.toggle .label{font-size:12px;color:var(--muted)}
 
 /* Comments */
 .timeline{grid-column:1/span 2}

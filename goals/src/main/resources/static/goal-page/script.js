@@ -266,6 +266,28 @@
     });
   }
   bindProgressOpen();
+  // also bind for table cells with data-type=number
+  document.querySelectorAll('.t-progress .progress-cell.clickable').forEach(cell=>{
+    cell.addEventListener('click', ()=>{
+      const unit = cell.dataset.unit || 'unit';
+      const start = Number(cell.dataset.start||0);
+      const current = Number(cell.dataset.current||0);
+      const target = Math.max(Number(cell.dataset.target||1),1);
+      const nameCell = cell.closest('tr').querySelector('.t-name');
+      const title = document.getElementById('apply-title');
+      if(title && nameCell) title.textContent = nameCell.textContent;
+      document.getElementById('view-unit').textContent = unit;
+      document.getElementById('apply-unit').value = unit;
+      document.getElementById('view-start').textContent = String(start);
+      document.getElementById('apply-start').value = String(start);
+      document.getElementById('view-current').textContent = String(current);
+      document.getElementById('apply-current').value = String(current);
+      document.getElementById('view-target').textContent = String(target);
+      document.getElementById('apply-target').value = String(target);
+      const modal = document.getElementById('apply-modal');
+      modal.setAttribute('aria-hidden','false');
+    });
+  });
 
   // Add Target modal
   const addBtn = document.querySelector('.add-target');
