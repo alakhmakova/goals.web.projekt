@@ -1,4 +1,4 @@
-:root{--bg:#f5f4f8;--panel:#ffffff;--background-norm: #1b1340;--focus-outline: #6d4aff; --primary-minor-2: #f0edff; --interaction-default-hover: rgb(194 193 192 / 0.2); --interaction-norm: #6d4aff; --text-hint: #8067e4; --text-norm: #0c0c14; --ink:#1f2330;--muted:#c2bfbc;--blue:rgb(103 232 249);--line:#e5e7eb;--primary:#7c3aed;--green:#22c55e;--violet:#9b8cff;--drawer-w:360px}
+:root{--bg:#f5f4f8;--panel:#ffffff;--background-norm: #1b1340;--focus-outline: #6d4aff; --primary-minor-2: #f0edff; --interaction-default-hover: rgb(194 193 192 / 0.2); --interaction-norm: #6d4aff; --text-hint: #8067e4; --text-norm: #0c0c14; --ink:#1f2330;--muted:#c2bfbc;--blue:rgb(103 232 249);--line:#e5e7eb;--primary:#6d4aff;--green:#22c55e;--violet:#9b8cff;--drawer-w:360px}
 *{box-sizing:border-box}
 html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", sans-serif;}
@@ -51,7 +51,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 /* Calendar popover */
 .calendar-popover{position:fixed;left:0;top:0;background:var(--panel, #fff);border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.15);padding:12px;z-index:1000;width:fit-content}
 .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.cal-title{font-weight:700; color:#0c0c14;}
+.cal-title{font-weight:700; color:var(--text-norm);}
 .cal-nav{background:transparent;border:0;cursor:pointer;font-size:18px}
 .cal-weekdays{position:relative;display:grid;grid-template-columns:40px repeat(7,1fr);gap:6px;margin:6px 0 4px 0}
 .cal-weekdays span{font-size:12px;color:#6b7280;text-align:center}
@@ -97,9 +97,11 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .grow-item:hover{border-color:#6d4aff;}
 .grow-item[data-open="true"]{border-color:#372580}
 .grow-item[data-open="true"]:hover{border-color:#6d4aff;}
-.grow-item .title{font-weight:700}
-.circle{width:24px;height:24px;border-radius:50%;border:0;display:inline-grid;place-items:center;background:#f3f4f6;color:#7c3aed;cursor:pointer}
-.grow-item:hover .circle{background:#7c3aed;color:#fff}
+.grow-item .title{font-weight:700; color:var(--text-norm);}
+.grow-item .add-rich{color:#e2dbff;cursor:pointer}
+.grow-item:hover .add-rich{color:#6d4aff;}
+.grow-item[data-open="true"] .row .add-rich{color:#372580}
+.grow-item[data-open="true"]:hover .row .add-rich{color:#6d4aff;}
 .grow-item .row{display:flex;align-items:center;justify-content:space-between;width:100%}
 .rich-editor{border-top:1px solid #f7f5ff;border-radius:0 0 12px 12px;padding:10px;background:#fff}
 .toolbar{display:flex;gap:6px;margin-bottom:6px}
@@ -111,7 +113,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .targets{grid-column:1/span 2}
 .targets .targets-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .btn{border:0;border-radius:10px;padding:8px 12px;cursor:pointer}
-.btn.primary{background:var(--primary);color:#fff}
+.btn.primary{background:var(--primary);color:#fff;border: 0;border-radius: 8px;cursor:pointer;padding-block: .2142857143em; padding-inline:.7857142857em;font-size: 14px;font-family: "Nunito", sans-serif;}
+.btn.primary:hover {background:#6243e6;color:#fff}
+.btn.primary:active {background:#573bcc;color:#fff}
 
 /* Table */
 .targets-table{width:100%;border-collapse:collapse}
@@ -141,8 +145,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .seg-toggle .seg{padding:6px 10px;text-align:center;z-index:1}
 .seg-toggle .seg-bg{position:absolute;inset:0 50% 0 0;background:#e5e7eb;transition:inset .2s;border-radius:10px}
 .seg-input:checked ~ .seg-bg{inset:0 0 0 50%;background:#22c55e}
-.seg-toggle .left{color:#0c0c14}
-.seg-toggle .right{color:#0c0c14}
+.seg-toggle .left{color:var(--text-norm)}
+.seg-toggle .right{color:var(--text-norm)}
 
 /* Comments */
 .timeline{grid-column:1/span 2}
@@ -204,9 +208,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .step{display:none}
 .note textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;resize:vertical}
 .note{margin-top:16px}
-.due-btn{background:var(--blue);border:0;border-radius:9999px;color:var(--background-norm);cursor:pointer;padding:.25rem .75rem;font-size:14px;font-family: "Nunito", sans-serif;font-weight:700}
+.due-btn{background:var(--blue);border:0;border-radius:9999px;color:var(--background-norm);cursor:pointer;padding:.25rem .75rem;font-size:14px;font-family: "Nunito", sans-serif;font-weight:600}
 .muted{color:var(--blue);font-family:Nunito,sans-serif;font-weight: 600}
-.due-to{color:var(--panel);font-family:Nunito,sans-serif;font-weight: 600}
+.due-to{color:var(--panel);font-family:Nunito,sans-serif;}
 .small{font-size:12px}
 .actions{display:flex;justify-content:flex-end;margin-top:12px}
 
