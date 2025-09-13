@@ -335,19 +335,15 @@
     });
   });
 
-  // Note button -> focus new comment composer with target name
+  // Note button -> focus new comment composer with target name (as author)
   document.querySelectorAll('.note-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const tr = btn.closest('tr');
       const name = tr ? tr.querySelector('.t-name .name-view')?.textContent?.trim() : '';
       const input = document.getElementById('new-comment-text');
-      if(input){
-        input.value = name ? `${name}: ` : '';
-        input.focus();
-        const send = document.getElementById('send-comment');
-        send && send.classList.add('active');
-        send && (send.disabled=false);
-      }
+      const firstAuthor = document.querySelector('.comments .comment-item .c-author');
+      if(firstAuthor) firstAuthor.textContent = name || 'Author';
+      if(input){ input.value = ''; input.focus(); const send = document.getElementById('send-comment'); send && send.classList.add('active'); send && (send.disabled=false); }
     });
   });
 

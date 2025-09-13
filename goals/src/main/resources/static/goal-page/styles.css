@@ -160,15 +160,14 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .c-author{font-weight:700}
 .c-time{color:var(--muted);font-size:12px}
 .c-menu{margin-left:auto;position:relative}
-.c-menu .kebab{background:transparent;border:0;cursor:pointer;font-size:18px}
+.c-menu .kebab{background:transparent;border:0;cursor:pointer;font-size:18px;color:var(--ink)}
 .c-menu .dropdown{position:absolute;right:0;top:26px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.08);display:none;min-width:170px}
 .c-menu .dropdown button{display:block;width:100%;text-align:left;padding:8px 10px;background:#fff;border:0;cursor:pointer}
 .c-menu .dropdown .danger{color:#ef4444}
 .c-body{margin:6px 0}
 .comment-view{cursor:pointer;white-space:pre-wrap}
 .comment-input{display:none;width:100%;border:1px solid var(--line);border-radius:10px;padding:8px}
-.c-actions{display:flex;gap:10px}
-.c-actions button{background:transparent;border:0;color:var(--muted);cursor:pointer}
+.c-actions{display:none}
 .c-reply-box{display:none;margin-top:8px}
 .c-reply-box .reply-input{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px}
 .new-comment{margin-top:10px;position:relative}
