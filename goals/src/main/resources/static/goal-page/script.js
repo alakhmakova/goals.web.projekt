@@ -14,99 +14,7 @@
 
   // drawer logic moved to menu.js
 
-  // Due date calendar
-  (function(){
-    const toggle = document.getElementById('due-toggle');
-    const pop = document.getElementById('due-popover');
-    const grid = document.getElementById('cal-grid');
-    const weekdays = document.getElementById('cal-weekdays');
-    const title = document.getElementById('cal-title');
-    const dueText = document.getElementById('due-text');
-    if(!toggle || !pop || !grid || !title || !dueText) return;
-
-    let current = new Date(localStorage.getItem('goal_due') || Date.now());
-    let view = new Date(current.getFullYear(), current.getMonth(), 1);
-
-    function fmt(d){
-      return d.toLocaleDateString(undefined,{month:'short', day:'numeric'});
-    }
-    function weekNumber(d){
-      const dt = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-      const dayNum = dt.getUTCDay() || 7; // Monday=1..Sunday=7
-      dt.setUTCDate(dt.getUTCDate() + 4 - dayNum);
-      const yearStart = new Date(Date.UTC(dt.getUTCFullYear(),0,1));
-      return Math.ceil((((dt - yearStart) / 86400000) + 1)/7);
-    }
-    function render(){
-      title.textContent = view.toLocaleDateString(undefined,{month:'long', year:'numeric'});
-      grid.innerHTML='';
-      if(weekdays){
-        weekdays.innerHTML = '';
-        const heads = [' ','M','T','W','T','F','S','S'];
-        heads.forEach((h,i)=>{
-          const el = document.createElement('span');
-          el.textContent = h;
-          weekdays.appendChild(el);
-        });
-      }
-      const startDay = new Date(view.getFullYear(), view.getMonth(), 1).getDay();
-      const firstWeekday = (startDay + 6) % 7; // make Monday=0
-      // first week number cell
-      const firstDate = new Date(view.getFullYear(), view.getMonth(), 1);
-      let cursor = new Date(firstDate);
-      cursor.setDate(1 - firstWeekday); // monday of first grid week
-      // build 6 weeks grid (rows) with week numbers
-      for(let row=0; row<6; row++){
-        // week number cell
-        const wk = document.createElement('div');
-        wk.className = 'weeknum';
-        wk.textContent = String(weekNumber(cursor));
-        const now = new Date();
-        const sameWeek = weekNumber(now) === weekNumber(cursor) && now.getFullYear() === cursor.getFullYear();
-        if(sameWeek) wk.classList.add('week-current');
-        grid.appendChild(wk);
-        for(let col=0; col<7; col++){
-          const dt = new Date(cursor);
-          const btn = document.createElement('button');
-          btn.textContent = String(dt.getDate());
-          const isToday = new Date().toDateString()===dt.toDateString();
-          const isSelected = current.toDateString()===dt.toDateString();
-          if(sameWeek) btn.classList.add('week-current');
-          if(isToday) btn.classList.add('today');
-          if(isSelected) btn.classList.add('selected');
-          btn.addEventListener('click', ()=>{
-            current = dt;
-            localStorage.setItem('goal_due', current.toISOString());
-            dueText.textContent = fmt(current);
-            pop.hidden = true;
-          });
-          grid.appendChild(btn);
-          cursor.setDate(cursor.getDate()+1);
-        }
-      }
-    }
-    render();
-    dueText.textContent = fmt(current);
-
-    toggle.addEventListener('click', (e)=>{
-      pop.hidden = false;
-      const r = toggle.getBoundingClientRect();
-      pop.style.left = Math.round(r.left) + 'px';
-      pop.style.top = Math.round(r.bottom + 6) + 'px';
-      e.stopPropagation();
-    });
-    document.querySelectorAll('.cal-nav').forEach(n=>{
-      n.addEventListener('click', (e)=>{
-        const dir = Number(n.dataset.dir)||0;
-        view = new Date(view.getFullYear(), view.getMonth()+dir, 1);
-        render();
-        e.stopPropagation();
-      });
-    });
-    document.addEventListener('click', (e)=>{
-      if(!pop.hidden && !pop.contains(e.target) && e.target!==toggle){ pop.hidden = true; }
-    });
-  })();
+  // Date picking handled by Flatpickr in calendar.js
 
   // Slider bubble follow
   (function(){
@@ -306,34 +214,7 @@
     input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); input.blur(); } });
   });
 
-  // Deadline calendar popup (reuse top calendar styling)
-  document.querySelectorAll('.deadline-cell').forEach(cell=>{
-    cell.style.cursor = 'pointer';
-    cell.addEventListener('click', (e)=>{
-      const pop = document.getElementById('due-popover');
-      if(!pop) return;
-      const rect = cell.getBoundingClientRect();
-      pop.hidden = false;
-      pop.style.left = Math.round(rect.left) + 'px';
-      pop.style.top = Math.round(rect.bottom + 6) + 'px';
-      e.stopPropagation();
-      // when a date is chosen (global listener updates dueText); intercept grid clicks to set this cell
-      const grid = document.getElementById('cal-grid');
-      const handler = (ev)=>{
-        const btn = ev.target.closest('button');
-        if(!btn) return;
-        // parse the title text to know month/year
-        const title = document.getElementById('cal-title').textContent;
-        const [monthName, yearStr] = title.split(' ');
-        const dt = new Date(`${monthName} ${btn.textContent}, ${yearStr}`);
-        cell.dataset.date = dt.toISOString().slice(0,10);
-        cell.textContent = dt.toLocaleDateString(undefined,{month:'short', day:'numeric'});
-        pop.hidden = true;
-        grid.removeEventListener('click', handler, true);
-      };
-      grid.addEventListener('click', handler, true);
-    });
-  });
+  // Deadline date picking handled by Flatpickr in calendar.js
 
   // Note button -> focus new comment composer with target name (as author)
   document.querySelectorAll('.note-btn').forEach(btn=>{
