@@ -33,9 +33,22 @@
     const cal = fp.calendarContainer;
     const r = anchor.getBoundingClientRect();
     cal.style.position = 'fixed';
-    cal.style.left = Math.round(r.left) + 'px';
-    cal.style.top = Math.round(r.bottom + 6) + 'px';
-    cal.style.zIndex = '1000';
+    cal.style.zIndex = '2000';
+    // Wait a tick for dimensions to settle, then clamp within viewport
+    requestAnimationFrame(function(){
+      const calW = cal.offsetWidth || 300;
+      const calH = cal.offsetHeight || 300;
+      const vW = window.innerWidth;
+      const vH = window.innerHeight;
+      // Prefer below; flip above if not enough space
+      const spaceBelow = vH - r.bottom;
+      const spaceAbove = r.top;
+      const openAbove = calH + 8 > spaceBelow && spaceAbove > spaceBelow;
+      const top = openAbove ? Math.max(8, Math.round(r.top - calH - 6)) : Math.min(vH - calH - 8, Math.round(r.bottom + 6));
+      const left = Math.max(8, Math.min(vW - calW - 8, Math.round(r.left)));
+      cal.style.top = top + 'px';
+      cal.style.left = left + 'px';
+    });
   }
 
   // Due to button in header
