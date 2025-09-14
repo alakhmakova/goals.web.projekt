@@ -1,3 +1,15 @@
+/* Flatpickr light theme adjustments to match provided light scheme */
+.flatpickr-calendar.light-theme{border:1px solid var(--line);box-shadow:0 20px 50px rgba(0,0,0,.15);border-radius:12px;overflow:hidden}
+.flatpickr-calendar.light-theme .flatpickr-months{background:#fff;color:var(--text-norm)}
+.flatpickr-calendar.light-theme .flatpickr-weekdays{background:#fff;color:#6b7280}
+.flatpickr-calendar.light-theme .flatpickr-weekwrapper, .flatpickr-calendar.light-theme .flatpickr-weekwrapper .flatpickr-weeks{background:#fff}
+.flatpickr-calendar.light-theme .flatpickr-day{border-radius:8px;border:1px solid var(--line);color:var(--text-norm)}
+.flatpickr-calendar.light-theme .flatpickr-day:hover{background:var(--interaction-default-hover)}
+.flatpickr-calendar.light-theme .flatpickr-day.today{border-color:var(--focus-outline)}
+.flatpickr-calendar.light-theme .flatpickr-day.selected, .flatpickr-calendar.light-theme .flatpickr-day.startRange, .flatpickr-calendar.light-theme .flatpickr-day.endRange{background:var(--interaction-norm);color:#fff;border-color:var(--interaction-norm)}
+.flatpickr-calendar.light-theme .flatpickr-weekday{color:#6b7280}
+.flatpickr-calendar.light-theme .flatpickr-weekwrapper .flatpickr-weekday{border-right:1px solid var(--line)}
+.flatpickr-calendar.light-theme .flatpickr-weekwrapper .flatpickr-day{border:0}
 :root{--bg:#f5f4f8;--panel:#ffffff;--background-norm: #1b1340;--focus-outline: #6d4aff; --primary-minor-2: #f0edff; --interaction-default-hover: rgb(194 193 192 / 0.2); --interaction-norm: #6d4aff; --text-hint: #8067e4; --text-norm: #0c0c14; --ink:#0c0c14;--muted:#c2bfbc;--blue:rgb(103 232 249);--line:#e5e7eb;--primary:#6d4aff;--green:#22c55e;--violet:#9b8cff;--drawer-w:360px}
 *{box-sizing:border-box}
 html,body{height:100%}

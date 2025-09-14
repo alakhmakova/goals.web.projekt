@@ -13,11 +13,18 @@
       clickOpens: false,
       allowInput: false,
       dateFormat: 'M j, Y',
+      weekNumbers: true,
+      disableMobile: true,
+      locale: {
+        firstDayOfWeek: 1,
+        weekdays: { shorthand: ['S','M','T','W','T','F','S'] }
+      },
       onOpen: function(){
         const anchor = fp._anchor;
         if(!anchor) return;
         const r = anchor.getBoundingClientRect();
         const cal = fp.calendarContainer;
+        cal.classList.add('light-theme');
         cal.style.position = 'fixed';
         cal.style.left = Math.round(r.left) + 'px';
         cal.style.top = Math.round(r.bottom + 6) + 'px';
