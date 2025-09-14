@@ -1,31 +1,7 @@
-/* Removed old Flatpickr theme overrides (migrated to FlyonUI + Flatpickr default) */
-
-/* Calendar (Flatpickr) themed to match duotone variables */
-.flatpickr-calendar{border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.15);overflow:hidden;background:#fff;color:var(--text-norm);font-family:"Nunito",sans-serif}
-.flatpickr-months{background:#fff;color:var(--text-norm)}
-/* Lay out header: arrows left/right, month-year centered */
-.flatpickr-months .flatpickr-month{display:flex;align-items:center;justify-content:space-between;height:auto;padding:6px 8px}
-.flatpickr-current-month{padding:4px 0;display:flex;align-items:center;gap:8px;justify-content:center;flex:1}
-.flatpickr-current-month .cur-month{font-weight:800}
-.flatpickr-current-month .numInputWrapper{width:auto}
-.flatpickr-current-month .numInputWrapper input{color:var(--text-norm);font-weight:700}
-/* Arrows: spacing and violet hover */
-.flatpickr-prev-month,.flatpickr-next-month{position:static;display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;color:var(--text-norm)}
-.flatpickr-prev-month svg,.flatpickr-next-month svg{fill:currentColor}
-.flatpickr-prev-month:hover,.flatpickr-next-month:hover{background:var(--interaction-default-hover);color:var(--interaction-norm)}
-.flatpickr-weekdays{background:#fff}
-.flatpickr-weekday{color:var(--muted);font-weight:600}
-.flatpickr-weekwrapper{background:#fff}
-.flatpickr-weekwrapper .flatpickr-weeks{background:#fff;border-right:1px solid var(--line)}
-.flatpickr-day{border-radius:8px;border:1px solid transparent;color:var(--text-norm)}
-.flatpickr-day:hover{background:var(--interaction-default-hover)}
-.flatpickr-day.today{box-shadow:inset 0 0 0 2px var(--focus-outline)}
-.flatpickr-day.selected,.flatpickr-day.startRange,.flatpickr-day.endRange{background:var(--interaction-norm);color:var(--primary-contrast);border-color:var(--interaction-norm)}
-.flatpickr-day:focus{outline:2px solid var(--focus-outline);outline-offset:1px}
 :root{--bg:#f5f4f8;--panel:#ffffff;--background-norm: #1b1340;--focus-outline: #6d4aff; --primary-minor-2: #f0edff; --interaction-default-hover: rgb(194 193 192 / 0.2); --interaction-norm: #6d4aff; --text-hint: #8067e4; --text-norm: #0c0c14; --ink:#0c0c14;--muted:#c2bfbc;--blue:rgb(103 232 249);--line:#e5e7eb;--primary:#6d4aff;--green:#22c55e;--violet:#9b8cff;--drawer-w:360px}
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", sans-serif;}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", sans-serif;overflow-x: hidden;}
 
 .app{display:grid;grid-template-columns:1fr;grid-template-rows:56px 1fr;min-height:100%}
 .sidebar{display:none}

@@ -1,0 +1,103 @@
+.calendar-wrapper {
+    display: none;
+    position: absolute;
+    z-index: 2000;
+    margin-top: 4px;
+}
+
+.calendar {
+    width: 320px;
+    border: 1px solid #d1cfcd; /* border-norm */
+    border-radius: 6px;
+    background: #ffffff; /* background-norm */
+    box-shadow: 0 2px 8px rgba(109, 74, 255, 0.1); /* shadow-primary-color + shadow-norm-opacity */
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    padding: 8px;
+    color: #0c0c14; /* text-norm */
+}
+
+/* Заголовок */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    color: #0c0c14; /* text-norm */
+}
+
+.calendar-header .nav {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #6d4aff; /* interaction-norm */
+    transition: color 0.2s;
+}
+
+.calendar-header .nav:hover {
+    color: #6243e6; /* interaction-norm-major-1 */
+}
+
+.month-year {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-weight: bold;
+    color: #0c0c14; /* text-norm */
+}
+
+/* Дни недели */
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #eae7e4; /* border-weak */
+    padding-bottom: 4px;
+    color: #5c5958; /* text-weak */
+}
+
+/* Сетка дней */
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    color: #0c0c14; /* text-norm */
+}
+
+/* Hover */
+.day:hover {
+    background: rgba(194, 193, 192, 0.2); /* interaction-default-hover */
+}
+
+/* Выбранная дата */
+.day.selected {
+    background: #6d4aff; /* interaction-norm */
+    color: #ffffff; /* interaction-norm-contrast */
+    font-weight: bold;
+}
+
+/* Сегодня */
+.day.today {
+    border: 1px solid #6d4aff; /* interaction-norm */
+    font-weight: bold;
+    color: #6d4aff; /* interaction-norm */
+}
+
+/* Дни из других месяцев */
+.day.prev,
+.day.next {
+    color: #c2bfbc; /* text-disabled */
+}

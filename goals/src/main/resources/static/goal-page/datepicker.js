@@ -1,81 +1,115 @@
-(function(){
-  // Ensure dependencies exist
-  if(typeof window.flatpickr === 'undefined'){ return; }
+document.addEventListener("DOMContentLoaded", () => {
+  const monthNames = [
+    "January","February","March","April","May","June",
+    "July","August","September","October","November","December"
+  ];
 
-  // Helpers
-  function formatHuman(d){
-    try{ return d.toLocaleDateString(undefined,{month:'short', day:'numeric'}); }catch(e){ return ''; }
+  const calendarWrapper = document.querySelector(".calendar-wrapper");
+  const monthSelect = document.querySelector(".month");
+  const yearInput = document.querySelector(".year");
+  const daysContainer = document.querySelector(".calendar-days");
+  const prevBtn = document.querySelector(".nav.prev");
+  const nextBtn = document.querySelector(".nav.next");
+  const dueBtn = document.getElementById("due-toggle"); // ✅ совпадает с твоей кнопкой
+  const dueText = document.querySelector("#due-text");
+
+  // Заполняем селект месяцами
+  monthNames.forEach(m => {
+    const opt = document.createElement("option");
+    opt.textContent = m;
+    monthSelect.appendChild(opt);
+  });
+
+  function renderCalendar() {
+    const year = parseInt(yearInput.value, 10);
+    const month = monthNames.indexOf(monthSelect.value);
+
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const startDay = (firstDay.getDay() + 6) % 7; // чтобы неделя начиналась с Пн
+    const totalDays = lastDay.getDate();
+
+    daysContainer.innerHTML = "";
+
+    // Дни предыдущего месяца
+    const prevMonthLastDay = new Date(year, month, 0).getDate();
+    for (let i = startDay - 1; i >= 0; i--) {
+      const span = document.createElement("span");
+      span.className = "day prev";
+      span.textContent = prevMonthLastDay - i;
+      daysContainer.appendChild(span);
+    }
+
+    // Дни текущего месяца
+    for (let d = 1; d <= totalDays; d++) {
+      const span = document.createElement("span");
+      span.className = "day";
+      span.textContent = d;
+      span.addEventListener("click", () => {
+        const selectedDate = new Date(year, month, d);
+        const formatted = selectedDate.toLocaleDateString("sv-SE"); // YYYY-MM-DD
+        dueText.textContent = formatted;
+        calendarWrapper.style.display = "none";
+      });
+      daysContainer.appendChild(span);
+    }
+
+    // Дни следующего месяца (чтобы было 6 рядов)
+    const remaining = 42 - daysContainer.childNodes.length;
+    for (let d = 1; d <= remaining; d++) {
+      const span = document.createElement("span");
+      span.className = "day next";
+      span.textContent = d;
+      daysContainer.appendChild(span);
+    }
   }
 
-  // Initialize a hidden input-based flatpickr and open it near an anchor element
-  function createAnchorPicker(onSelect){
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.style.position = 'fixed';
-    input.style.left = '-9999px';
-    document.body.appendChild(input);
-    const fp = flatpickr(input, {
-      clickOpens: false,
-      allowInput: false,
-      dateFormat: 'Y-m-d',
-      disableMobile: true,
-      weekNumbers: true,
-      locale: { firstDayOfWeek: 1 },
-      onChange: function(sel){ if(sel && sel[0]) onSelect(sel[0]); }
-    });
-    return fp;
-  }
+  // Переключение месяцев
+  prevBtn.addEventListener("click", () => {
+    let idx = monthNames.indexOf(monthSelect.value);
+    let y = parseInt(yearInput.value, 10);
+    idx--; if (idx < 0) { idx = 11; y--; }
+    monthSelect.value = monthNames[idx];
+    yearInput.value = y;
+    renderCalendar();
+  });
 
-  function openPickerAt(fp, anchor, d){
-    // Set date without closing, then open and position calendar near anchor
-    fp.setDate(d || new Date(), false);
-    fp.open();
-    const cal = fp.calendarContainer;
-    const r = anchor.getBoundingClientRect();
-    cal.style.position = 'fixed';
-    cal.style.zIndex = '2000';
-    // Wait a tick for dimensions to settle, then clamp within viewport
-    requestAnimationFrame(function(){
-      const calW = cal.offsetWidth || 300;
-      const calH = cal.offsetHeight || 300;
-      const vW = window.innerWidth;
-      const vH = window.innerHeight;
-      // Prefer below; flip above if not enough space
-      const spaceBelow = vH - r.bottom;
-      const spaceAbove = r.top;
-      const openAbove = calH + 8 > spaceBelow && spaceAbove > spaceBelow;
-      const top = openAbove ? Math.max(8, Math.round(r.top - calH - 6)) : Math.min(vH - calH - 8, Math.round(r.bottom + 6));
-      const left = Math.max(8, Math.min(vW - calW - 8, Math.round(r.left)));
-      cal.style.top = top + 'px';
-      cal.style.left = left + 'px';
-    });
-  }
+  nextBtn.addEventListener("click", () => {
+    let idx = monthNames.indexOf(monthSelect.value);
+    let y = parseInt(yearInput.value, 10);
+    idx++; if (idx > 11) { idx = 0; y++; }
+    monthSelect.value = monthNames[idx];
+    yearInput.value = y;
+    renderCalendar();
+  });
 
-  // Due to button in header
-  const dueBtn = document.getElementById('due-toggle');
-  const dueText = document.getElementById('due-text');
-  if(dueBtn && dueText){
-    let dueDate = new Date(localStorage.getItem('goal_due') || Date.now());
-    dueText.textContent = formatHuman(dueDate);
+  monthSelect.addEventListener("change", renderCalendar);
+  yearInput.addEventListener("input", renderCalendar);
 
-    const duePicker = createAnchorPicker(function(d){
-      dueDate = d;
-      localStorage.setItem('goal_due', d.toISOString());
-      dueText.textContent = formatHuman(dueDate);
-    });
+  // Открытие календаря с авто-подстройкой
+  dueBtn.addEventListener("click", () => {
+    calendarWrapper.style.display = calendarWrapper.style.display === "none" ? "block" : "none";
 
-    dueBtn.addEventListener('click', function(e){
-      openPickerAt(duePicker, dueBtn, dueDate);
-      e.stopPropagation();
-    });
+    if (calendarWrapper.style.display === "block") {
+      const rect = dueBtn.getBoundingClientRect();
+      const calWidth = calendarWrapper.offsetWidth;
+      const viewportWidth = window.innerWidth;
 
-    // Close when clicking outside
-    document.addEventListener('click', function(ev){
-      const cal = document.querySelector('.flatpickr-calendar.open');
-      if(cal && !cal.contains(ev.target)){
-        cal._flatpickr && cal._flatpickr.close();
+      // позиция по умолчанию
+      calendarWrapper.style.top = rect.bottom + "px";
+      calendarWrapper.style.left = rect.left + "px";
+
+      // если не влезает вправо → сдвигаем влево
+      if (rect.left + calWidth > viewportWidth) {
+        calendarWrapper.style.left = (viewportWidth - calWidth - 10) + "px";
       }
-    });
-  }
-})();
 
+      renderCalendar();
+    }
+  });
+
+  // Первый запуск
+  monthSelect.value = monthNames[new Date().getMonth()];
+  yearInput.value = new Date().getFullYear();
+  renderCalendar();
+});
