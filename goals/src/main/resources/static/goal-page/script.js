@@ -214,6 +214,157 @@
     input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); input.blur(); } });
   });
 
+  // Tasks target interactions
+  (function(){
+    const rows = document.querySelectorAll('tr.t-row[data-type="tasks"]');
+    rows.forEach(row=>{
+      const nameCell = row.querySelector('.t-name');
+      const badge = nameCell ? nameCell.querySelector('.task-badge') : null;
+      const plus = nameCell ? nameCell.querySelector('.task-plus') : null;
+      const progressCell = row.querySelector('.t-progress .progress-cell[data-type="tasks"]');
+      if(!progressCell) return;
+
+      // build dropdown container
+      const dropdown = document.createElement('div');
+      dropdown.className = 'task-dropdown';
+      dropdown.hidden = true;
+      progressCell.appendChild(dropdown);
+
+      function readTasks(){
+        const list = progressCell.querySelector('.task-list');
+        const tasks = [];
+        list && list.querySelectorAll('li').forEach(li=>{
+          tasks.push({ name: li.textContent.trim(), done: li.classList.contains('done') });
+        });
+        return tasks;
+      }
+      function writeBadge(tasks){
+        if(badge) badge.textContent = String(tasks.length);
+      }
+      function updateProgress(tasks){
+        const total = tasks.length || 1; // avoid divide by zero; UI constraint will keep >=1
+        const done = tasks.filter(t=>t.done).length;
+        const pct = Math.round((done/total)*100);
+        const bar = progressCell.querySelector('.bar');
+        bar && (bar.style.width = pct + '%');
+        const val = progressCell.querySelector('.value');
+        val && (val.textContent = `${done}/${total}`);
+      }
+      function renderDropdown(tasks, editingNew){
+        dropdown.innerHTML = '';
+        const list = document.createElement('div');
+        tasks.forEach((t, idx)=>{
+          const item = document.createElement('div');
+          item.className = 'task-item';
+          const cb = document.createElement('input');
+          cb.type = 'checkbox';
+          cb.checked = t.done;
+          const name = document.createElement('div');
+          name.className = 'name';
+          name.textContent = t.name;
+          const actions = document.createElement('div');
+          actions.className = 'task-actions';
+          const commentBtn = document.createElement('button');
+          commentBtn.className = 'icon-btn';
+          commentBtn.innerHTML = '<i class="bi bi-chat" ></i>';
+          const editBtn = document.createElement('button');
+          editBtn.className = 'icon-btn';
+          editBtn.innerHTML = '<i class="bi bi-pencil"></i>';
+          const delBtn = document.createElement('button');
+          delBtn.className = 'icon-btn';
+          delBtn.innerHTML = '<i class="bi bi-x"></i>';
+
+          actions.appendChild(commentBtn);
+          actions.appendChild(editBtn);
+          actions.appendChild(delBtn);
+          item.appendChild(cb);
+          item.appendChild(name);
+          item.appendChild(actions);
+          dropdown.appendChild(item);
+
+          cb.addEventListener('change', ()=>{ t.done = cb.checked; updateProgress(tasks); });
+          editBtn.addEventListener('click', ()=>{
+            name.setAttribute('contenteditable','true');
+            name.focus();
+            const onBlur = ()=>{
+              const v = (name.textContent||'').trim();
+              if(!v){ name.textContent = t.name; } else { t.name = v; }
+              name.removeAttribute('contenteditable');
+              name.removeEventListener('blur', onBlur);
+              updateProgress(tasks);
+            };
+            name.addEventListener('blur', onBlur);
+          });
+          delBtn.addEventListener('click', ()=>{
+            if(tasks.length<=1){ alert('At least one task must remain.'); return; }
+            if(!confirm('Delete this task? This action cannot be undone.')) return;
+            tasks.splice(idx,1);
+            renderDropdown(tasks);
+            writeBadge(tasks);
+            updateProgress(tasks);
+          });
+          commentBtn.addEventListener('click', ()=>{
+            const input = document.getElementById('new-comment-text');
+            input && input.focus();
+            input && input.scrollIntoView({behavior:'smooth', block:'end'});
+            const send = document.getElementById('send-comment');
+            send && send.classList.add('active');
+            send && (send.disabled=false);
+          });
+        });
+
+        // new task row
+        const newRow = document.createElement('div');
+        newRow.className = 'task-item';
+        const spacer = document.createElement('div'); spacer.style.width='16px';
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = 'New task name';
+        input.className = 'name-input';
+        const addBtn = document.createElement('button');
+        addBtn.className = 'btn primary';
+        addBtn.textContent = 'Add';
+        newRow.appendChild(spacer);
+        newRow.appendChild(input);
+        newRow.appendChild(addBtn);
+        dropdown.appendChild(newRow);
+
+        function addNew(){
+          const v = (input.value||'').trim();
+          if(!v){ input.focus(); return; }
+          tasks.push({name:v, done:false});
+          input.value='';
+          renderDropdown(tasks);
+          writeBadge(tasks);
+          updateProgress(tasks);
+        }
+        addBtn.addEventListener('click', addNew);
+        input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); addNew(); } });
+      }
+
+      // initial state
+      let tasks = readTasks();
+      writeBadge(tasks);
+      updateProgress(tasks);
+
+      function toggleDropdown(show){
+        dropdown.hidden = show===undefined ? !dropdown.hidden : !show ? true : false;
+      }
+      badge && badge.addEventListener('click', (e)=>{ toggleDropdown(true); e.stopPropagation(); });
+      plus && plus.addEventListener('click', (e)=>{ toggleDropdown(true); e.stopPropagation(); });
+      document.addEventListener('click', (e)=>{
+        if(dropdown.hidden) return;
+        if(!row.contains(e.target)) dropdown.hidden = true;
+      });
+
+      // render content whenever opened
+      const observer = new MutationObserver(()=>{
+        if(!dropdown.hidden){ renderDropdown(tasks); }
+      });
+      observer.observe(dropdown, { attributes:true, attributeFilter:['hidden'] });
+    });
+  })();
+
   // Deadline date picking handled by Flatpickr in calendar.js
 
   // Note button -> focus new comment composer with target name (as author)
