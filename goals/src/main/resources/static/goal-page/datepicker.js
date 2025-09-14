@@ -94,15 +94,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const rect = dueBtn.getBoundingClientRect();
       const calWidth = calendarWrapper.offsetWidth;
       const viewportWidth = window.innerWidth;
+      const margin = 10; // safe viewport margin
+      const offsetLeft = 16; // shift a bit to the left as requested
 
-      // позиция по умолчанию
-      calendarWrapper.style.top = rect.bottom + "px";
-      calendarWrapper.style.left = rect.left + "px";
+      // базовая позиция (учитываем скролл страницы)
+      const baseTop = rect.bottom + window.scrollY;
+      let left = rect.left + window.scrollX - offsetLeft;
 
-      // если не влезает вправо → сдвигаем влево
-      if (rect.left + calWidth > viewportWidth) {
-        calendarWrapper.style.left = (viewportWidth - calWidth - 10) + "px";
-      }
+      // клампим по горизонтали, чтобы календарь поместился полностью
+      const maxLeft = viewportWidth + window.scrollX - calWidth - margin;
+      const minLeft = window.scrollX + margin;
+      left = Math.max(minLeft, Math.min(maxLeft, left));
+
+      calendarWrapper.style.top = baseTop + "px";
+      calendarWrapper.style.left = left + "px";
 
       renderCalendar();
     }
