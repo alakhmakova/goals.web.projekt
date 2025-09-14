@@ -124,15 +124,21 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .t-progress .progress{height:10px;background:#eef2f7;border-radius:999px;overflow:hidden}
 .t-progress .bar{height:100%;background:#9ca3af}
 .t-progress .bar.violet{background:var(--violet)}
-.t-progress .task-dropdown{position:absolute;left:0;top:24px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:10px;min-width:320px;z-index:10}
-.t-progress .task-dropdown[hidden]{display:none}
-.t-progress .task-item{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #f3f4f6}
-.t-progress .task-item:last-child{border-bottom:0}
-.t-progress .task-item .name{flex:1}
-.t-progress .task-item .name[contenteditable="true"]{border:1px solid var(--line);border-radius:8px;padding:4px 6px;outline:none}
-.t-progress .task-actions{display:flex;gap:6px}
-.t-progress .task-actions .icon-btn{color:var(--ink);font-size:16px}
-.t-progress .task-actions .icon-btn:hover{color:var(--primary)}
+/* Tasks progress uses primary color */
+.t-row[data-type="tasks"] .t-progress .bar{background:var(--primary)}
+/* Full-width expandable tasks panel */
+.tasks-panel-row[hidden]{display:none}
+.tasks-panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:8px}
+.tasks-panel .task-list-ui{display:flex;flex-direction:column;gap:8px}
+.tasks-panel .task-row{display:grid;grid-template-columns:24px 1fr auto;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid #f3f4f6}
+.tasks-panel .task-row:last-child{border-bottom:0}
+.tasks-panel .task-row .name{min-height:24px}
+.tasks-panel .task-row .name[contenteditable="true"]{border:1px solid var(--line);border-radius:8px;padding:4px 6px;outline:none}
+.tasks-panel .actions{display:flex;gap:6px}
+.tasks-panel .actions .icon-btn{color:var(--ink);font-size:16px}
+.tasks-panel .actions .icon-btn:hover{color:var(--primary)}
+.tasks-panel .new-task{display:flex;gap:8px;margin-top:8px}
+.tasks-panel .new-task input{flex:1;border:1px solid var(--line);border-radius:8px;padding:8px}
 
 /* Segmented toggle (Success) */
 .seg-toggle{position:relative;display:inline-grid;grid-template-columns:1fr 1fr;align-items:center;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:12px;color:var(--text-norm)}

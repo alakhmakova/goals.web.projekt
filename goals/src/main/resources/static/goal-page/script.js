@@ -222,13 +222,12 @@
       const badge = nameCell ? nameCell.querySelector('.task-badge') : null;
       const plus = nameCell ? nameCell.querySelector('.task-plus') : null;
       const progressCell = row.querySelector('.t-progress .progress-cell[data-type="tasks"]');
-      if(!progressCell) return;
-
-      // build dropdown container
-      const dropdown = document.createElement('div');
-      dropdown.className = 'task-dropdown';
-      dropdown.hidden = true;
-      progressCell.appendChild(dropdown);
+      const panelRow = row.nextElementSibling && row.nextElementSibling.classList.contains('tasks-panel-row') ? row.nextElementSibling : null;
+      if(!progressCell || !panelRow) return;
+      const panel = panelRow.querySelector('.tasks-panel');
+      const listUi = panel.querySelector('.task-list-ui');
+      const newInput = panel.querySelector('.new-task-input');
+      const addBtn = panel.querySelector('.add-task-btn');
 
       function readTasks(){
         const list = progressCell.querySelector('.task-list');
@@ -250,12 +249,11 @@
         const val = progressCell.querySelector('.value');
         val && (val.textContent = `${done}/${total}`);
       }
-      function renderDropdown(tasks, editingNew){
-        dropdown.innerHTML = '';
-        const list = document.createElement('div');
+      function renderPanel(tasks){
+        listUi.innerHTML = '';
         tasks.forEach((t, idx)=>{
           const item = document.createElement('div');
-          item.className = 'task-item';
+          item.className = 'task-row';
           const cb = document.createElement('input');
           cb.type = 'checkbox';
           cb.checked = t.done;
@@ -263,7 +261,7 @@
           name.className = 'name';
           name.textContent = t.name;
           const actions = document.createElement('div');
-          actions.className = 'task-actions';
+          actions.className = 'actions';
           const commentBtn = document.createElement('button');
           commentBtn.className = 'icon-btn';
           commentBtn.innerHTML = '<i class="bi bi-chat" ></i>';
@@ -280,7 +278,7 @@
           item.appendChild(cb);
           item.appendChild(name);
           item.appendChild(actions);
-          dropdown.appendChild(item);
+          listUi.appendChild(item);
 
           cb.addEventListener('change', ()=>{ t.done = cb.checked; updateProgress(tasks); });
           editBtn.addEventListener('click', ()=>{
@@ -313,33 +311,17 @@
           });
         });
 
-        // new task row
-        const newRow = document.createElement('div');
-        newRow.className = 'task-item';
-        const spacer = document.createElement('div'); spacer.style.width='16px';
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.placeholder = 'New task name';
-        input.className = 'name-input';
-        const addBtn = document.createElement('button');
-        addBtn.className = 'btn primary';
-        addBtn.textContent = 'Add';
-        newRow.appendChild(spacer);
-        newRow.appendChild(input);
-        newRow.appendChild(addBtn);
-        dropdown.appendChild(newRow);
-
         function addNew(){
-          const v = (input.value||'').trim();
+          const v = (newInput.value||'').trim();
           if(!v){ input.focus(); return; }
           tasks.push({name:v, done:false});
-          input.value='';
-          renderDropdown(tasks);
+          newInput.value='';
+          renderPanel(tasks);
           writeBadge(tasks);
           updateProgress(tasks);
         }
         addBtn.addEventListener('click', addNew);
-        input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); addNew(); } });
+        newInput.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); addNew(); } });
       }
 
       // initial state
@@ -347,21 +329,20 @@
       writeBadge(tasks);
       updateProgress(tasks);
 
-      function toggleDropdown(show){
-        dropdown.hidden = show===undefined ? !dropdown.hidden : !show ? true : false;
+      function togglePanel(forceOpen){
+        const wantOpen = forceOpen===true ? true : forceOpen===false ? false : panelRow.hasAttribute('hidden');
+        if(wantOpen){ panelRow.removeAttribute('hidden'); renderPanel(tasks); }
+        else { panelRow.setAttribute('hidden',''); }
       }
-      badge && badge.addEventListener('click', (e)=>{ toggleDropdown(true); e.stopPropagation(); });
-      plus && plus.addEventListener('click', (e)=>{ toggleDropdown(true); e.stopPropagation(); });
+      badge && badge.addEventListener('click', (e)=>{ togglePanel(true); e.stopPropagation(); });
+      plus && plus.addEventListener('click', (e)=>{ togglePanel(true); e.stopPropagation(); });
       document.addEventListener('click', (e)=>{
-        if(dropdown.hidden) return;
-        if(!row.contains(e.target)) dropdown.hidden = true;
+        if(panelRow.hasAttribute('hidden')) return;
+        if(!row.contains(e.target) && !panelRow.contains(e.target)) togglePanel(false);
       });
-
-      // render content whenever opened
-      const observer = new MutationObserver(()=>{
-        if(!dropdown.hidden){ renderDropdown(tasks); }
-      });
-      observer.observe(dropdown, { attributes:true, attributeFilter:['hidden'] });
+      // Ensure re-render when opened
+      const observer = new MutationObserver(()=>{ if(!panelRow.hasAttribute('hidden')) renderPanel(tasks); });
+      observer.observe(panelRow, { attributes:true, attributeFilter:['hidden'] });
     });
   })();
 
