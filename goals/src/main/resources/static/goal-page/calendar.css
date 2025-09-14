@@ -8,20 +8,21 @@
 .calendar {
     width: 320px;
     border: 1px solid #d1cfcd; /* border-norm */
-    border-radius: 6px;
+    border-radius: 10px;
     background: #ffffff; /* background-norm */
-    box-shadow: 0 2px 8px rgba(109, 74, 255, 0.1); /* shadow-primary-color + shadow-norm-opacity */
-    font-family: Arial, sans-serif;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    font-family: "Nunito", sans-serif;
     font-size: 14px;
-    padding: 8px;
+    padding: 10px;
     color: #0c0c14; /* text-norm */
 }
 
 /* Заголовок */
 .calendar-header {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 28px 1fr 28px;
     align-items: center;
+    gap: 8px;
     margin-bottom: 8px;
     color: #0c0c14; /* text-norm */
 }
@@ -32,20 +33,35 @@
     cursor: pointer;
     font-size: 18px;
     color: #6d4aff; /* interaction-norm */
-    transition: color 0.2s;
+    transition: color 0.2s, background 0.2s;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
 }
 
-.calendar-header .nav:hover {
-    color: #6243e6; /* interaction-norm-major-1 */
-}
+.calendar-header .nav:hover { color: #6243e6; background: rgba(194, 193, 192, 0.2); }
 
 .month-year {
-    display: flex;
-    gap: 6px;
+    display: inline-flex;
+    gap: 8px;
     align-items: center;
-    font-weight: bold;
+    justify-content: center;
+    font-weight: 800;
     color: #0c0c14; /* text-norm */
 }
+.month-year select.month, .month-year .year {
+    font-family: "Nunito", sans-serif;
+    font-weight: 700;
+    padding: 4px 6px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    color: #0c0c14;
+}
+.month-year select.month:hover, .month-year .year:hover { border-color: #d1d5db; }
 
 /* Дни недели */
 .calendar-weekdays {

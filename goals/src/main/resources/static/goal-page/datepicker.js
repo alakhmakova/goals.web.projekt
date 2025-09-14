@@ -47,8 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
       span.textContent = d;
       span.addEventListener("click", () => {
         const selectedDate = new Date(year, month, d);
-        const formatted = selectedDate.toLocaleDateString("sv-SE"); // YYYY-MM-DD
-        dueText.textContent = formatted;
+        const formattedHuman = selectedDate.toLocaleDateString(undefined,{month:'short', day:'numeric'});
+        dueText.textContent = formattedHuman;
         calendarWrapper.style.display = "none";
       });
       daysContainer.appendChild(span);
