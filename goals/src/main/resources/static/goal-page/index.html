@@ -52,9 +52,9 @@
 
       <header class="topbar">
         <div class="crumbs">
-          <button class="icon-btn menu-btn" aria-label="Menu"><i class="bi bi-list"></i></button>
-          <i class="bi bi-rocket"></i>
-          <a href="#" class="back">All Goals <i class="bi bi-chevron-right"></i></a>
+          <button class="icon-btn menu-btn" aria-label="Menu"><span class="material-symbols-outlined">menu</span></button>
+          <span class="material-symbols-outlined">rocket_launch</span>
+          <a href="#" class="back">All Goals <span class="material-symbols-outlined">chevron_right</span></a>
         </div>
         <div class="top-actions">
           <span class="created-label"><span class="muted">Created</span> <span id="created-text">Today</span></span>
@@ -150,13 +150,13 @@
           <div class="goal-head">
             <h1>Hitta LIA plats</h1>
             <div class="goal-menu">
-              <button class="kebab" aria-haspopup="true" aria-expanded="false"><i class="bi bi-three-dots"></i></button>
+              <button class="kebab" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined">more_vert</span></button>
               <div class="dropdown">
-                <button data-action="rename"><i class="bi bi-pencil"></i> Rename</button>
-                <button data-action="color"><i class="bi bi-palette2"></i> Change color</button>
-                <button data-action="move"><i class="bi bi-folder-symlink"></i> Move to Folder</button>
-                <button data-action="archive"><i class="bi bi-archive"></i> Archive</button>
-                <button class="danger" data-action="delete"><i class="bi bi-trash3"></i> Delete</button>
+                <button data-action="rename"><span class="material-symbols-outlined">edit</span> Rename</button>
+                <button data-action="color"><span class="material-symbols-outlined">palette</span> Change color</button>
+                <button data-action="move"><span class="material-symbols-outlined">drive_file_move</span> Move to Folder</button>
+                <button data-action="archive"><span class="material-symbols-outlined">archive</span> Archive</button>
+                <button class="danger" data-action="delete"><span class="material-symbols-outlined">delete</span> Delete</button>
               </div>
             </div>
           </div>
@@ -165,7 +165,7 @@
             <div class="faq-head"><h3>Description</h3></div>
             <ul class="grow-list">
               <li class="grow-item reality" data-key="reality" data-open="false">
-                <div class="row"><span class="title">Reality</span><span class="material-symbols-outlined add-rich" aria-expanded="false">add_circle</span></div>
+                <div class="row"><span class="title">Reality</span><span class="material-symbols-outlined add-rich" aria-expanded="false">add</span></div>
                 <div class="rich-editor" hidden>
                   <div class="toolbar">
                     <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
@@ -180,7 +180,7 @@
               </li>
 
               <li class="grow-item options" data-key="options" data-open="false">
-                <div class="row"><span class="title">Options</span><span class="material-symbols-outlined add-rich" aria-expanded="false">add_circle</span></div>
+                <div class="row"><span class="title">Options</span><span class="material-symbols-outlined add-rich" aria-expanded="false">add</span></div>
                 <div class="rich-editor" hidden>
                   <div class="toolbar">
                     <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
@@ -195,7 +195,7 @@
               </li>
 
               <li class="grow-item will" data-key="will" data-open="false">
-                <div class="row"><span class="title">Will</span><span class="material-symbols-outlined add-rich" aria-expanded="false">add_circle</span></div>
+                <div class="row"><span class="title">Will</span><span class="material-symbols-outlined add-rich" aria-expanded="false">add</span></div>
                 <div class="rich-editor" hidden>
                   <div class="toolbar">
                     <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
@@ -210,7 +210,7 @@
               </li>
 
               <li class="grow-item resources" data-key="resources" data-open="false">
-                <div class="row"><span class="title">Resources</span><span class="material-symbols-outlined add-rich" aria-expanded="false">add_circle</span></div>
+                <div class="row"><span class="title">Resources</span><span class="material-symbols-outlined add-rich" aria-expanded="false">add</span></div>
                 <div class="rich-editor" hidden>
                   <div class="toolbar">
                     <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
@@ -257,7 +257,7 @@
                     <div class="meta bottom-right"><span class="value">0(136)/200</span></div>
                   </div>
                 </td>
-                <td class="t-actions"><button class="icon-btn del-btn" title="Delete"><i class="bi bi-trash"></i></button></td>
+                <td class="t-actions"><button class="icon-btn del-btn" title="Delete"><span class="material-symbols-outlined">delete</span></button></td>
               </tr>
 
               <tr data-type="success" class="t-row">
@@ -273,11 +273,11 @@
                     <span class="seg right">done</span>
                   </label>
                 </td>
-                <td class="t-actions"><button class="icon-btn del-btn" title="Delete"><i class="bi bi-trash"></i></button></td>
+                <td class="t-actions"><button class="icon-btn del-btn" title="Delete"><span class="material-symbols-outlined">delete</span></button></td>
               </tr>
 
               <tr data-type="tasks" class="t-row">
-                <td class="t-name"><span class="name-view">AI Agent to send messages</span><input class="name-input" type="text" value="AI Agent to send messages" /><span class="task-badge" title="Show tasks">5</span><button class="icon-btn task-plus" title="Add task"><i class="bi bi-plus"></i></button></td>
+                <td class="t-name"><span class="name-view">AI Agent to send messages</span><input class="name-input" type="text" value="AI Agent to send messages" /><span class="task-badge" title="Show tasks">5</span><button class="icon-btn task-plus" title="Add task"><span class="material-symbols-outlined">add</span></button></td>
                 <td>Aug 12</td>
                 <td class="deadline-cell" data-date="2025-09-30">Sep 30</td>
                 <td><button class="note-btn">Note</button></td>
@@ -295,7 +295,7 @@
                     </ul>
                   </div>
                 </td>
-                <td class="t-actions"><button class="icon-btn del-btn" title="Delete"><i class="bi bi-trash"></i></button></td>
+                <td class="t-actions"><button class="icon-btn del-btn" title="Delete"><span class="material-symbols-outlined">delete</span></button></td>
               </tr>
               <!-- Expandable full-width tasks panel (inserted after the tasks row) -->
               <tr class="tasks-panel-row" hidden>
@@ -324,10 +324,10 @@
                     <div class="c-author">Anastasiya</div>
                     <div class="c-time">Yesterday</div>
                     <div class="c-menu">
-                      <button class="kebab"><i class="bi bi-three-dots"></i></button>
+                      <button class="kebab"><span class="material-symbols-outlined">more_vert</span></button>
                       <div class="dropdown">
-                        <button data-edit><i class="bi bi-pencil"></i> Edit</button>
-                        <button class="danger" data-delete><i class="bi bi-trash3"></i> Delete</button>
+                        <button data-edit><span class="material-symbols-outlined">edit</span> Edit</button>
+                        <button class="danger" data-delete><span class="material-symbols-outlined">delete</span> Delete</button>
                       </div>
                     </div>
                   </div>
@@ -336,8 +336,8 @@
                     <textarea class="comment-input" rows="2"></textarea>
                   </div>
                   <div class="c-actions">
-                    <button class="c-like"><i class="bi bi-hand-thumbs-up"></i> Like</button>
-                    <button class="c-reply"><i class="bi bi-reply"></i> Reply</button>
+                    <button class="c-like"><span class="material-symbols-outlined">thumb_up</span> Like</button>
+                    <button class="c-reply"><span class="material-symbols-outlined">reply</span> Reply</button>
                   </div>
                   <div class="c-reply-box">
                     <textarea class="reply-input" rows="2" placeholder="Write a reply..."></textarea>
@@ -355,10 +355,10 @@
                     <div class="c-author">Anastasiya</div>
                     <div class="c-time">Yesterday</div>
                     <div class="c-menu">
-                      <button class="kebab"><i class="bi bi-three-dots"></i></button>
+                      <button class="kebab"><span class="material-symbols-outlined">more_vert</span></button>
                       <div class="dropdown">
-                        <button data-edit><i class="bi bi-pencil"></i> Edit</button>
-                        <button class="danger" data-delete><i class="bi bi-trash3"></i> Delete</button>
+                        <button data-edit><span class="material-symbols-outlined">edit</span> Edit</button>
+                        <button class="danger" data-delete><span class="material-symbols-outlined">delete</span> Delete</button>
                       </div>
                     </div>
                   </div>
@@ -367,8 +367,8 @@
                     <textarea class="comment-input" rows="2"></textarea>
                   </div>
                   <div class="c-actions">
-                    <button class="c-like"><i class="bi bi-hand-thumbs-up"></i> Like</button>
-                    <button class="c-reply"><i class="bi bi-reply"></i> Reply</button>
+                    <button class="c-like"><span class="material-symbols-outlined">thumb_up</span> Like</button>
+                    <button class="c-reply"><span class="material-symbols-outlined">reply</span> Reply</button>
                   </div>
                   <div class="c-reply-box">
                     <textarea class="reply-input" rows="2" placeholder="Write a reply..."></textarea>
@@ -386,10 +386,10 @@
                     <div class="c-author">Anastasiya</div>
                     <div class="c-time">Yesterday</div>
                     <div class="c-menu">
-                      <button class="kebab"><i class="bi bi-three-dots"></i></button>
+                      <button class="kebab"><span class="material-symbols-outlined">more_vert</span></button>
                       <div class="dropdown">
-                        <button data-edit><i class="bi bi-pencil"></i> Edit</button>
-                        <button class="danger" data-delete><i class="bi bi-trash3"></i> Delete</button>
+                        <button data-edit><span class="material-symbols-outlined">edit</span> Edit</button>
+                        <button class="danger" data-delete><span class="material-symbols-outlined">delete</span> Delete</button>
                       </div>
                     </div>
                   </div>
@@ -398,8 +398,8 @@
                     <textarea class="comment-input" rows="2"></textarea>
                   </div>
                   <div class="c-actions">
-                    <button class="c-like"><i class="bi bi-hand-thumbs-up"></i> Like</button>
-                    <button class="c-reply"><i class="bi bi-reply"></i> Reply</button>
+                    <button class="c-like"><span class="material-symbols-outlined">thumb_up</span> Like</button>
+                    <button class="c-reply"><span class="material-symbols-outlined">reply</span> Reply</button>
                   </div>
                   <div class="c-reply-box">
                     <textarea class="reply-input" rows="2" placeholder="Write a reply..."></textarea>
