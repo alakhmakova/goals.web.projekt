@@ -2,6 +2,7 @@
   if(!window.flatpickr) return;
 
   function fmt(d){ return d.toLocaleDateString(undefined,{month:'short', day:'numeric'}); }
+
   function createPicker(onChange){
     const input = document.createElement('input');
     input.type = 'text';
@@ -12,18 +13,23 @@
       clickOpens: false,
       allowInput: false,
       dateFormat: 'M j, Y',
+      onOpen: function(){
+        const anchor = fp._anchor;
+        if(!anchor) return;
+        const r = anchor.getBoundingClientRect();
+        const cal = fp.calendarContainer;
+        cal.style.position = 'fixed';
+        cal.style.left = Math.round(r.left) + 'px';
+        cal.style.top = Math.round(r.bottom + 6) + 'px';
+        cal.style.zIndex = '1000';
+      },
       onChange: function(selected){ if(selected && selected[0]) onChange(selected[0]); }
     });
     return fp;
   }
   function openAt(fp, anchor, defaultDate){
+    fp._anchor = anchor;
     fp.setDate(defaultDate, false);
-    const r = anchor.getBoundingClientRect();
-    const cal = fp.calendarContainer;
-    cal.style.position = 'fixed';
-    cal.style.left = Math.round(r.left) + 'px';
-    cal.style.top = Math.round(r.bottom + 6) + 'px';
-    cal.style.zIndex = '1000';
     fp.open();
   }
 
@@ -35,7 +41,7 @@
   const duePicker = createPicker((d)=>{
     dueDate = d;
     localStorage.setItem('goal_due', d.toISOString());
-    dueText.textContent = fmt(d);
+    dueText.textContent = fmt(dueDate);
   });
   dueBtn && dueBtn.addEventListener('click', (e)=>{ openAt(duePicker, dueBtn, dueDate); e.stopPropagation(); });
 
@@ -50,7 +56,11 @@
     cell.addEventListener('click', (e)=>{ openAt(picker, cell, d); e.stopPropagation(); });
   });
 
-  document.addEventListener('click', ()=>{
-    document.querySelectorAll('.flatpickr-calendar').forEach(c=>{ c._flatpickr && c._flatpickr.close(); });
+  document.addEventListener('click', (ev)=>{
+    // close any open picker only if click outside calendar
+    const calOpen = document.querySelector('.flatpickr-calendar.open');
+    if(calOpen && !calOpen.contains(ev.target)){
+      calOpen._flatpickr && calOpen._flatpickr.close();
+    }
   });
 })();
