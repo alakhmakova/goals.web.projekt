@@ -237,19 +237,31 @@
             <thead>
               <tr>
                 <th>Target</th>
-                <th>Created</th>
                 <th>Deadline</th>
-                <th>Note</th>
                 <th>Progress</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
-              <tr data-type="number" class="t-row">
-                <td class="t-name"><span class="name-view">Skicka ansökningar</span><input class="name-input" type="text" value="Skicka ansökningar" /></td>
-                <td>Aug 9</td>
+              <tr data-type="number" class="t-row" data-created="Aug 9">
+                <td class="t-name">
+                  <div class="t-name-wrap">
+                    <span class="name-view">Skicka ansökningar</span>
+                    <div class="t-menu">
+                      <button class="kebab" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined">more_vert</span></button>
+                      <div class="dropdown">
+                        <button data-rename><span class="material-symbols-outlined">edit</span> Rename</button>
+                        <button data-deadline><span class="material-symbols-outlined">event</span> Change deadline</button>
+                        <button data-note><span class="material-symbols-outlined">note_add</span> Take a note</button>
+                        <button class="danger" data-delete><span class="material-symbols-outlined">delete</span> Delete</button>
+                        <hr class="menu-sep"/>
+                        <div class="menu-created"><span class="muted small">Created</span> <span class="created-date">Aug 9</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="deadline-mobile small muted">Oct 1</div>
+                  <input class="name-input" type="text" value="Skicka ansökningar" />
+                </td>
                 <td class="deadline-cell" data-date="2025-10-01">Oct 1</td>
-                <td><button class="note-btn">Note</button></td>
                 <td class="t-progress">
                   <div class="progress-cell clickable" data-type="number" data-unit="ansökningar" data-start="0" data-current="136" data-target="200">
                     <div class="meta top-left">ansökningar</div>
@@ -257,14 +269,28 @@
                     <div class="meta bottom-right"><span class="value">0(136)/200</span></div>
                   </div>
                 </td>
-                <td class="t-actions"><button class="icon-btn del-btn" title="Delete"><span class="material-symbols-outlined">delete</span></button></td>
               </tr>
 
-              <tr data-type="success" class="t-row">
-                <td class="t-name"><span class="name-view">Formuläret</span><input class="name-input" type="text" value="Formuläret" /></td>
-                <td>Aug 9</td>
+              <tr data-type="success" class="t-row" data-created="Aug 9">
+                <td class="t-name">
+                  <div class="t-name-wrap">
+                    <span class="name-view">Formuläret</span>
+                    <div class="t-menu">
+                      <button class="kebab" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined">more_vert</span></button>
+                      <div class="dropdown">
+                        <button data-rename><span class="material-symbols-outlined">edit</span> Rename</button>
+                        <button data-deadline><span class="material-symbols-outlined">event</span> Change deadline</button>
+                        <button data-note><span class="material-symbols-outlined">note_add</span> Take a note</button>
+                        <button class="danger" data-delete><span class="material-symbols-outlined">delete</span> Delete</button>
+                        <hr class="menu-sep"/>
+                        <div class="menu-created"><span class="muted small">Created</span> <span class="created-date">Aug 9</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="deadline-mobile small muted">Aug 10</div>
+                  <input class="name-input" type="text" value="Formuläret" />
+                </td>
                 <td class="deadline-cell" data-date="2025-08-10">Aug 10</td>
-                <td><button class="note-btn">Note</button></td>
                 <td class="t-progress">
                   <label class="seg-toggle">
                     <input class="seg-input" type="checkbox" />
@@ -273,14 +299,30 @@
                     <span class="seg right">done</span>
                   </label>
                 </td>
-                <td class="t-actions"><button class="icon-btn del-btn" title="Delete"><span class="material-symbols-outlined">delete</span></button></td>
               </tr>
 
-              <tr data-type="tasks" class="t-row">
-                <td class="t-name"><span class="name-view">AI Agent to send messages</span><input class="name-input" type="text" value="AI Agent to send messages" /><span class="task-badge" title="Show tasks">5</span><button class="icon-btn task-plus" title="Add task"><span class="material-symbols-outlined">add</span></button></td>
-                <td>Aug 12</td>
+              <tr data-type="tasks" class="t-row" data-created="Aug 12">
+                <td class="t-name">
+                  <div class="t-name-wrap">
+                    <span class="name-view">AI Agent to send messages</span>
+                    <span class="task-badge" title="Show tasks">5</span>
+                    <button class="icon-btn task-plus" title="Add task"><span class="material-symbols-outlined">add</span></button>
+                    <div class="t-menu">
+                      <button class="kebab" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined">more_vert</span></button>
+                      <div class="dropdown">
+                        <button data-rename><span class="material-symbols-outlined">edit</span> Rename</button>
+                        <button data-deadline><span class="material-symbols-outlined">event</span> Change deadline</button>
+                        <button data-note><span class="material-symbols-outlined">note_add</span> Take a note</button>
+                        <button class="danger" data-delete><span class="material-symbols-outlined">delete</span> Delete</button>
+                        <hr class="menu-sep"/>
+                        <div class="menu-created"><span class="muted small">Created</span> <span class="created-date">Aug 12</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="deadline-mobile small muted">Sep 30</div>
+                  <input class="name-input" type="text" value="AI Agent to send messages" />
+                </td>
                 <td class="deadline-cell" data-date="2025-09-30">Sep 30</td>
-                <td><button class="note-btn">Note</button></td>
                 <td class="t-progress">
                   <div class="progress-cell" data-type="tasks">
                     <div class="meta top-left">tasks</div>
@@ -295,7 +337,6 @@
                     </ul>
                   </div>
                 </td>
-                <td class="t-actions"><button class="icon-btn del-btn" title="Delete"><span class="material-symbols-outlined">delete</span></button></td>
               </tr>
               <!-- Expandable full-width tasks panel (inserted after the tasks row) -->
               <tr class="tasks-panel-row" hidden>

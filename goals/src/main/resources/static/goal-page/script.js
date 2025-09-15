@@ -223,6 +223,59 @@
     input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); input.blur(); } });
   });
 
+  // Kebab menu for each target name
+  document.querySelectorAll('.t-name .t-menu .kebab').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      const wrap = e.currentTarget.closest('.t-menu');
+      const dd = wrap.querySelector('.dropdown');
+      const open = dd && dd.style.display === 'block';
+      document.querySelectorAll('.t-name .t-menu .dropdown').forEach(d=> d.style.display='none');
+      if(dd) dd.style.display = open ? 'none' : 'block';
+      e.stopPropagation();
+    });
+  });
+  document.addEventListener('click', ()=> document.querySelectorAll('.t-name .t-menu .dropdown').forEach(d=> d.style.display='none'));
+
+  // Menu actions
+  document.querySelectorAll('.t-name .t-menu .dropdown').forEach(dd=>{
+    const tr = dd.closest('tr');
+    const nameCell = tr.querySelector('.t-name');
+    const deadlineCell = tr.querySelector('.deadline-cell');
+    // rename -> into inline edit
+    const renameBtn = dd.querySelector('[data-rename]');
+    renameBtn && renameBtn.addEventListener('click', ()=>{
+      const input = nameCell.querySelector('.name-input');
+      nameCell.classList.add('editing');
+      input && input.focus();
+      dd.style.display='none';
+    });
+    // change deadline -> trigger flatpickr
+    const deadlineBtn = dd.querySelector('[data-deadline]');
+    deadlineBtn && deadlineBtn.addEventListener('click', ()=>{
+      const input = deadlineCell && deadlineCell.querySelector('input');
+      if(input){ input.focus(); input.dispatchEvent(new Event('click',{bubbles:true})); }
+      dd.style.display='none';
+    });
+    // note -> focus composer
+    const noteBtn = dd.querySelector('[data-note]');
+    noteBtn && noteBtn.addEventListener('click', ()=>{
+      const input = document.getElementById('new-comment-text');
+      input && input.focus();
+      input && input.scrollIntoView({behavior:'smooth', block:'end'});
+      const send = document.getElementById('send-comment');
+      send && send.classList.add('active');
+      send && (send.disabled=false);
+      dd.style.display='none';
+    });
+    // delete -> reuse existing modal
+    const delBtn = dd.querySelector('[data-delete]');
+    delBtn && delBtn.addEventListener('click', ()=>{
+      const deleteModal = document.getElementById('delete-modal');
+      deleteModal && deleteModal.setAttribute('aria-hidden','false');
+      dd.style.display='none';
+    });
+  });
+
   // Tasks target interactions
   (function(){
     const rows = document.querySelectorAll('tr.t-row[data-type="tasks"]');

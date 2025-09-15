@@ -31,7 +31,7 @@
       });
 
       // Open on cell click as well
-      cell.addEventListener('click', function(){ input.focus(); fp.open(); });
+      // Disable direct change by clicking date cell; use menu instead
     });
   });
 })();
