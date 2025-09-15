@@ -138,9 +138,18 @@
       const panel = item.querySelector('.rich-editor');
       if(panel){
         panel.hidden = expanded;
+        btn.textContent = expanded ? 'add' : 'remove';
         btn.setAttribute('aria-expanded', (!expanded).toString());
         item.setAttribute('data-open', (!expanded).toString());
       }
+    });
+  });
+  // open/close by clicking the whole row
+  document.querySelectorAll('.grow-item .row').forEach(row=>{
+    row.addEventListener('click', (e)=>{
+      if(e.target.classList.contains('add-rich')) return;
+      const toggle = row.querySelector('.add-rich');
+      toggle && toggle.click();
     });
   });
   document.querySelectorAll('.rich-editor .toolbar button').forEach(b=>{
