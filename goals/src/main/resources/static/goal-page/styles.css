@@ -67,6 +67,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .goal-menu{position:relative;align-self:flex-start}
 .kebab{border:0;background:transparent;font-size:22px;cursor:pointer;color:#fff}
 .goal-menu .dropdown{position:absolute;right:0;top:36px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.08);display:none;min-width:200px}
+.goal-menu .kebab .material-symbols-outlined{vertical-align:middle}
 .goal-menu .dropdown button{width:100%;text-align:left;padding:10px 12px;background:#fff;border:0;cursor:pointer}
 .goal-menu .dropdown button:hover{background:#f8fafc}
 .goal-menu .dropdown .danger{color:#ef4444}
@@ -116,6 +117,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .t-name .t-name-wrap{display:flex;align-items:center;gap:8px}
 .t-name .t-menu{position:relative;margin-left:auto}
 .t-name .t-menu .kebab{background:transparent;border:0;cursor:pointer;color:var(--ink)}
+.t-name .t-menu .kebab .material-symbols-outlined{vertical-align:middle}
 .t-name .t-menu .dropdown{position:absolute;right:0;top:26px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.08);display:none;min-width:220px;z-index:5}
 .t-name .t-menu .dropdown button{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:8px 10px;background:#fff;border:0;cursor:pointer}
 .t-name .t-menu .dropdown .danger{color:#ef4444}
