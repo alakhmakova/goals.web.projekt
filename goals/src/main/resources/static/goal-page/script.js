@@ -223,21 +223,8 @@
     input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); input.blur(); } });
   });
 
-  // Kebab menu for each target name
-  document.querySelectorAll('.t-name .t-menu .kebab').forEach(btn=>{
-    btn.addEventListener('click', (e)=>{
-      const wrap = e.currentTarget.closest('.t-menu');
-      const dd = wrap.querySelector('.dropdown');
-      const open = dd && dd.style.display === 'block';
-      document.querySelectorAll('.t-name .t-menu .dropdown').forEach(d=> d.style.display='none');
-      if(dd) dd.style.display = open ? 'none' : 'block';
-      e.stopPropagation();
-    });
-  });
-  document.addEventListener('click', ()=> document.querySelectorAll('.t-name .t-menu .dropdown').forEach(d=> d.style.display='none'));
-
-  // Menu actions
-  document.querySelectorAll('.t-name .t-menu .dropdown').forEach(dd=>{
+  // Menu actions (FlyonUI dropdown structure)
+  document.querySelectorAll('.t-name .t-menu .dropdown-menu').forEach(dd=>{
     const tr = dd.closest('tr');
     const nameCell = tr.querySelector('.t-name');
     const deadlineCell = tr.querySelector('.deadline-cell');
