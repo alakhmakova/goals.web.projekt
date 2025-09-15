@@ -115,13 +115,11 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 
 .t-name{font-weight:600}
 .t-name .t-name-wrap{display:flex;align-items:center;gap:8px}
-.t-name .t-menu{position:relative;margin-left:auto}
+.t-name .t-menu{position:relative;margin-left:auto;font-family:"Nunito",sans-serif}
 .t-name .t-menu .kebab{background:transparent;border:0;cursor:pointer;color:var(--ink)}
 .t-name .t-menu .kebab .material-symbols-outlined{vertical-align:middle}
-.t-name .t-menu .dropdown{position:absolute;right:0;top:26px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.08);display:none;min-width:220px;z-index:5}
-.t-name .t-menu .dropdown button{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:8px 10px;background:#fff;border:0;cursor:pointer}
-.t-name .t-menu .dropdown .danger{color:#ef4444}
-.t-name .t-menu .dropdown .menu-sep{border:0;border-top:1px solid var(--line);margin:6px 0}
+/* FlyonUI dropdown uses utility classes added in markup; keep font */
+.t-name .dropdown-menu{font-family:"Nunito",sans-serif}
 .t-name .deadline-mobile{display:none}
 .t-name .task-badge{margin-left:8px;display:inline-flex;min-width:22px;height:22px;align-items:center;justify-content:center;padding:0 6px;border-radius:999px;background:var(--primary-minor-1);color:var(--primary);font-weight:800;font-size:12px;cursor:pointer}
 .t-name .task-plus{margin-left:6px;color:var(--primary);font-size:18px}
