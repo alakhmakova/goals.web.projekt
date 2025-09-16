@@ -549,8 +549,13 @@
               <div class="error-text" id="err-tname" hidden>Target name is required</div>
             </div>
             <div class="field inline">
-              <label>Owner <span class="muted small">(optional)</span></label>
-              <input type="text" id="t-owner" placeholder="Choose owner(s)" />
+              <label>Deadline date <span class="muted small">(optional)</span></label>
+              <input type="date" id="t-deadline-date" />
+            </div>
+            <div class="field inline">
+              <label>Deadline time <span class="muted small">(optional)</span></label>
+              <input type="time" id="t-deadline-time" />
+              <div class="error-text" id="err-deadline" hidden>Time requires a date</div>
             </div>
             <div class="field">
               <label>Type of Target</label>

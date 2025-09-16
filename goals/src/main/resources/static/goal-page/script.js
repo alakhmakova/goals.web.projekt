@@ -443,6 +443,12 @@
 
   targetForm && targetForm.addEventListener('submit', (e)=>{
     e.preventDefault();
+    // Deadline validation: time cannot be set without date
+    const dDate = document.getElementById('t-deadline-date');
+    const dTime = document.getElementById('t-deadline-time');
+    const errDeadline = document.getElementById('err-deadline');
+    if(dTime && dTime.value && dDate && !dDate.value){ errDeadline.hidden=false; return; }
+    else if(errDeadline){ errDeadline.hidden=true; }
     const nameInput = document.getElementById('t-name');
     const name = nameInput.value.trim();
     const errTname = document.getElementById('err-tname');
