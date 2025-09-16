@@ -120,12 +120,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 }
 
 /* Show Due to date dropdown*/
-.goal-menu .dropdown-menu[aria-expanded="true"],
-.goal-menu .dropdown-menu.dropdown-open\:opacity-100 {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
+/* Generic FlyonUI dropdown behavior: hidden by default; shown when wrapper has .dropdown-open */
+.dropdown .dropdown-menu.hidden{display:none}
+.dropdown.dropdown-open > .dropdown-menu{display:block;opacity:1;pointer-events:auto;transform:translateY(0)}
 
 /* Due to date dropdown elements */
 .goal-menu .dropdown-item {
@@ -256,7 +253,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .c-time{color:var(--muted);font-size:12px}
 .c-menu{margin-left:auto;position:relative}
 .c-menu .kebab{background:transparent;border:0;cursor:pointer;font-size:18px;color:var(--ink)}
-.c-menu .dropdown{position:absolute;right:0;top:26px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.08);display:none;min-width:170px}
+/* Comment dropdown inherits FlyonUI dropdown; keep menu item basics */
 .c-menu .dropdown button{display:block;width:100%;text-align:left;padding:8px 10px;background:#fff;border:0;cursor:pointer}
 .c-menu .dropdown .danger{color:#ef4444}
 .c-body{margin:6px 0}
