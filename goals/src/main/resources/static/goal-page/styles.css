@@ -1,4 +1,24 @@
-:root{--bg:#f5f4f8;--panel:#ffffff;--background-norm: #1b1340;--focus-outline: #6d4aff; --primary-minor-2: #f0edff; --interaction-default-hover: rgb(194 193 192 / 0.2); --interaction-norm: #6d4aff; --text-hint: #8067e4; --text-norm: #0c0c14; --ink:#0c0c14;--muted:#c2bfbc;--blue:rgb(103 232 249);--line:#e5e7eb;--primary:#6d4aff;--green:#22c55e;--violet:#9b8cff;--drawer-w:360px}
+:root{
+  --bg:#f5f4f8;
+  --panel:#ffffff;
+  --background-norm: #1b1340;
+  --focus-outline: #6d4aff; 
+  --primary-minor-2: #f0edff; 
+  --interaction-default-hover: rgb(143, 141, 138, 0.1); 
+  --interaction-norm: #6d4aff; 
+  --text-hint: #8067e4; 
+  --text-norm: #0c0c14; 
+  --ink:#0c0c14;
+  --muted:#c2bfbc;
+  --blue:rgb(103 232 249);
+  --line:#e5e7eb;
+  --primary:#6d4aff;
+  --green:#22c55e;
+  --violet:#9b8cff;
+  --danger:#e84774;
+  --danger-hover:rgb(232, 71, 116, 0.1);
+  --drawer-w:360px
+}
 *{box-sizing:border-box}
 html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", sans-serif;overflow-x: hidden;}
@@ -64,12 +84,78 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .ring span{background:#1f2240;border-radius:50%;width:86px;height:86px;display:grid;place-items:center;font-weight:800;color:#fff}
 .goal-head{display:flex;align-items:center;gap:8px}
 .goal-head h1{margin:0;font-size:28px;display:flex;align-items:flex-start;color:#fff}
-.goal-menu{position:relative;align-self:flex-start}
-.kebab{border:0;background:transparent;font-size:22px;cursor:pointer;color:#fff}
-.goal-menu .kebab .material-symbols-outlined{vertical-align:middle}
-.goal-menu .dropdown button{width:100%;text-align:left;padding:10px 12px;background:#fff;border:0;cursor:pointer}
-.goal-menu .dropdown button:hover{background:#f8fafc}
-.goal-menu .dropdown .danger{color:#ef4444}
+/* Контейнер */
+.goal-menu {
+  position: relative;
+  display: inline-flex;
+}
+
+
+
+.goal-menu .kebab:hover {
+  color: var(--blue); 
+}
+.goal-menu .kebab:active {
+  color: #239ece; 
+}
+
+/* Due to date dropdown */
+.goal-menu .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  min-width: 15rem;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  list-style: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 20;
+}
+
+/* Show Due to date dropdown*/
+.goal-menu .dropdown-menu[aria-expanded="true"],
+.goal-menu .dropdown-menu.dropdown-open\:opacity-100 {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Due to date dropdown elements */
+.goal-menu .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #1f2937;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.goal-menu .dropdown-item:hover {
+  background-color:var(--interaction-default-hover);
+}
+
+/* Delete Due to date dropdown */
+.goal-menu .dropdown-item.danger {
+  color: var(--danger);
+}
+
+.goal-menu .dropdown-item.danger:hover {
+  background-color: var(--danger-hover);
+}
+
 
 .summary-right{align-self:stretch;margin-top:4px;color:#fff}
 .faq-head h3{margin:0 0 8px}
