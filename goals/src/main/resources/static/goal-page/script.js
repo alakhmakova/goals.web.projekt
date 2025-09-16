@@ -443,7 +443,10 @@
 
   targetForm && targetForm.addEventListener('submit', (e)=>{
     e.preventDefault();
-    const name = document.getElementById('t-name').value.trim();
+    const nameInput = document.getElementById('t-name');
+    const name = nameInput.value.trim();
+    const errTname = document.getElementById('err-tname');
+    if(!name){ errTname.hidden=false; return; } else { errTname.hidden=true; }
     const typeNumber = document.getElementById('type-number');
     const startEl = document.getElementById('t-start');
     const targetEl = document.getElementById('t-target');
@@ -458,8 +461,10 @@
       let valid = true;
       const startVal = startEl.value;
       const targetVal = targetEl.value;
+      const errEqual = document.getElementById('err-equal');
       if(startVal === '' || isNaN(Number(startVal))){ valid = false; errStart.hidden = false; } else { errStart.hidden = true; }
       if(targetVal === '' || isNaN(Number(targetVal))){ valid = false; errTarget.hidden = false; } else { errTarget.hidden = true; }
+      if(valid && Number(startVal) === Number(targetVal)){ valid=false; errEqual.hidden=false; } else { errEqual.hidden=true; }
       if(!valid) return; // stop submission
     }
     // Validate tasks type: task name required
