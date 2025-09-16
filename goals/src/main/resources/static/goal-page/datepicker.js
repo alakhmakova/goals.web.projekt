@@ -113,6 +113,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Закрытие календаря по клику вне
+  document.addEventListener('click', (e)=>{
+    const open = calendarWrapper && calendarWrapper.style.display === 'block';
+    if(!open) return;
+    const toggleClicked = e.target.closest && e.target.closest('#due-toggle');
+    const inside = e.target.closest && e.target.closest('.calendar-wrapper');
+    if(!toggleClicked && !inside){ calendarWrapper.style.display = 'none'; }
+  });
+
   // Первый запуск
   monthSelect.value = monthNames[new Date().getMonth()];
   yearInput.value = new Date().getFullYear();
