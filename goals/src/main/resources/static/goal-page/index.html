@@ -561,7 +561,7 @@
                 <input type="radio" name="t-type" id="type-tasks" value="tasks">
                 <label for="type-tasks">Tasks</label>
               </div>
-              <div class="type-config" id="type-number">
+              <div class="type-config" id="type-number-config">
                 <div class="num-grid">
                   <div>
                     <div class="label small">Start</div>
@@ -577,6 +577,14 @@
                     <div class="label small">Unit <span class="muted small">(optional)</span></div>
                     <input type="text" id="t-unit" placeholder="e.g. applications" />
                   </div>
+                </div>
+              </div>
+
+              <div class="type-config" id="type-tasks-config" hidden>
+                <div class="field">
+                  <label>Task name</label>
+                  <input type="text" id="t-task-name" placeholder="e.g. Draft proposal" />
+                  <div class="error-text" id="err-task-name" hidden>Task name is required</div>
                 </div>
               </div>
             </div>

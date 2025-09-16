@@ -422,6 +422,19 @@
   const targetModal = document.getElementById('target-modal');
   const closeTargetBtn = targetModal ? targetModal.querySelector('[data-close-target]') : null;
   const targetForm = document.getElementById('target-form');
+  // type switch elements
+  const rNumber = document.getElementById('type-number');
+  const rBoolean = document.getElementById('type-boolean');
+  const rTasks = document.getElementById('type-tasks');
+  const numberCfg = document.getElementById('type-number-config');
+  const tasksCfg = document.getElementById('type-tasks-config');
+  function updateTypeUI(){
+    if(rNumber && rNumber.checked){ numberCfg && (numberCfg.hidden=false); tasksCfg && (tasksCfg.hidden=true); }
+    else if(rTasks && rTasks.checked){ numberCfg && (numberCfg.hidden=true); tasksCfg && (tasksCfg.hidden=false); }
+    else { numberCfg && (numberCfg.hidden=true); tasksCfg && (tasksCfg.hidden=true); }
+  }
+  [rNumber,rBoolean,rTasks].forEach(r=> r && r.addEventListener('change', updateTypeUI));
+  updateTypeUI();
   if(addBtn && targetModal){
     addBtn.addEventListener('click', ()=> targetModal.setAttribute('aria-hidden','false'));
   }
@@ -437,6 +450,9 @@
     const errStart = document.getElementById('err-start');
     const errTarget = document.getElementById('err-target');
     const isNumber = typeNumber && typeNumber.checked;
+    const isTasks = rTasks && rTasks.checked;
+    const taskNameEl = document.getElementById('t-task-name');
+    const errTaskName = document.getElementById('err-task-name');
     // Validate number type: start and target required
     if(isNumber){
       let valid = true;
@@ -445,6 +461,11 @@
       if(startVal === '' || isNaN(Number(startVal))){ valid = false; errStart.hidden = false; } else { errStart.hidden = true; }
       if(targetVal === '' || isNaN(Number(targetVal))){ valid = false; errTarget.hidden = false; } else { errTarget.hidden = true; }
       if(!valid) return; // stop submission
+    }
+    // Validate tasks type: task name required
+    if(isTasks){
+      const tn = (taskNameEl.value||'').trim();
+      if(!tn){ errTaskName.hidden = false; return; } else { errTaskName.hidden = true; }
     }
     const start = Number(startEl.value||0);
     const target = Math.max(Number(targetEl.value||1),1);

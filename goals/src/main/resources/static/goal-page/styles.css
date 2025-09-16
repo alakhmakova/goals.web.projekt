@@ -468,4 +468,5 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .seg3-toggle input[type="radio"]{display:none}
 .seg3-toggle label{padding:8px 10px;text-align:center;cursor:pointer;background:#f3f4f6;color:var(--text-norm);font-weight:600}
 .seg3-toggle input[type="radio"]:checked + label{background:var(--primary);color:#fff}
+.type-config{margin-top:10px}
 
