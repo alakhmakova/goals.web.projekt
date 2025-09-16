@@ -462,3 +462,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .type-card{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fafafa}
 .num-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 
+/* 3-segment toggle for target type */
+.seg3-toggle{display:grid;grid-template-columns:1fr 1fr 1fr;position:relative;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:10px}
+.seg3-toggle input[type="radio"]{display:none}
+.seg3-toggle label{padding:8px 10px;text-align:center;cursor:pointer;background:#f3f4f6;color:var(--text-norm);font-weight:600}
+.seg3-toggle input[type="radio"]:checked + label{background:var(--primary);color:#fff}
+

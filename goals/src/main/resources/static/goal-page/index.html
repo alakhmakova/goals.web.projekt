@@ -553,11 +553,13 @@
             </div>
             <div class="field">
               <label>Type of Target</label>
-              <div class="type-grid">
-                <label class="type-card"><input type="radio" name="t-type" value="number" checked><span>Number</span></label>
-                <label class="type-card"><input type="radio" name="t-type" value="boolean"><span>True/False</span></label>
-                <label class="type-card"><input type="radio" name="t-type" value="currency"><span>Currency</span></label>
-                <label class="type-card"><input type="radio" name="t-type" value="tasks"><span>Tasks</span></label>
+              <div class="seg3-toggle" id="t-type-toggle">
+                <input type="radio" name="t-type" id="type-number" value="number" checked>
+                <label for="type-number">Number</label>
+                <input type="radio" name="t-type" id="type-boolean" value="boolean">
+                <label for="type-boolean">Success/Failure</label>
+                <input type="radio" name="t-type" id="type-tasks" value="tasks">
+                <label for="type-tasks">Tasks</label>
               </div>
               <div class="type-config" id="type-number">
                 <div class="num-grid">
