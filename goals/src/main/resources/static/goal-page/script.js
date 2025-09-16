@@ -1,33 +1,5 @@
 (function(){
-  // FlyonUI dropdown toggle behavior
-  (function(){
-    function closeAll(){
-      document.querySelectorAll('.dropdown').forEach(w=>{
-        w.classList.remove('dropdown-open');
-        const m = w.querySelector('.dropdown-menu');
-        if(m) m.classList.add('hidden');
-        const t = w.querySelector('.dropdown-toggle');
-        if(t) t.setAttribute('aria-expanded','false');
-      });
-    }
-    document.querySelectorAll('.dropdown .dropdown-toggle').forEach(btn=>{
-      btn.addEventListener('click', (e)=>{
-        const wrap = btn.closest('.dropdown');
-        const menu = wrap && wrap.querySelector('.dropdown-menu');
-        if(!wrap || !menu) return;
-        const isOpen = wrap.classList.contains('dropdown-open');
-        closeAll();
-        if(!isOpen){
-          wrap.classList.add('dropdown-open');
-          menu.classList.remove('hidden');
-          btn.setAttribute('aria-expanded','true');
-        }
-        e.stopPropagation();
-      });
-    });
-    document.addEventListener('click', closeAll);
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeAll(); });
-  })();
+  // Dropdown behavior moved to drop-down.js
 
   // drawer logic moved to menu.js
 

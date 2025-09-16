@@ -125,7 +125,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 /* Show Due to date dropdown*/
 /* Generic FlyonUI dropdown behavior: hidden by default; shown when wrapper has .dropdown-open */
 .dropdown .dropdown-menu.hidden{display:none}
-.dropdown.dropdown-open > .dropdown-menu{display:block;opacity:1;pointer-events:auto;transform:translateY(0)}
+.dropdown.dropdown-open > .dropdown-menu{display:block;opacity:1;pointer-events:auto;transform:translateY(0);z-index:9999}
 
 /* Due to date dropdown elements */
 .goal-menu .dropdown-item {
