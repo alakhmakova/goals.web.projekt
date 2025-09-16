@@ -566,10 +566,16 @@
                   <div>
                     <div class="label small">Start</div>
                     <input type="number" id="t-start" min="0" value="0" />
+                    <div class="error-text" id="err-start" hidden>Start is required</div>
                   </div>
                   <div>
                     <div class="label small">Target</div>
                     <input type="number" id="t-target" min="1" value="1" />
+                    <div class="error-text" id="err-target" hidden>Target is required</div>
+                  </div>
+                  <div>
+                    <div class="label small">Unit <span class="muted small">(optional)</span></div>
+                    <input type="text" id="t-unit" placeholder="e.g. applications" />
                   </div>
                 </div>
               </div>

@@ -431,8 +431,23 @@
   targetForm && targetForm.addEventListener('submit', (e)=>{
     e.preventDefault();
     const name = document.getElementById('t-name').value.trim();
-    const start = Number(document.getElementById('t-start').value||0);
-    const target = Math.max(Number(document.getElementById('t-target').value||1),1);
+    const typeNumber = document.getElementById('type-number');
+    const startEl = document.getElementById('t-start');
+    const targetEl = document.getElementById('t-target');
+    const errStart = document.getElementById('err-start');
+    const errTarget = document.getElementById('err-target');
+    const isNumber = typeNumber && typeNumber.checked;
+    // Validate number type: start and target required
+    if(isNumber){
+      let valid = true;
+      const startVal = startEl.value;
+      const targetVal = targetEl.value;
+      if(startVal === '' || isNaN(Number(startVal))){ valid = false; errStart.hidden = false; } else { errStart.hidden = true; }
+      if(targetVal === '' || isNaN(Number(targetVal))){ valid = false; errTarget.hidden = false; } else { errTarget.hidden = true; }
+      if(!valid) return; // stop submission
+    }
+    const start = Number(startEl.value||0);
+    const target = Math.max(Number(targetEl.value||1),1);
     if(!name) return;
     const li = document.createElement('li');
     li.className = 'target-row';
