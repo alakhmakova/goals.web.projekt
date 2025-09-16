@@ -200,6 +200,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 
 .t-name{font-weight:600}
 .t-name .t-name-wrap{display:flex;align-items:center;gap:8px}
+.t-name{overflow:visible}
 
 /* targen dropdown container */
 .t-menu {
@@ -439,6 +440,11 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
   .goal-head h1{font-size:18px}
   .ring{width:96px;height:96px}
 }
+
+/* Force-open state for all FlyonUI dropdowns (placed at end to win specificity/order) */
+.dropdown.dropdown-open > .dropdown-menu{display:block !important; opacity:1 !important; pointer-events:auto !important; transform:translateY(0) !important; z-index:10000}
+.t-menu{z-index:5}
+.c-menu{z-index:6}
 /* Hide separate deadline column and show inline under title on <=860px */
 @media (max-width: 860px){
   .targets-table thead th:nth-child(2),
