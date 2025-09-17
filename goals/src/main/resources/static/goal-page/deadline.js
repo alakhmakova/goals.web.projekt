@@ -40,10 +40,15 @@
       input.type = 'text';
       input.placeholder = 'HH:MM';
       input.id = 'flatpickr-time-' + idx;
-      input.style.position = 'fixed';
-      input.style.left = '-9999px';
-      document.body.appendChild(input);
-      const init = cell.dataset.time || '';
+      // keep input inside cell but visually hidden
+      input.style.position = 'absolute';
+      input.style.opacity = '0';
+      input.style.pointerEvents = 'none';
+      input.style.width = '0';
+      input.style.height = '0';
+      input.style.border = '0';
+      cell.style.position = 'relative';
+      cell.appendChild(input);
       const fp = flatpickr(input, {
         enableTime: true,
         noCalendar: true,
@@ -71,7 +76,12 @@
       });
       // Show picker only when user clicks the cell
       cell.style.cursor = 'pointer';
-      cell.addEventListener('click', (e)=>{ e.stopPropagation(); fp.setDate(init ? `2000-01-01 ${init}` : null, false); fp.open(); });
+      cell.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        const current = cell.dataset.time || '';
+        if(current){ fp.setDate(`2000-01-01 ${current}`, false); }
+        fp.open();
+      });
     });
   });
 })();
