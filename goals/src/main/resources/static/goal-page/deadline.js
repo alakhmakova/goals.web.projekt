@@ -7,25 +7,26 @@
       const input = document.createElement('input');
       input.type = 'text';
       input.className = 'input max-w-sm';
-      input.placeholder = 'YYYY-MM-DD HH:MM';
-      input.id = 'flatpickr-date-time-' + idx; // unique id per cell
+      input.placeholder = 'YYYY-MM-DD';
+      input.id = 'flatpickr-date-' + idx; // unique id per cell
       // preserve initial display text as value if parsable
       const initDate = cell.dataset.date ? new Date(cell.dataset.date) : null;
       if(initDate && !isNaN(initDate)){
         const pad = (n)=> String(n).padStart(2,'0');
-        input.value = `${initDate.getFullYear()}-${pad(initDate.getMonth()+1)}-${pad(initDate.getDate())} ${pad(initDate.getHours())}:${pad(initDate.getMinutes())}`;
+        input.value = `${initDate.getFullYear()}-${pad(initDate.getMonth()+1)}-${pad(initDate.getDate())}`;
       }
       cell.textContent = '';
       cell.appendChild(input);
 
       const fp = flatpickr(input, {
-        enableTime: true,
-        dateFormat: 'Y-m-d H:i',
+        enableTime: false,
+        dateFormat: 'Y-m-d',
         disableMobile: true,
         onChange: function(sel){
           if(sel && sel[0]){
             const d = sel[0];
             cell.dataset.date = d.toISOString();
+            // keep cell content as yyyy-mm-dd style managed by input
           }
         }
       });
@@ -37,29 +38,40 @@
     document.querySelectorAll('.deadline-time-cell').forEach((cell, idx)=>{
       const input = document.createElement('input');
       input.type = 'text';
-      input.className = 'input max-w-sm';
       input.placeholder = 'HH:MM';
       input.id = 'flatpickr-time-' + idx;
+      input.style.position = 'fixed';
+      input.style.left = '-9999px';
+      document.body.appendChild(input);
       const init = cell.dataset.time || '';
-      if(init) input.value = init;
-      cell.textContent = '';
-      cell.appendChild(input);
       const fp = flatpickr(input, {
         enableTime: true,
         noCalendar: true,
         dateFormat: 'H:i',
         time_24hr: true,
         disableMobile: true,
+        onOpen: function(){
+          const r = cell.getBoundingClientRect();
+          const cal = fp.calendarContainer;
+          cal.style.position = 'fixed';
+          cal.style.top = Math.round(r.bottom + 6) + 'px';
+          cal.style.left = Math.round(r.left) + 'px';
+          cal.style.zIndex = '2000';
+        },
         onChange: function(sel){
           if(sel && sel[0]){
             const d = sel[0];
             const t = d.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit',hour12:false});
             cell.dataset.time = t;
+            cell.textContent = t;
             const mobileTime = cell.closest('tr').querySelector('.d-mobile-time');
             mobileTime && (mobileTime.textContent = t);
           }
         }
       });
+      // Show picker only when user clicks the cell
+      cell.style.cursor = 'pointer';
+      cell.addEventListener('click', (e)=>{ e.stopPropagation(); fp.setDate(init ? `2000-01-01 ${init}` : null, false); fp.open(); });
     });
   });
 })();
