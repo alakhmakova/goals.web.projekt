@@ -13,6 +13,7 @@
   --muted:#c2bfbc;
   --blue:rgb(103 232 249);
   --blue-weak: #239ece;
+  --blue-weak-hover: #208eb9;
   --line:#e5e7eb;
   --primary:#6d4aff;
   --green:#22c55e;
@@ -95,11 +96,15 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
   display: inline-flex;
 }
 
+.goal-menu .kebab {
+  cursor: pointer;
+}
+
 .goal-menu .kebab:hover {
-  color: var(--blue); 
+  color: var(--blue-weak); 
 }
 .goal-menu .kebab:active {
-  color: var(--blue-weak); 
+  color: var(--blue-weak-hover);
 }
 
 /* Due to date dropdown */
@@ -119,11 +124,10 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
   pointer-events: none;
   transform: translateY(-5px);
   transition: opacity 0.2s ease, transform 0.2s ease;
-  z-index: 20;
 }
 
 /* Show Due to date dropdown*/
-/* Generic FlyonUI dropdown behavior: hidden by default; shown when wrapper has .dropdown-open */
+/* Generic dropdown behavior: hidden by default; shown when wrapper has .dropdown-open */
 .dropdown .dropdown-menu.hidden{display:none}
 .dropdown.dropdown-open > .dropdown-menu{display:block;opacity:1;pointer-events:auto;transform:translateY(0);z-index:9999}
 
@@ -135,7 +139,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
   width: 100%;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  color: #1f2937;
+  color: var(--ink);
   background: none;
   border: none;
   text-align: left;
@@ -180,7 +184,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .editor:empty:before{content:attr(data-placeholder);color:var(--muted)}
 
 /* Targets */
-.targets{grid-column:1/span 2;overflow-x:auto}
+.targets{grid-column:1/span 2;}
 .targets .targets-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .btn{border:0;border-radius:10px;padding:8px 12px;cursor:pointer}
 .btn.primary{background:var(--primary);color:#fff;border: 0;border-radius: 8px;cursor:pointer;padding-block: .2142857143em; padding-inline:.7857142857em;font-size: 14px;font-family: "Nunito", sans-serif;}
@@ -192,15 +196,14 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .targets-table thead th{font-weight:700;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
 .targets-table tbody td{padding:12px;border-bottom:1px solid var(--line);vertical-align:middle}
 .t-actions{text-align:right;width:40px}
-.t-actions .del-btn{color:#dc3251;font-size:14px}
-.t-name{min-width:220px}
+.t-actions .del-btn{color:var(--danger);font-size:14px}
+.t-name{width: fit-content;}
 .t-name .name-input{display:none;width:100%;border:1px solid var(--line);border-radius:8px;padding:6px 8px}
 .t-name.editing .name-view{display:none}
 .t-name.editing .name-input{display:inline-block}
 
-.t-name{font-weight:600}
+.t-name{font-weight:600;}
 .t-name .t-name-wrap{display:flex;align-items:center;gap:8px}
-.t-name{overflow:visible}
 
 /* targen dropdown container */
 .t-menu {
@@ -211,6 +214,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 
 .t-menu .target-kebab {
   color: var(--ink); 
+  cursor: pointer;
 }
 .t-menu .target-kebab:hover {
   color: var(--optional-promotion-text-color); 
@@ -236,7 +240,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
   pointer-events: none;
   transform: translateY(-5px);
   transition: opacity 0.2s ease, transform 0.2s ease;
-  z-index: 20;
+  display: none;
 }
 
 /* Show target dropdown menu */
@@ -263,7 +267,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
   width: 100%;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  color: #1f2937;
+  color: var(--ink);
   background: none;
   border: none;
   text-align: left;
@@ -306,10 +310,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 
 
 .t-name .deadline-mobile{display:none}
-.t-name .task-badge{margin-left:8px;display:inline-flex;min-width:22px;height:22px;align-items:center;justify-content:center;padding:0 6px;border-radius:999px;background:var(--primary-minor-1);color:var(--primary);font-weight:800;font-size:12px;cursor:pointer}
+.t-name .task-badge{margin-left:8px;padding:0 6px;border-radius:999px;background:var(--danger);color:var(--primary);font-weight:800;font-size:12px;cursor:pointer;}
 .t-name .task-plus{margin-left:6px;color:var(--primary);font-size:18px}
 .t-name .task-plus:hover{color:var(--primary-major-1)}
-.note-btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
 
 .t-progress .progress-cell{position:relative;min-width:260px}
 .t-progress .meta{position:absolute;font-size:12px;color:var(--muted)}
@@ -354,11 +357,83 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .c-head{display:flex;align-items:center;gap:10px}
 .c-author{font-weight:700}
 .c-time{color:var(--muted);font-size:12px}
-.c-menu{margin-left:auto;position:relative}
-.c-menu .kebab{background:transparent;border:0;cursor:pointer;font-size:18px;color:var(--ink)}
-/* Comment dropdown inherits FlyonUI dropdown; keep menu item basics */
-.c-menu .dropdown button{display:block;width:100%;text-align:left;padding:8px 10px;background:#fff;border:0;cursor:pointer}
-.c-menu .dropdown .danger{color:#ef4444}
+
+/* Comments drop-down container*/
+.c-menu {
+  position: relative;
+  display: inline-flex;
+  font-family: 'Nunito', sans-serif;
+  margin-left:auto;
+}
+
+.c-menu .comment-kebab {
+  color: var(--ink); 
+  cursor: pointer;
+}
+.c-menu .comment-kebab:hover {
+  color: var(--optional-promotion-text-color); 
+}
+.c-menu .comment-kebab:active {
+  color: var(--optional-promotion-text-weak); 
+}
+
+/* Comments drop-down menu list */
+.c-menu .dropdown-menu {
+  position: absolute;
+  top: 0;
+  right: 140%;
+  margin-top: 0.5rem;
+  min-width: 9rem;
+  width: calc(fit-content);
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  list-style: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Show comments dropdown menu */
+.c-menu .dropdown-menu[aria-expanded="true"],
+.c-menu .dropdown-menu.dropdown-open\:opacity-100 {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Comments dropdown menu elements */
+.c-menu .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: var(--ink);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.c-menu .dropdown-item:hover {
+  background-color: var(--interaction-default-hover);
+}
+
+/* Danger */
+.c-menu .dropdown-item.danger {
+  color: var(--danger);
+}
+
+.c-menu .dropdown-item.danger:hover {
+  background-color: var(--danger-hover);
+}
+
 .c-body{margin:6px 0}
 .comment-view{cursor:pointer;white-space:pre-wrap}
 .comment-input{display:none;width:100%;border:1px solid var(--line);border-radius:10px;padding:8px}
@@ -443,8 +518,6 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 
 /* Force-open state for all FlyonUI dropdowns (placed at end to win specificity/order) */
 .dropdown.dropdown-open > .dropdown-menu{display:block !important; opacity:1 !important; pointer-events:auto !important; transform:translateY(0) !important; z-index:10000}
-.t-menu{z-index:5}
-.c-menu{z-index:6}
 /* Hide separate deadline column and show inline under title on <=860px */
 @media (max-width: 860px){
   .targets-table thead th:nth-child(2),
