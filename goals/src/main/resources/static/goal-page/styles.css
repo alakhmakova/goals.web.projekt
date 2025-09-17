@@ -192,7 +192,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .btn.primary:active {background:#573bcc;color:#fff}
 
 /* Table */
-.targets-table{width:100%;border-collapse:collapse;min-width:720px}
+.targets-table{width:100%;border-collapse:collapse;min-width:820px}
 .targets-table thead th{font-weight:700;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
 .targets-table tbody td{padding:12px;border-bottom:1px solid var(--line);vertical-align:middle}
 .t-actions{text-align:right;width:40px}
@@ -520,8 +520,11 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .dropdown.dropdown-open > .dropdown-menu{display:block !important; opacity:1 !important; pointer-events:auto !important; transform:translateY(0) !important; z-index:10000}
 /* Hide separate deadline column and show inline under title on <=860px */
 @media (max-width: 860px){
+  /* hide both deadline columns on small screens */
   .targets-table thead th:nth-child(2),
-  .targets-table tbody td:nth-child(2){display:none}
+  .targets-table tbody td:nth-child(2),
+  .targets-table thead th:nth-child(3),
+  .targets-table tbody td:nth-child(3){display:none}
   .t-name .deadline-mobile{display:block}
 }
 
