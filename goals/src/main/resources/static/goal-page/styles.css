@@ -482,19 +482,11 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .actions{display:flex;justify-content:flex-end;margin-top:12px}
 
 /* Deadline inputs styled as plain text */
-.deadline-cell input[type="text"]{border:0 !important;background:transparent !important;box-shadow:none !important;padding:0 !important;margin:0 !important;width:100%;font-family:"Nunito", sans-serif;font-size:14px;color:var(--ink)}
+.deadline-cell input[type="date"]{position:absolute;opacity:0;pointer-events:none;width:0;height:0;border:0}
 .deadline-cell .input.max-w-sm{max-width:100%}
 
 /* Flatpickr popup theming */
-.flatpickr-calendar{border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.15);overflow:hidden;background:#fff;color:var(--text-norm);font-family:"Nunito",sans-serif}
-.flatpickr-day.selected,.flatpickr-day.startRange,.flatpickr-day.endRange{background:var(--blue);border-color:var(--blue);color:#0f1425}
-.flatpickr-day:hover{background:var(--interaction-default-hover)}
-.flatpickr-months .flatpickr-month{padding:6px 8px}
-.flatpickr-current-month .numInputWrapper{width:fit-content;min-width:0}
-.flatpickr-current-month .numInputWrapper input{font-family:"Nunito",sans-serif}
-@media (max-width: 860px){
-  .flatpickr-calendar{transform:scale(.67);transform-origin:top left}
-}
+.deadline-time-cell input[type="time"]{position:absolute;opacity:0;pointer-events:none;width:0;height:0;border:0}
 
 /* Responsive */
 @media (min-width: 600px){
