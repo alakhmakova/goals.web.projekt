@@ -22,11 +22,24 @@
         enableTime: false,
         dateFormat: 'Y-m-d',
         disableMobile: true,
+        monthSelectorType: 'dropdown',
+        onOpen: function(){
+          const r = cell.getBoundingClientRect();
+          const cal = fp.calendarContainer;
+          cal.style.position = 'fixed';
+          cal.style.top = Math.round(r.bottom + 6) + 'px';
+          cal.style.left = Math.round(r.left) + 'px';
+          cal.style.zIndex = '2000';
+        },
         onChange: function(sel){
           if(sel && sel[0]){
             const d = sel[0];
             cell.dataset.date = d.toISOString();
-            // keep cell content as yyyy-mm-dd style managed by input
+            // update visible date in cell and mobile line
+            const human = d.toLocaleDateString(undefined,{month:'short', day:'numeric'});
+            cell.textContent = human;
+            const mobileDate = cell.closest('tr').querySelector('.d-mobile-date');
+            mobileDate && (mobileDate.textContent = human);
           }
         }
       });
