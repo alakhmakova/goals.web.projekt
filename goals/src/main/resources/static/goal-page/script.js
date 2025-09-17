@@ -253,136 +253,152 @@
   });
 
   // Tasks target interactions
-  (function(){
-    const rows = document.querySelectorAll('tr.t-row[data-type="tasks"]');
-    rows.forEach(row=>{
-      const nameCell = row.querySelector('.t-name');
-      const badge = nameCell ? nameCell.querySelector('.task-badge') : null;
-      const plus = nameCell ? nameCell.querySelector('.task-plus') : null;
-      const progressCell = row.querySelector('.t-progress .progress-cell[data-type="tasks"]');
-      const panelRow = row.nextElementSibling && row.nextElementSibling.classList.contains('tasks-panel-row') ? row.nextElementSibling : null;
-      if(!progressCell || !panelRow) return;
-      const panel = panelRow.querySelector('.tasks-panel');
-      const listUi = panel.querySelector('.task-list-ui');
-      const newInput = panel.querySelector('.new-task-input');
-      const addBtn = panel.querySelector('.add-task-btn');
+(function(){
+  const rows = document.querySelectorAll('tr.t-row[data-type="tasks"]');
+  rows.forEach(row=>{
+    const nameCell = row.querySelector('.t-name');
+    // поддерживаем оба варианта класса: task-badge (в твоём HTML) или старый tasks-number-badge
+    const badge = nameCell ? (nameCell.querySelector('.task-badge') || nameCell.querySelector('.tasks-number-badge')) : null;
+    const plus = nameCell ? nameCell.querySelector('.task-plus') : null;
+    const progressCell = row.querySelector('.t-progress .progress-cell[data-type="tasks"]');
+    const panelRow = row.nextElementSibling && row.nextElementSibling.classList.contains('tasks-panel-row') ? row.nextElementSibling : null;
+    if(!progressCell || !panelRow) return;
 
-      function readTasks(){
-        const list = progressCell.querySelector('.task-list');
-        const tasks = [];
-        list && list.querySelectorAll('li').forEach(li=>{
-          tasks.push({ name: li.textContent.trim(), done: li.classList.contains('done') });
+    const panel = panelRow.querySelector('.tasks-panel');
+    const listUi = panel.querySelector('.task-list-ui');
+    const newInput = panel.querySelector('.new-task-input');
+    const addBtn = panel.querySelector('.add-task-btn');
+
+    function readTasks(){
+      const list = progressCell.querySelector('.task-list');
+      const tasks = [];
+      if(list){
+        list.querySelectorAll('li').forEach(li=>{
+          tasks.push({ name: (li.textContent||'').trim(), done: li.classList.contains('done') });
         });
-        return tasks;
       }
-      function writeBadge(tasks){
-        if(badge) badge.textContent = String(tasks.length);
-      }
-      function updateProgress(tasks){
-        const total = tasks.length || 1; // avoid divide by zero; UI constraint will keep >=1
-        const done = tasks.filter(t=>t.done).length;
-        const pct = Math.round((done/total)*100);
-        const bar = progressCell.querySelector('.bar');
-        bar && (bar.style.width = pct + '%');
-        const val = progressCell.querySelector('.value');
-        val && (val.textContent = `${done}/${total}`);
-      }
-      function renderPanel(tasks){
-        listUi.innerHTML = '';
-        tasks.forEach((t, idx)=>{
-          const item = document.createElement('div');
-          item.className = 'task-row';
-          const cb = document.createElement('input');
-          cb.type = 'checkbox';
-          cb.checked = t.done;
-          const name = document.createElement('div');
-          name.className = 'name';
-          name.textContent = t.name;
-          const actions = document.createElement('div');
-          actions.className = 'actions';
-          const commentBtn = document.createElement('button');
-          commentBtn.className = 'icon-btn';
-          commentBtn.innerHTML = '<i class="bi bi-chat" ></i>';
-          const editBtn = document.createElement('button');
-          editBtn.className = 'icon-btn';
-          editBtn.innerHTML = '<i class="bi bi-pencil"></i>';
-          const delBtn = document.createElement('button');
-          delBtn.className = 'icon-btn';
-          delBtn.innerHTML = '<i class="bi bi-x"></i>';
+      return tasks;
+    }
 
-          actions.appendChild(commentBtn);
-          actions.appendChild(editBtn);
-          actions.appendChild(delBtn);
-          item.appendChild(cb);
-          item.appendChild(name);
-          item.appendChild(actions);
-          listUi.appendChild(item);
+    function writeBadge(tasks){
+      if(!badge) return;
+      const n = tasks.length;
+      badge.textContent = `${n} ${n === 1 ? 'task' : 'tasks'}`;
+      badge.setAttribute('title', 'Show tasks');
+    }
 
-          cb.addEventListener('change', ()=>{ t.done = cb.checked; updateProgress(tasks); });
-          editBtn.addEventListener('click', ()=>{
-            name.setAttribute('contenteditable','true');
-            name.focus();
-            const onBlur = ()=>{
-              const v = (name.textContent||'').trim();
-              if(!v){ name.textContent = t.name; } else { t.name = v; }
-              name.removeAttribute('contenteditable');
-              name.removeEventListener('blur', onBlur);
-              updateProgress(tasks);
-            };
-            name.addEventListener('blur', onBlur);
-          });
-          delBtn.addEventListener('click', ()=>{
-            if(tasks.length<=1){ alert('At least one task must remain.'); return; }
-            if(!confirm('Delete this task? This action cannot be undone.')) return;
-            tasks.splice(idx,1);
-            renderDropdown(tasks);
-            writeBadge(tasks);
+    function updateProgress(tasks){
+      const total = tasks.length || 1; // оригинальная логика: избегаем деления на 0
+      const done = tasks.filter(t=>t.done).length;
+      const pct = Math.round((done/total)*100);
+      const bar = progressCell.querySelector('.bar');
+      if(bar) bar.style.width = pct + '%';
+      const val = progressCell.querySelector('.value');
+      if(val) val.textContent = `${done}/${total}`;
+    }
+
+    function renderPanel(tasks){
+      listUi.innerHTML = '';
+      tasks.forEach((t, idx)=>{
+        const item = document.createElement('div');
+        item.className = 'task-row';
+
+        const cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = !!t.done;
+        const name = document.createElement('div'); name.className = 'name'; name.textContent = t.name || '';
+        const actions = document.createElement('div'); actions.className = 'actions';
+
+        const commentBtn = document.createElement('button'); commentBtn.className = 'icon-btn'; commentBtn.innerHTML = '<i class="bi bi-chat"></i>';
+        const editBtn = document.createElement('button'); editBtn.className = 'icon-btn'; editBtn.innerHTML = '<i class="bi bi-pencil"></i>';
+        const delBtn = document.createElement('button'); delBtn.className = 'icon-btn'; delBtn.innerHTML = '<i class="bi bi-x"></i>';
+
+        actions.append(commentBtn, editBtn, delBtn);
+        item.append(cb, name, actions);
+        listUi.appendChild(item);
+
+        cb.addEventListener('change', ()=>{
+          t.done = cb.checked;
+          updateProgress(tasks);
+          writeBadge(tasks);
+        });
+
+        editBtn.addEventListener('click', ()=>{
+          name.setAttribute('contenteditable','true');
+          name.focus();
+          const onBlur = ()=>{
+            const v = (name.textContent||'').trim();
+            if(!v) name.textContent = t.name;
+            else t.name = v;
+            name.removeAttribute('contenteditable');
+            name.removeEventListener('blur', onBlur);
             updateProgress(tasks);
-          });
-          commentBtn.addEventListener('click', ()=>{
-            const input = document.getElementById('new-comment-text');
-            input && input.focus();
-            input && input.scrollIntoView({behavior:'smooth', block:'end'});
-            const send = document.getElementById('send-comment');
-            send && send.classList.add('active');
-            send && (send.disabled=false);
-          });
+            writeBadge(tasks);
+          };
+          name.addEventListener('blur', onBlur);
         });
 
-        function addNew(){
-          const v = (newInput.value||'').trim();
-          if(!v){ input.focus(); return; }
-          tasks.push({name:v, done:false});
-          newInput.value='';
+        delBtn.addEventListener('click', ()=>{
+          if(tasks.length <= 1){ alert('At least one task must remain.'); return; }
+          if(!confirm('Delete this task? This action cannot be undone.')) return;
+          tasks.splice(idx, 1);
           renderPanel(tasks);
           writeBadge(tasks);
           updateProgress(tasks);
-        }
-        addBtn.addEventListener('click', addNew);
-        newInput.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); addNew(); } });
-      }
+          if (typeof renderDropdown === 'function') renderDropdown(tasks);
+        });
 
-      // initial state
-      let tasks = readTasks();
+        commentBtn.addEventListener('click', ()=>{
+          const input = document.getElementById('new-comment-text');
+          if(input){ input.focus(); input.scrollIntoView({behavior:'smooth', block:'end'}); }
+          const send = document.getElementById('send-comment');
+          if(send){ send.classList.add('active'); send.disabled = false; }
+        });
+      });
+    }
+
+    // addNew вынесен наружу, чтобы не навешивать слушатели повторно
+    function addNew(){
+      const v = (newInput.value || '').trim();
+      if(!v){ newInput.focus(); return; }
+      tasks.push({ name: v, done: false });
+      newInput.value = '';
+      renderPanel(tasks);
       writeBadge(tasks);
       updateProgress(tasks);
+      if (typeof renderDropdown === 'function') renderDropdown(tasks);
+    }
 
-      function togglePanel(forceOpen){
-        const wantOpen = forceOpen===true ? true : forceOpen===false ? false : panelRow.hasAttribute('hidden');
-        if(wantOpen){ panelRow.removeAttribute('hidden'); renderPanel(tasks); }
-        else { panelRow.setAttribute('hidden',''); }
+    // Подключаем слушатели добавления один раз
+    addBtn && addBtn.addEventListener('click', addNew);
+    newInput && newInput.addEventListener('keydown', (e)=>{ if(e.key === 'Enter'){ e.preventDefault(); addNew(); } });
+
+    // initial state
+    let tasks = readTasks();
+    writeBadge(tasks);
+    updateProgress(tasks);
+
+    function togglePanel(forceOpen){
+      const wantOpen = forceOpen === true ? true : forceOpen === false ? false : panelRow.hasAttribute('hidden');
+      if(wantOpen){
+        panelRow.removeAttribute('hidden');
+        renderPanel(tasks);
+      } else {
+        panelRow.setAttribute('hidden','');
       }
-      badge && badge.addEventListener('click', (e)=>{ togglePanel(true); e.stopPropagation(); });
-      plus && plus.addEventListener('click', (e)=>{ togglePanel(true); e.stopPropagation(); });
-      document.addEventListener('click', (e)=>{
-        if(panelRow.hasAttribute('hidden')) return;
-        if(!row.contains(e.target) && !panelRow.contains(e.target)) togglePanel(false);
-      });
-      // Ensure re-render when opened
-      const observer = new MutationObserver(()=>{ if(!panelRow.hasAttribute('hidden')) renderPanel(tasks); });
-      observer.observe(panelRow, { attributes:true, attributeFilter:['hidden'] });
+    }
+
+    badge && badge.addEventListener('click', (e)=>{togglePanel(); e.stopPropagation();});
+    plus && plus.addEventListener('click', (e)=>{ togglePanel(true); e.stopPropagation(); });
+
+    document.addEventListener('click', (e)=>{
+      if(panelRow.hasAttribute('hidden')) return;
+      if(!row.contains(e.target) && !panelRow.contains(e.target)) togglePanel(false);
     });
-  })();
+
+    // rerender when panel becomes visible
+    const observer = new MutationObserver(()=>{ if(!panelRow.hasAttribute('hidden')) renderPanel(tasks); });
+    observer.observe(panelRow, { attributes:true, attributeFilter:['hidden'] });
+  });
+})();
 
   // Deadline date picking handled by Flatpickr in calendar.js
 
