@@ -310,7 +310,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 
 
 .t-name .deadline-mobile{display:none}
-.t-name .task-badge{margin-left:8px;padding:0 6px;border-radius:999px;background:var(--danger);color:var(--primary);font-weight:800;font-size:12px;cursor:pointer;}
+.t-name .task-badge{margin-left:8px;display:inline-flex;align-items:center;justify-content:center;height:22px;padding:0 8px;border-radius:999px;background:var(--primary-minor-1);color:var(--primary);font-weight:800;font-size:12px;cursor:pointer;white-space:nowrap;line-height:22px}
 .t-name .task-plus{margin-left:6px;color:var(--primary);font-size:18px}
 .t-name .task-plus:hover{color:var(--primary-major-1)}
 
