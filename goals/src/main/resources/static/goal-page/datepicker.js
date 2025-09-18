@@ -1,129 +1,155 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const monthNames = [
-    "January","February","March","April","May","June",
-    "July","August","September","October","November","December"
-  ];
+const datepicker = document.querySelector(".datepicker");
+const dateInput = document.querySelector(".date-input");
+const yearInput = datepicker.querySelector(".year-input");
+const monthInput = datepicker.querySelector(".month-input");
+const cancelBtn = datepicker.querySelector(".cancel");
+const applyBtn = datepicker.querySelector(".apply");
+const nextBtn = datepicker.querySelector(".next");
+const prevBtn = datepicker.querySelector(".prev");
+const dates = datepicker.querySelector(".dates");
 
-  const calendarWrapper = document.querySelector(".calendar-wrapper");
-  const monthSelect = document.querySelector(".month");
-  const yearInput = document.querySelector(".year");
-  const daysContainer = document.querySelector(".calendar-days");
-  const prevBtn = document.querySelector(".nav.prev");
-  const nextBtn = document.querySelector(".nav.next");
-  const dueBtn = document.getElementById("due-toggle"); // ✅ совпадает с твоей кнопкой
-  const dueText = document.querySelector("#due-text");
+let selectedDate = new Date();
+let year = selectedDate.getFullYear();
+let month = selectedDate.getMonth();
 
-  // Заполняем селект месяцами
-  monthNames.forEach(m => {
-    const opt = document.createElement("option");
-    opt.textContent = m;
-    monthSelect.appendChild(opt);
+// show datepicker
+dateInput.addEventListener("click", () => {
+  datepicker.hidden = false;
+});
+
+// hide datepicker
+cancelBtn.addEventListener("click", () => {
+  datepicker.hidden = true;
+});
+
+// close datepicker on outside click
+document.addEventListener("click", (e) => {
+  const datepickerContainer = datepicker.parentNode;
+  if (!datepickerContainer.contains(e.target)) {
+    datepicker.hidden = true;
+  }
+});
+
+// handle apply button click event
+applyBtn.addEventListener("click", () => {
+  // set the selected date to date input
+  dateInput.value = selectedDate.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
   });
 
-  function renderCalendar() {
-    const year = parseInt(yearInput.value, 10);
-    const month = monthNames.indexOf(monthSelect.value);
+  // hide datepicker
+  datepicker.hidden = true;
+});
 
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
-    const startDay = (firstDay.getDay() + 6) % 7; // чтобы неделя начиналась с Пн
-    const totalDays = lastDay.getDate();
+// handle next month nav
+nextBtn.addEventListener("click", () => {
+  if (month === 11) year++;
+  month = (month + 1) % 12;
+  displayDates();
+});
 
-    daysContainer.innerHTML = "";
+// handle prev month nav
+prevBtn.addEventListener("click", () => {
+  if (month === 0) year--;
+  month = (month - 1 + 12) % 12;
+  displayDates();
+});
 
-    // Дни предыдущего месяца
-    const prevMonthLastDay = new Date(year, month, 0).getDate();
-    for (let i = startDay - 1; i >= 0; i--) {
-      const span = document.createElement("span");
-      span.className = "day prev";
-      span.textContent = prevMonthLastDay - i;
-      daysContainer.appendChild(span);
-    }
+// handle month input change event
+monthInput.addEventListener("change", () => {
+  month = monthInput.selectedIndex;
+  displayDates();
+});
 
-    // Дни текущего месяца
-    for (let d = 1; d <= totalDays; d++) {
-      const span = document.createElement("span");
-      span.className = "day";
-      span.textContent = d;
-      span.addEventListener("click", () => {
-        const selectedDate = new Date(year, month, d);
-        const formattedHuman = selectedDate.toLocaleDateString(undefined,{month:'short', day:'numeric'});
-        dueText.textContent = formattedHuman;
-        calendarWrapper.style.display = "none";
-      });
-      daysContainer.appendChild(span);
-    }
+// handle year input change event
+yearInput.addEventListener("change", () => {
+  const newYear = parseInt(yearInput.value, 10) || new Date().getFullYear();
+  year = Math.min(2100, Math.max(1900, newYear));
+  yearInput.value = year;
+  displayDates();
+});
 
-    // Дни следующего месяца (чтобы было 6 рядов)
-    const remaining = 42 - daysContainer.childNodes.length;
-    for (let d = 1; d <= remaining; d++) {
-      const span = document.createElement("span");
-      span.className = "day next";
-      span.textContent = d;
-      daysContainer.appendChild(span);
-    }
+const updateYearMonth = () => {
+  monthInput.selectedIndex = month;
+  yearInput.value = year;
+};
+
+const handleDateClick = (e) => {
+  const button = e.target;
+
+  // remove the 'selected' class from other buttons
+  const selected = dates.querySelector(".selected");
+  selected && selected.classList.remove("selected");
+
+  // add the 'selected' class to current button
+  button.classList.add("selected");
+
+  // set the selected date
+  selectedDate = new Date(year, month, parseInt(button.textContent));
+};
+
+// render the dates in the calendar interface
+const displayDates = () => {
+  // update year & month whenever the dates are updated
+  updateYearMonth();
+
+  // clear the dates
+  dates.innerHTML = "";
+
+  //* display the last week of previous month
+
+  // get the last date of previous month
+  const lastOfPrevMonth = new Date(year, month, 0);
+
+  for (let i = 0; i <= lastOfPrevMonth.getDay(); i++) {
+    // if the last day is Saturday don't show the leading dates
+    if (lastOfPrevMonth.getDay() === 6) break;
+
+    const text = lastOfPrevMonth.getDate() - lastOfPrevMonth.getDay() + i;
+    const button = createButton(text, true);
+    dates.appendChild(button);
   }
 
-  // Переключение месяцев
-  prevBtn.addEventListener("click", () => {
-    let idx = monthNames.indexOf(monthSelect.value);
-    let y = parseInt(yearInput.value, 10);
-    idx--; if (idx < 0) { idx = 11; y--; }
-    monthSelect.value = monthNames[idx];
-    yearInput.value = y;
-    renderCalendar();
-  });
+  //* display the current month
 
-  nextBtn.addEventListener("click", () => {
-    let idx = monthNames.indexOf(monthSelect.value);
-    let y = parseInt(yearInput.value, 10);
-    idx++; if (idx > 11) { idx = 0; y++; }
-    monthSelect.value = monthNames[idx];
-    yearInput.value = y;
-    renderCalendar();
-  });
+  // get the last date of the month
+  const lastOfMonth = new Date(year, month + 1, 0);
 
-  monthSelect.addEventListener("change", renderCalendar);
-  yearInput.addEventListener("input", renderCalendar);
+  for (let i = 1; i <= lastOfMonth.getDate(); i++) {
+    const button = createButton(i, false);
+    button.addEventListener("click", handleDateClick);
+    dates.appendChild(button);
+  }
 
-  // Открытие календаря с авто-подстройкой
-  dueBtn.addEventListener("click", () => {
-    calendarWrapper.style.display = calendarWrapper.style.display === "none" ? "block" : "none";
+  //* display the first week of next month
 
-    if (calendarWrapper.style.display === "block") {
-      const rect = dueBtn.getBoundingClientRect();
-      const calWidth = calendarWrapper.offsetWidth;
-      const viewportWidth = window.innerWidth;
-      const margin = 10; // safe viewport margin
-      const offsetLeft = 16; // shift a bit to the left as requested
+  const firstOfNextMonth = new Date(year, month + 1, 1);
 
-      // базовая позиция (учитываем скролл страницы)
-      const baseTop = rect.bottom + window.scrollY;
-      let left = rect.left + window.scrollX - offsetLeft;
+  for (let i = firstOfNextMonth.getDay(); i < 7; i++) {
+    // if the first day starts on Sunday don't show the trailing dates
+    if (firstOfNextMonth.getDay() === 0) break;
 
-      // клампим по горизонтали, чтобы календарь поместился полностью
-      const maxLeft = viewportWidth + window.scrollX - calWidth - margin;
-      const minLeft = window.scrollX + margin;
-      left = Math.max(minLeft, Math.min(maxLeft, left));
+    const text = firstOfNextMonth.getDate() - firstOfNextMonth.getDay() + i;
+    const button = createButton(text, true);
+    dates.appendChild(button);
+  }
+};
 
-      calendarWrapper.style.top = baseTop + "px";
-      calendarWrapper.style.left = left + "px";
+const createButton = (text, isDisabled = false) => {
+  const button = document.createElement("button");
+  button.textContent = text;
+  button.disabled = isDisabled;
+  if (!isDisabled) {
+    const buttonDate = new Date(year, month, text).toDateString();
+    const today = buttonDate === new Date().toDateString();
+    const selected = buttonDate === selectedDate.toDateString();
 
-      renderCalendar();
-    }
-  });
+    button.classList.toggle("today", today);
+    button.classList.toggle("selected", selected);
+  }
+  return button;
+};
 
-  // Закрытие календаря по клику вне
-  document.addEventListener('click', (e)=>{
-    const open = calendarWrapper && calendarWrapper.style.display === 'block';
-    if(!open) return;
-    const toggleClicked = e.target.closest && e.target.closest('#due-toggle');
-    const inside = e.target.closest && e.target.closest('.calendar-wrapper');
-    if(!toggleClicked && !inside){ calendarWrapper.style.display = 'none'; }
-  });
-
-  // Первый запуск
-  monthSelect.value = monthNames[new Date().getMonth()];
-  yearInput.value = new Date().getFullYear();
-  renderCalendar();
-});
+displayDates();
