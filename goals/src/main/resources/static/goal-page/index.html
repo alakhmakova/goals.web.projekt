@@ -1,695 +1,1035 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Goal • Hitta LIA plats</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
-        <!-- FlyonUI styles -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flyonui@1.7.0/dist/flyonui.min.css" />
-        <script defer src="https://cdn.jsdelivr.net/npm/@iconify/iconify@3.1.1/dist/iconify-icon.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-        <!-- Custom Datepicker (refinedguides/custom-datepicker) -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/refinedguides/custom-datepicker/dist/datepicker.min.css" />
-        <link rel="stylesheet" href="./styles.css" />
-        <link rel="stylesheet" href="calendar.css" />
-    </head>
-    <body>
-        <div class="app">
-            <div class="drawer-overlay" id="drawer-overlay" hidden></div>
-            <aside class="left-drawer" id="left-drawer" aria-hidden="true">
-                <div class="drawer-head">
-                    <div class="brand">
-                        <img class="brand-img" src="/images/logo/sprout-hand.png" alt="Spira" />
-                        <span class="brand-name">Spira</span>
-                    </div>
-                    <button class="icon-btn close-drawer" id="drawer-close" aria-label="Close menu"><span class="material-symbols-outlined">close</span></button>
-                </div>
-                <button class="btn primary w-full">Add target</button>
 
-                <nav class="drawer-menu">
-                    <a href="#"><span class="material-symbols-outlined">dashboard</span> All goals</a>
-                    <a href="#"><span class="material-symbols-outlined">home</span> Home</a>
-                    <a href="#"><span class="material-symbols-outlined">info</span> About GROW</a>
-                    <a href="#"><span class="material-symbols-outlined">mountain_flag</span> Qualities of a good goal</a>
-                    <a href="#"><span class="material-symbols-outlined">flag</span> How to set a goal</a>
-                    <a href="#"><span class="material-symbols-outlined">help</span> Powerful questions</a>
-                    <a href="#"><span class="material-symbols-outlined">forward_to_inbox</span> Contacts</a>
-                    <a href="#"><span class="material-symbols-outlined">manage_accounts</span> Account and password</a>
-                    <a href="#" class="signout-link"><span class="material-symbols-outlined">logout</span> Sign out</a>
-                </nav>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Goal • Hitta LIA plats</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Nunito:wght@300;400;600;700;800;900&display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet" />
+    <!-- FlyonUI styles -->
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flyonui@1.7.0/dist/flyonui.min.css" />
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/@iconify/iconify@3.1.1/dist/iconify-icon.min.js"></script>
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <!-- Custom Datepicker (refinedguides/custom-datepicker) -->
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/refinedguides/custom-datepicker/dist/datepicker.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="calendar.css" />
+    <link rel="stylesheet" href="timepicker.css" />
+  </head>
 
-                <div class="drawer-footer"></div>
-            </aside>
-            <aside class="sidebar" aria-hidden="true"></aside>
+  <body>
+    <div class="app">
+      <div class="drawer-overlay" id="drawer-overlay" hidden></div>
+      <aside class="left-drawer" id="left-drawer" aria-hidden="true">
+        <div class="drawer-head">
+          <div class="brand">
+            <img class="brand-img" src="/images/logo/sprout-hand.png"
+              alt="Spira" />
+            <span class="brand-name">Spira</span>
+          </div>
+          <button class="icon-btn close-drawer" id="drawer-close"
+            aria-label="Close menu">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <button class="btn primary w-full">Add target</button>
 
-            <header class="topbar">
-                <div class="crumbs">
-                    <button class="icon-btn menu-btn" aria-label="Menu"><span class="material-symbols-outlined">menu</span></button>
-                    <span class="material-symbols-outlined">rocket_launch</span>
-                    <a href="#" class="back">All Goals <span class="material-symbols-outlined">chevron_right</span></a>
-                </div>
-                <div class="top-actions">
-                    <span class="created-label"><span class="muted">Created</span> <span id="created-text">Today</span></span>
-                    <button class="due-btn" id="due-toggle" type="button"><span class="due-to">Due to</span> <span id="due-text">27 Apr</span></button>
+        <nav class="drawer-menu">
+          <a href="#"><span class="material-symbols-outlined">dashboard</span>
+            All
+            goals</a>
+          <a href="#"><span class="material-symbols-outlined">home</span>
+            Home</a>
+          <a href="#"><span class="material-symbols-outlined">info</span> About
+            GROW</a>
+          <a href="#"><span
+              class="material-symbols-outlined">mountain_flag</span>
+            Qualities of a good goal</a>
+          <a href="#"><span class="material-symbols-outlined">flag</span> How to
+            set a
+            goal</a>
+          <a href="#"><span class="material-symbols-outlined">help</span>
+            Powerful
+            questions</a>
+          <a href="#"><span
+              class="material-symbols-outlined">forward_to_inbox</span>
+            Contacts</a>
+          <a href="#"><span
+              class="material-symbols-outlined">manage_accounts</span>
+            Account and password</a>
+          <a href="#" class="signout-link"><span
+              class="material-symbols-outlined">logout</span> Sign out</a>
+        </nav>
 
-                    <button class="icon-btn account-btn" title="Account"><span class="material-symbols-outlined">identity_platform</span></button>
-                </div>
-            </header>
+        <div class="drawer-footer"></div>
+      </aside>
+      <aside class="sidebar" aria-hidden="true"></aside>
 
-            <main class="content">
-                <section class="goal-summary">
-                    <div class="ring" data-percent="54">
-                        <span>54%</span>
-                    </div>
-                    <div class="goal-head">
-                        <h1>Hitta LIA plats</h1>
-                        <div class="goal-menu dropdown relative inline-flex">
-                            <span class="material-symbols-outlined kebab">more_horiz</span>
-                            <ul class="dropdown-menu dropdown-open:opacity-100 min-w-60" role="menu" aria-orientation="vertical" aria-labelledby="goal-actions">
-                                <li><button class="dropdown-item" data-action="rename">Rename</button></li>
-                                <li><button class="dropdown-item" data-action="color">Change due to date</button></li>
-                                <li><button class="dropdown-item danger" data-action="delete">Delete</button></li>
-                            </ul>
-                        </div>
-                    </div>
+      <header class="topbar">
+        <div class="crumbs">
+          <button class="icon-btn menu-btn" aria-label="Menu">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+          <span class="material-symbols-outlined">rocket_launch</span>
+          <a href="#" class="back">All Goals
+            <span class="material-symbols-outlined">chevron_right</span></a>
+        </div>
+        <div class="top-actions">
+          <span class="created-label"><span class="muted">Created</span>
+            <span id="created-text">Today</span></span>
+          <button class="due-btn" id="due-toggle" type="button">
+            <span class="due-to">Due to</span> <span id="due-text">27 Apr</span>
+          </button>
 
-                    <div class="summary-right">
-                        <div class="faq-head"><h3>Description</h3></div>
-                        <ul class="grow-list">
-                            <li class="grow-item reality" data-key="reality" data-open="false">
-                                <div class="row"><span class="title">Reality</span><span class="material-symbols-outlined add-rich" aria-expanded="false">add</span></div>
-                                <div class="rich-editor" hidden>
-                                    <div class="toolbar">
-                                        <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
-                                        <button type="button" data-cmd="italic" title="Italic"><i class="bi bi-type-italic"></i></button>
-                                        <button type="button" data-cmd="underline" title="Underline"><i class="bi bi-type-underline"></i></button>
-                                        <button type="button" data-cmd="insertUnorderedList" title="Bulleted list"><i class="bi bi-list-ul"></i></button>
-                                        <button type="button" data-cmd="insertOrderedList" title="Numbered list"><i class="bi bi-list-ol"></i></button>
-                                    </div>
-                                    <div class="editor" contenteditable="true" data-placeholder="Write here..."></div>
-                                    <div class="actions"><button class="btn primary save-rich">Save</button></div>
-                                </div>
-                            </li>
+          <button class="icon-btn account-btn" title="Account">
+            <span class="material-symbols-outlined">identity_platform</span>
+          </button>
+        </div>
+      </header>
 
-                            <li class="grow-item options" data-key="options" data-open="false">
-                                <div class="row"><span class="title">Options</span><span class="material-symbols-outlined add-rich" aria-expanded="false">add</span></div>
-                                <div class="rich-editor" hidden>
-                                    <div class="toolbar">
-                                        <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
-                                        <button type="button" data-cmd="italic" title="Italic"><i class="bi bi-type-italic"></i></button>
-                                        <button type="button" data-cmd="underline" title="Underline"><i class="bi bi-type-underline"></i></button>
-                                        <button type="button" data-cmd="insertUnorderedList" title="Bulleted list"><i class="bi bi-list-ul"></i></button>
-                                        <button type="button" data-cmd="insertOrderedList" title="Numbered list"><i class="bi bi-list-ol"></i></button>
-                                    </div>
-                                    <div class="editor" contenteditable="true" data-placeholder="Write here..."></div>
-                                    <div class="actions"><button class="btn primary save-rich">Save</button></div>
-                                </div>
-                            </li>
-
-                            <li class="grow-item will" data-key="will" data-open="false">
-                                <div class="row"><span class="title">Will</span><span class="material-symbols-outlined add-rich" aria-expanded="false">add</span></div>
-                                <div class="rich-editor" hidden>
-                                    <div class="toolbar">
-                                        <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
-                                        <button type="button" data-cmd="italic" title="Italic"><i class="bi bi-type-italic"></i></button>
-                                        <button type="button" data-cmd="underline" title="Underline"><i class="bi bi-type-underline"></i></button>
-                                        <button type="button" data-cmd="insertUnorderedList" title="Bulleted list"><i class="bi bi-list-ul"></i></button>
-                                        <button type="button" data-cmd="insertOrderedList" title="Numbered list"><i class="bi bi-list-ol"></i></button>
-                                    </div>
-                                    <div class="editor" contenteditable="true" data-placeholder="Write here..."></div>
-                                    <div class="actions"><button class="btn primary save-rich">Save</button></div>
-                                </div>
-                            </li>
-
-                            <li class="grow-item resources" data-key="resources" data-open="false">
-                                <div class="row"><span class="title">Resources</span><span class="material-symbols-outlined add-rich" aria-expanded="false">add</span></div>
-                                <div class="rich-editor" hidden>
-                                    <div class="toolbar">
-                                        <button type="button" data-cmd="bold" title="Bold"><i class="bi bi-type-bold"></i></button>
-                                        <button type="button" data-cmd="italic" title="Italic"><i class="bi bi-type-italic"></i></button>
-                                        <button type="button" data-cmd="underline" title="Underline"><i class="bi bi-type-underline"></i></button>
-                                        <button type="button" data-cmd="insertUnorderedList" title="Bulleted list"><i class="bi bi-list-ul"></i></button>
-                                        <button type="button" data-cmd="insertOrderedList" title="Numbered list"><i class="bi bi-list-ol"></i></button>
-                                    </div>
-                                    <div class="editor" contenteditable="true" data-placeholder="Write here..."></div>
-                                    <div class="actions"><button class="btn primary save-rich">Save</button></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section class="targets card">
-                    <div class="targets-head">
-                        <h2>Targets</h2>
-                        <button class="btn primary add-target">+ Add target</button>
-                    </div>
-
-                    <table class="targets-table">
-                        <thead>
-                            <tr>
-                                <th>Target</th>
-                                <th>Deadline Date</th>
-                                <th>Deadline Time</th>
-                                <th>Progress</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr data-type="number" class="t-row" data-created="Aug 9">
-                                <td class="t-name">
-                                    <div class="t-name-wrap">
-                                        <span class="name-view">Skicka ansökningar</span>
-                                        <div class="dropdown relative inline-flex t-menu">
-                                            <span class="material-symbols-outlined target-kebab">more_horiz</span>
-                                            <ul class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60" role="menu" aria-orientation="vertical" aria-labelledby="tmenu-1">
-                                                <li class="dropdown-title">ACTIONS</li>
-                                                <li><button class="dropdown-item" data-rename>Rename</button></li>
-                                                <li><button class="dropdown-item" data-deadline>Change deadline</button></li>
-                                                <li><button class="dropdown-item" data-note>Take a note</button></li>
-                                                <li><button class="dropdown-item danger" data-delete>Delete</button></li>
-                                                <hr class="border-base-content/25 my-2 -mx-2" />
-                                                <li class="dropdown-title">CREATED: <span class="created-date">15-09-2025</span></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="deadline-mobile small muted"><span class="d-mobile-date">Oct 1</span> <span class="d-mobile-time">09:00</span></div>
-                                    <input class="name-input" type="text" value="Skicka ansökningar" />
-                                </td>
-                                <td class="deadline-cell" data-date="2025-10-01">
-                                    <div class="datepicker-container">
-      <input type="text" class="date-input" placeholder="Select date" />
-
-      <div class="datepicker" hidden>
-        <!-- .datepicker-header -->
-        <div class="datepicker-header">
-          <button class="prev">Prev</button>
-
-          <div>
-            <select class="month-input">
-              <option>January</option>
-              <option>February</option>
-              <option>March</option>
-              <option>April</option>
-              <option>May</option>
-              <option>June</option>
-              <option>July</option>
-              <option>August</option>
-              <option>September</option>
-              <option>October</option>
-              <option>November</option>
-              <option>December</option>
-            </select>
-            <input type="number" class="year-input" min="1900" max="2100" />
+      <main class="content">
+        <section class="goal-summary">
+          <div class="ring" data-percent="54">
+            <span>54%</span>
+          </div>
+          <div class="goal-head">
+            <h1>Hitta LIA plats</h1>
+            <div class="goal-menu dropdown relative inline-flex">
+              <span class="material-symbols-outlined kebab">more_horiz</span>
+              <ul class="dropdown-menu dropdown-open:opacity-100 min-w-60"
+                role="menu" aria-orientation="vertical"
+                aria-labelledby="goal-actions">
+                <li>
+                  <button class="dropdown-item" data-action="rename">
+                    Rename
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item" data-action="color">
+                    Change due to date
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item danger" data-action="delete">
+                    Delete
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
 
-          <button class="next">Next</button>
-        </div>
-        <!-- /.datepicker-header -->
+          <div class="summary-right">
+            <div class="faq-head">
+              <h3>Description</h3>
+            </div>
+            <ul class="grow-list">
+              <li class="grow-item reality" data-key="reality"
+                data-open="false">
+                <div class="row">
+                  <span class="title">Reality</span><span
+                    class="material-symbols-outlined add-rich"
+                    aria-expanded="false">add</span>
+                </div>
+                <div class="rich-editor" hidden>
+                  <div class="toolbar">
+                    <button type="button" data-cmd="bold" title="Bold">
+                      <i class="bi bi-type-bold"></i>
+                    </button>
+                    <button type="button" data-cmd="italic" title="Italic">
+                      <i class="bi bi-type-italic"></i>
+                    </button>
+                    <button type="button" data-cmd="underline"
+                      title="Underline">
+                      <i class="bi bi-type-underline"></i>
+                    </button>
+                    <button type="button" data-cmd="insertUnorderedList"
+                      title="Bulleted list">
+                      <i class="bi bi-list-ul"></i>
+                    </button>
+                    <button type="button" data-cmd="insertOrderedList"
+                      title="Numbered list">
+                      <i class="bi bi-list-ol"></i>
+                    </button>
+                  </div>
+                  <div class="editor" contenteditable="true"
+                    data-placeholder="Write here..."></div>
+                  <div class="actions">
+                    <button class="btn primary save-rich">Save</button>
+                  </div>
+                </div>
+              </li>
 
-        <!-- .days -->
-        <div class="days">
-          <span>Sun</span>
-          <span>Mon</span>
-          <span>Tue</span>
-          <span>Wed</span>
-          <span>Thu</span>
-          <span>Fri</span>
-          <span>Sat</span>
-        </div>
-        <!-- /.days -->
+              <li class="grow-item options" data-key="options"
+                data-open="false">
+                <div class="row">
+                  <span class="title">Options</span><span
+                    class="material-symbols-outlined add-rich"
+                    aria-expanded="false">add</span>
+                </div>
+                <div class="rich-editor" hidden>
+                  <div class="toolbar">
+                    <button type="button" data-cmd="bold" title="Bold">
+                      <i class="bi bi-type-bold"></i>
+                    </button>
+                    <button type="button" data-cmd="italic" title="Italic">
+                      <i class="bi bi-type-italic"></i>
+                    </button>
+                    <button type="button" data-cmd="underline"
+                      title="Underline">
+                      <i class="bi bi-type-underline"></i>
+                    </button>
+                    <button type="button" data-cmd="insertUnorderedList"
+                      title="Bulleted list">
+                      <i class="bi bi-list-ul"></i>
+                    </button>
+                    <button type="button" data-cmd="insertOrderedList"
+                      title="Numbered list">
+                      <i class="bi bi-list-ol"></i>
+                    </button>
+                  </div>
+                  <div class="editor" contenteditable="true"
+                    data-placeholder="Write here..."></div>
+                  <div class="actions">
+                    <button class="btn primary save-rich">Save</button>
+                  </div>
+                </div>
+              </li>
 
-        <!-- .dates -->
-        <div class="dates"></div>
-        <!-- /.dates -->
+              <li class="grow-item will" data-key="will" data-open="false">
+                <div class="row">
+                  <span class="title">Will</span><span
+                    class="material-symbols-outlined add-rich"
+                    aria-expanded="false">add</span>
+                </div>
+                <div class="rich-editor" hidden>
+                  <div class="toolbar">
+                    <button type="button" data-cmd="bold" title="Bold">
+                      <i class="bi bi-type-bold"></i>
+                    </button>
+                    <button type="button" data-cmd="italic" title="Italic">
+                      <i class="bi bi-type-italic"></i>
+                    </button>
+                    <button type="button" data-cmd="underline"
+                      title="Underline">
+                      <i class="bi bi-type-underline"></i>
+                    </button>
+                    <button type="button" data-cmd="insertUnorderedList"
+                      title="Bulleted list">
+                      <i class="bi bi-list-ul"></i>
+                    </button>
+                    <button type="button" data-cmd="insertOrderedList"
+                      title="Numbered list">
+                      <i class="bi bi-list-ol"></i>
+                    </button>
+                  </div>
+                  <div class="editor" contenteditable="true"
+                    data-placeholder="Write here..."></div>
+                  <div class="actions">
+                    <button class="btn primary save-rich">Save</button>
+                  </div>
+                </div>
+              </li>
 
-        <!-- .datepicker-footer -->
-        <div class="datepicker-footer">
-          <button class="cancel">Cancel</button>
-          <button class="apply">Apply</button>
+              <li class="grow-item resources" data-key="resources"
+                data-open="false">
+                <div class="row">
+                  <span class="title">Resources</span><span
+                    class="material-symbols-outlined add-rich"
+                    aria-expanded="false">add</span>
+                </div>
+                <div class="rich-editor" hidden>
+                  <div class="toolbar">
+                    <button type="button" data-cmd="bold" title="Bold">
+                      <i class="bi bi-type-bold"></i>
+                    </button>
+                    <button type="button" data-cmd="italic" title="Italic">
+                      <i class="bi bi-type-italic"></i>
+                    </button>
+                    <button type="button" data-cmd="underline"
+                      title="Underline">
+                      <i class="bi bi-type-underline"></i>
+                    </button>
+                    <button type="button" data-cmd="insertUnorderedList"
+                      title="Bulleted list">
+                      <i class="bi bi-list-ul"></i>
+                    </button>
+                    <button type="button" data-cmd="insertOrderedList"
+                      title="Numbered list">
+                      <i class="bi bi-list-ol"></i>
+                    </button>
+                  </div>
+                  <div class="editor" contenteditable="true"
+                    data-placeholder="Write here..."></div>
+                  <div class="actions">
+                    <button class="btn primary save-rich">Save</button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="targets card">
+          <div class="targets-head">
+            <h2>Targets</h2>
+            <button class="btn primary add-target">+ Add target</button>
+          </div>
+
+          <table class="targets-table">
+            <thead>
+              <tr>
+                <th>Target</th>
+                <th>Deadline Date</th>
+                <th>Deadline Time</th>
+                <th>Progress</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-type="number" class="t-row" data-created="Aug 9">
+                <td class="t-name">
+                  <div class="t-name-wrap">
+                    <span class="name-view">Skicka ansökningar</span>
+                    <div class="dropdown relative inline-flex t-menu">
+                      <span
+                        class="material-symbols-outlined target-kebab">more_horiz</span>
+                      <ul
+                        class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60"
+                        role="menu"
+                        aria-orientation="vertical" aria-labelledby="tmenu-1">
+                        <li class="dropdown-title">ACTIONS</li>
+                        <li>
+                          <button class="dropdown-item" data-rename>
+                            Rename
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" data-deadline>
+                            Change deadline
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" data-note>
+                            Take a note
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item danger" data-delete>
+                            Delete
+                          </button>
+                        </li>
+                        <hr class="border-base-content/25 my-2 -mx-2" />
+                        <li class="dropdown-title">
+                          CREATED: <span class="created-date">15-09-2025</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="deadline-mobile small muted">
+                    <span class="d-mobile-date">Oct 1</span>
+                    <span class="d-mobile-time">09:00</span>
+                  </div>
+                  <input class="name-input" type="text"
+                    value="Skicka ansökningar" />
+                </td>
+                <td class="deadline-cell" data-date="2025-10-01">
+                  <div class="datepicker-container">
+                    <input type="text" class="date-input"
+                      placeholder="Select date" />
+
+                    <div class="datepicker" hidden>
+                      <!-- .datepicker-header -->
+                      <div class="datepicker-header">
+                        <button class="prev">Prev</button>
+
+                        <div>
+                          <select class="month-input">
+                            <option>January</option>
+                            <option>February</option>
+                            <option>March</option>
+                            <option>April</option>
+                            <option>May</option>
+                            <option>June</option>
+                            <option>July</option>
+                            <option>August</option>
+                            <option>September</option>
+                            <option>October</option>
+                            <option>November</option>
+                            <option>December</option>
+                          </select>
+                          <input type="number" class="year-input" min="1900"
+                            max="2100" />
+                        </div>
+
+                        <button class="next">Next</button>
+                      </div>
+                      <!-- /.datepicker-header -->
+
+                      <!-- .days -->
+                      <div class="days">
+                        <span>Sun</span>
+                        <span>Mon</span>
+                        <span>Tue</span>
+                        <span>Wed</span>
+                        <span>Thu</span>
+                        <span>Fri</span>
+                        <span>Sat</span>
+                      </div>
+                      <!-- /.days -->
+
+                      <!-- .dates -->
+                      <div class="dates"></div>
+                      <!-- /.dates -->
+
+                      <!-- .datepicker-footer -->
+                      <div class="datepicker-footer">
+                        <button class="cancel">Cancel</button>
+                        <button class="apply">Apply</button>
+                      </div>
+                      <!-- /.datepicker-footer -->
+                    </div>
+                  </div>
+                </td>
+                <td class="deadline-time-cell " data-time=""></td>                   
+                <td class="t-progress">
+                  <div class="progress-cell clickable" data-type="number"
+                    data-unit="ansökningar" data-start="0"
+                    data-current="136" data-target="200">
+                    <div class="meta top-left">ansökningar</div>
+                    <div class="progress">
+                      <div class="bar violet" style="width: 68%"></div>
+                    </div>
+                    <div class="meta bottom-right">
+                      <span class="value">0(136)/200</span>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-type="success" class="t-row" data-created="Aug 9">
+                <td class="t-name">
+                  <div class="t-name-wrap">
+                    <span class="name-view">Formuläret</span>
+                    <div class="dropdown relative inline-flex t-menu"
+                      style="font-family: 'Nunito', sans-serif">
+                      <span
+                        class="material-symbols-outlined target-kebab">more_horiz</span>
+                      <ul
+                        class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60"
+                        role="menu"
+                        aria-orientation="vertical" aria-labelledby="tmenu-2">
+                        <li class="dropdown-title">ACTIONS</li>
+                        <li>
+                          <button class="dropdown-item" data-rename>
+                            Rename
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" data-deadline>
+                            Change deadline
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" data-note>
+                            Take a note
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item danger" data-delete>
+                            Delete
+                          </button>
+                        </li>
+                        <hr class="border-base-content/25 my-2 -mx-2" />
+                        <li class="dropdown-title">
+                          CREATED: <span class="created-date">15-09-2025</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="deadline-mobile small muted">
+                    <span class="d-mobile-date">Aug 10</span>
+                    <span class="d-mobile-time">--:--</span>
+                  </div>
+                  <input class="name-input" type="text" value="Formuläret" />
+                </td>
+                <td class="deadline-cell" data-date="2025-08-10">
+                  <div class="datepicker-container">
+                    <input type="text" class="date-input"
+                      placeholder="Select date" />
+
+                    <div class="datepicker" hidden>
+                      <!-- .datepicker-header -->
+                      <div class="datepicker-header">
+                        <button class="prev">Prev</button>
+
+                        <div>
+                          <select class="month-input">
+                            <option>January</option>
+                            <option>February</option>
+                            <option>March</option>
+                            <option>April</option>
+                            <option>May</option>
+                            <option>June</option>
+                            <option>July</option>
+                            <option>August</option>
+                            <option>September</option>
+                            <option>October</option>
+                            <option>November</option>
+                            <option>December</option>
+                          </select>
+                          <input type="number" class="year-input" min="1900"
+                            max="2100" />
+                        </div>
+
+                        <button class="next">Next</button>
+                      </div>
+                      <!-- /.datepicker-header -->
+
+                      <!-- .days -->
+                      <div class="days">
+                        <span>Sun</span>
+                        <span>Mon</span>
+                        <span>Tue</span>
+                        <span>Wed</span>
+                        <span>Thu</span>
+                        <span>Fri</span>
+                        <span>Sat</span>
+                      </div>
+                      <!-- /.days -->
+
+                      <!-- .dates -->
+                      <div class="dates"></div>
+                      <!-- /.dates -->
+
+                      <!-- .datepicker-footer -->
+                      <div class="datepicker-footer">
+                        <button class="cancel">Cancel</button>
+                        <button class="apply">Apply</button>
+                      </div>
+                      <!-- /.datepicker-footer -->
+                    </div>
+                  </div>
+                </td>
+                <td class="deadline-time-cell" data-time></td>
+                <td class="t-progress">
+                  <label class="seg-toggle">
+                    <input class="seg-input" type="checkbox" />
+                    <span class="seg-bg"></span>
+                    <span class="seg left">Not done</span>
+                    <span class="seg right">done</span>
+                  </label>
+                </td>
+              </tr>
+
+              <tr data-type="tasks" class="t-row" data-created="Aug 12">
+                <td class="t-name">
+                  <div class="t-name-wrap">
+                    <span class="name-view">AI Agent to send messages</span>
+                    <span class="tasks-number-badge"></span>
+                    <div class="dropdown relative inline-flex t-menu">
+                      <span
+                        class="material-symbols-outlined target-kebab">more_horiz</span>
+                      <ul
+                        class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60"
+                        role="menu"
+                        aria-orientation="vertical" aria-labelledby="tmenu-3">
+                        <li class="dropdown-title">ACTIONS</li>
+                        <li>
+                          <button class="dropdown-item" data-rename>
+                            Rename
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" data-deadline>
+                            Change deadline
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" data-note>
+                            Take a note
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item danger" data-delete>
+                            Delete
+                          </button>
+                        </li>
+                        <hr />
+                        <li class="dropdown-title created-badge">
+                          CREATED: <span class="created-date">15-09-2025</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="deadline-mobile small muted">
+                    <span class="d-mobile-date">Sep 30</span>
+                    <span class="d-mobile-time">14:00</span>
+                  </div>
+                  <input class="name-input" type="text"
+                    value="AI Agent to send messages" />
+                </td>
+                <td class="deadline-cell" data-date="2025-09-30">
+                  <div class="datepicker-container">
+                    <input type="text" class="date-input"
+                      placeholder="Select date" />
+
+                    <div class="datepicker" hidden>
+                      <!-- .datepicker-header -->
+                      <div class="datepicker-header">
+                        <button class="prev">Prev</button>
+
+                        <div>
+                          <select class="month-input">
+                            <option>January</option>
+                            <option>February</option>
+                            <option>March</option>
+                            <option>April</option>
+                            <option>May</option>
+                            <option>June</option>
+                            <option>July</option>
+                            <option>August</option>
+                            <option>September</option>
+                            <option>October</option>
+                            <option>November</option>
+                            <option>December</option>
+                          </select>
+                          <input type="number" class="year-input" min="1900"
+                            max="2100" />
+                        </div>
+
+                        <button class="next">Next</button>
+                      </div>
+                      <!-- /.datepicker-header -->
+
+                      <!-- .days -->
+                      <div class="days">
+                        <span>Sun</span>
+                        <span>Mon</span>
+                        <span>Tue</span>
+                        <span>Wed</span>
+                        <span>Thu</span>
+                        <span>Fri</span>
+                        <span>Sat</span>
+                      </div>
+                      <!-- /.days -->
+
+                      <!-- .dates -->
+                      <div class="dates"></div>
+                      <!-- /.dates -->
+
+                      <!-- .datepicker-footer -->
+                      <div class="datepicker-footer">
+                        <button class="cancel">Cancel</button>
+                        <button class="apply">Apply</button>
+                      </div>
+                      <!-- /.datepicker-footer -->
+                    </div>
+                  </div>
+                </td>
+                <td class="deadline-time-cell" data-time=""></td>
+                <td class="t-progress">
+                  <div class="progress-cell" data-type="tasks">
+                    <div class="meta top-left">tasks</div>
+                    <div class="progress">
+                      <div class="bar" style="width: 0%"></div>
+                    </div>
+                    <div class="meta bottom-right">
+                      <span class="value">0/5</span>
+                    </div>
+                    <ul class="task-list" hidden>
+                      <li class="done">Task 1</li>
+                      <li class="done">Task 2</li>
+                      <li>Task 3</li>
+                      <li>Task 4</li>
+                      <li>Task 5</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <!-- Expandable full-width tasks panel (inserted after the tasks row) -->
+              <tr class="tasks-panel-row" hidden>
+                <td colspan="6">
+                  <div class="tasks-panel">
+                    <div class="task-list-ui"></div>
+                    <div class="new-task">
+                      <input type="text" placeholder="New task name"
+                        class="new-task-input" />
+                      <button class="btn primary add-task-btn">Add</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="timeline card">
+          <h2>Comments</h2>
+          <ul class="comments">
+            <li class="comment-item">
+              <div class="comment">
+                <div class="c-avatar"></div>
+                <div class="c-content">
+                  <div class="c-head">
+                    <div class="c-author">Anastasiya</div>
+                    <div class="c-time">Yesterday</div>
+                    <div class="c-menu dropdown relative inline-flex">
+                      <span
+                        class="material-symbols-outlined comment-kebab">more_horiz</span>
+                      <ul
+                        class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60"
+                        role="menu"
+                        aria-orientation="vertical" aria-labelledby="cmenu-1">
+                        <li>
+                          <button class="dropdown-item" data-edit>Edit</button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item danger" data-delete>
+                            Delete
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="c-body">
+                    <div class="comment-view">
+                      Created by Anastasiya: tasks type target
+                    </div>
+                    <textarea class="comment-input" rows="2"></textarea>
+                  </div>
+                  <div class="c-actions">
+                    <button class="c-like">
+                      <span class="material-symbols-outlined">thumb_up</span>
+                      Like
+                    </button>
+                    <button class="c-reply">
+                      <span class="material-symbols-outlined">reply</span> Reply
+                    </button>
+                  </div>
+                  <div class="c-reply-box">
+                    <textarea class="reply-input" rows="2"
+                      placeholder="Write a reply..."></textarea>
+                    <div class="actions">
+                      <button class="btn primary save-reply">Send</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="comment-item">
+              <div class="comment">
+                <div class="c-avatar"></div>
+                <div class="c-content">
+                  <div class="c-head">
+                    <div class="c-author">Anastasiya</div>
+                    <div class="c-time">Yesterday</div>
+                    <div class="c-menu dropdown relative inline-flex"
+                      style="font-family: 'Nunito', sans-serif">
+                      <span
+                        class="material-symbols-outlined comment-kebab">more_horiz</span>
+                      <ul
+                        class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60"
+                        role="menu"
+                        aria-orientation="vertical" aria-labelledby="cmenu-2">
+                        <li>
+                          <button class="dropdown-item" data-edit>Edit</button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item danger" data-delete>
+                            Delete
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="c-body">
+                    <div class="comment-view">
+                      Created by Anastasiya: Formuläret
+                    </div>
+                    <textarea class="comment-input" rows="2"></textarea>
+                  </div>
+                  <div class="c-actions">
+                    <button class="c-like">
+                      <span class="material-symbols-outlined">thumb_up</span>
+                      Like
+                    </button>
+                    <button class="c-reply">
+                      <span class="material-symbols-outlined">reply</span> Reply
+                    </button>
+                  </div>
+                  <div class="c-reply-box">
+                    <textarea class="reply-input" rows="2"
+                      placeholder="Write a reply..."></textarea>
+                    <div class="actions">
+                      <button class="btn primary save-reply">Send</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="comment-item">
+              <div class="comment">
+                <div class="c-avatar"></div>
+                <div class="c-content">
+                  <div class="c-head">
+                    <div class="c-author">Anastasiya</div>
+                    <div class="c-time">Yesterday</div>
+                    <div class="c-menu dropdown relative inline-flex"
+                      style="font-family: 'Nunito', sans-serif">
+                      <span
+                        class="material-symbols-outlined comment-kebab">more_horiz</span>
+                      <ul
+                        class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60"
+                        role="menu"
+                        aria-orientation="vertical" aria-labelledby="cmenu-3">
+                        <li>
+                          <button class="dropdown-item" data-edit>Edit</button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item danger" data-delete>
+                            Delete
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="c-body">
+                    <div class="comment-view">
+                      Created by Anastasiya: Skicka ansökningar
+                    </div>
+                    <textarea class="comment-input" rows="2"></textarea>
+                  </div>
+                  <div class="c-actions">
+                    <button class="c-like">
+                      <span class="material-symbols-outlined">thumb_up</span>
+                      Like
+                    </button>
+                    <button class="c-reply">
+                      <span class="material-symbols-outlined">reply</span> Reply
+                    </button>
+                  </div>
+                  <div class="c-reply-box">
+                    <textarea class="reply-input" rows="2"
+                      placeholder="Write a reply..."></textarea>
+                    <div class="actions">
+                      <button class="btn primary save-reply">Send</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="new-comment">
+            <textarea id="new-comment-text" rows="2"
+              placeholder="Add a comment..."></textarea>
+            <button id="send-comment" class="send-btn" type="button"
+              aria-label="Send comment" disabled>
+              <i class="bi bi-arrow-up"></i>
+            </button>
+          </div>
+        </section>
+      </main>
+
+      <div class="progress-modal" id="apply-modal" aria-hidden="true">
+        <div class="modal-card">
+          <div class="modal-head">
+            <h3 id="apply-title">Skicka ansökningar</h3>
+            <button class="close" data-close><i class="bi bi-x-lg"></i></button>
+            <div class="top-progress">
+              <div class="top-track">
+                <div class="top-fill" id="apply-bar" style="width: 68%"></div>
+              </div>
+              <div class="top-percent" id="apply-percent">68%</div>
+            </div>
+          </div>
+          <form class="modal-form" id="apply-form">
+            <div class="counters">
+              <div class="counter meta" data-field="start">
+                <span class="label">Start</span>
+                <div class="inline-edit">
+                  <span class="value-view" id="view-start">0</span>
+                  <input class="value-input" type="number" id="apply-start"
+                    min="0" value="0" />
+                </div>
+              </div>
+              <div class="counter meta" data-field="target">
+                <span class="label">Target</span>
+                <div class="inline-edit">
+                  <span class="value-view" id="view-target">200</span>
+                  <input class="value-input" type="number" id="apply-target"
+                    min="1" value="200" />
+                </div>
+              </div>
+              <div class="counter current" data-field="current">
+                <span class="label">Current</span>
+                <div class="input-row">
+                  <span class="inline-edit">
+                    <span class="value-view" id="view-current">136</span>
+                    <input class="value-input" type="number" id="apply-current"
+                      min="0" value="136" />
+                  </span>
+                  <span class="inline-edit">
+                    <span class="value-view unit" id="view-unit"
+                      title="unit">ansökningar</span>
+                    <input class="value-input" type="text" id="apply-unit"
+                      placeholder="unit" title="unit"
+                      value="ansökningar" />
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="note">
+              <label for="apply-note">Note <span
+                  class="muted">(optional)</span></label>
+              <textarea id="apply-note" rows="3" placeholder="#"></textarea>
+              <div class="muted small">Max 2000 characters</div>
+            </div>
+            <div class="actions">
+              <button type="submit" class="btn primary">Save update</button>
+            </div>
+          </form>
         </div>
-        <!-- /.datepicker-footer -->
+      </div>
+
+      <!-- Delete Target Modal -->
+      <div class="progress-modal" id="delete-modal" aria-hidden="true">
+        <div class="modal-card">
+          <div class="modal-head">
+            <h3>Delete target</h3>
+            <button class="close" data-close-del>
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+          <p>
+            This target will be permanently deleted and cannot be recovered.
+          </p>
+          <div class="actions">
+            <button class="btn" data-close-del>Cancel</button>
+            <button class="btn primary" id="confirm-delete">Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Create Target Modal -->
+      <div class="progress-modal" id="target-modal" aria-hidden="true">
+        <div class="modal-card">
+          <div class="modal-head">
+            <h3>Create Target</h3>
+            <button class="close" data-close-target>
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+          <form class="create-form" id="target-form">
+            <div class="field">
+              <label>Target name</label>
+              <input type="text" id="t-name"
+                placeholder="e.g. Skicka ansökningar" required />
+              <div class="error-text" id="err-tname" hidden>
+                Target name is required
+              </div>
+            </div>
+            <div class="field inline">
+              <label>Deadline date
+                <span class="muted small">(optional)</span></label>
+              <input type="date" id="t-deadline-date" />
+            </div>
+            <div class="field inline">
+              <label>Deadline time
+                <span class="muted small">(optional)</span></label>
+              <input type="time" id="t-deadline-time" />
+              <div class="error-text" id="err-deadline" hidden>
+                Time requires a date
+              </div>
+            </div>
+            <div class="field">
+              <label>Type of Target</label>
+              <div class="seg3-toggle" id="t-type-toggle">
+                <input type="radio" name="t-type" id="type-number"
+                  value="number" checked />
+                <label for="type-number">Number</label>
+                <input type="radio" name="t-type" id="type-boolean"
+                  value="boolean" />
+                <label for="type-boolean">Success/Failure</label>
+                <input type="radio" name="t-type" id="type-tasks"
+                  value="tasks" />
+                <label for="type-tasks">Tasks</label>
+              </div>
+              <div class="type-config" id="type-number-config">
+                <div class="num-grid">
+                  <div>
+                    <div class="label small">Start</div>
+                    <input type="number" id="t-start" min="0" value="0" />
+                    <div class="error-text" id="err-start" hidden>
+                      Start is required
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label small">Target</div>
+                    <input type="number" id="t-target" min="1" value="1" />
+                    <div class="error-text" id="err-target" hidden>
+                      Target is required
+                    </div>
+                    <div class="error-text" id="err-equal" hidden>
+                      Target must not equal Start
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label small">
+                      Unit <span class="muted small">(optional)</span>
+                    </div>
+                    <input type="text" id="t-unit"
+                      placeholder="e.g. applications" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="type-config" id="type-tasks-config" hidden>
+                <div class="field">
+                  <label>Task name</label>
+                  <input type="text" id="t-task-name"
+                    placeholder="e.g. Draft proposal" />
+                  <div class="error-text" id="err-task-name" hidden>
+                    Task name is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="actions">
+              <button type="submit" class="btn primary">OK</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-                                </td>
-                                <td class="deadline-time-cell" data-time="09:00">09:00</td>
-                                <td class="t-progress">
-                                    <div class="progress-cell clickable" data-type="number" data-unit="ansökningar" data-start="0" data-current="136" data-target="200">
-                                        <div class="meta top-left">ansökningar</div>
-                                        <div class="progress"><div class="bar violet" style="width: 68%;"></div></div>
-                                        <div class="meta bottom-right"><span class="value">0(136)/200</span></div>
-                                    </div>
-                                </td>
-                            </tr>
 
-                            <tr data-type="success" class="t-row" data-created="Aug 9">
-                                <td class="t-name">
-                                    <div class="t-name-wrap">
-                                        <span class="name-view">Formuläret</span>
-                                        <div class="dropdown relative inline-flex t-menu" style="font-family: 'Nunito', sans-serif;">
-                                            <span class="material-symbols-outlined target-kebab">more_horiz</span>
-                                            <ul class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60" role="menu" aria-orientation="vertical" aria-labelledby="tmenu-2">
-                                                <li class="dropdown-title">ACTIONS</li>
-                                                <li><button class="dropdown-item" data-rename>Rename</button></li>
-                                                <li><button class="dropdown-item" data-deadline>Change deadline</button></li>
-                                                <li><button class="dropdown-item" data-note>Take a note</button></li>
-                                                <li><button class="dropdown-item danger" data-delete>Delete</button></li>
-                                                <hr class="border-base-content/25 my-2 -mx-2" />
-                                                <li class="dropdown-title">CREATED: <span class="created-date">15-09-2025</span></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="deadline-mobile small muted"><span class="d-mobile-date">Aug 10</span> <span class="d-mobile-time">--:--</span></div>
-                                    <input class="name-input" type="text" value="Formuläret" />
-                                </td>
-                                <td class="deadline-cell" data-date="2025-08-10">
-                                    <div class="datepicker-container">
-                                        <input type="text" class="date-input" placeholder="Select date" />
+    <script src="./menu.js"></script>
+    <!-- FlyonUI scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/flyonui@1.7.0/dist/flyonui.min.js"></script>
+    <script src="./progress-utils.js"></script>
+    <script src="./drop-down.js"></script>
+    <!-- Custom Datepicker script (refinedguides/custom-datepicker) -->
+    <script
+      src="https://cdn.jsdelivr.net/gh/refinedguides/custom-datepicker/dist/datepicker.min.js"></script>
+    <script src="datepicker.js"></script>
+    <script src="./description.js"></script>
+    <script src="./script.js"></script>    
+    <script src="timepicker.js"></script>
+  </body>
 
-                                        <div class="datepicker" hidden>
-                                            <!-- .datepicker-header -->
-                                            <div class="datepicker-header">
-                                                <button class="prev">Prev</button>
-
-                                                <div>
-                                                    <select class="month-input">
-                                                        <option>January</option>
-                                                        <option>February</option>
-                                                        <option>March</option>
-                                                        <option>April</option>
-                                                        <option>May</option>
-                                                        <option>June</option>
-                                                        <option>July</option>
-                                                        <option>August</option>
-                                                        <option>September</option>
-                                                        <option>October</option>
-                                                        <option>November</option>
-                                                        <option>December</option>
-                                                    </select>
-                                                    <input type="number" class="year-input" min="1900" max="2100" />
-                                                </div>
-
-                                                <button class="next">Next</button>
-                                            </div>
-                                            <!-- /.datepicker-header -->
-
-                                            <!-- .days -->
-                                            <div class="days">
-                                                <span>Sun</span>
-                                                <span>Mon</span>
-                                                <span>Tue</span>
-                                                <span>Wed</span>
-                                                <span>Thu</span>
-                                                <span>Fri</span>
-                                                <span>Sat</span>
-                                            </div>
-                                            <!-- /.days -->
-
-                                            <!-- .dates -->
-                                            <div class="dates"></div>
-                                            <!-- /.dates -->
-
-                                            <!-- .datepicker-footer -->
-                                            <div class="datepicker-footer">
-                                                <button class="cancel">Cancel</button>
-                                                <button class="apply">Apply</button>
-                                            </div>
-                                            <!-- /.datepicker-footer -->
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="deadline-time-cell" data-time="">--:--</td>
-                                <td class="t-progress">
-                                    <label class="seg-toggle">
-                                        <input class="seg-input" type="checkbox" />
-                                        <span class="seg-bg"></span>
-                                        <span class="seg left">Not done</span>
-                                        <span class="seg right">done</span>
-                                    </label>
-                                </td>
-                            </tr>
-
-                            <tr data-type="tasks" class="t-row" data-created="Aug 12">
-                                <td class="t-name">
-                                    <div class="t-name-wrap">
-                                        <span class="name-view">AI Agent to send messages</span>
-                                        <span class="tasks-number-badge"></span>
-                                        <div class="dropdown relative inline-flex t-menu">
-                                            <span class="material-symbols-outlined target-kebab">more_horiz</span>
-                                            <ul class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60" role="menu" aria-orientation="vertical" aria-labelledby="tmenu-3">
-                                                <li class="dropdown-title">ACTIONS</li>
-                                                <li><button class="dropdown-item" data-rename>Rename</button></li>
-                                                <li><button class="dropdown-item" data-deadline>Change deadline</button></li>
-                                                <li><button class="dropdown-item" data-note>Take a note</button></li>
-                                                <li><button class="dropdown-item danger" data-delete>Delete</button></li>
-                                                <hr />
-                                                <li class="dropdown-title created-badge">CREATED: <span class="created-date">15-09-2025</span></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="deadline-mobile small muted"><span class="d-mobile-date">Sep 30</span> <span class="d-mobile-time">14:00</span></div>
-                                    <input class="name-input" type="text" value="AI Agent to send messages" />
-                                </td>
-                                <td class="deadline-cell" data-date="2025-09-30">
-                                    <div class="datepicker-container">
-                                        <input type="text" class="date-input" placeholder="Select date" />
-
-                                        <div class="datepicker" hidden>
-                                            <!-- .datepicker-header -->
-                                            <div class="datepicker-header">
-                                                <button class="prev">Prev</button>
-
-                                                <div>
-                                                    <select class="month-input">
-                                                        <option>January</option>
-                                                        <option>February</option>
-                                                        <option>March</option>
-                                                        <option>April</option>
-                                                        <option>May</option>
-                                                        <option>June</option>
-                                                        <option>July</option>
-                                                        <option>August</option>
-                                                        <option>September</option>
-                                                        <option>October</option>
-                                                        <option>November</option>
-                                                        <option>December</option>
-                                                    </select>
-                                                    <input type="number" class="year-input" min="1900" max="2100" />
-                                                </div>
-
-                                                <button class="next">Next</button>
-                                            </div>
-                                            <!-- /.datepicker-header -->
-
-                                            <!-- .days -->
-                                            <div class="days">
-                                                <span>Sun</span>
-                                                <span>Mon</span>
-                                                <span>Tue</span>
-                                                <span>Wed</span>
-                                                <span>Thu</span>
-                                                <span>Fri</span>
-                                                <span>Sat</span>
-                                            </div>
-                                            <!-- /.days -->
-
-                                            <!-- .dates -->
-                                            <div class="dates"></div>
-                                            <!-- /.dates -->
-
-                                            <!-- .datepicker-footer -->
-                                            <div class="datepicker-footer">
-                                                <button class="cancel">Cancel</button>
-                                                <button class="apply">Apply</button>
-                                            </div>
-                                            <!-- /.datepicker-footer -->
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="deadline-time-cell" data-time="14:00">14:00</td>
-                                <td class="t-progress">
-                                    <div class="progress-cell" data-type="tasks">
-                                        <div class="meta top-left">tasks</div>
-                                        <div class="progress"><div class="bar" style="width: 0%;"></div></div>
-                                        <div class="meta bottom-right"><span class="value">0/5</span></div>
-                                        <ul class="task-list" hidden>
-                                            <li class="done">Task 1</li>
-                                            <li class="done">Task 2</li>
-                                            <li>Task 3</li>
-                                            <li>Task 4</li>
-                                            <li>Task 5</li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <!-- Expandable full-width tasks panel (inserted after the tasks row) -->
-                            <tr class="tasks-panel-row" hidden>
-                                <td colspan="6">
-                                    <div class="tasks-panel">
-                                        <div class="task-list-ui"></div>
-                                        <div class="new-task">
-                                            <input type="text" placeholder="New task name" class="new-task-input" />
-                                            <button class="btn primary add-task-btn">Add</button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-
-                <section class="timeline card">
-                    <h2>Comments</h2>
-                    <ul class="comments">
-                        <li class="comment-item">
-                            <div class="comment">
-                                <div class="c-avatar"></div>
-                                <div class="c-content">
-                                    <div class="c-head">
-                                        <div class="c-author">Anastasiya</div>
-                                        <div class="c-time">Yesterday</div>
-                                        <div class="c-menu dropdown relative inline-flex">
-                                            <span class="material-symbols-outlined comment-kebab">more_horiz</span>
-                                            <ul class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60" role="menu" aria-orientation="vertical" aria-labelledby="cmenu-1">
-                                                <li><button class="dropdown-item" data-edit>Edit</button></li>
-                                                <li><button class="dropdown-item danger" data-delete>Delete</button></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="c-body">
-                                        <div class="comment-view">Created by Anastasiya: tasks type target</div>
-                                        <textarea class="comment-input" rows="2"></textarea>
-                                    </div>
-                                    <div class="c-actions">
-                                        <button class="c-like"><span class="material-symbols-outlined">thumb_up</span> Like</button>
-                                        <button class="c-reply"><span class="material-symbols-outlined">reply</span> Reply</button>
-                                    </div>
-                                    <div class="c-reply-box">
-                                        <textarea class="reply-input" rows="2" placeholder="Write a reply..."></textarea>
-                                        <div class="actions"><button class="btn primary save-reply">Send</button></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="comment-item">
-                            <div class="comment">
-                                <div class="c-avatar"></div>
-                                <div class="c-content">
-                                    <div class="c-head">
-                                        <div class="c-author">Anastasiya</div>
-                                        <div class="c-time">Yesterday</div>
-                                        <div class="c-menu dropdown relative inline-flex" style="font-family: 'Nunito', sans-serif;">
-                                            <span class="material-symbols-outlined comment-kebab">more_horiz</span>
-                                            <ul class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60" role="menu" aria-orientation="vertical" aria-labelledby="cmenu-2">
-                                                <li><button class="dropdown-item" data-edit>Edit</button></li>
-                                                <li><button class="dropdown-item danger" data-delete>Delete</button></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="c-body">
-                                        <div class="comment-view">Created by Anastasiya: Formuläret</div>
-                                        <textarea class="comment-input" rows="2"></textarea>
-                                    </div>
-                                    <div class="c-actions">
-                                        <button class="c-like"><span class="material-symbols-outlined">thumb_up</span> Like</button>
-                                        <button class="c-reply"><span class="material-symbols-outlined">reply</span> Reply</button>
-                                    </div>
-                                    <div class="c-reply-box">
-                                        <textarea class="reply-input" rows="2" placeholder="Write a reply..."></textarea>
-                                        <div class="actions"><button class="btn primary save-reply">Send</button></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="comment-item">
-                            <div class="comment">
-                                <div class="c-avatar"></div>
-                                <div class="c-content">
-                                    <div class="c-head">
-                                        <div class="c-author">Anastasiya</div>
-                                        <div class="c-time">Yesterday</div>
-                                        <div class="c-menu dropdown relative inline-flex" style="font-family: 'Nunito', sans-serif;">
-                                            <span class="material-symbols-outlined comment-kebab">more_horiz</span>
-                                            <ul class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60" role="menu" aria-orientation="vertical" aria-labelledby="cmenu-3">
-                                                <li><button class="dropdown-item" data-edit>Edit</button></li>
-                                                <li><button class="dropdown-item danger" data-delete>Delete</button></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="c-body">
-                                        <div class="comment-view">Created by Anastasiya: Skicka ansökningar</div>
-                                        <textarea class="comment-input" rows="2"></textarea>
-                                    </div>
-                                    <div class="c-actions">
-                                        <button class="c-like"><span class="material-symbols-outlined">thumb_up</span> Like</button>
-                                        <button class="c-reply"><span class="material-symbols-outlined">reply</span> Reply</button>
-                                    </div>
-                                    <div class="c-reply-box">
-                                        <textarea class="reply-input" rows="2" placeholder="Write a reply..."></textarea>
-                                        <div class="actions"><button class="btn primary save-reply">Send</button></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="new-comment">
-                        <textarea id="new-comment-text" rows="2" placeholder="Add a comment..."></textarea>
-                        <button id="send-comment" class="send-btn" type="button" aria-label="Send comment" disabled><i class="bi bi-arrow-up"></i></button>
-                    </div>
-                </section>
-            </main>
-
-            <div class="progress-modal" id="apply-modal" aria-hidden="true">
-                <div class="modal-card">
-                    <div class="modal-head">
-                        <h3 id="apply-title">Skicka ansökningar</h3>
-                        <button class="close" data-close><i class="bi bi-x-lg"></i></button>
-                        <div class="top-progress">
-                            <div class="top-track"><div class="top-fill" id="apply-bar" style="width: 68%;"></div></div>
-                            <div class="top-percent" id="apply-percent">68%</div>
-                        </div>
-                    </div>
-                    <form class="modal-form" id="apply-form">
-                        <div class="counters">
-                            <div class="counter meta" data-field="start">
-                                <span class="label">Start</span>
-                                <div class="inline-edit">
-                                    <span class="value-view" id="view-start">0</span>
-                                    <input class="value-input" type="number" id="apply-start" min="0" value="0" />
-                                </div>
-                            </div>
-                            <div class="counter meta" data-field="target">
-                                <span class="label">Target</span>
-                                <div class="inline-edit">
-                                    <span class="value-view" id="view-target">200</span>
-                                    <input class="value-input" type="number" id="apply-target" min="1" value="200" />
-                                </div>
-                            </div>
-                            <div class="counter current" data-field="current">
-                                <span class="label">Current</span>
-                                <div class="input-row">
-                                    <span class="inline-edit">
-                                        <span class="value-view" id="view-current">136</span>
-                                        <input class="value-input" type="number" id="apply-current" min="0" value="136" />
-                                    </span>
-                                    <span class="inline-edit">
-                                        <span class="value-view unit" id="view-unit" title="unit">ansökningar</span>
-                                        <input class="value-input" type="text" id="apply-unit" placeholder="unit" title="unit" value="ansökningar" />
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="note">
-                            <label for="apply-note">Note <span class="muted">(optional)</span></label>
-                            <textarea id="apply-note" rows="3" placeholder="#"></textarea>
-                            <div class="muted small">Max 2000 characters</div>
-                        </div>
-                        <div class="actions">
-                            <button type="submit" class="btn primary">Save update</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Delete Target Modal -->
-            <div class="progress-modal" id="delete-modal" aria-hidden="true">
-                <div class="modal-card">
-                    <div class="modal-head">
-                        <h3>Delete target</h3>
-                        <button class="close" data-close-del><i class="bi bi-x-lg"></i></button>
-                    </div>
-                    <p>This target will be permanently deleted and cannot be recovered.</p>
-                    <div class="actions">
-                        <button class="btn" data-close-del>Cancel</button>
-                        <button class="btn primary" id="confirm-delete">Delete</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Create Target Modal -->
-            <div class="progress-modal" id="target-modal" aria-hidden="true">
-                <div class="modal-card">
-                    <div class="modal-head">
-                        <h3>Create Target</h3>
-                        <button class="close" data-close-target><i class="bi bi-x-lg"></i></button>
-                    </div>
-                    <form class="create-form" id="target-form">
-                        <div class="field">
-                            <label>Target name</label>
-                            <input type="text" id="t-name" placeholder="e.g. Skicka ansökningar" required />
-                            <div class="error-text" id="err-tname" hidden>Target name is required</div>
-                        </div>
-                        <div class="field inline">
-                            <label>Deadline date <span class="muted small">(optional)</span></label>
-                            <input type="date" id="t-deadline-date" />
-                        </div>
-                        <div class="field inline">
-                            <label>Deadline time <span class="muted small">(optional)</span></label>
-                            <input type="time" id="t-deadline-time" />
-                            <div class="error-text" id="err-deadline" hidden>Time requires a date</div>
-                        </div>
-                        <div class="field">
-                            <label>Type of Target</label>
-                            <div class="seg3-toggle" id="t-type-toggle">
-                                <input type="radio" name="t-type" id="type-number" value="number" checked />
-                                <label for="type-number">Number</label>
-                                <input type="radio" name="t-type" id="type-boolean" value="boolean" />
-                                <label for="type-boolean">Success/Failure</label>
-                                <input type="radio" name="t-type" id="type-tasks" value="tasks" />
-                                <label for="type-tasks">Tasks</label>
-                            </div>
-                            <div class="type-config" id="type-number-config">
-                                <div class="num-grid">
-                                    <div>
-                                        <div class="label small">Start</div>
-                                        <input type="number" id="t-start" min="0" value="0" />
-                                        <div class="error-text" id="err-start" hidden>Start is required</div>
-                                    </div>
-                                    <div>
-                                        <div class="label small">Target</div>
-                                        <input type="number" id="t-target" min="1" value="1" />
-                                        <div class="error-text" id="err-target" hidden>Target is required</div>
-                                        <div class="error-text" id="err-equal" hidden>Target must not equal Start</div>
-                                    </div>
-                                    <div>
-                                        <div class="label small">Unit <span class="muted small">(optional)</span></div>
-                                        <input type="text" id="t-unit" placeholder="e.g. applications" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="type-config" id="type-tasks-config" hidden>
-                                <div class="field">
-                                    <label>Task name</label>
-                                    <input type="text" id="t-task-name" placeholder="e.g. Draft proposal" />
-                                    <div class="error-text" id="err-task-name" hidden>Task name is required</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <button type="submit" class="btn primary">OK</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <script src="./menu.js"></script>
-        <!-- FlyonUI scripts -->
-        <script src="https://cdn.jsdelivr.net/npm/flyonui@1.7.0/dist/flyonui.min.js"></script>
-        <script src="./progress-utils.js"></script>
-        <script src="./drop-down.js"></script>
-        <!-- Custom Datepicker script (refinedguides/custom-datepicker) -->
-        <script src="https://cdn.jsdelivr.net/gh/refinedguides/custom-datepicker/dist/datepicker.min.js"></script>
-        <script src="./integrate-datepicker.js"></script>
-        <script src="./description.js"></script>
-        <script src="./script.js"></script>
-        <script src="datepicker.js"></script>
-    </body>
 </html>
