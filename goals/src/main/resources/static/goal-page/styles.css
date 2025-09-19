@@ -544,3 +544,18 @@ body{margin:0;background: var(--background-weak);color: var(--text-norm);font:40
 .seg3-toggle input[type="radio"]:checked + label{background:var(--primary);color:#fff}
 .type-config{margin-top:10px}
 
+
+/* Time Picker styles */
+.time-picker-container{position:relative;width:12.5rem;color:#0c0c14}
+.time-picker-container .time-input{width:100%;padding:.5rem 1.875rem .5rem .625rem;font-size:1rem;border:.063rem solid transparent;border-radius:.625rem;outline:none;box-sizing:border-box;background:#ffffff;color:#0c0c14;font:400 .875rem/1.5 "Nunito",sans-serif}
+.time-picker-container .time-input:focus{border-color:#24d3ee;box-shadow:0 0 0 .125rem rgba(103,232,249,.3)}
+.time-picker-container .clear-btn{position:absolute;right:.5rem;top:50%;transform:translateY(-50%);background:none;border:none;font-size:1rem;color:#8f8d8a;cursor:pointer;display:none}
+.time-picker-container .clear-btn:hover{color:#0c0c14}
+.time-picker-container .dropdown-time{position:absolute;top:100%;left:0;width:100%;max-height:11.25rem;overflow-y:auto;background:#ffffff;border:.063rem solid #d1cfcd;margin-top:.25rem;box-shadow:0 .25rem .5rem rgba(0,0,0,.1);display:block;z-index:10}
+.time-picker-container .dropdown-time[hidden]{display:none}
+.time-picker-container .tp-list div,.time-picker-container .dropdown-time div{padding:.5rem .625rem;cursor:pointer;color:#0c0c14;font:400 .875rem/1.5 "Nunito",sans-serif}
+.time-picker-container .dropdown-time div:hover{background:#24d3ee;color:#ffffff}
+.time-picker-container .dropdown-time div.selected{background:#6d4aff;color:#ffffff}
+.time-picker-container .tp-foot{display:flex;gap:.5rem;align-items:center;padding:.375rem .5rem}
+.time-picker-container .tp-foot .spacer{flex:1}
+
