@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    rel="stylesheet" />
+  <title>Custom Datepicker</title>
+  <style>
+    .datepicker-container { position: relative; width: fit-content; font-family: "Nunito", sans-serif; }
+    .date-input { width: 100%; padding: 0.5rem 1.875rem 0.5rem 0.625rem; font-size: 1rem; border: 0.063rem solid transparent; border-radius: 0.625rem; outline: none; box-sizing: border-box; background: #fff; color: #0c0c14; cursor: pointer; }
+    .date-input:focus { border-color: #24d3ee; box-shadow: 0 0 0 0.125rem rgba(103,232,249,0.3); }
+    .clear-btn { position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); cursor: pointer; display: none; font-size: 1rem; color: #8f8d8a; }
+    .clear-btn:hover { color: #24d3ee; }
+    .datepicker { position: absolute; top: 100%; left: 0; margin-top: 0.25rem; background: #fff; border: 0.063rem solid #24d3ee; box-shadow: 0 0 0 0.125rem rgba(103,232,249,0.3); border-radius: 0.625rem; padding: 0.5rem; z-index: 10; }
+    .datepicker-header { display:flex; justify-content:space-between; align-items:center; column-gap:0.5rem; padding-bottom:10px; border-bottom:1px solid #eee; }
+    .datepicker-header select, .datepicker-header input { font: 400 0.875rem/1.5 "Nunito"; border:0.063rem solid #d1cfcd; color:#8f8d8a; border-radius:0.375rem; padding:0.25rem; outline:none; cursor:pointer; }
+    .datepicker-header .prev, .datepicker-header .next { background:none; border:none; cursor:pointer; color:#8f8d8a; font-size:0.875rem; }
+    .days, .dates { display:grid; grid-template-columns:repeat(7,32px); gap:10px; margin-block:10px; }
+    .days span { text-align:center; font: 400 0.875rem/1.5 "Nunito"; }
+    .dates button { border:none; border-radius:3px; background:transparent; font: 400 0.875rem/1.5 "Nunito"; aspect-ratio:1; cursor:pointer; color: slategray; }
+    .dates button.disabled { opacity: 0.5; }
+    .dates button:hover { background: rgba(119,136,153,0.1); }
+    .dates button.today { background: rgba(103,232,249); color:#fff; }
+    .dates button.selected { border:0.1rem solid #24d3ee; box-shadow: 0 0 0 0.125rem rgba(103,232,249,0.3); }
+    .datepicker-footer { display:flex; justify-content:space-between; gap:10px; padding-top:10px; border-top:1px solid #eee; }
+    .datepicker-footer button { background: rgba(119,136,153,0.1); border:0; border-radius:8px; cursor:pointer; padding-block:0.214em; padding-inline:0.785em; font-size:14px; font-family:"Nunito"; }
+    .datepicker-footer .apply { background:#24d3ee; color:#fff; }
+    .datepicker-footer .apply:hover { background:#fff; color:#0c0c14; border:0.1rem solid #24d3ee; }
+  </style>
+</head>
+<body>
+  <div class="datepicker-container">
+    <input type="text" class="date-input" placeholder="Select date" readonly />
+    <span class="material-symbols-outlined clear-btn">close</span>
+
+    <div class="datepicker" hidden>
+      <div class="datepicker-header">
+        <span class="material-symbols-outlined prev">arrow_back_ios_new</span>
+        <div>
+          <select class="month-input">
+            <option>January</option><option>February</option><option>March</option><option>April</option>
+            <option>May</option><option>June</option><option>July</option><option>August</option>
+            <option>September</option><option>October</option><option>November</option><option>December</option>
+          </select>
+        </div>
+        <input type="number" class="year-input" min="1900" max="2100" />
+        <span class="material-symbols-outlined next">arrow_forward_ios</span>
+      </div>
+
+      <div class="days">
+        <span>Sun</span><span>Mon</span><span>Tue</span>
+        <span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+      </div>
+
+      <div class="dates"></div>
+
+      <div class="datepicker-footer">
+        <button class="reset">Reset</button>
+        <div style="display:flex;gap:10px;margin-left:auto">
+          <button class="cancel">Cancel</button>
+          <button class="apply">Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const datepicker = document.querySelector(".datepicker");
+    const dateInput = document.querySelector(".date-input");
+    const clearBtn = document.querySelector(".clear-btn");
+    const yearInput = datepicker.querySelector(".year-input");
+    const monthInput = datepicker.querySelector(".month-input");
+    const cancelBtn = datepicker.querySelector(".cancel");
+    const resetBtn = datepicker.querySelector(".reset");
+    const applyBtn = datepicker.querySelector(".apply");
+    const nextBtn = datepicker.querySelector(".next");
+    const prevBtn = datepicker.querySelector(".prev");
+    const dates = datepicker.querySelector(".dates");
+
+    let selectedDate = null;  // выбранная дата (по умолчанию пусто)
+    let tempDate = new Date(); // временная (для навигации)
+    let year = tempDate.getFullYear();
+    let month = tempDate.getMonth();
+
+    // показать календарь
+    dateInput.addEventListener("click", () => { datepicker.hidden = false; });
+    cancelBtn.addEventListener("click", () => { datepicker.hidden = true; });
+
+    // закрывать только по клику вне контейнера
+    document.addEventListener("mousedown", (e) => {
+      const container = document.querySelector(".datepicker-container");
+      if (!container.contains(e.target)) {
+        datepicker.hidden = true;
+      }
+    });
+
+    // Apply
+    applyBtn.addEventListener("click", () => {
+      if (selectedDate) {
+        dateInput.value = selectedDate.toLocaleDateString("en-UK", { month: "short", day: "2-digit", year: "numeric" });
+      } else {
+        dateInput.value = "";
+      }
+      toggleClearBtn();
+      datepicker.hidden = true;
+    });
+
+    // Reset
+    resetBtn.addEventListener("click", () => {
+      selectedDate = null;
+      dateInput.value = "";
+      toggleClearBtn();
+      datepicker.hidden = true;
+    });
+
+    // Clear (крестик)
+    clearBtn.addEventListener("click", () => {
+      selectedDate = null;
+      dateInput.value = "";
+      toggleClearBtn();
+    });
+
+    function toggleClearBtn() { clearBtn.style.display = dateInput.value ? "block" : "none"; }
+
+    // навигация
+    nextBtn.addEventListener("click", () => {
+      if (month === 11) { year++; month = 0; } else { month++; }
+      displayDates();
+    });
+    prevBtn.addEventListener("click", () => {
+      if (month === 0) { year--; month = 11; } else { month--; }
+      displayDates();
+    });
+    monthInput.addEventListener("change", () => { month = monthInput.selectedIndex; displayDates(); });
+    yearInput.addEventListener("change", () => {
+      let newYear = parseInt(yearInput.value, 10) || new Date().getFullYear();
+      year = Math.min(2100, Math.max(1900, newYear));
+      displayDates();
+    });
+
+    const updateYearMonth = () => {
+      monthInput.selectedIndex = month;
+      yearInput.value = year;
+    };
+
+    const handleDateClick = (e) => {
+      const button = e.currentTarget;
+      const day = parseInt(button.textContent, 10);
+      const monthOffset = parseInt(button.dataset.monthOffset || "0", 10);
+      const newDate = new Date(year, month + monthOffset, day);
+
+      selectedDate = newDate;
+      year = selectedDate.getFullYear();
+      month = selectedDate.getMonth();
+      displayDates();
+    };
+
+    const displayDates = () => {
+      updateYearMonth();
+      dates.innerHTML = "";
+
+      const firstDayOfMonth = new Date(year, month, 1).getDay();
+      const daysInPrevMonth = new Date(year, month, 0).getDate();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      // предыдущий месяц
+      for (let i = firstDayOfMonth - 1; i >= 0; i--) {
+        const day = daysInPrevMonth - i;
+        dates.appendChild(createButton(day, -1));
+      }
+
+      // текущий месяц
+      for (let d = 1; d <= daysInMonth; d++) {
+        dates.appendChild(createButton(d, 0));
+      }
+
+      // следующий месяц
+      const totalCells = firstDayOfMonth + daysInMonth;
+      const nextDays = (7 - (totalCells % 7)) % 7;
+      for (let i = 1; i <= nextDays; i++) {
+        dates.appendChild(createButton(i, +1));
+      }
+    };
+
+    const createButton = (text, monthOffset = 0) => {
+      const button = document.createElement("button");
+      button.textContent = text;
+      button.dataset.monthOffset = String(monthOffset);
+      if (monthOffset !== 0) button.classList.add("disabled");
+
+      const buttonDate = new Date(year, month + monthOffset, text);
+      const today = new Date();
+      if (buttonDate.toDateString() === today.toDateString()) button.classList.add("today");
+      if (selectedDate && buttonDate.toDateString() === selectedDate.toDateString()) button.classList.add("selected");
+
+      button.addEventListener("click", handleDateClick);
+      return button;
+    };
+
+    // init
+    displayDates();
+    toggleClearBtn();
+  </script>
+</body>
+</html>
