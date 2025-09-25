@@ -1,19 +1,32 @@
-/* Flatpickr light theme adjustments to match provided light scheme */
-.flatpickr-calendar.light-theme{border:1px solid var(--line);box-shadow:0 20px 50px rgba(0,0,0,.15);border-radius:12px;overflow:hidden}
-.flatpickr-calendar.light-theme .flatpickr-months{background:#fff;color:var(--text-norm)}
-.flatpickr-calendar.light-theme .flatpickr-weekdays{background:#fff;color:#6b7280}
-.flatpickr-calendar.light-theme .flatpickr-weekwrapper, .flatpickr-calendar.light-theme .flatpickr-weekwrapper .flatpickr-weeks{background:#fff}
-.flatpickr-calendar.light-theme .flatpickr-day{border-radius:8px;border:1px solid var(--line);color:var(--text-norm)}
-.flatpickr-calendar.light-theme .flatpickr-day:hover{background:var(--interaction-default-hover)}
-.flatpickr-calendar.light-theme .flatpickr-day.today{border-color:var(--focus-outline)}
-.flatpickr-calendar.light-theme .flatpickr-day.selected, .flatpickr-calendar.light-theme .flatpickr-day.startRange, .flatpickr-calendar.light-theme .flatpickr-day.endRange{background:var(--interaction-norm);color:#fff;border-color:var(--interaction-norm)}
-.flatpickr-calendar.light-theme .flatpickr-weekday{color:#6b7280}
-.flatpickr-calendar.light-theme .flatpickr-weekwrapper .flatpickr-weekday{border-right:1px solid var(--line)}
-.flatpickr-calendar.light-theme .flatpickr-weekwrapper .flatpickr-day{border:0}
-:root{--bg:#f5f4f8;--panel:#ffffff;--background-norm: #1b1340;--focus-outline: #6d4aff; --primary-minor-2: #f0edff; --interaction-default-hover: rgb(194 193 192 / 0.2); --interaction-norm: #6d4aff; --text-hint: #8067e4; --text-norm: #0c0c14; --ink:#0c0c14;--muted:#c2bfbc;--blue:rgb(103 232 249);--line:#e5e7eb;--primary:#6d4aff;--green:#22c55e;--violet:#9b8cff;--drawer-w:360px}
+:root{
+  --bg:#f5f4f8;/*old background*/
+  --panel:#ffffff;
+  --background-norm-dark: #1b1340;
+  --background-weak: #f5f4f2;
+  --focus-outline: #6d4aff; 
+  --primary-minor-2: #f0edff; 
+  --interaction-default-hover: rgb(143, 141, 138, 0.1); 
+  --default-weak: rgb(143, 141, 138);
+  --interaction-norm: #6d4aff; 
+  --text-hint: #8067e4; 
+  --text-norm: #0c0c14;
+  --muted:#c2bfbc;
+  --blue:rgb(103 232 249);
+  --blue-weak: #239ece;
+  --blue-weak-hover: #208eb9;
+  --line:#e5e7eb;
+  --primary:#6d4aff;
+  --green:#22c55e;
+  --violet:#9b8cff;
+  --danger:#e84774;
+  --danger-hover:rgb(232, 71, 116, 0.1);
+  --optional-promotion-text-color: #15006f;
+  --optional-promotion-text-weak: #50409b;
+  --drawer-w:360px
+}
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", sans-serif;}
+body{margin:0;background: var(--background-weak);color: var(--text-norm);font:400 16px/1.5 "Nunito", sans-serif;overflow-x: hidden;}
 
 .app{display:grid;grid-template-columns:1fr;grid-template-rows:56px 1fr;min-height:100%}
 .sidebar{display:none}
@@ -51,7 +64,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .side-icons i{opacity:.7}
 .side-icons i.active{color:#f472b6;opacity:1}
 
-.topbar{grid-column:1;background:var(--background-norm);display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#fff;border-bottom:0;transition:margin-left .25s ease, width .25s ease}
+.topbar{grid-column:1;background:var(--background-norm-dark);display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#fff;border-bottom:0;transition:margin-left .25s ease, width .25s ease}
 .crumbs{display:flex;align-items:center;gap:8px}
 .crumbs .back{color:#d1d5db;text-decoration:none}
 .top-actions{display:flex;align-items:center;gap:12px}
@@ -62,7 +75,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 
 /* Using Flatpickr for date picking; legacy calendar styles removed */
 
-.content{grid-column:1;display:grid;gap:20px;grid-template-columns:1.3fr .7fr;transition:margin-left .25s ease, width .25s ease}
+/* Mobile-first: single column by default */
+.content{grid-column:1;display:grid;gap:16px;grid-template-columns:1fr;transition:margin-left .25s ease, width .25s ease}
 
 /* When drawer is open, shift and shrink header + content without clipping */
 .app.drawer-open .topbar{margin-left:var(--drawer-w);width:calc(100% - var(--drawer-w))}
@@ -70,22 +84,87 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin: 0 24px}
 
 /* Summary */
-.goal-summary{grid-column:1/span 2;display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:start;background:var(--background-norm);color:#fff;border:0;border-bottom-left-radius:0%;border-bottom-right-radius:100%; padding:20px 20px 150px 20px}
-.ring{width:120px;height:120px;border-radius:50%;background:conic-gradient(rgb(109 74 255) 0 54%,#e5e7eb 0);display:grid;place-items:center}
+.goal-summary{grid-column:1/span 2;display:grid;grid-template-columns:1fr;gap:14px;align-items:start;background:var(--background-norm-dark);color:#fff;border:0;border-bottom-left-radius:0%;border-bottom-right-radius:100%; padding:16px 16px 120px 16px}
+.ring{width:110px;height:110px;border-radius:50%;background:conic-gradient(rgb(109 74 255) 0 54%,#e5e7eb 0);display:grid;place-items:center;justify-self:center}
 .ring span{background:#1f2240;border-radius:50%;width:86px;height:86px;display:grid;place-items:center;font-weight:800;color:#fff}
 .goal-head{display:flex;align-items:center;gap:8px}
 .goal-head h1{margin:0;font-size:28px;display:flex;align-items:flex-start;color:#fff}
-.goal-menu{position:relative;align-self:flex-start}
-.kebab{border:0;background:transparent;font-size:22px;cursor:pointer;color:#fff}
-.goal-menu .dropdown{position:absolute;right:0;top:36px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.08);display:none;min-width:200px}
-.goal-menu .dropdown button{width:100%;text-align:left;padding:10px 12px;background:#fff;border:0;cursor:pointer}
-.goal-menu .dropdown button:hover{background:#f8fafc}
-.goal-menu .dropdown .danger{color:#ef4444}
+
+/* Due to date dropdown container */
+.goal-menu {
+  position: relative;
+  display: inline-flex;
+}
+
+.goal-menu .kebab {
+  cursor: pointer;
+}
+
+.goal-menu .kebab:hover {
+  color: var(--blue-weak); 
+}
+.goal-menu .kebab:active {
+  color: var(--blue-weak-hover);
+}
+
+/* Due to date dropdown */
+.goal-menu .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  min-width: 15rem;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  list-style: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Show Due to date dropdown*/
+/* Generic dropdown behavior: hidden by default; shown when wrapper has .dropdown-open */
+.dropdown .dropdown-menu.hidden{display:none}
+.dropdown.dropdown-open > .dropdown-menu{display:block;opacity:1;pointer-events:auto;transform:translateY(0);z-index:9999}
+
+/* Due to date dropdown elements */
+.goal-menu .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: var(--text-norm);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.goal-menu .dropdown-item:hover {
+  background-color:var(--interaction-default-hover);
+}
+
+/* Delete Due to date dropdown */
+.goal-menu .dropdown-item.danger {
+  color: var(--danger);
+}
+
+.goal-menu .dropdown-item.danger:hover {
+  background-color: var(--danger-hover);
+}
+
 
 .summary-right{align-self:stretch;margin-top:4px;color:#fff}
 .faq-head h3{margin:0 0 8px}
 .goal-summary{position:relative}
-.summary-right{grid-column:2}
+.summary-right{grid-column:1}
 .grow-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
 .grow-item{display:flex;flex-direction:column;border:3px solid #e2dbff;border-radius:12px;box-shadow: 5px 5px 5px #e2dbff;width:83%;text-align:left;background-color:#fff;transition:border-color .2s ease, box-shadow .2s ease}
 .grow-item .row{padding:16px}
@@ -105,7 +184,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .editor:empty:before{content:attr(data-placeholder);color:var(--muted)}
 
 /* Targets */
-.targets{grid-column:1/span 2}
+.targets{grid-column:1/span 2;}
 .targets .targets-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .btn{border:0;border-radius:10px;padding:8px 12px;cursor:pointer}
 .btn.primary{background:var(--primary);color:#fff;border: 0;border-radius: 8px;cursor:pointer;padding-block: .2142857143em; padding-inline:.7857142857em;font-size: 14px;font-family: "Nunito", sans-serif;}
@@ -113,18 +192,125 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .btn.primary:active {background:#573bcc;color:#fff}
 
 /* Table */
-.targets-table{width:100%;border-collapse:collapse}
+.targets-table{width:100%;border-collapse:collapse;min-width:820px}
 .targets-table thead th{font-weight:700;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
 .targets-table tbody td{padding:12px;border-bottom:1px solid var(--line);vertical-align:middle}
 .t-actions{text-align:right;width:40px}
-.t-actions .del-btn{color:#dc3251;font-size:14px}
-.t-name{min-width:220px}
+.t-actions .del-btn{color:var(--danger);font-size:14px}
+.t-name{width: fit-content;}
 .t-name .name-input{display:none;width:100%;border:1px solid var(--line);border-radius:8px;padding:6px 8px}
 .t-name.editing .name-view{display:none}
 .t-name.editing .name-input{display:inline-block}
 
-.t-name{font-weight:600}
-.note-btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
+.t-name{font-weight:600;}
+.t-name .t-name-wrap{display:flex;align-items:center;gap:8px}
+
+/* targen dropdown container */
+.t-menu {
+  position: relative;
+  display: inline-flex;
+  font-family: 'Nunito', sans-serif;
+}
+
+.t-menu .target-kebab {
+  color: var(--text-norm); 
+  cursor: pointer;
+}
+.t-menu .target-kebab:hover {
+  color: var(--optional-promotion-text-color); 
+}
+.t-menu .target-kebab:active {
+  color: var(--optional-promotion-text-weak); 
+}
+
+/* targen dropdown menu */
+.t-menu .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  min-width: 15rem;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  list-style: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  display: none;
+}
+
+/* Show target dropdown menu */
+.t-menu .dropdown-menu[aria-expanded="true"],
+.t-menu .dropdown-menu.dropdown-open\:opacity-100 {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Heading */
+.t-menu .dropdown-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--default-weak);
+  padding: 0.5rem 1rem;
+}
+
+/* target dropdown menu elements */
+.t-menu .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: var(--text-norm);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family:"Nunito",sans-serif
+}
+
+.t-menu .dropdown-item:hover {
+  background-color: var(--interaction-default-hover);
+}
+
+/* Delete target*/
+.t-menu .dropdown-item.danger {
+  color: var(--danger);
+}
+
+.t-menu .dropdown-item.danger:hover {
+  background-color: var(--danger-hover);
+}
+
+/* Разделительная линия */
+.t-menu hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 0.5rem 0;
+}
+
+/* Date  */
+.t-menu .created-date {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #1f2937;
+  background: none;
+  border: none;
+  font-family:"Nunito",sans-serif
+}
+
+/* .created-badge {background:rgb(103, 232, 249, 0.8);border:0;border-radius:9999px;color:var(--background-norm-dark);cursor:pointer;padding:.25rem .75rem;font-size:14px;font-family: "Nunito", sans-serif;font-weight:600; margin: 0.4rem;} */
+
+
+.t-name .deadline-mobile{display:none}
+.t-name .tasks-number-badge{margin-left:8px;display:inline-flex;align-items:center;justify-content:center;height:22px;padding:0 8px;border-radius:999px;background:var(--primary-minor-2);color:var(--primary);font-weight:800;font-size:12px;cursor:pointer;white-space:nowrap;line-height:22px;}
 
 .t-progress .progress-cell{position:relative;min-width:260px}
 .t-progress .meta{position:absolute;font-size:12px;color:var(--muted)}
@@ -133,6 +319,21 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .t-progress .progress{height:10px;background:#eef2f7;border-radius:999px;overflow:hidden}
 .t-progress .bar{height:100%;background:#9ca3af}
 .t-progress .bar.violet{background:var(--violet)}
+/* Tasks progress uses primary color */
+.t-row[data-type="tasks"] .t-progress .bar{background:var(--primary)}
+/* Full-width expandable tasks panel */
+.tasks-panel-row[hidden]{display:none}
+.tasks-panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:8px}
+.tasks-panel .task-list-ui{display:flex;flex-direction:column;gap:8px}
+.tasks-panel .task-row{display:grid;grid-template-columns:24px 1fr auto;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid #f3f4f6}
+.tasks-panel .task-row:last-child{border-bottom:0}
+.tasks-panel .task-row .name{min-height:24px}
+.tasks-panel .task-row .name[contenteditable="true"]{border:1px solid var(--line);border-radius:8px;padding:4px 6px;outline:none}
+.tasks-panel .actions{display:flex;gap:6px}
+.tasks-panel .actions .icon-btn{color:var(--text-norm);font-size:16px}
+.tasks-panel .actions .icon-btn:hover{color:var(--primary)}
+.tasks-panel .new-task{display:flex;gap:8px;margin-top:8px}
+.tasks-panel .new-task input{flex:1;border:1px solid var(--line);border-radius:8px;padding:8px}
 
 /* Segmented toggle (Success) */
 .seg-toggle{position:relative;display:inline-grid;grid-template-columns:1fr 1fr;align-items:center;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:12px;color:var(--text-norm)}
@@ -154,11 +355,83 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .c-head{display:flex;align-items:center;gap:10px}
 .c-author{font-weight:700}
 .c-time{color:var(--muted);font-size:12px}
-.c-menu{margin-left:auto;position:relative}
-.c-menu .kebab{background:transparent;border:0;cursor:pointer;font-size:18px;color:var(--ink)}
-.c-menu .dropdown{position:absolute;right:0;top:26px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.08);display:none;min-width:170px}
-.c-menu .dropdown button{display:block;width:100%;text-align:left;padding:8px 10px;background:#fff;border:0;cursor:pointer}
-.c-menu .dropdown .danger{color:#ef4444}
+
+/* Comments drop-down container*/
+.c-menu {
+  position: relative;
+  display: inline-flex;
+  font-family: 'Nunito', sans-serif;
+  margin-left:auto;
+}
+
+.c-menu .comment-kebab {
+  color: var(--text-norm); 
+  cursor: pointer;
+}
+.c-menu .comment-kebab:hover {
+  color: var(--optional-promotion-text-color); 
+}
+.c-menu .comment-kebab:active {
+  color: var(--optional-promotion-text-weak); 
+}
+
+/* Comments drop-down menu list */
+.c-menu .dropdown-menu {
+  position: absolute;
+  top: 0;
+  right: 140%;
+  margin-top: 0.5rem;
+  min-width: 9rem;
+  width: calc(fit-content);
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  list-style: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Show comments dropdown menu */
+.c-menu .dropdown-menu[aria-expanded="true"],
+.c-menu .dropdown-menu.dropdown-open\:opacity-100 {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Comments dropdown menu elements */
+.c-menu .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: var(--text-norm);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.c-menu .dropdown-item:hover {
+  background-color: var(--interaction-default-hover);
+}
+
+/* Danger */
+.c-menu .dropdown-item.danger {
+  color: var(--danger);
+}
+
+.c-menu .dropdown-item.danger:hover {
+  background-color: var(--danger-hover);
+}
+
 .c-body{margin:6px 0}
 .comment-view{cursor:pointer;white-space:pre-wrap}
 .comment-input{display:none;width:100%;border:1px solid var(--line);border-radius:10px;padding:8px}
@@ -202,23 +475,55 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .step{display:none}
 .note textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;resize:vertical}
 .note{margin-top:16px}
-.due-btn{background:var(--blue);border:0;border-radius:9999px;color:var(--background-norm);cursor:pointer;padding:.25rem .75rem;font-size:14px;font-family: "Nunito", sans-serif;font-weight:600}
+.due-btn{background:var(--blue);border:0;border-radius:9999px;color:var(--background-norm-dark);cursor:pointer;padding:.25rem .75rem;font-size:14px;font-family: "Nunito", sans-serif;font-weight:600}
 .muted{color:var(--blue);font-family:Nunito,sans-serif;font-weight: 600}
 .due-to{color:var(--panel);font-family:Nunito,sans-serif;}
 .small{font-size:12px}
 .actions{display:flex;justify-content:flex-end;margin-top:12px}
 
-/* Responsive */
-@media (max-width: 1200px){.content{grid-template-columns:1fr}}
+/* Deadline inputs styled as plain text */
+.deadline-cell input[type="text"]{border:0 !important;background:transparent !important;box-shadow:none !important;padding:0 !important;margin:0 !important;width:100%;font-family:"Nunito", sans-serif;font-size:14px;color:var(--text-norm)}
+.deadline-cell .input.max-w-sm{max-width:100%}
+
+/* Flatpickr popup theming */
+.flatpickr-calendar{border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.15);overflow:hidden;background:#fff;color:var(--text-norm);font-family:"Nunito",sans-serif}
+.flatpickr-day.selected,.flatpickr-day.startRange,.flatpickr-day.endRange{background:var(--blue);border-color:var(--blue);color:#0f1425}
+.flatpickr-day:hover{background:var(--interaction-default-hover)}
+.flatpickr-months .flatpickr-month{padding:6px 8px}
+.flatpickr-current-month .numInputWrapper{width:fit-content;min-width:0}
+.flatpickr-current-month .numInputWrapper input{font-family:"Nunito",sans-serif}
 @media (max-width: 860px){
-  .app{grid-template-columns:56px 1fr}
-  .goal-summary{grid-template-columns:100px 1fr}
-  .target-row{grid-template-columns:1fr}
-  .right{justify-content:flex-start}
+  .flatpickr-calendar{transform:scale(.67);transform-origin:top left}
+}
+
+/* Responsive */
+@media (min-width: 600px){
+  .goal-summary{grid-template-columns:120px 1fr;padding:18px 18px 130px 18px}
+}
+@media (min-width: 861px){
+  .content{grid-template-columns:1.3fr .7fr}
+  .goal-summary{grid-template-columns:140px 1fr}
 }
 @media (max-width: 520px){
-  .top-actions .date{display:none}
-  .goal-head h1{font-size:22px}
+  .top-actions{gap:8px;flex-wrap:wrap}
+  .created-label{display:none}
+  .goal-head h1{font-size:20px}
+}
+@media (max-width: 320px){
+  .goal-head h1{font-size:18px}
+  .ring{width:96px;height:96px}
+}
+
+/* Force-open state for all FlyonUI dropdowns (placed at end to win specificity/order) */
+.dropdown.dropdown-open > .dropdown-menu{display:block !important; opacity:1 !important; pointer-events:auto !important; transform:translateY(0) !important; z-index:10000}
+/* Hide separate deadline column and show inline under title on <=860px */
+@media (max-width: 860px){
+  /* hide both deadline columns on small screens */
+  .targets-table thead th:nth-child(2),
+  .targets-table tbody td:nth-child(2),
+  .targets-table thead th:nth-child(3),
+  .targets-table tbody td:nth-child(3){display:none}
+  .t-name .deadline-mobile{display:block}
 }
 
 /* Create Target Modal */
@@ -230,4 +535,24 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Nunito", 
 .type-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px}
 .type-card{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fafafa}
 .num-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.error-text{color:#dc3251;font-size:12px;margin-top:4px}
+
+/* 3-segment toggle for target type */
+.seg3-toggle{display:grid;grid-template-columns:1fr 1fr 1fr;position:relative;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:10px}
+.seg3-toggle input[type="radio"]{display:none}
+.seg3-toggle label{padding:8px 10px;text-align:center;cursor:pointer;background:#f3f4f6;color:var(--text-norm);font-weight:600}
+.seg3-toggle input[type="radio"]:checked + label{background:var(--primary);color:#fff}
+.type-config{margin-top:10px}
+
+
+/* Time Picker styles (as provided) */
+.time-picker-container { position: relative; width: 12.5rem; color: #0c0c14; }
+.time-input { width: 100%; padding: 0.5rem 1.875rem 0.5rem 0.625rem; font-size: 1rem; border: 0.063rem solid transparent; border-radius: 0.625rem; outline: none; box-sizing: border-box; background: #ffffff; color: #0c0c14; font: 400 0.875rem/1.5 "Nunito", sans-serif; }
+.time-input:focus { border-color: #24d3ee; box-shadow: 0 0 0 0.125rem rgb(103, 232, 249, 0.3); }
+.clear-btn { position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 1rem; color: #8f8d8a; cursor: pointer; display: none; }
+.clear-btn:hover { color: #0c0c14; }
+.dropdown-time { position: absolute; top: 100%; left: 0; width: 100%; max-height: 11.25rem; overflow-y: auto; background: #ffffff; border: 0.063rem solid #d1cfcd; margin-top: 0.25rem; box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1); display: none; z-index: 10; }
+.dropdown-time div { padding: 0.5rem 0.625rem; cursor: pointer; color: #0c0c14; font: 400 0.875rem/1.5 "Nunito", sans-serif; }
+.dropdown-time div:hover { background: #24d3ee; color: #ffffff; }
+.dropdown-time div.selected { background: #6d4aff; color: #ffffff; }
 

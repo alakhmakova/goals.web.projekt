@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Time Picker</title>
+<style>
+  .time-picker-container {
+    position: relative;
+    width: 12.5rem; /* 200px */
+    color: #0c0c14; /* text-norm */
+  }
+
+  .time-input {
+    width: 100%;
+    padding: 0.5rem 1.875rem 0.5rem 0.625rem;
+    font-size: 1rem;
+    border: 0.063rem solid transparent; /* border-norm #d1cfcd */
+    border-radius: 0.625rem;
+    outline: none;
+    box-sizing: border-box;
+    background: #ffffff; /* background-norm */
+    color: #0c0c14; /* text-norm */
+    font: 400 0.875rem/1.5 "Nunito", sans-serif;
+    
+  }
+
+  .time-input:focus {
+    border-color: #24d3ee; /* focus-outline #6d4aff*/
+    box-shadow: 0 0 0 0.125rem rgb(103, 232, 249, 0.3);   /* focus-ring rgba(109, 74, 255, 0.2); */
+  }
+
+  .clear-btn {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: #8f8d8a; /* text-hint */
+    cursor: pointer;
+    display: none;
+  }
+
+  .clear-btn:hover {
+    color: #0c0c14; /* text-norm */
+  }
+
+  .dropdown-time {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 11.25rem;
+    overflow-y: auto;
+    background: #ffffff; /* background-norm */
+    border: 0.063rem solid #d1cfcd; /* border-norm */
+    
+    margin-top: 0.25rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
+    display: none;
+    z-index: 10;
+  }
+
+  .dropdown-time div {
+    padding: 0.5rem 0.625rem;
+    cursor: pointer;
+    color: #0c0c14; /* text-norm */
+    font: 400 0.875rem/1.5 "Nunito", sans-serif;
+  }
+
+  .dropdown-time div:hover {
+    background: #24d3ee; /* interaction-weak-minor-1 #f5f3f2 */
+    color: #ffffff;
+  }
+
+  .dropdown-time div.selected {
+    background: #6d4aff; /* interaction-norm */
+    color: #ffffff; /* interaction-norm-contrast */
+  }
+</style>
+</head>
+<body>
+
+<div class="time-picker-container">
+  <input type="text" class="time-input" placeholder="Select time" readonly>
+  <button class="clear-btn">&times;</button>
+  <div class="dropdown-time"></div>
+</div>
+
+<script>
+  const container = document.querySelector('.time-picker-container');
+  const input = container.querySelector('.time-input');
+  const dropdown = container.querySelector('.dropdown-time');
+  const clearBtn = container.querySelector('.clear-btn');
+
+  // 30 min intervals
+  function generateTimes() {
+    const times = [];
+    for (let h = 0; h < 24; h++) {
+      for (let m = 0; m < 60; m += 30) {
+        const hh = String(h).padStart(2, '0');
+        const mm = String(m).padStart(2, '0');
+        times.push(`${hh}:${mm}`);
+      }
+    }
+    return times;
+  }
+
+  function renderDropdown(selected = '') {
+    dropdown.innerHTML = '';
+    const times = generateTimes();
+    times.forEach(t => {
+      const div = document.createElement('div');
+      div.textContent = t;
+      if (t === selected) div.classList.add('selected');
+      div.addEventListener('click', () => {
+        input.value = t;
+        hideDropdown();
+        showClearBtn();
+      });
+      dropdown.appendChild(div);
+    });
+  }
+
+  function showDropdown() {
+    renderDropdown(input.value);
+    dropdown.style.display = 'block';
+  }
+
+  function hideDropdown() {
+    dropdown.style.display = 'none';
+  }
+
+  function showClearBtn() {
+    clearBtn.style.display = input.value ? 'block' : 'none';
+  }
+
+  // Ввод произвольного времени вручную
+  input.removeAttribute('readonly');
+  input.addEventListener('focus', showDropdown);
+
+  input.addEventListener('input', () => {
+    const val = input.value;
+    renderDropdown(val);
+    dropdown.style.display = 'block';
+    showClearBtn();
+  });
+
+  // Обработка Enter
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (input.value.trim() !== '') {
+        hideDropdown();
+        showClearBtn();
+      }
+    }
+  });
+
+  // Кнопка очистки
+  clearBtn.addEventListener('click', () => {
+    input.value = '';
+    showClearBtn();
+    hideDropdown();
+  });
+
+  // Клик вне
+  document.addEventListener('click', e => {
+    if (!container.contains(e.target)) {
+      hideDropdown();
+    }
+  });
+</script>
+
+
+</body>
+</html>

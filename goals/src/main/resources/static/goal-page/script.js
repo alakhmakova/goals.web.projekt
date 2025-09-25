@@ -1,112 +1,9 @@
 (function(){
-  const kebabs = document.querySelectorAll('.kebab');
-  kebabs.forEach(btn=>{
-    btn.addEventListener('click', (e)=>{
-      const wrap = e.currentTarget.parentElement;
-      const dd = wrap.querySelector('.dropdown');
-      const open = dd && dd.style.display === 'block';
-      document.querySelectorAll('.dropdown').forEach(d=>d.style.display='none');
-      if(dd) dd.style.display = open ? 'none' : 'block';
-      e.stopPropagation();
-    });
-  });
-  document.addEventListener('click',()=>document.querySelectorAll('.dropdown').forEach(d=>d.style.display='none'));
+  // Dropdown behavior moved to drop-down.js
 
   // drawer logic moved to menu.js
 
-  // Due date calendar
-  (function(){
-    const toggle = document.getElementById('due-toggle');
-    const pop = document.getElementById('due-popover');
-    const grid = document.getElementById('cal-grid');
-    const weekdays = document.getElementById('cal-weekdays');
-    const title = document.getElementById('cal-title');
-    const dueText = document.getElementById('due-text');
-    if(!toggle || !pop || !grid || !title || !dueText) return;
-
-    let current = new Date(localStorage.getItem('goal_due') || Date.now());
-    let view = new Date(current.getFullYear(), current.getMonth(), 1);
-
-    function fmt(d){
-      return d.toLocaleDateString(undefined,{month:'short', day:'numeric'});
-    }
-    function weekNumber(d){
-      const dt = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-      const dayNum = dt.getUTCDay() || 7; // Monday=1..Sunday=7
-      dt.setUTCDate(dt.getUTCDate() + 4 - dayNum);
-      const yearStart = new Date(Date.UTC(dt.getUTCFullYear(),0,1));
-      return Math.ceil((((dt - yearStart) / 86400000) + 1)/7);
-    }
-    function render(){
-      title.textContent = view.toLocaleDateString(undefined,{month:'long', year:'numeric'});
-      grid.innerHTML='';
-      if(weekdays){
-        weekdays.innerHTML = '';
-        const heads = [' ','M','T','W','T','F','S','S'];
-        heads.forEach((h,i)=>{
-          const el = document.createElement('span');
-          el.textContent = h;
-          weekdays.appendChild(el);
-        });
-      }
-      const startDay = new Date(view.getFullYear(), view.getMonth(), 1).getDay();
-      const firstWeekday = (startDay + 6) % 7; // make Monday=0
-      // first week number cell
-      const firstDate = new Date(view.getFullYear(), view.getMonth(), 1);
-      let cursor = new Date(firstDate);
-      cursor.setDate(1 - firstWeekday); // monday of first grid week
-      // build 6 weeks grid (rows) with week numbers
-      for(let row=0; row<6; row++){
-        // week number cell
-        const wk = document.createElement('div');
-        wk.className = 'weeknum';
-        wk.textContent = String(weekNumber(cursor));
-        const now = new Date();
-        const sameWeek = weekNumber(now) === weekNumber(cursor) && now.getFullYear() === cursor.getFullYear();
-        if(sameWeek) wk.classList.add('week-current');
-        grid.appendChild(wk);
-        for(let col=0; col<7; col++){
-          const dt = new Date(cursor);
-          const btn = document.createElement('button');
-          btn.textContent = String(dt.getDate());
-          const isToday = new Date().toDateString()===dt.toDateString();
-          const isSelected = current.toDateString()===dt.toDateString();
-          if(sameWeek) btn.classList.add('week-current');
-          if(isToday) btn.classList.add('today');
-          if(isSelected) btn.classList.add('selected');
-          btn.addEventListener('click', ()=>{
-            current = dt;
-            localStorage.setItem('goal_due', current.toISOString());
-            dueText.textContent = fmt(current);
-            pop.hidden = true;
-          });
-          grid.appendChild(btn);
-          cursor.setDate(cursor.getDate()+1);
-        }
-      }
-    }
-    render();
-    dueText.textContent = fmt(current);
-
-    toggle.addEventListener('click', (e)=>{
-      pop.hidden = false;
-      const r = toggle.getBoundingClientRect();
-      pop.style.left = Math.round(r.left) + 'px';
-      pop.style.top = Math.round(r.bottom + 6) + 'px';
-      e.stopPropagation();
-    });
-    document.querySelectorAll('.cal-nav').forEach(n=>{
-      n.addEventListener('click', (e)=>{
-        const dir = Number(n.dataset.dir)||0;
-        view = new Date(view.getFullYear(), view.getMonth()+dir, 1);
-        render();
-        e.stopPropagation();
-      });
-    });
-    document.addEventListener('click', (e)=>{
-      if(!pop.hidden && !pop.contains(e.target) && e.target!==toggle){ pop.hidden = true; }
-    });
-  })();
+  // Date picking handled by Flatpickr in calendar.js
 
   // Slider bubble follow
   (function(){
@@ -230,9 +127,18 @@
       const panel = item.querySelector('.rich-editor');
       if(panel){
         panel.hidden = expanded;
+        btn.textContent = expanded ? 'add' : 'remove';
         btn.setAttribute('aria-expanded', (!expanded).toString());
         item.setAttribute('data-open', (!expanded).toString());
       }
+    });
+  });
+  // open/close by clicking the whole row
+  document.querySelectorAll('.grow-item .row').forEach(row=>{
+    row.addEventListener('click', (e)=>{
+      if(e.target.classList.contains('add-rich')) return;
+      const toggle = row.querySelector('.add-rich');
+      toggle && toggle.click();
     });
   });
   document.querySelectorAll('.rich-editor .toolbar button').forEach(b=>{
@@ -306,34 +212,195 @@
     input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); input.blur(); } });
   });
 
-  // Deadline calendar popup (reuse top calendar styling)
-  document.querySelectorAll('.deadline-cell').forEach(cell=>{
-    cell.style.cursor = 'pointer';
-    cell.addEventListener('click', (e)=>{
-      const pop = document.getElementById('due-popover');
-      if(!pop) return;
-      const rect = cell.getBoundingClientRect();
-      pop.hidden = false;
-      pop.style.left = Math.round(rect.left) + 'px';
-      pop.style.top = Math.round(rect.bottom + 6) + 'px';
-      e.stopPropagation();
-      // when a date is chosen (global listener updates dueText); intercept grid clicks to set this cell
-      const grid = document.getElementById('cal-grid');
-      const handler = (ev)=>{
-        const btn = ev.target.closest('button');
-        if(!btn) return;
-        // parse the title text to know month/year
-        const title = document.getElementById('cal-title').textContent;
-        const [monthName, yearStr] = title.split(' ');
-        const dt = new Date(`${monthName} ${btn.textContent}, ${yearStr}`);
-        cell.dataset.date = dt.toISOString().slice(0,10);
-        cell.textContent = dt.toLocaleDateString(undefined,{month:'short', day:'numeric'});
-        pop.hidden = true;
-        grid.removeEventListener('click', handler, true);
-      };
-      grid.addEventListener('click', handler, true);
+  // Menu actions (FlyonUI dropdown structure)
+  document.querySelectorAll('.t-name .t-menu .dropdown-menu').forEach(dd=>{
+    const tr = dd.closest('tr');
+    const nameCell = tr.querySelector('.t-name');
+    const deadlineCell = tr.querySelector('.deadline-cell');
+    // rename -> into inline edit
+    const renameBtn = dd.querySelector('[data-rename]');
+    renameBtn && renameBtn.addEventListener('click', ()=>{
+      const input = nameCell.querySelector('.name-input');
+      nameCell.classList.add('editing');
+      input && input.focus();
+      dd.style.display='none';
+    });
+    // change deadline -> trigger flatpickr
+    const deadlineBtn = dd.querySelector('[data-deadline]');
+    deadlineBtn && deadlineBtn.addEventListener('click', ()=>{
+      const input = deadlineCell && deadlineCell.querySelector('input');
+      if(input){ input.focus(); input.dispatchEvent(new Event('click',{bubbles:true})); }
+      dd.style.display='none';
+    });
+    // note -> focus composer
+    const noteBtn = dd.querySelector('[data-note]');
+    noteBtn && noteBtn.addEventListener('click', ()=>{
+      const input = document.getElementById('new-comment-text');
+      input && input.focus();
+      input && input.scrollIntoView({behavior:'smooth', block:'end'});
+      const send = document.getElementById('send-comment');
+      send && send.classList.add('active');
+      send && (send.disabled=false);
+      dd.style.display='none';
+    });
+    // delete -> reuse existing modal
+    const delBtn = dd.querySelector('[data-delete]');
+    delBtn && delBtn.addEventListener('click', ()=>{
+      const deleteModal = document.getElementById('delete-modal');
+      deleteModal && deleteModal.setAttribute('aria-hidden','false');
+      dd.style.display='none';
     });
   });
+
+  // Tasks target interactions
+(function(){
+  const rows = document.querySelectorAll('tr.t-row[data-type="tasks"]');
+  rows.forEach(row=>{
+    const nameCell = row.querySelector('.t-name');
+    // поддерживаем оба варианта класса: task-badge (в твоём HTML) или старый tasks-number-badge
+    const badge = nameCell ? (nameCell.querySelector('.task-badge') || nameCell.querySelector('.tasks-number-badge')) : null;
+    const plus = nameCell ? nameCell.querySelector('.task-plus') : null;
+    const progressCell = row.querySelector('.t-progress .progress-cell[data-type="tasks"]');
+    const panelRow = row.nextElementSibling && row.nextElementSibling.classList.contains('tasks-panel-row') ? row.nextElementSibling : null;
+    if(!progressCell || !panelRow) return;
+
+    const panel = panelRow.querySelector('.tasks-panel');
+    const listUi = panel.querySelector('.task-list-ui');
+    const newInput = panel.querySelector('.new-task-input');
+    const addBtn = panel.querySelector('.add-task-btn');
+
+    function readTasks(){
+      const list = progressCell.querySelector('.task-list');
+      const tasks = [];
+      if(list){
+        list.querySelectorAll('li').forEach(li=>{
+          tasks.push({ name: (li.textContent||'').trim(), done: li.classList.contains('done') });
+        });
+      }
+      return tasks;
+    }
+
+    function writeBadge(tasks){
+      if(!badge) return;
+      const n = tasks.length;
+      badge.textContent = `${n} ${n === 1 ? 'task' : 'tasks'}`;
+      badge.setAttribute('title', 'Show tasks');
+    }
+
+    function updateProgress(tasks){
+      const total = tasks.length || 1; // оригинальная логика: избегаем деления на 0
+      const done = tasks.filter(t=>t.done).length;
+      const pct = Math.round((done/total)*100);
+      const bar = progressCell.querySelector('.bar');
+      if(bar) bar.style.width = pct + '%';
+      const val = progressCell.querySelector('.value');
+      if(val) val.textContent = `${done}/${total}`;
+    }
+
+    function renderPanel(tasks){
+      listUi.innerHTML = '';
+      tasks.forEach((t, idx)=>{
+        const item = document.createElement('div');
+        item.className = 'task-row';
+
+        const cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = !!t.done;
+        const name = document.createElement('div'); name.className = 'name'; name.textContent = t.name || '';
+        const actions = document.createElement('div'); actions.className = 'actions';
+
+        const commentBtn = document.createElement('button'); commentBtn.className = 'icon-btn'; commentBtn.innerHTML = '<i class="bi bi-chat"></i>';
+        const editBtn = document.createElement('button'); editBtn.className = 'icon-btn'; editBtn.innerHTML = '<i class="bi bi-pencil"></i>';
+        const delBtn = document.createElement('button'); delBtn.className = 'icon-btn'; delBtn.innerHTML = '<i class="bi bi-x"></i>';
+
+        actions.append(commentBtn, editBtn, delBtn);
+        item.append(cb, name, actions);
+        listUi.appendChild(item);
+
+        cb.addEventListener('change', ()=>{
+          t.done = cb.checked;
+          updateProgress(tasks);
+          writeBadge(tasks);
+        });
+
+        editBtn.addEventListener('click', ()=>{
+          name.setAttribute('contenteditable','true');
+          name.focus();
+          const onBlur = ()=>{
+            const v = (name.textContent||'').trim();
+            if(!v) name.textContent = t.name;
+            else t.name = v;
+            name.removeAttribute('contenteditable');
+            name.removeEventListener('blur', onBlur);
+            updateProgress(tasks);
+            writeBadge(tasks);
+          };
+          name.addEventListener('blur', onBlur);
+        });
+
+        delBtn.addEventListener('click', ()=>{
+          if(tasks.length <= 1){ alert('At least one task must remain.'); return; }
+          if(!confirm('Delete this task? This action cannot be undone.')) return;
+          tasks.splice(idx, 1);
+          renderPanel(tasks);
+          writeBadge(tasks);
+          updateProgress(tasks);
+          if (typeof renderDropdown === 'function') renderDropdown(tasks);
+        });
+
+        commentBtn.addEventListener('click', ()=>{
+          const input = document.getElementById('new-comment-text');
+          if(input){ input.focus(); input.scrollIntoView({behavior:'smooth', block:'end'}); }
+          const send = document.getElementById('send-comment');
+          if(send){ send.classList.add('active'); send.disabled = false; }
+        });
+      });
+    }
+
+    // addNew вынесен наружу, чтобы не навешивать слушатели повторно
+    function addNew(){
+      const v = (newInput.value || '').trim();
+      if(!v){ newInput.focus(); return; }
+      tasks.push({ name: v, done: false });
+      newInput.value = '';
+      renderPanel(tasks);
+      writeBadge(tasks);
+      updateProgress(tasks);
+      if (typeof renderDropdown === 'function') renderDropdown(tasks);
+    }
+
+    // Подключаем слушатели добавления один раз
+    addBtn && addBtn.addEventListener('click', addNew);
+    newInput && newInput.addEventListener('keydown', (e)=>{ if(e.key === 'Enter'){ e.preventDefault(); addNew(); } });
+
+    // initial state
+    let tasks = readTasks();
+    writeBadge(tasks);
+    updateProgress(tasks);
+
+    function togglePanel(forceOpen){
+      const wantOpen = forceOpen === true ? true : forceOpen === false ? false : panelRow.hasAttribute('hidden');
+      if(wantOpen){
+        panelRow.removeAttribute('hidden');
+        renderPanel(tasks);
+      } else {
+        panelRow.setAttribute('hidden','');
+      }
+    }
+
+    badge && badge.addEventListener('click', (e)=>{togglePanel(); e.stopPropagation();});
+    plus && plus.addEventListener('click', (e)=>{ togglePanel(true); e.stopPropagation(); });
+
+    document.addEventListener('click', (e)=>{
+      if(panelRow.hasAttribute('hidden')) return;
+      if(!row.contains(e.target) && !panelRow.contains(e.target)) togglePanel(false);
+    });
+
+    // rerender when panel becomes visible
+    const observer = new MutationObserver(()=>{ if(!panelRow.hasAttribute('hidden')) renderPanel(tasks); });
+    observer.observe(panelRow, { attributes:true, attributeFilter:['hidden'] });
+  });
+})();
+
+  // Deadline date picking handled by Flatpickr in calendar.js
 
   // Note button -> focus new comment composer with target name (as author)
   document.querySelectorAll('.note-btn').forEach(btn=>{
@@ -371,6 +438,19 @@
   const targetModal = document.getElementById('target-modal');
   const closeTargetBtn = targetModal ? targetModal.querySelector('[data-close-target]') : null;
   const targetForm = document.getElementById('target-form');
+  // type switch elements
+  const rNumber = document.getElementById('type-number');
+  const rBoolean = document.getElementById('type-boolean');
+  const rTasks = document.getElementById('type-tasks');
+  const numberCfg = document.getElementById('type-number-config');
+  const tasksCfg = document.getElementById('type-tasks-config');
+  function updateTypeUI(){
+    if(rNumber && rNumber.checked){ numberCfg && (numberCfg.hidden=false); tasksCfg && (tasksCfg.hidden=true); }
+    else if(rTasks && rTasks.checked){ numberCfg && (numberCfg.hidden=true); tasksCfg && (tasksCfg.hidden=false); }
+    else { numberCfg && (numberCfg.hidden=true); tasksCfg && (tasksCfg.hidden=true); }
+  }
+  [rNumber,rBoolean,rTasks].forEach(r=> r && r.addEventListener('change', updateTypeUI));
+  updateTypeUI();
   if(addBtn && targetModal){
     addBtn.addEventListener('click', ()=> targetModal.setAttribute('aria-hidden','false'));
   }
@@ -379,9 +459,43 @@
 
   targetForm && targetForm.addEventListener('submit', (e)=>{
     e.preventDefault();
-    const name = document.getElementById('t-name').value.trim();
-    const start = Number(document.getElementById('t-start').value||0);
-    const target = Math.max(Number(document.getElementById('t-target').value||1),1);
+    // Deadline validation: time cannot be set without date
+    const dDate = document.getElementById('t-deadline-date');
+    const dTime = document.getElementById('t-deadline-time');
+    const errDeadline = document.getElementById('err-deadline');
+    if(dTime && dTime.value && dDate && !dDate.value){ errDeadline.hidden=false; return; }
+    else if(errDeadline){ errDeadline.hidden=true; }
+    const nameInput = document.getElementById('t-name');
+    const name = nameInput.value.trim();
+    const errTname = document.getElementById('err-tname');
+    if(!name){ errTname.hidden=false; return; } else { errTname.hidden=true; }
+    const typeNumber = document.getElementById('type-number');
+    const startEl = document.getElementById('t-start');
+    const targetEl = document.getElementById('t-target');
+    const errStart = document.getElementById('err-start');
+    const errTarget = document.getElementById('err-target');
+    const isNumber = typeNumber && typeNumber.checked;
+    const isTasks = rTasks && rTasks.checked;
+    const taskNameEl = document.getElementById('t-task-name');
+    const errTaskName = document.getElementById('err-task-name');
+    // Validate number type: start and target required
+    if(isNumber){
+      let valid = true;
+      const startVal = startEl.value;
+      const targetVal = targetEl.value;
+      const errEqual = document.getElementById('err-equal');
+      if(startVal === '' || isNaN(Number(startVal))){ valid = false; errStart.hidden = false; } else { errStart.hidden = true; }
+      if(targetVal === '' || isNaN(Number(targetVal))){ valid = false; errTarget.hidden = false; } else { errTarget.hidden = true; }
+      if(valid && Number(startVal) === Number(targetVal)){ valid=false; errEqual.hidden=false; } else { errEqual.hidden=true; }
+      if(!valid) return; // stop submission
+    }
+    // Validate tasks type: task name required
+    if(isTasks){
+      const tn = (taskNameEl.value||'').trim();
+      if(!tn){ errTaskName.hidden = false; return; } else { errTaskName.hidden = true; }
+    }
+    const start = Number(startEl.value||0);
+    const target = Math.max(Number(targetEl.value||1),1);
     if(!name) return;
     const li = document.createElement('li');
     li.className = 'target-row';
